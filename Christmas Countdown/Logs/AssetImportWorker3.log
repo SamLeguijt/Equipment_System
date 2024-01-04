@@ -1,0 +1,550 @@
+Using pre-set license
+Built from '2021.3/staging' branch; Version is '2021.3.9f1 (ad3870b89536) revision 11352176'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 10  (10.0.19045) 64bit Core' Language: 'en' Physical Memory: 16219 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2021.3.9f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker3
+-projectPath
+C:/Users/samle/source/repos/Christmas Countdown/Christmas Countdown
+-logFile
+Logs/AssetImportWorker3.log
+-srvPort
+49356
+Successfully changed project path to: C:/Users/samle/source/repos/Christmas Countdown/Christmas Countdown
+C:/Users/samle/source/repos/Christmas Countdown/Christmas Countdown
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Refreshing native plugins compatible for Editor in 101.85 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2021.3.9f1 (ad3870b89536)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2021.3.9f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/samle/source/repos/Christmas Countdown/Christmas Countdown/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce GTX 1650 Ti (ID=0x1f95)
+    Vendor:   NVIDIA
+    VRAM:     3962 MB
+    Driver:   30.0.15.1278
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2021.3.9f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2021.3.9f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2021.3.9f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56240
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.3.9f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.3.9f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.009026 seconds.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 105.48 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.821 seconds
+Domain Reload Profiling:
+	ReloadAssembly (821ms)
+		BeginReloadAssembly (87ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (0ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (1ms)
+		EndReloadAssembly (606ms)
+			LoadAssemblies (86ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (149ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (38ms)
+			SetupLoadedEditorAssemblies (350ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (13ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (106ms)
+				BeforeProcessingInitializeOnLoad (3ms)
+				ProcessInitializeOnLoadAttributes (181ms)
+				ProcessInitializeOnLoadMethodAttributes (47ms)
+				AfterProcessingInitializeOnLoad (0ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (0ms)
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.006067 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\Users\samle\source\repos\Christmas Countdown\Christmas Countdown\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\Users\samle\source\repos\Christmas Countdown\Christmas Countdown\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.62 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.058 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1059ms)
+		BeginReloadAssembly (113ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (5ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (18ms)
+		EndReloadAssembly (836ms)
+			LoadAssemblies (85ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (258ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (56ms)
+			SetupLoadedEditorAssemblies (405ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (7ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (93ms)
+				ProcessInitializeOnLoadAttributes (267ms)
+				ProcessInitializeOnLoadMethodAttributes (28ms)
+				AfterProcessingInitializeOnLoad (9ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (6ms)
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
+Refreshing native plugins compatible for Editor in 0.68 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3542 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 38 unused Assets / (128.5 KB). Loaded Objects now: 4002.
+Memory consumption went from 125.0 MB to 124.9 MB.
+Total: 3.386900 ms (FindLiveObjects: 0.267700 ms CreateObjectMapping: 0.243200 ms MarkObjects: 2.791600 ms  DeleteObjects: 0.083700 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 1129503.407737 seconds.
+  path: Assets/Imports/Christmas Scene/Assets/Prefabs/Gifts.prefab
+  artifactKey: Guid(4a77430db54e84d41ab646ee912d126c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Scene/Assets/Prefabs/Gifts.prefab using Guid(4a77430db54e84d41ab646ee912d126c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8ff0b8f8a3284d6af7bb6406e217ed6b') in 0.180446 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000069 seconds.
+  path: Assets/Imports/Christmas Scene/Assets/Prefabs/Window.prefab
+  artifactKey: Guid(c5f9dbb5a897c4c47bd47dd11cad9947) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Scene/Assets/Prefabs/Window.prefab using Guid(c5f9dbb5a897c4c47bd47dd11cad9947) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6f6e5880cef601b3570fa724f9377c4c') in 0.066589 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/Imports/Christmas Scene/Assets/Prefabs/Socks.prefab
+  artifactKey: Guid(6860d1e548d67d64ab23a054c347e01b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Scene/Assets/Prefabs/Socks.prefab using Guid(6860d1e548d67d64ab23a054c347e01b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '97a3df6a5a840765e8b80455ac24674c') in 0.021508 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 32.515011 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Christmas_Ball_02.prefab
+  artifactKey: Guid(2f08d5b8aacce504d887fa1fbbe63524) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Christmas_Ball_02.prefab using Guid(2f08d5b8aacce504d887fa1fbbe63524) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2bc25d1ec72f426a5dc0eb0e3c63c8f9') in 0.112641 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Christmas_Candy_03.prefab
+  artifactKey: Guid(a6803f38f5492a846a254a30a359f917) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Christmas_Candy_03.prefab using Guid(a6803f38f5492a846a254a30a359f917) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '51c4e0a83164e3634c455dbe4397b0a3') in 0.023339 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Christmas_Ball_05.prefab
+  artifactKey: Guid(7ad324a9f0845a248a5ee8baff2855a7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Christmas_Ball_05.prefab using Guid(7ad324a9f0845a248a5ee8baff2855a7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '33c78c9f25856856485f73f304b92f29') in 0.027099 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Christmas_Candy_01.prefab
+  artifactKey: Guid(e7b730946c7cdbb41bc1d7911633430b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Christmas_Candy_01.prefab using Guid(e7b730946c7cdbb41bc1d7911633430b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c48cdbbd43cb96be0e42d2d724de6947') in 0.023963 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Christmas_Ball_03.prefab
+  artifactKey: Guid(d24a2ef07343af2459b251fc9b9e1db8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Christmas_Ball_03.prefab using Guid(d24a2ef07343af2459b251fc9b9e1db8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9eb171123bbfe1ea169953070ff69fd2') in 0.021853 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Present_Box_Color_12.prefab
+  artifactKey: Guid(1e4b3bd06e444e54f9a6c16f68a246ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Present_Box_Color_12.prefab using Guid(1e4b3bd06e444e54f9a6c16f68a246ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7ad8b4d9d6ea27470d517695b4e7b098') in 0.022644 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Christmas_Tree_V1_01.prefab
+  artifactKey: Guid(a149a3c00d359414489dc7172643c85c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Christmas_Tree_V1_01.prefab using Guid(a149a3c00d359414489dc7172643c85c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2fce25d52ef34198277f9aaa3969a3e0') in 0.024597 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Present_Box_Color_16.prefab
+  artifactKey: Guid(307a3c2cd859c074dad96a275a69cbe0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Present_Box_Color_16.prefab using Guid(307a3c2cd859c074dad96a275a69cbe0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e10399e94d038bbb5814a37950ed00c4') in 0.022067 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Christmas_Candy_00.prefab
+  artifactKey: Guid(9d21682eb45dd044a9a0d26d5352f4e2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Christmas_Candy_00.prefab using Guid(9d21682eb45dd044a9a0d26d5352f4e2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8b4f4593a5dadb8130cc07dbd8014c37') in 0.023927 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Present_Box_Color_01.prefab
+  artifactKey: Guid(d5ee025fccaa3e0449da6f09552d2d88) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Present_Box_Color_01.prefab using Guid(d5ee025fccaa3e0449da6f09552d2d88) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '395b4a9c4452bc1fd5ff213ab5968d22') in 0.025295 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Christmas_Ball_09.prefab
+  artifactKey: Guid(998fb6df537612b4b93fd1efbbb9c4a7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Christmas_Ball_09.prefab using Guid(998fb6df537612b4b93fd1efbbb9c4a7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '92b47a03b38570547ffc1989447dbf65') in 0.022770 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Christmas_Ball_11.prefab
+  artifactKey: Guid(f11f4656aaf62da41838106c00951a0c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Christmas_Ball_11.prefab using Guid(f11f4656aaf62da41838106c00951a0c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dcd00fe2c9fc105dfd72a9295425c450') in 0.023016 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Present_Box_Color_04 2.prefab
+  artifactKey: Guid(a694f484b39bd524faecfe7ad3eea7a9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Present_Box_Color_04 2.prefab using Guid(a694f484b39bd524faecfe7ad3eea7a9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '57fa89c00baba3a6f1225ad78bf2e9fe') in 0.024599 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Present_Box_Color_11.prefab
+  artifactKey: Guid(aa48dc4ca40a6ec469f5fc74afada3fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Present_Box_Color_11.prefab using Guid(aa48dc4ca40a6ec469f5fc74afada3fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '649ad5f187573c5b90b22c930d19a9ac') in 0.023865 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Present_Box_Color_23.prefab
+  artifactKey: Guid(757b8bbebf28235479ad9b3d09adcf98) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Present_Box_Color_23.prefab using Guid(757b8bbebf28235479ad9b3d09adcf98) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3d874dac6266933da862bc9dc8d44e73') in 0.021416 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Present_Box_Color_00.prefab
+  artifactKey: Guid(f544b8bc4e6a6b648ac6597f7f20a862) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Present_Box_Color_00.prefab using Guid(f544b8bc4e6a6b648ac6597f7f20a862) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '97dfed95ea025cdaef04adc614306e7a') in 0.023197 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 1.763519 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Present_Box_Color_26.prefab
+  artifactKey: Guid(7b7ae72c181ad9f4ba646ba6e1127f46) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Present_Box_Color_26.prefab using Guid(7b7ae72c181ad9f4ba646ba6e1127f46) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd2aed5a733fdda10688d804a1b66dbdf') in 0.022160 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Present_Box_Color_30.prefab
+  artifactKey: Guid(e5b7c36b701cce94c9c8a11137907de1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Present_Box_Color_30.prefab using Guid(e5b7c36b701cce94c9c8a11137907de1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '425919f45478d7ddff3b903bd85be70c') in 0.026141 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Present_Box_Pattern_04.prefab
+  artifactKey: Guid(513d64f078b524d4f858b5628fd4faf4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Present_Box_Pattern_04.prefab using Guid(513d64f078b524d4f858b5628fd4faf4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1a39f5636ed6813ab006513a4d1c0135') in 0.023193 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Present_Box_Color_36.prefab
+  artifactKey: Guid(d39d5d8e3ac3376488b9ea6780ef8078) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Present_Box_Color_36.prefab using Guid(d39d5d8e3ac3376488b9ea6780ef8078) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '982500b094f6ff2ee27c68fd2da95ea0') in 0.026389 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Present_Box_Pattern_17.prefab
+  artifactKey: Guid(261868f3859344243b0d74ff1baa5702) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Present_Box_Pattern_17.prefab using Guid(261868f3859344243b0d74ff1baa5702) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '385e9fa93f41e03da6ec6ded7b2c01b4') in 0.027468 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Present_Box_Pattern_15.prefab
+  artifactKey: Guid(cc3c33d818d87a744a79f9b51f32cc39) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Present_Box_Pattern_15.prefab using Guid(cc3c33d818d87a744a79f9b51f32cc39) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '931d83499bf35295bea2d3cf3d560186') in 0.024988 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Present_Box_Pattern_09.prefab
+  artifactKey: Guid(bbc0b525f1af03149958fc57163108a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Present_Box_Pattern_09.prefab using Guid(bbc0b525f1af03149958fc57163108a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '06a710856b4b421ae8ed9afe04303bde') in 0.023982 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Present_Box_Color_38.prefab
+  artifactKey: Guid(c98fbdb086d60a24b834c934ac6f2840) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Present_Box_Color_38.prefab using Guid(c98fbdb086d60a24b834c934ac6f2840) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '553770506d31d588fed9bd7ca227daec') in 0.025602 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Present_Box_Color_29.prefab
+  artifactKey: Guid(1b805f1f22c0b1c42b29feff2b2c1279) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Present_Box_Color_29.prefab using Guid(1b805f1f22c0b1c42b29feff2b2c1279) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7b804e451e8a8c8e05cdb215635f4fea') in 0.025367 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Present_Box_Pattern_05.prefab
+  artifactKey: Guid(0cc994154bc1be74c831fbc76cbf222f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Present_Box_Pattern_05.prefab using Guid(0cc994154bc1be74c831fbc76cbf222f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0d567ebe84c35da3d16a45dde3c3cb3c') in 0.023026 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Present_Box_Color_40.prefab
+  artifactKey: Guid(2df63d60245f3d5448916136b34a40c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Present_Box_Color_40.prefab using Guid(2df63d60245f3d5448916136b34a40c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9893b41b88c42bb68662390ff2c095c5') in 0.023983 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Present_Box_Color_32.prefab
+  artifactKey: Guid(5a46ee9ac643ebe4fada17013f63ce21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Present_Box_Color_32.prefab using Guid(5a46ee9ac643ebe4fada17013f63ce21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9c4928b9f9c1f599b63b716638254ff7') in 0.022970 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 1.074129 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Present_Box_Pattern_20.prefab
+  artifactKey: Guid(761b8aea96620e744be4536882e5ac59) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Present_Box_Pattern_20.prefab using Guid(761b8aea96620e744be4536882e5ac59) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ee109695ae10f43f483a2eecc26ea0d9') in 0.025209 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Present_Box_Pattern_22.prefab
+  artifactKey: Guid(59a0670901564e54782671926b83347c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Prefab/Present_Box_Pattern_22.prefab using Guid(59a0670901564e54782671926b83347c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fc123e24686edbd68c3b0d437fd42f76') in 0.026686 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 437.206634 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Christmas_Candy_00.fbx
+  artifactKey: Guid(b8c9a25a29cbdf249909205742954ccd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Christmas_Candy_00.fbx using Guid(b8c9a25a29cbdf249909205742954ccd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd85846a94916d7f59d312ef7c0b4544c') in 0.059410 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Present_Box_Color_24.fbx
+  artifactKey: Guid(3457588e469c47641996ce82593a39a7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Present_Box_Color_24.fbx using Guid(3457588e469c47641996ce82593a39a7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8faa1cada98e5795e66708e6bd2bf60f') in 0.063981 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Present_Box_Color_03.fbx
+  artifactKey: Guid(416e2b5a200888142a97c49c8bf68dc1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Present_Box_Color_03.fbx using Guid(416e2b5a200888142a97c49c8bf68dc1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '546503417db8c6b79a1361458516283f') in 0.047417 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Present_Box_Color_18.fbx
+  artifactKey: Guid(a6973e8d90afc0c48bc2619857f51508) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Present_Box_Color_18.fbx using Guid(a6973e8d90afc0c48bc2619857f51508) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '40158fdff4cb105c0450e063abaa5d8b') in 0.025053 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Christmas_Candy_04.fbx
+  artifactKey: Guid(fcd353dc7296d4e48b3460a602ea0257) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Christmas_Candy_04.fbx using Guid(fcd353dc7296d4e48b3460a602ea0257) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ff49de8d0eef6d9075fcab5d52819b3a') in 0.024922 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Present_Box_Color_30.fbx
+  artifactKey: Guid(dd6679b31041b5e41acf8a91e74f4c17) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Present_Box_Color_30.fbx using Guid(dd6679b31041b5e41acf8a91e74f4c17) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4d631094d980920cbd320d4922495527') in 0.025575 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Christmas_Candy_01.fbx
+  artifactKey: Guid(4a74d0562c133ef418bc5b6e060a12cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Christmas_Candy_01.fbx using Guid(4a74d0562c133ef418bc5b6e060a12cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f22f675c548bba9d85b9b6fd25e4f445') in 0.026629 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Present_Box_Color_04.fbx
+  artifactKey: Guid(d6c6e0cf1cc27444e80106fac7f3e8b5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Present_Box_Color_04.fbx using Guid(d6c6e0cf1cc27444e80106fac7f3e8b5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '19865bb8f03c305dfbc6f4184d40a2f9') in 0.027210 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Christmas_Candy_03.fbx
+  artifactKey: Guid(1debad300e48af340936c92382f036d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Christmas_Candy_03.fbx using Guid(1debad300e48af340936c92382f036d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9bba67560c4ffe708d6b68b137c13198') in 0.032213 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Present_Box_Color_26.fbx
+  artifactKey: Guid(2749f5e2c31861d47b74e7cb3cffa4bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Present_Box_Color_26.fbx using Guid(2749f5e2c31861d47b74e7cb3cffa4bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0c2f4adc8a32614a63eeeed18874e7af') in 0.037115 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Present_Box_Color_28.fbx
+  artifactKey: Guid(3f9c6e83fdbf22d488edde51623331a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Present_Box_Color_28.fbx using Guid(3f9c6e83fdbf22d488edde51623331a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '29f46a79949d56d3a3d7c881f40aa1c4') in 0.027823 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Christmas_Tree_V1_01.fbx
+  artifactKey: Guid(8d7d2e7c1ff912e40aaa04125a4aecb8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Christmas_Tree_V1_01.fbx using Guid(8d7d2e7c1ff912e40aaa04125a4aecb8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c0964d49a5ce7a74bcf38dcca02b26ef') in 0.026461 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Christmas_Tree_V1_00.fbx
+  artifactKey: Guid(d610123bf820bda4892639ab406a04af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Christmas_Tree_V1_00.fbx using Guid(d610123bf820bda4892639ab406a04af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '716fff28c1ce40d8b0ef4998868c7ad0') in 0.028075 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Present_Box_Color_11.fbx
+  artifactKey: Guid(f630cebb81c59fc4ba5a347165a203b7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Present_Box_Color_11.fbx using Guid(f630cebb81c59fc4ba5a347165a203b7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5e33a3228fd3609d1f239ca76feb7b08') in 0.025961 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Present_Box_Color_00.fbx
+  artifactKey: Guid(b62f486b795d4ab41b00dada7b852964) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Present_Box_Color_00.fbx using Guid(b62f486b795d4ab41b00dada7b852964) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8ebb45f0ee0a6d25394dcbccde3a6a43') in 0.028183 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Present_Box_Color_12.fbx
+  artifactKey: Guid(ed29c6e3dd42f304981914cec1d7524e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Present_Box_Color_12.fbx using Guid(ed29c6e3dd42f304981914cec1d7524e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '750ce19b84f5df241a5414f493661cec') in 0.028209 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Present_Box_Color_23.fbx
+  artifactKey: Guid(1629a842b546381469b02425adcf027f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Present_Box_Color_23.fbx using Guid(1629a842b546381469b02425adcf027f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '837e05f984cefe091a26f38ad618b159') in 0.026765 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Present_Box_Color_32.fbx
+  artifactKey: Guid(f6f3e10f4cfb5d847a1dc8df9dcbfd12) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Present_Box_Color_32.fbx using Guid(f6f3e10f4cfb5d847a1dc8df9dcbfd12) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4647112777921956137b2fa5b4fef819') in 0.026368 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Christmas_Tree_V2_03.fbx
+  artifactKey: Guid(fbf101430c1f09644b71110daa62bd5a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Christmas_Tree_V2_03.fbx using Guid(fbf101430c1f09644b71110daa62bd5a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3a6225f1cef2768cd566190de810105e') in 0.026206 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Christmas_Tree_V1_03.fbx
+  artifactKey: Guid(703f1a4cdc0c9f24e9c845016c1e3438) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Christmas_Tree_V1_03.fbx using Guid(703f1a4cdc0c9f24e9c845016c1e3438) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '89ab87e5142768bb030cffb594a6359f') in 0.028858 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Present_Box_Color_15.fbx
+  artifactKey: Guid(4a37f69abeb27fa44913da622b6a4183) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Present_Box_Color_15.fbx using Guid(4a37f69abeb27fa44913da622b6a4183) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '417f0da4d673521cdd9351f4343d405b') in 0.027657 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Present_Box_Color_07.fbx
+  artifactKey: Guid(a93755b2d0c8c3f4fb114825fbe67a41) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Present_Box_Color_07.fbx using Guid(a93755b2d0c8c3f4fb114825fbe67a41) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dc94a0c7f418dc92423ab2db86b6ee6f') in 0.022936 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Present_Box_Color_21.fbx
+  artifactKey: Guid(cc7bb9460043b6a40b80ad5d1150bcc7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Present_Box_Color_21.fbx using Guid(cc7bb9460043b6a40b80ad5d1150bcc7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bc127e7e2096c26fecf48d28e360afe6') in 0.025201 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Present_Box_Color_01.fbx
+  artifactKey: Guid(19cb6f02e50cd4f42891bdf29a14de80) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Present_Box_Color_01.fbx using Guid(19cb6f02e50cd4f42891bdf29a14de80) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '453ea11cdddec393c7688c7714f35065') in 0.027099 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 19.527809 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Christmas_Ball_02.fbx
+  artifactKey: Guid(b0025d90eb8707146ae6c42fe98b8bfa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Christmas_Ball_02.fbx using Guid(b0025d90eb8707146ae6c42fe98b8bfa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9adb1d0adbd99c6a208c9b1d1966afee') in 0.022061 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Christmas_Ball_03.fbx
+  artifactKey: Guid(d5cbc7af5a82e05488c965873ac19500) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Christmas_Ball_03.fbx using Guid(d5cbc7af5a82e05488c965873ac19500) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c0c8073a73d678e5249cbab1b0f8a07d') in 0.026316 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Christmas_Ball_10.fbx
+  artifactKey: Guid(b7cbcbb2e87001d4dbe438244b1180d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Christmas_Ball_10.fbx using Guid(b7cbcbb2e87001d4dbe438244b1180d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '745a584c978e9cb1813dd644ea5b4058') in 0.025645 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Christmas_Ball_07.fbx
+  artifactKey: Guid(7bb27473c0a68724e8efc00f87527888) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Christmas_Ball_07.fbx using Guid(7bb27473c0a68724e8efc00f87527888) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6ce8775e601086c67a5d04f83840bfcf') in 0.028967 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Christmas_Ball_08.fbx
+  artifactKey: Guid(f7306a1eae017cb4d9443a8b06d9f063) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Tree - POLYCRAFT Series/Mesh/Christmas_Ball_08.fbx using Guid(f7306a1eae017cb4d9443a8b06d9f063) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f51e238c59aa5a0e011ff8865a302d7f') in 0.028642 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 31.767588 seconds.
+  path: Assets/Imports/Christmas-Assets-FREE/FBX/Present-01.fbx
+  artifactKey: Guid(bd2206f6f74c8a042b70ba88fc13f4c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas-Assets-FREE/FBX/Present-01.fbx using Guid(bd2206f6f74c8a042b70ba88fc13f4c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '023e389ec383ba734f45c0824446871c') in 0.150656 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 36.492680 seconds.
+  path: Assets/Imports/Christmas-Assets-FREE/Prefabs/Present-01.prefab
+  artifactKey: Guid(cd3a6a05b35c3aa4ba89adbcd9f7cc32) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas-Assets-FREE/Prefabs/Present-01.prefab using Guid(cd3a6a05b35c3aa4ba89adbcd9f7cc32) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0396195a478a893f88c91b2a973fc2d5') in 0.022750 seconds 
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0
