@@ -352,7 +352,7 @@
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/Unity.VSCode.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/UnityEngine.UI.ref.dll"
-"Assets/Zololgo/OrbitZoomPanCamera/Scripts/OrbitZoomPanCamera.cs"
+"Assets/Imports/Zololgo/OrbitZoomPanCamera/Scripts/OrbitZoomPanCamera.cs"
 -langversion:9.0
 
 /deterministic

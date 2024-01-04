@@ -15,7 +15,7 @@ C:/Users/samle/source/repos/Christmas Countdown/Christmas Countdown
 -logFile
 Logs/AssetImportWorker1.log
 -srvPort
-63622
+64713
 Successfully changed project path to: C:/Users/samle/source/repos/Christmas Countdown/Christmas Countdown
 C:/Users/samle/source/repos/Christmas Countdown/Christmas Countdown
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -47,7 +47,7 @@ C:/Users/samle/source/repos/Christmas Countdown/Christmas Countdown
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Refreshing native plugins compatible for Editor in 105.71 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 88.53 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2021.3.9f1 (ad3870b89536)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2021.3.9f1/Editor/Data/Resources/UnitySubsystems
@@ -63,92 +63,92 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2021.3.9f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2021.3.9f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2021.3.9f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56576
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56440
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.3.9f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.3.9f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.009465 seconds.
+Registered in 0.009187 seconds.
 Native extension for WindowsStandalone target not found
 Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 93.47 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 83.77 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.743 seconds
+- Completed reload, in  0.745 seconds
 Domain Reload Profiling:
-	ReloadAssembly (744ms)
-		BeginReloadAssembly (84ms)
+	ReloadAssembly (745ms)
+		BeginReloadAssembly (86ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (1ms)
-		EndReloadAssembly (539ms)
-			LoadAssemblies (81ms)
+		EndReloadAssembly (533ms)
+			LoadAssemblies (83ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (118ms)
+			SetupTypeCache (114ms)
 			ReleaseScriptCaches (0ms)
-			RebuildScriptCaches (38ms)
-			SetupLoadedEditorAssemblies (323ms)
+			RebuildScriptCaches (31ms)
+			SetupLoadedEditorAssemblies (333ms)
 				LogAssemblyErrors (0ms)
 				InitializePlatformSupportModulesInManaged (10ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (94ms)
-				BeforeProcessingInitializeOnLoad (2ms)
-				ProcessInitializeOnLoadAttributes (158ms)
-				ProcessInitializeOnLoadMethodAttributes (59ms)
+				RefreshPlugins (84ms)
+				BeforeProcessingInitializeOnLoad (1ms)
+				ProcessInitializeOnLoadAttributes (178ms)
+				ProcessInitializeOnLoadMethodAttributes (60ms)
 				AfterProcessingInitializeOnLoad (0ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.008455 seconds.
+Registered in 0.006835 seconds.
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory doesn't match image C:\Users\samle\source\repos\Christmas Countdown\Christmas Countdown\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
 Symbol file LoadedFromMemory doesn't match image C:\Users\samle\source\repos\Christmas Countdown\Christmas Countdown\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
 Native extension for WindowsStandalone target not found
 Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 1.05 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 0.66 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.193 seconds
+- Completed reload, in  1.212 seconds
 Domain Reload Profiling:
-	ReloadAssembly (1194ms)
-		BeginReloadAssembly (132ms)
+	ReloadAssembly (1213ms)
+		BeginReloadAssembly (116ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (6ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (21ms)
-		EndReloadAssembly (925ms)
-			LoadAssemblies (98ms)
+			CreateAndSetChildDomain (18ms)
+		EndReloadAssembly (975ms)
+			LoadAssemblies (88ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (294ms)
+			SetupTypeCache (328ms)
 			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (54ms)
-			SetupLoadedEditorAssemblies (441ms)
+			RebuildScriptCaches (66ms)
+			SetupLoadedEditorAssemblies (437ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (11ms)
+				InitializePlatformSupportModulesInManaged (9ms)
 				SetLoadedEditorAssemblies (1ms)
 				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (103ms)
-				ProcessInitializeOnLoadAttributes (280ms)
-				ProcessInitializeOnLoadMethodAttributes (31ms)
-				AfterProcessingInitializeOnLoad (14ms)
+				BeforeProcessingInitializeOnLoad (118ms)
+				ProcessInitializeOnLoadAttributes (270ms)
+				ProcessInitializeOnLoadMethodAttributes (29ms)
+				AfterProcessingInitializeOnLoad (9ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (10ms)
+			AwakeInstancesAfterBackupRestoration (7ms)
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
 Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
-Refreshing native plugins compatible for Editor in 0.84 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 1.04 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 3383 Unused Serialized files (Serialized files now loaded: 0)
 Unloading 25 unused Assets / (55.6 KB). Loaded Objects now: 3842.
 Memory consumption went from 119.2 MB to 119.1 MB.
-Total: 5.178500 ms (FindLiveObjects: 0.402600 ms CreateObjectMapping: 0.366600 ms MarkObjects: 4.297500 ms  DeleteObjects: 0.110400 ms)
+Total: 3.077400 ms (FindLiveObjects: 0.277600 ms CreateObjectMapping: 0.227200 ms MarkObjects: 2.495500 ms  DeleteObjects: 0.076100 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
@@ -162,104 +162,110 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 1068872.813713 seconds.
-  path: Assets/Zololgo/PaperLands Winter Village/Prefabs/Buildings/house_long_01.prefab
-  artifactKey: Guid(e5e18d88ba25e7d40a37f48c27b89dab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Zololgo/PaperLands Winter Village/Prefabs/Buildings/house_long_01.prefab using Guid(e5e18d88ba25e7d40a37f48c27b89dab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '21be7870488d206eb752f78a9c707f75') in 0.131297 seconds 
+  Time since last request: 1128533.851706 seconds.
+  path: Assets/Zololgo/PaperLands Winter Village/Prefabs/Rocks/rock_group_small_03.prefab
+  artifactKey: Guid(ba5d8a8a88cd578408eeaad1a61ec75f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Zololgo/PaperLands Winter Village/Prefabs/Rocks/rock_group_small_03.prefab using Guid(ba5d8a8a88cd578408eeaad1a61ec75f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '972a624e71543bff6b5ba9c9fe61ae24') in 0.136386 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/Zololgo/PaperLands Winter Village/Prefabs/Buildings/house_simple_nightlights_04.prefab
-  artifactKey: Guid(f6e634a61f76465419469de216a0df0c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Zololgo/PaperLands Winter Village/Prefabs/Buildings/house_simple_nightlights_04.prefab using Guid(f6e634a61f76465419469de216a0df0c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '64595c9cc8b2db1daeb4d21c809e9d50') in 0.030187 seconds 
+  Time since last request: 0.000062 seconds.
+  path: Assets/Zololgo/PaperLands Winter Village/Prefabs/Rocks/rock_small_02.prefab
+  artifactKey: Guid(22285211884fa0f4fac1852a8719b9d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Zololgo/PaperLands Winter Village/Prefabs/Rocks/rock_small_02.prefab using Guid(22285211884fa0f4fac1852a8719b9d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '545afdaec3ad8c89cb0db3fba45ef815') in 0.021853 seconds 
 ========================================================================
 Received Import Request.
   Time since last request: 0.000020 seconds.
-  path: Assets/Zololgo/PaperLands Winter Village/Prefabs/Buildings/house_long_nightlights_01.prefab
-  artifactKey: Guid(dfc32ec31ef61ab49a31f3a4f4af24c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Zololgo/PaperLands Winter Village/Prefabs/Buildings/house_long_nightlights_01.prefab using Guid(dfc32ec31ef61ab49a31f3a4f4af24c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f7109e015ef06cf141164acb5cd04754') in 0.027171 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000025 seconds.
-  path: Assets/Zololgo/PaperLands Winter Village/Prefabs/Buildings/house_simple_04.prefab
-  artifactKey: Guid(9c0ea8d8fcae9b54495e54ac092e6ccf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Zololgo/PaperLands Winter Village/Prefabs/Buildings/house_simple_04.prefab using Guid(9c0ea8d8fcae9b54495e54ac092e6ccf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'db4947ffbb397e1b929e6ce7501ea679') in 0.025878 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000034 seconds.
-  path: Assets/Zololgo/PaperLands Winter Village/Prefabs/Buildings/church_nightlights.prefab
-  artifactKey: Guid(23ca8a2b724a5454ba37964c32f0023b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Zololgo/PaperLands Winter Village/Prefabs/Buildings/church_nightlights.prefab using Guid(23ca8a2b724a5454ba37964c32f0023b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ab9eb5e75ab222028f0c2d8d4b95e00a') in 0.027212 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 1.884598 seconds.
-  path: Assets/Zololgo/PaperLands Winter Village/Prefabs/Rocks/rock_group_03.prefab
-  artifactKey: Guid(a93d6fc412466074a960949444888a1d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Zololgo/PaperLands Winter Village/Prefabs/Rocks/rock_group_03.prefab using Guid(a93d6fc412466074a960949444888a1d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b871a968e3b0c120a5120f482e3efafd') in 0.019596 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000019 seconds.
   path: Assets/Zololgo/PaperLands Winter Village/Prefabs/Rocks/rock_small_01.prefab
   artifactKey: Guid(a41693566e2f5ca40802984f734f458f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Zololgo/PaperLands Winter Village/Prefabs/Rocks/rock_small_01.prefab using Guid(a41693566e2f5ca40802984f734f458f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '68db54be26d430cef02b433b1069c53a') in 0.019214 seconds 
+Start importing Assets/Zololgo/PaperLands Winter Village/Prefabs/Rocks/rock_small_01.prefab using Guid(a41693566e2f5ca40802984f734f458f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ffcf75a6b07e26c30c014e2befb91ff0') in 0.019394 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000028 seconds.
+  Time since last request: 0.000033 seconds.
   path: Assets/Zololgo/PaperLands Winter Village/Prefabs/Rocks/rock_group_small_04.prefab
   artifactKey: Guid(20cbaf6c40bb585429373fc411954361) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Zololgo/PaperLands Winter Village/Prefabs/Rocks/rock_group_small_04.prefab using Guid(20cbaf6c40bb585429373fc411954361) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e1abc145f6dc85d65cfecc1ce39259d7') in 0.021160 seconds 
+Start importing Assets/Zololgo/PaperLands Winter Village/Prefabs/Rocks/rock_group_small_04.prefab using Guid(20cbaf6c40bb585429373fc411954361) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e30ff4e83dca98f196fe9eee4e3415c2') in 0.020590 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/Zololgo/PaperLands Winter Village/Prefabs/Rocks/rock_medium_01.prefab
+  artifactKey: Guid(9a9c9f179b956924c82620a22dbbf0fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Zololgo/PaperLands Winter Village/Prefabs/Rocks/rock_medium_01.prefab using Guid(9a9c9f179b956924c82620a22dbbf0fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '28475d2650aa630d518ae4974ad7e9d5') in 0.016119 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Zololgo/PaperLands Winter Village/Prefabs/Rocks/rock_group_02.prefab
+  artifactKey: Guid(6a0f5a64ae5622e4aa25e55be091e25f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Zololgo/PaperLands Winter Village/Prefabs/Rocks/rock_group_02.prefab using Guid(6a0f5a64ae5622e4aa25e55be091e25f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c5d5c2f4244cbc01b5fe397cfd2cfe34') in 0.017018 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Zololgo/PaperLands Winter Village/Prefabs/Rocks/rock_medium_02.prefab
+  artifactKey: Guid(ed3241294c0df294bbed755cf402cbee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Zololgo/PaperLands Winter Village/Prefabs/Rocks/rock_medium_02.prefab using Guid(ed3241294c0df294bbed755cf402cbee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7285afe9f3675c76aaa54ef70d777530') in 0.018808 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Zololgo/PaperLands Winter Village/Prefabs/Rocks/rock_group_04.prefab
+  artifactKey: Guid(6717fe1db9072054d86d61915664719b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Zololgo/PaperLands Winter Village/Prefabs/Rocks/rock_group_04.prefab using Guid(6717fe1db9072054d86d61915664719b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '862bbf4a7eb9fbd8aeb58a76a54c86c3') in 0.019367 seconds 
 ========================================================================
 Received Import Request.
   Time since last request: 0.000031 seconds.
-  path: Assets/Zololgo/PaperLands Winter Village/Prefabs/Rocks/rock_medium_02.prefab
-  artifactKey: Guid(ed3241294c0df294bbed755cf402cbee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Zololgo/PaperLands Winter Village/Prefabs/Rocks/rock_medium_02.prefab using Guid(ed3241294c0df294bbed755cf402cbee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3f6e427d594bffd313fb5af134728f9d') in 0.022188 seconds 
+  path: Assets/Zololgo/PaperLands Winter Village/Prefabs/Rocks/rock_group_01.prefab
+  artifactKey: Guid(2e2a7dce56b5103498b4694187a2e4e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Zololgo/PaperLands Winter Village/Prefabs/Rocks/rock_group_01.prefab using Guid(2e2a7dce56b5103498b4694187a2e4e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a68edae810741cd67d25fb8bb3027feb') in 0.018395 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Zololgo/PaperLands Winter Village/Prefabs/Rocks/rock_group_small_01.prefab
+  artifactKey: Guid(3b7a989fdd2c36841a7399028dc66d73) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Zololgo/PaperLands Winter Village/Prefabs/Rocks/rock_group_small_01.prefab using Guid(3b7a989fdd2c36841a7399028dc66d73) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4c5c8ce1e8243ef4324721acca13f229') in 0.018996 seconds 
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.006437 seconds.
+Registered in 0.005820 seconds.
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory doesn't match image C:\Users\samle\source\repos\Christmas Countdown\Christmas Countdown\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
 Symbol file LoadedFromMemory doesn't match image C:\Users\samle\source\repos\Christmas Countdown\Christmas Countdown\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
 Native extension for WindowsStandalone target not found
 Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 0.87 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 0.84 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.286 seconds
+- Completed reload, in  1.282 seconds
 Domain Reload Profiling:
-	ReloadAssembly (1287ms)
-		BeginReloadAssembly (153ms)
+	ReloadAssembly (1283ms)
+		BeginReloadAssembly (144ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (5ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (40ms)
-		EndReloadAssembly (1012ms)
-			LoadAssemblies (112ms)
+			CreateAndSetChildDomain (44ms)
+		EndReloadAssembly (1025ms)
+			LoadAssemblies (97ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (342ms)
+			SetupTypeCache (365ms)
 			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (61ms)
-			SetupLoadedEditorAssemblies (432ms)
+			RebuildScriptCaches (60ms)
+			SetupLoadedEditorAssemblies (437ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (21ms)
+				InitializePlatformSupportModulesInManaged (22ms)
 				SetLoadedEditorAssemblies (1ms)
 				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (92ms)
-				ProcessInitializeOnLoadAttributes (269ms)
-				ProcessInitializeOnLoadMethodAttributes (36ms)
-				AfterProcessingInitializeOnLoad (13ms)
+				BeforeProcessingInitializeOnLoad (97ms)
+				ProcessInitializeOnLoadAttributes (274ms)
+				ProcessInitializeOnLoadMethodAttributes (33ms)
+				AfterProcessingInitializeOnLoad (10ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (8ms)
+			AwakeInstancesAfterBackupRestoration (7ms)
 Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 2.08 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 2.26 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 3374 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 18 unused Assets / (24.7 KB). Loaded Objects now: 3852.
-Memory consumption went from 123.1 MB to 123.1 MB.
-Total: 3.541800 ms (FindLiveObjects: 0.378900 ms CreateObjectMapping: 0.382300 ms MarkObjects: 2.756000 ms  DeleteObjects: 0.023400 ms)
+Unloading 18 unused Assets / (24.6 KB). Loaded Objects now: 3852.
+Memory consumption went from 123.1 MB to 123.0 MB.
+Total: 3.172800 ms (FindLiveObjects: 0.257800 ms CreateObjectMapping: 0.193200 ms MarkObjects: 2.695600 ms  DeleteObjects: 0.025100 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
@@ -271,3 +277,7 @@ AssetImportParameters requested are different than current active one (requested
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0
