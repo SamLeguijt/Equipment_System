@@ -187,6 +187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 10
+  speedDrag: 2
   playerOrientation: {fileID: 954617189}
 --- !u!1 &300298648
 GameObject:
