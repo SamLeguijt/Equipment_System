@@ -7,6 +7,18 @@ public class CameraController : MonoBehaviour
     [Tooltip("Forward orientation object attached to the player object")]
     [SerializeField] private Transform playerForwardOrientation;
 
+    [Tooltip("Right hand transform of object attached to player")]
+    [SerializeField] private Transform playerRightHand;
+
+    [Tooltip("Left hand transform of object attached to player")]
+    [SerializeField] private Transform playerLeftHand;
+
+    [Tooltip("Position offsets for right hand")]
+    [SerializeField] private Vector3 rightHandPosOffset;
+
+    [Tooltip("Position offsets for  hand")]
+    [SerializeField] private Vector3 leftHandPosOffset;
+
     [Header("Sensitivity of the mouse in both directions")]
     [SerializeField] private float mouseSensitivityX;
     [SerializeField] private float mouseSensitivityY;
@@ -33,7 +45,7 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         Rotate();
-        MaintainPosition();
+        MaintainPositions();
     }
 
     /// <summary>
@@ -62,14 +74,25 @@ public class CameraController : MonoBehaviour
 
         // Rotate the player's orientation object around the target rotations.
         playerForwardOrientation.rotation = Quaternion.Euler(0, rotationY, 0);
+
     }
 
     /// <summary>
-    /// Method for staying in the correct position
-    /// Sets the position to the player's forward orientation position. 
+    /// Method for staying in the correct positions
+    /// Sets the position of the camera to the player's forward orientation position. 
+    /// Sets the position of the player hands to the corner of the screen
     /// </summary>
-    private void MaintainPosition()
+    private void MaintainPositions()
     {
+        // Set position of this transform to orientation object
         transform.position = playerForwardOrientation.position;
+
+        // Get the worldposition of the camera view for both hands (offsets)
+        Vector3 worldPositionLeftHand = Camera.main.ViewportToWorldPoint(leftHandPosOffset);
+        Vector3 worldPositionRightHand = Camera.main.ViewportToWorldPoint(rightHandPosOffset);
+
+        // Set position of the hands to the viewport positions
+        playerLeftHand.position = worldPositionLeftHand;
+        playerRightHand.position = worldPositionRightHand;
     }
 }
