@@ -356,6 +356,8 @@
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/UnityEngine.UI.ref.dll"
 "Assets/Imports/Zololgo/OrbitZoomPanCamera/Scripts/OrbitZoomPanCamera.cs"
 "Assets/Scripts/CameraController.cs"
+"Assets/Scripts/EquipmentBehaviour.cs"
+"Assets/Scripts/EquipmentSystemController.cs"
 "Assets/Scripts/Player/PlayerMovement.cs"
 "Assets/Scripts/ScriptableObjects/AmmunitionEquipmentObject.cs"
 "Assets/Scripts/ScriptableObjects/ApparelEquipmentObject.cs"
