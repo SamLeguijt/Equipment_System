@@ -1,0 +1,615 @@
+Using pre-set license
+Built from '2021.3/staging' branch; Version is '2021.3.9f1 (ad3870b89536) revision 11352176'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 10  (10.0.19045) 64bit Core' Language: 'en' Physical Memory: 16219 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2021.3.9f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker1
+-projectPath
+C:/Users/samle/source/repos/Christmas Countdown/Christmas Countdown
+-logFile
+Logs/AssetImportWorker1.log
+-srvPort
+55245
+Successfully changed project path to: C:/Users/samle/source/repos/Christmas Countdown/Christmas Countdown
+C:/Users/samle/source/repos/Christmas Countdown/Christmas Countdown
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Refreshing native plugins compatible for Editor in 87.08 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2021.3.9f1 (ad3870b89536)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2021.3.9f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/samle/source/repos/Christmas Countdown/Christmas Countdown/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce GTX 1650 Ti (ID=0x1f95)
+    Vendor:   NVIDIA
+    VRAM:     3962 MB
+    Driver:   30.0.15.1278
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2021.3.9f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2021.3.9f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2021.3.9f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56292
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.3.9f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.3.9f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.009368 seconds.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 95.97 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.708 seconds
+Domain Reload Profiling:
+	ReloadAssembly (710ms)
+		BeginReloadAssembly (87ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (0ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (1ms)
+		EndReloadAssembly (508ms)
+			LoadAssemblies (84ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (106ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (28ms)
+			SetupLoadedEditorAssemblies (315ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (10ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (96ms)
+				BeforeProcessingInitializeOnLoad (1ms)
+				ProcessInitializeOnLoadAttributes (158ms)
+				ProcessInitializeOnLoadMethodAttributes (48ms)
+				AfterProcessingInitializeOnLoad (0ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (0ms)
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.006706 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\Users\samle\source\repos\Christmas Countdown\Christmas Countdown\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\Users\samle\source\repos\Christmas Countdown\Christmas Countdown\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 1.24 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.185 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1186ms)
+		BeginReloadAssembly (119ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (6ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (20ms)
+		EndReloadAssembly (956ms)
+			LoadAssemblies (93ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (299ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (61ms)
+			SetupLoadedEditorAssemblies (461ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (9ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (111ms)
+				ProcessInitializeOnLoadAttributes (298ms)
+				ProcessInitializeOnLoadMethodAttributes (31ms)
+				AfterProcessingInitializeOnLoad (10ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (8ms)
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
+Refreshing native plugins compatible for Editor in 0.78 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3544 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 38 unused Assets / (128.4 KB). Loaded Objects now: 4016.
+Memory consumption went from 127.8 MB to 127.7 MB.
+Total: 4.159800 ms (FindLiveObjects: 0.383100 ms CreateObjectMapping: 0.443700 ms MarkObjects: 3.144900 ms  DeleteObjects: 0.186800 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 1249525.018731 seconds.
+  path: Assets/Imports/Low Poly Christmas Pack Free/FBX/054 Xmas_Tree.fbx
+  artifactKey: Guid(490e3a0c0950443cd9409a797b802dc8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Low Poly Christmas Pack Free/FBX/054 Xmas_Tree.fbx using Guid(490e3a0c0950443cd9409a797b802dc8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5192b7bc8f143cc64f0cfd270dd5edf0') in 0.230918 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Imports/Christmas Scene/Assets/Models/Gifts/1/Materials/YellowKnot.mat
+  artifactKey: Guid(cea592ccad0746b488a84679f222005a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Scene/Assets/Models/Gifts/1/Materials/YellowKnot.mat using Guid(cea592ccad0746b488a84679f222005a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b843da5c9f7fdb22f436b74fdfe7aa35') in 0.034688 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/Imports/Low Poly Christmas Pack Free/FBX/065 Deer.fbx
+  artifactKey: Guid(299dc2592b9a04a13bdc9aa4164732b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Low Poly Christmas Pack Free/FBX/065 Deer.fbx using Guid(299dc2592b9a04a13bdc9aa4164732b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5bfff4833a7185058bbc722cb3c0f5a6') in 0.142374 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Imports/Low Poly Christmas Pack Free/FBX/021 Teapot.fbx
+  artifactKey: Guid(9275d63a2ea1d4409998c224e0f9b2b9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Low Poly Christmas Pack Free/FBX/021 Teapot.fbx using Guid(9275d63a2ea1d4409998c224e0f9b2b9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2f42109f40788eb769a367ae2f693f4f') in 0.060196 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Imports/Christmas-Assets-FREE/Materials/Snowflake-Color+Spec.mat
+  artifactKey: Guid(dab88c3eea9cf764882c6acb31558d0b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas-Assets-FREE/Materials/Snowflake-Color+Spec.mat using Guid(dab88c3eea9cf764882c6acb31558d0b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '93f77ee470fda3e9810c9b19ff5b3057') in 0.037345 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Imports/Low Poly Christmas Pack Free/FBX/042 Candy.fbx
+  artifactKey: Guid(bbb8d9c3f007a403f9f347481eaeb698) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Low Poly Christmas Pack Free/FBX/042 Candy.fbx using Guid(bbb8d9c3f007a403f9f347481eaeb698) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5d3268ce94bc82a37db4d764e1d5eb04') in 0.048994 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Imports/Christmas Scene/Assets/Models/Wreath/Materials/Balls.mat
+  artifactKey: Guid(9d44d7acd9e145a45ba9845a7c29a2df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Scene/Assets/Models/Wreath/Materials/Balls.mat using Guid(9d44d7acd9e145a45ba9845a7c29a2df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f8b629fbcf68ad1c83d7795a58105869') in 0.030211 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Imports/Low Poly Christmas Pack Free/FBX/025 Shoes.fbx
+  artifactKey: Guid(738fc581bced64b6f9128982f34828cc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Low Poly Christmas Pack Free/FBX/025 Shoes.fbx using Guid(738fc581bced64b6f9128982f34828cc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f25c2b50db17c7ef2f695022be26b5aa') in 0.074931 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Imports/Low Poly Christmas Pack Free/FBX/002 Candle_Light.fbx
+  artifactKey: Guid(87ed9a0d2b5084a3f98ebf880fd9a010) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Low Poly Christmas Pack Free/FBX/002 Candle_Light.fbx using Guid(87ed9a0d2b5084a3f98ebf880fd9a010) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2cf82ea1cc4913ebb837a39f4357ad97') in 0.060045 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Imports/Low Poly Christmas Pack Free/FBX/010 Christmas_Socks.fbx
+  artifactKey: Guid(63404f5fa27cc49d4a4249ee39a3e3f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Low Poly Christmas Pack Free/FBX/010 Christmas_Socks.fbx using Guid(63404f5fa27cc49d4a4249ee39a3e3f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00e5143f323b8fbca90763e55571e7e9') in 0.044365 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Imports/Low Poly Christmas Pack Free/FBX/066 Xmas_Girl.fbx
+  artifactKey: Guid(6ad8a122058534d75a111605d13ced17) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Low Poly Christmas Pack Free/FBX/066 Xmas_Girl.fbx using Guid(6ad8a122058534d75a111605d13ced17) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9509c5c6f9a30fd6394036592221f5a8') in 0.120344 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Imports/Christmas Scene/Assets/Models/Decoration/Material/Star2.mat
+  artifactKey: Guid(072617f11800a4d44b3a41f886bb5230) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Scene/Assets/Models/Decoration/Material/Star2.mat using Guid(072617f11800a4d44b3a41f886bb5230) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2efbef3c818e77336bf9fd79d9d12e0f') in 0.022802 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Imports/Low Poly Christmas Pack Free/FBX/024 Shoes.fbx
+  artifactKey: Guid(7d20319bcdd2e436198d8f31615f72c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Low Poly Christmas Pack Free/FBX/024 Shoes.fbx using Guid(7d20319bcdd2e436198d8f31615f72c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00e80b1fff4f99d0e68d34ed462a8b46') in 0.072717 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Imports/Low Poly Christmas Pack Free/FBX/050 Xmas_Tree.fbx
+  artifactKey: Guid(99119c8e3b5a94633a02dc3f0605999e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Low Poly Christmas Pack Free/FBX/050 Xmas_Tree.fbx using Guid(99119c8e3b5a94633a02dc3f0605999e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd4dcd3b635f60b65ed46df7770f52342') in 0.146914 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Imports/Christmas Scene/Assets/Models/Ornamental/Materials/Colors/Grey.mat
+  artifactKey: Guid(47ae6e603847db14b92cc9aa50f2e215) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Scene/Assets/Models/Ornamental/Materials/Colors/Grey.mat using Guid(47ae6e603847db14b92cc9aa50f2e215) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f32539626bec9cf8952761557eabd245') in 0.024831 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Imports/Low Poly Christmas Pack Free/FBX/041 Xmas_Bell.fbx
+  artifactKey: Guid(abce592dfdafc4e4aa552eea00807000) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Low Poly Christmas Pack Free/FBX/041 Xmas_Bell.fbx using Guid(abce592dfdafc4e4aa552eea00807000) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e69c6d77fb78e298e27229660e4601c2') in 0.062032 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/Imports/Christmas Scene/Assets/Models/Wreath/Wreath.dae
+  artifactKey: Guid(76a442ac52bae5c4698dde6c2bb72b6b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Scene/Assets/Models/Wreath/Wreath.dae using Guid(76a442ac52bae5c4698dde6c2bb72b6b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0a6b07067d047357ca556dfbd9dacd6b') in 0.574771 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Imports/Low Poly Christmas Pack Free/FBX/053 Xmas_Tree.fbx
+  artifactKey: Guid(c73c90d36a0e3464eb8c28e578545f2d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Low Poly Christmas Pack Free/FBX/053 Xmas_Tree.fbx using Guid(c73c90d36a0e3464eb8c28e578545f2d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '77e47e758ed59af3365a58fe47619c2e') in 0.043693 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/Imports/Christmas-Assets-FREE/Materials/Candy-Cane-01-Color+Spec.mat
+  artifactKey: Guid(2f2058858650b384583c55a6b35e2ff0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas-Assets-FREE/Materials/Candy-Cane-01-Color+Spec.mat using Guid(2f2058858650b384583c55a6b35e2ff0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5aa639b092fd7a8c56cd248974987574') in 0.031527 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Imports/Christmas Scene/Assets/Models/Lights/Structure.mat
+  artifactKey: Guid(3487d3f6f43410d4f86b5dd5a74b3703) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Scene/Assets/Models/Lights/Structure.mat using Guid(3487d3f6f43410d4f86b5dd5a74b3703) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '72b8be546646e4f07574f8577bb21a56') in 0.022953 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Imports/Christmas Scene/Assets/Models/Decoration/DecorationProps.dae
+  artifactKey: Guid(a43fdd939aa60284e9345ada57dc1eae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Scene/Assets/Models/Decoration/DecorationProps.dae using Guid(a43fdd939aa60284e9345ada57dc1eae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a978c5a383dd16620481a6153253c432') in 2.656668 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Imports/Low Poly Christmas Pack Free/FBX/043 Sign Board.fbx
+  artifactKey: Guid(f735180c87904468d9db55967fe698eb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Low Poly Christmas Pack Free/FBX/043 Sign Board.fbx using Guid(f735180c87904468d9db55967fe698eb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6099190c0923bf109815bdf669ef7dee') in 0.080823 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Imports/Blink/ThemedEvents/Christmas/Blink_Christmas_2021/Props_Christmas/Props_Textures/Snowman.mat
+  artifactKey: Guid(76c5b35dcf387cf48991da1221125487) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Blink/ThemedEvents/Christmas/Blink_Christmas_2021/Props_Christmas/Props_Textures/Snowman.mat using Guid(76c5b35dcf387cf48991da1221125487) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '03b284ccdb2aa45229f696e4e2c49d09') in 0.066314 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Imports/Christmas pack/Materials/Candle.mat
+  artifactKey: Guid(868f0d7498e852f774e3fa425ae73e70) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas pack/Materials/Candle.mat using Guid(868f0d7498e852f774e3fa425ae73e70) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b1e0906481855f08a9a0b9cfcb68ce88') in 0.096060 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Imports/Low Poly Christmas Pack Free/FBX/036 Xmas_Tree.fbx
+  artifactKey: Guid(11f01bd0e20524ec0b9c86dab67c6d37) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Low Poly Christmas Pack Free/FBX/036 Xmas_Tree.fbx using Guid(11f01bd0e20524ec0b9c86dab67c6d37) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c091adee0aa8a560210c0e5bd3c4a27a') in 0.075374 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000042 seconds.
+  path: Assets/Imports/Low Poly Christmas Pack Free/FBX/093 Bucket.fbx
+  artifactKey: Guid(023bec0a17bc445bb90f2e6f23177347) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Low Poly Christmas Pack Free/FBX/093 Bucket.fbx using Guid(023bec0a17bc445bb90f2e6f23177347) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0202907299f4b9f83c3b8813fd55e4cb') in 0.053938 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Imports/Low Poly Christmas Pack Free/FBX/001 Snowman.fbx
+  artifactKey: Guid(0f014151f33ae4ca1801bd402cacffe8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Low Poly Christmas Pack Free/FBX/001 Snowman.fbx using Guid(0f014151f33ae4ca1801bd402cacffe8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '03ec2b544ea6b642d197102e2bcddfb4') in 0.105967 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Imports/Christmas Scene/Assets/Models/Ornamental/Materials/Colors/Red.mat
+  artifactKey: Guid(278268c175c13ac4285682fce73e362d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Scene/Assets/Models/Ornamental/Materials/Colors/Red.mat using Guid(278268c175c13ac4285682fce73e362d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '75d15356548bc76753865e475cfeab9c') in 0.025581 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Imports/Zololgo/PaperLands Winter Village/Models/Materials/house_walls_01.mat
+  artifactKey: Guid(1a629e68fd4713047a4dcfb094d9dcf6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Zololgo/PaperLands Winter Village/Models/Materials/house_walls_01.mat using Guid(1a629e68fd4713047a4dcfb094d9dcf6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '613e87096adf0175b3ac9919cc1578eb') in 0.022432 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Imports/Christmas Scene/Assets/Models/Ornamental/Materials/Colors/Green.mat
+  artifactKey: Guid(03ae541f090e4454e9ceef1dd1911f94) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Scene/Assets/Models/Ornamental/Materials/Colors/Green.mat using Guid(03ae541f090e4454e9ceef1dd1911f94) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bd66fd889e2d276933ddf494ad9c61b6') in 0.024712 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Imports/Christmas Scene/Assets/Models/Ornamental/Materials/Colors/Blue.mat
+  artifactKey: Guid(e7eafd1c7e191ba459fdba2a34335f00) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Scene/Assets/Models/Ornamental/Materials/Colors/Blue.mat using Guid(e7eafd1c7e191ba459fdba2a34335f00) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '60d15a1a6f65b8ff4f856b0a2d9836bf') in 0.021577 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000040 seconds.
+  path: Assets/Imports/Low Poly Christmas Pack Free/FBX/051 Xmas_Tree.fbx
+  artifactKey: Guid(1e9ad55d9e75147c29a57215d10fc773) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Low Poly Christmas Pack Free/FBX/051 Xmas_Tree.fbx using Guid(1e9ad55d9e75147c29a57215d10fc773) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cf60f6222599d5b1834213283db3645b') in 0.242835 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/Imports/Christmas Gifts/Materials/boxes.mat
+  artifactKey: Guid(aaea7874fbe0f494caf541d25a7f2b26) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Gifts/Materials/boxes.mat using Guid(aaea7874fbe0f494caf541d25a7f2b26) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c5b5cd8aac7cdb262eadcc3939551a6b') in 0.039520 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Imports/Low Poly Christmas Pack Free/FBX/099 Box.fbx
+  artifactKey: Guid(b4590675117c0413cb1bcace43c50c96) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Low Poly Christmas Pack Free/FBX/099 Box.fbx using Guid(b4590675117c0413cb1bcace43c50c96) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '482eb8176bb5b85c6e21a8269aaa4bcb') in 0.046230 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Imports/Christmas Scene/Assets/Models/Ornamental/Materials/Top.mat
+  artifactKey: Guid(5673588fc9757514ea3e7d783e3dfb69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas Scene/Assets/Models/Ornamental/Materials/Top.mat using Guid(5673588fc9757514ea3e7d783e3dfb69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '211032176d8b2b3d3caa6ec17c94f569') in 0.028605 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Imports/Low Poly Christmas Pack Free/FBX/046 Xmas_Tree.fbx
+  artifactKey: Guid(0e7ccc03632a34fe3ae5f7088dc85ea0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Low Poly Christmas Pack Free/FBX/046 Xmas_Tree.fbx using Guid(0e7ccc03632a34fe3ae5f7088dc85ea0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'edaf36d76753aa291039826f83f670af') in 0.246603 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000040 seconds.
+  path: Assets/Imports/Christmas-Assets-FREE/Materials/7-Tip-Star-Color+Spec.mat
+  artifactKey: Guid(9634bb883be98b24d8de4230faae44a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Christmas-Assets-FREE/Materials/7-Tip-Star-Color+Spec.mat using Guid(9634bb883be98b24d8de4230faae44a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd47111dd9558fe811a0480b27d77cca9') in 0.036813 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Imports/Zololgo/PaperLands Winter Village/Models/Materials/rock_dark.mat
+  artifactKey: Guid(3be01bf5618747046899c6260bd6c470) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Zololgo/PaperLands Winter Village/Models/Materials/rock_dark.mat using Guid(3be01bf5618747046899c6260bd6c470) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5512c61fd894ef763098ff2685afa241') in 0.023476 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Imports/Zololgo/PaperLands Winter Village/Models/Materials/pine-green2.mat
+  artifactKey: Guid(343e25065fa827840a2a4dc27c4c0e82) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Zololgo/PaperLands Winter Village/Models/Materials/pine-green2.mat using Guid(343e25065fa827840a2a4dc27c4c0e82) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8b4a60eadb6461d92073bc554d9e9d6d') in 0.023587 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Imports/Low Poly Christmas Pack Free/FBX/096 Plants.fbx
+  artifactKey: Guid(30fdd48a2959c4603833a6d9ef282023) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Low Poly Christmas Pack Free/FBX/096 Plants.fbx using Guid(30fdd48a2959c4603833a6d9ef282023) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c386259a5d0590f953a465f130d05dee') in 0.059319 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000077 seconds.
+  path: Assets/Imports/Low Poly Christmas Pack Free/FBX/072 Buggy.fbx
+  artifactKey: Guid(dc04591551e02489493b434f846e1bf9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Low Poly Christmas Pack Free/FBX/072 Buggy.fbx using Guid(dc04591551e02489493b434f846e1bf9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e857018d2c0dbc1f276175237b356d53') in 0.096849 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Imports/Zololgo/PaperLands Winter Village/Models/Materials/pine-snow.mat
+  artifactKey: Guid(8fd7626b85cff7a4d9639ff8adb5b8cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Zololgo/PaperLands Winter Village/Models/Materials/pine-snow.mat using Guid(8fd7626b85cff7a4d9639ff8adb5b8cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a9dcd482ebfd70c014b61637017a9ddb') in 0.026103 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000038 seconds.
+  path: Assets/Imports/Low Poly Christmas Pack Free/FBX/047 Xmas_Tree.fbx
+  artifactKey: Guid(ca38ea13634474659a08f213adb81ec9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Low Poly Christmas Pack Free/FBX/047 Xmas_Tree.fbx using Guid(ca38ea13634474659a08f213adb81ec9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8154d932ba4fddbd4d8aab13a13ca4ea') in 0.116755 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Imports/Low Poly Christmas Pack Free/FBX/057 Star.fbx
+  artifactKey: Guid(5d5be753d4cb143959581ebf9dab36cc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Low Poly Christmas Pack Free/FBX/057 Star.fbx using Guid(5d5be753d4cb143959581ebf9dab36cc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '94a7321d84d8f59f85f12a54ce061cf0') in 0.044317 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Imports/Low Poly Christmas Pack Free/FBX/023 Socks.fbx
+  artifactKey: Guid(d73a42e44e97b4e51b2c7810a811f2a3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Low Poly Christmas Pack Free/FBX/023 Socks.fbx using Guid(d73a42e44e97b4e51b2c7810a811f2a3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a9fa7158e20a4d275803d0c36176e824') in 0.052501 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Imports/Low Poly Christmas Pack Free/FBX/035 Xmas_toy.fbx
+  artifactKey: Guid(c6d100024b23c47af86245c9c87482e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Low Poly Christmas Pack Free/FBX/035 Xmas_toy.fbx using Guid(c6d100024b23c47af86245c9c87482e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '18de2717275839a3264c8a58cb62181b') in 0.075611 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/Imports/Low Poly Christmas Pack Free/FBX/097 Candle.fbx
+  artifactKey: Guid(38522033f23b847b5b8ec806986898db) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Low Poly Christmas Pack Free/FBX/097 Candle.fbx using Guid(38522033f23b847b5b8ec806986898db) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f2c284f1efce46db5113f3111a691942') in 0.053303 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.006124 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\Users\samle\source\repos\Christmas Countdown\Christmas Countdown\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\Users\samle\source\repos\Christmas Countdown\Christmas Countdown\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 1.85 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.317 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1318ms)
+		BeginReloadAssembly (154ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (4ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (40ms)
+		EndReloadAssembly (1061ms)
+			LoadAssemblies (97ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (327ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (59ms)
+			SetupLoadedEditorAssemblies (516ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (23ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (2ms)
+				BeforeProcessingInitializeOnLoad (100ms)
+				ProcessInitializeOnLoadAttributes (335ms)
+				ProcessInitializeOnLoadMethodAttributes (42ms)
+				AfterProcessingInitializeOnLoad (13ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (8ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 3.64 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3535 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 19 unused Assets / (95.3 KB). Loaded Objects now: 4074.
+Memory consumption went from 135.5 MB to 135.4 MB.
+Total: 3.423900 ms (FindLiveObjects: 0.287200 ms CreateObjectMapping: 0.210000 ms MarkObjects: 2.792500 ms  DeleteObjects: 0.132500 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.006096 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\Users\samle\source\repos\Christmas Countdown\Christmas Countdown\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\Users\samle\source\repos\Christmas Countdown\Christmas Countdown\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.74 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.244 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1244ms)
+		BeginReloadAssembly (146ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (5ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (35ms)
+		EndReloadAssembly (992ms)
+			LoadAssemblies (94ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (326ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (55ms)
+			SetupLoadedEditorAssemblies (459ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (17ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (96ms)
+				ProcessInitializeOnLoadAttributes (294ms)
+				ProcessInitializeOnLoadMethodAttributes (40ms)
+				AfterProcessingInitializeOnLoad (11ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (8ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 2.70 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3535 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 19 unused Assets / (95.3 KB). Loaded Objects now: 4089.
+Memory consumption went from 135.5 MB to 135.4 MB.
+Total: 3.860600 ms (FindLiveObjects: 0.553400 ms CreateObjectMapping: 0.196900 ms MarkObjects: 2.956600 ms  DeleteObjects: 0.150700 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.006038 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\Users\samle\source\repos\Christmas Countdown\Christmas Countdown\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\Users\samle\source\repos\Christmas Countdown\Christmas Countdown\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 1.28 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.291 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1292ms)
+		BeginReloadAssembly (152ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (6ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (40ms)
+		EndReloadAssembly (1037ms)
+			LoadAssemblies (107ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (336ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (59ms)
+			SetupLoadedEditorAssemblies (481ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (18ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (101ms)
+				ProcessInitializeOnLoadAttributes (312ms)
+				ProcessInitializeOnLoadMethodAttributes (37ms)
+				AfterProcessingInitializeOnLoad (11ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (8ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 2.29 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3535 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 19 unused Assets / (95.4 KB). Loaded Objects now: 4104.
+Memory consumption went from 135.5 MB to 135.5 MB.
+Total: 3.345000 ms (FindLiveObjects: 0.366300 ms CreateObjectMapping: 0.201900 ms MarkObjects: 2.737000 ms  DeleteObjects: 0.038000 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
