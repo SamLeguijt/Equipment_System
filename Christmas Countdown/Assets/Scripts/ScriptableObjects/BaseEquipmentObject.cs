@@ -49,7 +49,7 @@ public enum EquipmentType
 {
     Weapon,
     Ammunition,
-    Throwables,
-    Tools,
+    Throwable,
+    Tool,
     Apparel
 }
