@@ -6,7 +6,7 @@ using UnityEngine;
 /// Base class for equipement objects
 /// Derives from ScriptableObject
 /// </summary>
-public class BaseEquipmentObject : ScriptableObject
+public abstract class BaseEquipmentObject : ScriptableObject
 {
     // Type of this equipment
     private EquipmentType equipmentType;
@@ -35,6 +35,11 @@ public class BaseEquipmentObject : ScriptableObject
         get { return equipmentType; }
         protected set { equipmentType = value; }
     }
+
+    /// <summary>
+    /// Protected abstract OnEnable function to set individual equipment types on enable
+    /// </summary>
+    protected abstract void OnEnable();
 }
 
 /// <summary>

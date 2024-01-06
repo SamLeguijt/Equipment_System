@@ -12,7 +12,7 @@ public class WeaponEquipmentObject : BaseEquipmentObject
     /// <summary>
     /// OnEnable method to set weapon type automatically when creating new object of this type
     /// </summary>
-    private void OnEnable()
+    protected override void OnEnable()
     {
         EquipmentType = EquipmentType.Weapon;
     }
