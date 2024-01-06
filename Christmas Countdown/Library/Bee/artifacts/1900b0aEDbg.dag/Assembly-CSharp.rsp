@@ -358,6 +358,7 @@
 "Assets/Scripts/CameraController.cs"
 "Assets/Scripts/Player/PlayerMovement.cs"
 "Assets/Scripts/ScriptableObjects/BaseEquipmentObject.cs"
+"Assets/Scripts/ScriptableObjects/WeaponEquipmentObject.cs"
 -langversion:9.0
 
 /deterministic

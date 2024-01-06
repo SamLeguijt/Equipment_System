@@ -8,14 +8,14 @@ using UnityEngine;
 /// </summary>
 public class BaseEquipmentObject : ScriptableObject
 {
-    [Tooltip("Name of the object")]
-    private string equipmentName;
-
     // Type of this equipment
     private EquipmentType equipmentType;
 
+    [Tooltip("Name of the object")]
+    [SerializeField] private string equipmentName;
+
     [Tooltip("Description of the equipment object, optionally")]
-    [TextArea(10, 20)]
+    [TextArea(5, 20)]
     [SerializeField] private string equipmentDescription;
 
     /// <summary>
@@ -38,12 +38,12 @@ public class BaseEquipmentObject : ScriptableObject
 }
 
 /// <summary>
-/// Enum for 
+/// Enum for types of Equipment objects
 /// </summary>
 public enum EquipmentType
 {
     Weapon,
-    Ammo,
+    Ammunition,
     Throwables,
     Tools,
     Apparel
