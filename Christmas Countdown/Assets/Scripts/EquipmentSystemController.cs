@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class EquipmentSystemController : MonoBehaviour
@@ -17,12 +18,19 @@ public class EquipmentSystemController : MonoBehaviour
     private EquipmentBehaviour currentEquipmentLeft;
     private EquipmentBehaviour currentEquipmentRight;
 
+    public KeyCode equipKeyLeft;
+    public KeyCode equipKeyRight;
 
-
+    private Dictionary<KeyCode, Transform> keyToHand;
     // Start is called before the first frame update
     void Start()
     {
-        
+        // Initialize the dictionary
+        keyToHand = new Dictionary<KeyCode, Transform>
+        {
+            { equipKeyLeft, leftHand },
+            { equipKeyRight, rightHand }
+        };
     }
 
     // Update is called once per frame
@@ -68,5 +76,15 @@ public class EquipmentSystemController : MonoBehaviour
     {
         _item.transform.parent = null;
         _item.transform.position = gameObject.transform.position;
+    }
+
+
+    private void HandleEquipInput(KeyCode _inputKey)
+    {
+        if (keyToHand.ContainsKey(_inputKey))
+        {
+            Transform targetHand = keyToHand[_inputKey];
+            Equip(target, targetHand);
+        }
     }
 }
