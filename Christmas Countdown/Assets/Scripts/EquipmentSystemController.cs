@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 
 public class EquipmentSystemController : MonoBehaviour
@@ -10,8 +8,8 @@ public class EquipmentSystemController : MonoBehaviour
     public Vector3 inHandPositionLeft;
     public Vector3 inHandPositionRight;
 
-    public Transform leftHand;
-    public Transform rightHand;
+    public Hand leftHand;
+    public Hand rightHand;
 
     public float equipDistance;
 
@@ -21,40 +19,36 @@ public class EquipmentSystemController : MonoBehaviour
     public KeyCode equipKeyLeft;
     public KeyCode equipKeyRight;
 
-    private Dictionary<KeyCode, Transform> keyToHand;
+    private Dictionary<KeyCode, Hand> keyToHand;
+
+    private List<EquipmentBehaviour> equipmentsInRange;
+
+    public List<EquipmentBehaviour> EquipmentsInRange
+    {
+        get { return equipmentsInRange; }
+        set { equipmentsInRange = value; }
+    }
     // Start is called before the first frame update
     void Start()
     {
         // Initialize the dictionary
-        keyToHand = new Dictionary<KeyCode, Transform>
+        keyToHand = new Dictionary<KeyCode, Hand>
         {
             { equipKeyLeft, leftHand },
             { equipKeyRight, rightHand }
         };
+
+        EquipmentsInRange = new List<EquipmentBehaviour>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (DistanceFromPlayerToTarget(target) < equipDistance)
-            {
-                // TODO: FIX DROPPING ITEM FROM EQUIPPED HAND 
-                if (currentEquipmentLeft == null)
-                {
-                    Equip(target, leftHand);
-                }
-                else if (currentEquipmentRight == null )
-                {
-                    Equip(target, rightHand);
-                }
-                else
-                {
-                    Drop(target);
-                }
-            }
-        }
+        /* Here: 
+         * GetNearbyEquipment list. 
+         * foreach item in list: if item.CanEquip
+         * HandleEquipInput(leftKey) / rightKey
+         */
     }
 
     private float DistanceFromPlayerToTarget(GameObject _target)
@@ -62,13 +56,16 @@ public class EquipmentSystemController : MonoBehaviour
         return (Vector3.Distance(gameObject.transform.position, _target.transform.position));
     }
 
-    private void Equip(GameObject _item, Transform _hand)
+    private void Equip(EquipmentBehaviour _item, Hand _hand)
     {
         if (!_item.GetComponent<EquipmentBehaviour>()) { return; }
         else
         {
             _item.transform.position = _hand.transform.position;
-            _item.gameObject.transform.SetParent(_hand, true);
+            _item.gameObject.transform.SetParent(_hand.transform, true);
+            _item.IsEquipped = true;
+
+            _hand.CurrentEquipment = _item.EquipmentData;
         }
     }
 
@@ -79,12 +76,21 @@ public class EquipmentSystemController : MonoBehaviour
     }
 
 
-    private void HandleEquipInput(KeyCode _inputKey)
+    private void HandleEquipInput(KeyCode _inputKey, EquipmentBehaviour equipment)
     {
-        if (keyToHand.ContainsKey(_inputKey))
+        if (Input.GetKeyDown(_inputKey))
         {
-            Transform targetHand = keyToHand[_inputKey];
-            Equip(target, targetHand);
+            if (keyToHand.ContainsKey(_inputKey))
+            {
+                Hand targetHand = keyToHand[_inputKey];
+                Equip(equipment, targetHand);
+            }
         }
     }
 }
+
+/* Item object: Checks distance to player (equipsystem)
+ * IF the distance is x, the item becomes available. 
+ * It calls a method on the equipmentSystem, add to a list of EquipmentInRange
+ * in this class: update: foreach item in equipment in range, if mouse hovers over it -> if EquipInput -> Equipitem()
+ */

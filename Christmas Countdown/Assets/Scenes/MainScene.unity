@@ -234,7 +234,7 @@ GameObject:
   - component: {fileID: 49137011}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -304,9 +304,11 @@ MonoBehaviour:
   target: {fileID: 1178460751}
   inHandPositionLeft: {x: 0, y: 0, z: 0}
   inHandPositionRight: {x: 0, y: 0, z: 0}
-  leftHand: {fileID: 1083083456}
-  rightHand: {fileID: 523227018}
+  leftHand: {fileID: 1083083460}
+  rightHand: {fileID: 523227022}
   equipDistance: 3
+  equipKeyLeft: 113
+  equipKeyRight: 101
 --- !u!1 &300298648
 GameObject:
   m_ObjectHideFlags: 0
@@ -548,6 +550,7 @@ GameObject:
   - component: {fileID: 523227021}
   - component: {fileID: 523227020}
   - component: {fileID: 523227019}
+  - component: {fileID: 523227022}
   m_Layer: 0
   m_Name: RightHand
   m_TagString: Untagged
@@ -633,6 +636,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 523227017}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &523227022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523227017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e146a220e778a9e48a1d97b440007666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &600671273
 GameObject:
   m_ObjectHideFlags: 0
@@ -1061,6 +1076,7 @@ GameObject:
   - component: {fileID: 1083083459}
   - component: {fileID: 1083083458}
   - component: {fileID: 1083083457}
+  - component: {fileID: 1083083460}
   m_Layer: 0
   m_Name: LeftHand
   m_TagString: Untagged
@@ -1146,6 +1162,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1083083455}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1083083460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1083083455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e146a220e778a9e48a1d97b440007666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1178460750
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1175,7 +1203,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4035219142733080, guid: 689946d975a0e55449b1e7ae41933e73, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 4035219142733080, guid: 689946d975a0e55449b1e7ae41933e73, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1183,11 +1211,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4035219142733080, guid: 689946d975a0e55449b1e7ae41933e73, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 4035219142733080, guid: 689946d975a0e55449b1e7ae41933e73, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4035219142733080, guid: 689946d975a0e55449b1e7ae41933e73, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1195,7 +1223,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4035219142733080, guid: 689946d975a0e55449b1e7ae41933e73, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 4035219142733080, guid: 689946d975a0e55449b1e7ae41933e73, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -1220,6 +1248,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec872983040c04b419a15f57aae5b1dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  equipmentSystemController: {fileID: 49137011}
+--- !u!65 &1178460759
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178460751}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0597421, y: 0.43900105, z: 0.9887278}
+  m_Center: {x: -0.004013397, y: 0.008912876, z: 0.026623309}
 --- !u!1 &1354652088
 GameObject:
   m_ObjectHideFlags: 0

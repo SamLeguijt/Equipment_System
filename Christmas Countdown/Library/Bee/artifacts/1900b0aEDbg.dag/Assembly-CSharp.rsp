@@ -358,6 +358,7 @@
 "Assets/Scripts/CameraController.cs"
 "Assets/Scripts/EquipmentBehaviour.cs"
 "Assets/Scripts/EquipmentSystemController.cs"
+"Assets/Scripts/Hand.cs"
 "Assets/Scripts/Player/PlayerMovement.cs"
 "Assets/Scripts/ScriptableObjects/AmmunitionEquipmentObject.cs"
 "Assets/Scripts/ScriptableObjects/ApparelEquipmentObject.cs"
