@@ -16,74 +16,107 @@ public class EquipmentSystemController : MonoBehaviour
     private EquipmentBehaviour currentEquipmentLeft;
     private EquipmentBehaviour currentEquipmentRight;
 
-    public KeyCode equipKeyLeft;
-    public KeyCode equipKeyRight;
+    public KeyCode leftEquipKey;
+    public KeyCode rightEquipKey;
 
-    private Dictionary<KeyCode, Hand> keyToHand;
+    private Dictionary<KeyCode, Hand> equipKeyToHandMap;
 
-    private List<EquipmentBehaviour> equipmentsInRange;
+    private List<EquipmentBehaviour> equipmentsInScene;
 
-    public List<EquipmentBehaviour> EquipmentsInRange
+    public List<EquipmentBehaviour> EquipmentsInRange;
+
+    public List<EquipmentBehaviour> EquipmentsInScene
     {
-        get { return equipmentsInRange; }
-        set { equipmentsInRange = value; }
+        get { return equipmentsInScene; }
+        set { equipmentsInScene = value; }
     }
     // Start is called before the first frame update
     void Start()
     {
         // Initialize the dictionary
-        keyToHand = new Dictionary<KeyCode, Hand>
+        equipKeyToHandMap = new Dictionary<KeyCode, Hand>
         {
-            { equipKeyLeft, leftHand },
-            { equipKeyRight, rightHand }
+            { leftEquipKey, leftHand },
+            { rightEquipKey, rightHand }
         };
 
-        EquipmentsInRange = new List<EquipmentBehaviour>();
+        EquipmentsInScene = new List<EquipmentBehaviour>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        /* Here: 
-         * GetNearbyEquipment list. 
-         * foreach item in list: if item.CanEquip
-         * HandleEquipInput(leftKey) / rightKey
-         */
-    }
-
-    private float DistanceFromPlayerToTarget(GameObject _target)
-    {
-        return (Vector3.Distance(gameObject.transform.position, _target.transform.position));
+        foreach (EquipmentBehaviour equipment in EquipmentsInScene)
+        {
+            if (equipment.IsEquipped == false)
+            {
+                // Option 1
+                if (!equipment.IsWithinEquipRange() || !equipment.IsMouseOverEquipment)
+                {
+                    continue;
+                }
+                else if (equipment.IsWithinEquipRange() && equipment.IsMouseOverEquipment)
+                {
+                    // Call method to listen to input
+                    HandleEquipInput(leftEquipKey, equipment);
+                    HandleEquipInput(rightEquipKey, equipment);
+                }
+            }
+            else if (equipment.IsEquipped)
+            {
+                HandleDropInput(leftEquipKey, equipment);
+                HandleDropInput(rightEquipKey, equipment);
+            }
+        }
     }
 
     private void Equip(EquipmentBehaviour _item, Hand _hand)
     {
-        if (!_item.GetComponent<EquipmentBehaviour>()) { return; }
-        else
-        {
-            _item.transform.position = _hand.transform.position;
-            _item.gameObject.transform.SetParent(_hand.transform, true);
-            _item.IsEquipped = true;
+        _item.transform.position = _hand.transform.position;
+        _item.gameObject.transform.SetParent(_hand.transform, true);
+        _item.IsEquipped = true;
 
-            _hand.CurrentEquipment = _item.EquipmentData;
-        }
+        _hand.CurrentEquipment = _item.EquipmentData;
     }
 
-    private void Drop(GameObject _item)
+    private void Drop(EquipmentBehaviour _item, Hand _hand)
     {
         _item.transform.parent = null;
         _item.transform.position = gameObject.transform.position;
+        _item.IsEquipped = false;
+
+        _hand.CurrentEquipment = null;
     }
 
-
-    private void HandleEquipInput(KeyCode _inputKey, EquipmentBehaviour equipment)
+    private void HandleDropInput(KeyCode _inputKey, EquipmentBehaviour _equipment)
     {
         if (Input.GetKeyDown(_inputKey))
         {
-            if (keyToHand.ContainsKey(_inputKey))
+            if (equipKeyToHandMap.ContainsKey(_inputKey))
             {
-                Hand targetHand = keyToHand[_inputKey];
-                Equip(equipment, targetHand);
+                Hand targetHand = equipKeyToHandMap[_inputKey];
+                Drop(_equipment, targetHand);
+            }
+            else
+            {
+                throw new KeyNotFoundException($"Input key {_inputKey} not found in keyToHand dictionary.");
+            }
+        }
+    }
+
+
+    private void HandleEquipInput(KeyCode _inputKey, EquipmentBehaviour _equipment)
+    {
+        if (Input.GetKeyDown(_inputKey))
+        {
+            if (equipKeyToHandMap.ContainsKey(_inputKey))
+            {
+                Hand targetHand = equipKeyToHandMap[_inputKey];
+                Equip(_equipment, targetHand);
+            }
+            else
+            {
+                throw new KeyNotFoundException($"Input key {_inputKey} not found in keyToHand dictionary.");
             }
         }
     }

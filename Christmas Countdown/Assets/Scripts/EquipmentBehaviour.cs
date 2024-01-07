@@ -10,24 +10,27 @@ public class EquipmentBehaviour : MonoBehaviour
     public EquipmentSystemController equipmentSystemController;
 
     private bool isEquipped;
-    private bool canEquip;
+    private bool isMouseOver;
 
-    private Transform player; 
+    private Transform player;
+
+
     public BaseEquipmentObject EquipmentData
     {
         get { return equipmentData; }
         private set { equipmentData = value; }
     }
+
     public bool IsEquipped
     {
         get { return isEquipped; }
         set { isEquipped = value; }
     }
 
-    public bool CanEquip
+    public bool IsMouseOverEquipment
     {
-        get { return canEquip; }
-        private set { canEquip = value; }
+        get { return isMouseOver; }
+        private set { isMouseOver = value; }
     }
 
     private Transform Player
@@ -38,26 +41,51 @@ public class EquipmentBehaviour : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player")?.transform; 
+        player = GameObject.FindGameObjectWithTag("Player")?.transform;
+
+        // Add to equipSystems list of equipments
+        equipmentSystemController.EquipmentsInScene.Add(this);
+    }
+
+    private void Update()
+    {
+        bool isListed = equipmentSystemController.EquipmentsInRange.Contains(this);
+
+
+        if (isListed)
+        {
+            if (!IsWithinEquipRange())
+            {
+                equipmentSystemController.EquipmentsInRange.Remove(this);
+            }
+
+            return;
+        }
+        else // Not listed yet
+        {
+            if (IsWithinEquipRange())
+            {
+                equipmentSystemController.EquipmentsInRange.Add(this);
+            }
+
+            return;
+        }
     }
 
     private void OnMouseEnter()
     {
         Debug.Log("Enter");
-        
-        if (WithinEquipRange())
-        {
-            CanEquip = true;
-        }
+        IsMouseOverEquipment = true;
+
     }
 
     private void OnMouseExit()
     {
         Debug.Log("Exit");
-        canEquip = false;
+        IsMouseOverEquipment = false;
     }
 
-    public bool WithinEquipRange()
+    public bool IsWithinEquipRange()
     {
         return (DistanceFromPlayer() < equipmentSystemController.equipDistance);
     }

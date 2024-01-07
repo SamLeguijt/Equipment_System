@@ -5,7 +5,6 @@ using UnityEngine;
 public class Hand : MonoBehaviour
 {
     private BaseEquipmentObject currentEquipment;
-    
 
     public BaseEquipmentObject CurrentEquipment
     {
