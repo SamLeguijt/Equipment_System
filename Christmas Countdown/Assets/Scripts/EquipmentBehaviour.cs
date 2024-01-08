@@ -10,8 +10,6 @@ public class EquipmentBehaviour : MonoBehaviour
     public EquipmentSystemController equipmentSystemController;
 
     private bool isEquipped;
-    private bool isMouseOver;
-
     private Transform player;
 
     private bool canDrop;
@@ -34,12 +32,6 @@ public class EquipmentBehaviour : MonoBehaviour
         set { isEquipped = value; }
     }
 
-    public bool IsMouseOverEquipment
-    {
-        get { return isMouseOver; }
-        private set { isMouseOver = value; }
-    }
-
     private Transform Player
     {
         // Get player if not null, else throw null reference exception with message
@@ -50,35 +42,14 @@ public class EquipmentBehaviour : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
 
-        // Add to equipSystems list of equipments
-    }
-
-    private void Update()
-    {
-        if (IsEquipped)
-        {
-            Debug.Log("Equipped");
-        } else if (!IsEquipped)
-        {
-            Debug.Log("Not Equipped");
-        }
-    }
-
-    
+    }    
 
     private void OnMouseOver()
     {
-        IsMouseOverEquipment = true;
-
         if (!IsEquipped)
         {
             equipmentSystemController.OnCursorOver(this);
         }
-    }
-
-    private void OnMouseExit()
-    {
-        IsMouseOverEquipment = false;
     }
 
     public void OnEquip()

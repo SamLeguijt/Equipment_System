@@ -3,10 +3,6 @@ using UnityEngine;
 
 public class EquipmentSystemController : MonoBehaviour
 {
-
-    public Vector3 inHandPositionLeft;
-    public Vector3 inHandPositionRight;
-
     public Hand leftHand;
     public Hand rightHand;
 
@@ -15,20 +11,11 @@ public class EquipmentSystemController : MonoBehaviour
     public KeyCode leftEquipKey;
     public KeyCode rightEquipKey;
 
-    private Dictionary<KeyCode, Hand> equipKeyToHandMap;
     private Dictionary<Hand, KeyCode> HandKey;
 
     // Start is called before the first frame update
     void Start()
     {
-        // Initialize the dictionary
-        equipKeyToHandMap = new Dictionary<KeyCode, Hand>
-        {
-            { leftEquipKey, leftHand },
-            { rightEquipKey, rightHand }
-        };
-
-
         HandKey = new Dictionary<Hand, KeyCode>
         {
             { leftHand, leftEquipKey },
@@ -48,19 +35,6 @@ public class EquipmentSystemController : MonoBehaviour
         if (_hand.CurrentEquipment != null)
         {
             DropFromHandOnInputs(_hand, _hand.CurrentEquipment);
-        }
-    }
-
-    public void HandleCurrentEquipment()
-    {
-        if (leftHand.CurrentEquipment != null)
-        {
-            DropFromHandOnInput(leftEquipKey, leftHand.CurrentEquipment);
-        }
-
-        if (rightHand.CurrentEquipment != null)
-        {
-            DropFromHandOnInput(rightEquipKey, rightHand.CurrentEquipment);
         }
     }
 
@@ -87,23 +61,6 @@ public class EquipmentSystemController : MonoBehaviour
         _item.OnDrop();
         _hand.CurrentEquipment = null;
     }
-
-    private void DropFromHandOnInput(KeyCode _inputKey, EquipmentBehaviour _equipment)
-    {
-        if (Input.GetKeyDown(_inputKey) && _equipment.CanDrop)
-        {
-            if (equipKeyToHandMap.ContainsKey(_inputKey))
-            {
-                Hand targetHand = equipKeyToHandMap[_inputKey];
-
-                Drop(_equipment, targetHand);
-            }
-            else
-            {
-                throw new KeyNotFoundException($"Input key {_inputKey} not found in keyToHand dictionary.");
-            }
-        }
-    }   
     
     private void DropFromHandOnInputs(Hand _hand, EquipmentBehaviour _equipment)
     {
@@ -117,7 +74,7 @@ public class EquipmentSystemController : MonoBehaviour
             }
         }
     }
-
+    
     private void HandleEquipInput(EquipmentBehaviour _equipment)
     {
         EquipToHandOnInput(leftHand, _equipment);

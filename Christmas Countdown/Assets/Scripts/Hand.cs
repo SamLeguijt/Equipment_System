@@ -11,12 +11,4 @@ public class Hand : MonoBehaviour
         get { return currentEquipment; }
         set { currentEquipment = value; }
     }
-/*
-    private BaseEquipmentObject currentEquipmentData;
-
-    public BaseEquipmentObject CurrentEquipmentData
-    {
-        get { return CurrentEquipment.EquipmentData; }
-        set { currentEquipmentData = value; }
-    }*/
 }
