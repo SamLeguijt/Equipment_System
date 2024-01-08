@@ -43,8 +43,8 @@ public class EquipmentSystemController : MonoBehaviour
     /// </summary>
     public KeyCode RightEquipKey
     {
-        get { return RightEquipKey; }
-        private set { RightEquipKey = value; }
+        get { return rightEquipKey; }
+        private set { rightEquipKey = value; }
     }
 
 

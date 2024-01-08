@@ -13,14 +13,24 @@ public class EquipmentBehaviour : MonoBehaviour
 {
     /* ------------------------------------------  VARIABLES ------------------------------------------- */
 
+    [Space]
     [Tooltip("Drag in object with the EquipmentSystemController attached")]
     [SerializeField] private EquipmentSystemController equipmentSystemController;
+    
+    [Space]
+    [Tooltip("Player object in scene, used for calculating equip distance")]
+    [SerializeField] private Transform player;
+    
+    [Space]
+    [Header("Equipment specifics")]
+    //[Tooltip("Prefab of this equipment model")]
+    //[SerializeField] GameObject modelPrefab;
 
     [Tooltip("Scriptable Object with this object's data")]
     [SerializeField] private BaseEquipmentObject equipmentData;
-
-    [Tooltip("Player object in scene, used for calculating equip distance")] 
-    [SerializeField] private Transform player;
+    
+    private Rigidbody modelRb;
+    private Collider modelCollider;
 
     // Bools for checking status of this object, used for properties
     private bool isEquipped;
@@ -74,14 +84,46 @@ public class EquipmentBehaviour : MonoBehaviour
         private set { canDrop = value; }
     }
 
-    /* ------------------------------------------  METHODS ------------------------------------------- */ 
+    /* ------------------------------------------  METHODS ------------------------------------------- */
 
+
+    /* States: 
+     * InHand
+     * OutOfHand
+     * if outOfHand > Collider, rb, rotated
+     * if not in hand > no collider, no rb, rotated towards mouse
+     * 
+     * This script is attached to a prefab model object
+     * prefab model has a rb, collider 
+     */
+
+
+
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player")?.transform;
+
+        modelRb = GetComponent<Rigidbody>();
+        modelCollider = GetComponent<Collider>();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Environment"))
+        {
+            modelRb.isKinematic = true;
+        }
+    }
     /// <summary>
     /// Public method called when equipping this object to hand <br/>
     /// Repositions object to hand, sets parent, and sets IsEquipped and CanDrop bool values true
     /// </summary>
     public void OnEquip(Hand _targetHand)
     {
+        modelCollider.enabled = false;
+        modelRb.isKinematic = true;
+        
+
         // Set position and parent to hand object
         transform.position = _targetHand.transform.position;
         gameObject.transform.SetParent(_targetHand.transform, true);
@@ -99,6 +141,9 @@ public class EquipmentBehaviour : MonoBehaviour
     /// </summary>
     public void OnDrop(Hand _ownerHand)
     {
+        modelCollider.enabled = true;
+        modelRb.isKinematic = false;
+
         // Set values of booleans
         IsEquipped = false;
         CanDrop = false;
@@ -115,7 +160,7 @@ public class EquipmentBehaviour : MonoBehaviour
     /// </summary>
     private void OnMouseOver()
     {
-        // Firsdt check if this is not already equipped
+        // First check if this is not already equipped
         if (!IsEquipped)
         {
             // Send message that mouse is targeting this object

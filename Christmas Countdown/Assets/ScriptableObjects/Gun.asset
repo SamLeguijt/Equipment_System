@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Gun
   m_EditorClassIdentifier: 
   equipmentName: Gun
+  equipDistance: 3
   equipmentDescription: M4 Assault rifle, firing in single mode or fully automatic
