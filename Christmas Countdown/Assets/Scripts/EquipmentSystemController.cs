@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 /// <summary>
 /// Public class for the system of equipping objects, dropping and swapping them. <br/> 
@@ -7,6 +8,9 @@ using UnityEngine;
 /// </summary>
 public class EquipmentSystemController : MonoBehaviour
 {
+
+    /* ------------------------------------------  VARIABLES ------------------------------------------- */
+
     [Header("Hand objects attached to player")]
     [SerializeField] private Hand leftHand;
     [SerializeField] private Hand rightHand;
@@ -21,14 +25,40 @@ public class EquipmentSystemController : MonoBehaviour
     /// </summary>
     private Dictionary<Hand, KeyCode> inputToHandKeyBindings;
 
+
+    /* ------------------------------------------  PROPERTIES ------------------------------------------- */
+
+
+    /// <summary>
+    /// Public property with private set used for getting and setting the value of the key to equip/drop items in left hand <br/> <br/>
+    /// </summary>
+    public KeyCode LeftEquipKey
+    {
+        get { return leftEquipKey; }
+        private set { leftEquipKey = value; }
+    }
+
+    /// <summary>
+    /// Public property with private set used for getting and setting the value of the key to equip/drop items in right hand <br/> <br/>
+    /// </summary>
+    public KeyCode RightEquipKey
+    {
+        get { return RightEquipKey; }
+        private set { RightEquipKey = value; }
+    }
+
+
+    /* ------------------------------------------  METHODS ------------------------------------------- */
+
+
     // Start is called before the first frame update
     void Start()
     {
         // Initialize the dictionary with its keys and values
         inputToHandKeyBindings = new Dictionary<Hand, KeyCode>
         {
-            { leftHand, leftEquipKey },
-            { rightHand, rightEquipKey }
+            { leftHand, LeftEquipKey },
+            { rightHand, RightEquipKey }
         };
     }
 
@@ -61,7 +91,7 @@ public class EquipmentSystemController : MonoBehaviour
     /// Calls method that equips the object when receiving input
     /// </summary>
     /// <param name="_equipment"></param>
-    public void OnCursorOnEquipment(EquipmentBehaviour _equipment)
+    public void OnMouseOverEquipment(EquipmentBehaviour _equipment)
     {
         // First check if the equipment object is within it's equip range
         if (_equipment.IsWithinEquipRange())

@@ -119,7 +119,7 @@ public class EquipmentBehaviour : MonoBehaviour
         if (!IsEquipped)
         {
             // Send message that mouse is targeting this object
-            equipmentSystemController.OnCursorOnEquipment(this);
+            equipmentSystemController.OnMouseOverEquipment(this);
         }
     }
 

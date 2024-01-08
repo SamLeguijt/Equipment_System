@@ -8,8 +8,12 @@ using UnityEngine;
 /// </summary>
 public class Hand : MonoBehaviour
 {
+    // Reference to the current equipped item for this hand
     private EquipmentBehaviour currentEquipment;
 
+    /// <summary>
+    /// Public property to get and set the Current Equipment of this hand
+    /// </summary>
     public EquipmentBehaviour CurrentEquipment
     {
         get { return currentEquipment; }
