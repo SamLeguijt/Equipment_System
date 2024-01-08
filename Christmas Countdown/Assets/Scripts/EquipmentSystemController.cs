@@ -7,10 +7,10 @@ using UnityEngine;
 /// </summary>
 public class EquipmentSystemController : MonoBehaviour
 {
-    public Hand leftHand;
-    public Hand rightHand;
+    private Hand leftHand;
+    private Hand rightHand;
 
-    public float equipDistance;
+    private float equipDistance;
 
     public KeyCode leftEquipKey;
     public KeyCode rightEquipKey;

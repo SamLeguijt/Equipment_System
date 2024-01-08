@@ -142,7 +142,7 @@ public class EquipmentBehaviour : MonoBehaviour
     /// <returns></returns>
     public bool IsWithinEquipRange()
     {
-        return (DistanceFromPlayer() < equipmentSystemController.equipDistance);
+        return (DistanceFromPlayer() < equipmentData.EquipDistance);
     }
 
     /// <summary>

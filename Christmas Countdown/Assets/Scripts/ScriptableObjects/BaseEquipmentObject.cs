@@ -14,6 +14,9 @@ public abstract class BaseEquipmentObject : ScriptableObject
     [Tooltip("Name of the object")]
     [SerializeField] private string equipmentName;
 
+    [Tooltip("Distance from where player is able to equip this object")]
+    [SerializeField] private float equipDistance;
+
     [Tooltip("Description of the equipment object, optionally")]
     [TextArea(5, 20)]
     [SerializeField] private string equipmentDescription;
@@ -24,6 +27,14 @@ public abstract class BaseEquipmentObject : ScriptableObject
     public string EquipmentName
     {
         get { return equipmentName; }
+    }
+
+    /// <summary>
+    /// Read only property used for getting the distance from where to equip this object
+    /// </summary>
+    public float EquipDistance
+    {
+        get { return equipDistance; }
     }
 
     /// <summary>
