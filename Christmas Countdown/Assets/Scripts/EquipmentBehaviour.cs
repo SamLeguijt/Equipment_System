@@ -14,6 +14,13 @@ public class EquipmentBehaviour : MonoBehaviour
 
     private Transform player;
 
+    private bool canDrop;
+
+    public bool CanDrop
+    {
+        get { return canDrop; } 
+        private set { canDrop = value; }
+    }
 
     public BaseEquipmentObject EquipmentData
     {
@@ -44,47 +51,54 @@ public class EquipmentBehaviour : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
 
         // Add to equipSystems list of equipments
-        equipmentSystemController.EquipmentsInScene.Add(this);
     }
 
     private void Update()
     {
-        bool isListed = equipmentSystemController.EquipmentsInRange.Contains(this);
-
-
-        if (isListed)
+        if (IsEquipped)
         {
-            if (!IsWithinEquipRange())
-            {
-                equipmentSystemController.EquipmentsInRange.Remove(this);
-            }
-
-            return;
-        }
-        else // Not listed yet
+            Debug.Log("Equipped");
+        } else if (!IsEquipped)
         {
-            if (IsWithinEquipRange())
-            {
-                equipmentSystemController.EquipmentsInRange.Add(this);
-            }
-
-            return;
+            Debug.Log("Not Equipped");
         }
     }
 
-    private void OnMouseEnter()
+    
+
+    private void OnMouseOver()
     {
-        Debug.Log("Enter");
         IsMouseOverEquipment = true;
 
+        if (!IsEquipped)
+        {
+            equipmentSystemController.OnCursorOver(this);
+        }
     }
 
     private void OnMouseExit()
     {
-        Debug.Log("Exit");
         IsMouseOverEquipment = false;
     }
 
+    public void OnEquip()
+    {
+        if (!IsEquipped) StartCoroutine(SetDropStatus());
+
+        IsEquipped = true;
+    }
+
+    public void OnDrop()
+    {
+        IsEquipped = false;
+        CanDrop = false;    
+    }
+
+    private IEnumerator SetDropStatus()
+    {
+        yield return new WaitForEndOfFrame();
+        CanDrop = true;
+    }
     public bool IsWithinEquipRange()
     {
         return (DistanceFromPlayer() < equipmentSystemController.equipDistance);

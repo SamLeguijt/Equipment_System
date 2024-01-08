@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class Hand : MonoBehaviour
 {
-    private BaseEquipmentObject currentEquipment;
+    private EquipmentBehaviour currentEquipment;
 
-    public BaseEquipmentObject CurrentEquipment
+    public EquipmentBehaviour CurrentEquipment
     {
         get { return currentEquipment; }
         set { currentEquipment = value; }
     }
+/*
+    private BaseEquipmentObject currentEquipmentData;
+
+    public BaseEquipmentObject CurrentEquipmentData
+    {
+        get { return CurrentEquipment.EquipmentData; }
+        set { currentEquipmentData = value; }
+    }*/
 }

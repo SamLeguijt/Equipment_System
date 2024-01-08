@@ -4,7 +4,6 @@ using UnityEngine;
 public class EquipmentSystemController : MonoBehaviour
 {
 
-    public GameObject target;
     public Vector3 inHandPositionLeft;
     public Vector3 inHandPositionRight;
 
@@ -13,23 +12,12 @@ public class EquipmentSystemController : MonoBehaviour
 
     public float equipDistance;
 
-    private EquipmentBehaviour currentEquipmentLeft;
-    private EquipmentBehaviour currentEquipmentRight;
-
     public KeyCode leftEquipKey;
     public KeyCode rightEquipKey;
 
     private Dictionary<KeyCode, Hand> equipKeyToHandMap;
+    private Dictionary<Hand, KeyCode> HandKey;
 
-    private List<EquipmentBehaviour> equipmentsInScene;
-
-    public List<EquipmentBehaviour> EquipmentsInRange;
-
-    public List<EquipmentBehaviour> EquipmentsInScene
-    {
-        get { return equipmentsInScene; }
-        set { equipmentsInScene = value; }
-    }
     // Start is called before the first frame update
     void Start()
     {
@@ -40,61 +28,74 @@ public class EquipmentSystemController : MonoBehaviour
             { rightEquipKey, rightHand }
         };
 
-        EquipmentsInScene = new List<EquipmentBehaviour>();
+
+        HandKey = new Dictionary<Hand, KeyCode>
+        {
+            { leftHand, leftEquipKey },
+            { rightHand, rightEquipKey }
+        };
     }
 
     // Update is called once per frame
     void Update()
     {
-        foreach (EquipmentBehaviour equipment in EquipmentsInScene)
+        CurrentEquipmentHand(leftHand);
+        CurrentEquipmentHand(rightHand);
+    }
+
+    private void CurrentEquipmentHand(Hand _hand)
+    {
+        if (_hand.CurrentEquipment != null)
         {
-            if (equipment.IsEquipped == false)
-            {
-                // Option 1
-                if (!equipment.IsWithinEquipRange() || !equipment.IsMouseOverEquipment)
-                {
-                    continue;
-                }
-                else if (equipment.IsWithinEquipRange() && equipment.IsMouseOverEquipment)
-                {
-                    // Call method to listen to input
-                    HandleEquipInput(leftEquipKey, equipment);
-                    HandleEquipInput(rightEquipKey, equipment);
-                }
-            }
-            else if (equipment.IsEquipped)
-            {
-                HandleDropInput(leftEquipKey, equipment);
-                HandleDropInput(rightEquipKey, equipment);
-            }
+            DropFromHandOnInputs(_hand, _hand.CurrentEquipment);
         }
     }
 
+    public void HandleCurrentEquipment()
+    {
+        if (leftHand.CurrentEquipment != null)
+        {
+            DropFromHandOnInput(leftEquipKey, leftHand.CurrentEquipment);
+        }
+
+        if (rightHand.CurrentEquipment != null)
+        {
+            DropFromHandOnInput(rightEquipKey, rightHand.CurrentEquipment);
+        }
+    }
+
+    public void OnCursorOver(EquipmentBehaviour _equipment)
+    {
+        if (_equipment.IsWithinEquipRange())
+        {
+            HandleEquipInput(_equipment);
+        }
+    }
     private void Equip(EquipmentBehaviour _item, Hand _hand)
     {
         _item.transform.position = _hand.transform.position;
         _item.gameObject.transform.SetParent(_hand.transform, true);
-        _item.IsEquipped = true;
+        _item.OnEquip();
 
-        _hand.CurrentEquipment = _item.EquipmentData;
+        _hand.CurrentEquipment = _item;
     }
 
     private void Drop(EquipmentBehaviour _item, Hand _hand)
     {
         _item.transform.parent = null;
         _item.transform.position = gameObject.transform.position;
-        _item.IsEquipped = false;
-
+        _item.OnDrop();
         _hand.CurrentEquipment = null;
     }
 
-    private void HandleDropInput(KeyCode _inputKey, EquipmentBehaviour _equipment)
+    private void DropFromHandOnInput(KeyCode _inputKey, EquipmentBehaviour _equipment)
     {
-        if (Input.GetKeyDown(_inputKey))
+        if (Input.GetKeyDown(_inputKey) && _equipment.CanDrop)
         {
             if (equipKeyToHandMap.ContainsKey(_inputKey))
             {
                 Hand targetHand = equipKeyToHandMap[_inputKey];
+
                 Drop(_equipment, targetHand);
             }
             else
@@ -102,28 +103,39 @@ public class EquipmentSystemController : MonoBehaviour
                 throw new KeyNotFoundException($"Input key {_inputKey} not found in keyToHand dictionary.");
             }
         }
-    }
-
-
-    private void HandleEquipInput(KeyCode _inputKey, EquipmentBehaviour _equipment)
+    }   
+    
+    private void DropFromHandOnInputs(Hand _hand, EquipmentBehaviour _equipment)
     {
-        if (Input.GetKeyDown(_inputKey))
+        if (HandKey.ContainsKey(_hand))
         {
-            if (equipKeyToHandMap.ContainsKey(_inputKey))
+            KeyCode inputKey = HandKey[_hand];
+
+            if (Input.GetKeyDown(inputKey) && _equipment.CanDrop)
             {
-                Hand targetHand = equipKeyToHandMap[_inputKey];
-                Equip(_equipment, targetHand);
-            }
-            else
-            {
-                throw new KeyNotFoundException($"Input key {_inputKey} not found in keyToHand dictionary.");
+                Drop(_equipment, _hand);
             }
         }
     }
-}
 
-/* Item object: Checks distance to player (equipsystem)
- * IF the distance is x, the item becomes available. 
- * It calls a method on the equipmentSystem, add to a list of EquipmentInRange
- * in this class: update: foreach item in equipment in range, if mouse hovers over it -> if EquipInput -> Equipitem()
- */
+    private void HandleEquipInput(EquipmentBehaviour _equipment)
+    {
+        EquipToHandOnInput(leftHand, _equipment);
+        EquipToHandOnInput(rightHand, _equipment);
+    }
+
+
+    private void EquipToHandOnInput(Hand _hand, EquipmentBehaviour _equipment)
+    {
+
+        if (HandKey.ContainsKey(_hand))
+        {
+            KeyCode inputKey = HandKey[_hand];
+
+            if (Input.GetKeyDown(inputKey))
+            {
+                Equip(_equipment, _hand);
+            }
+        }
+    } 
+}

@@ -301,14 +301,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 777c3a988bf59b448b77f7acbc080ac6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1178460751}
   inHandPositionLeft: {x: 0, y: 0, z: 0}
   inHandPositionRight: {x: 0, y: 0, z: 0}
   leftHand: {fileID: 1083083460}
   rightHand: {fileID: 523227022}
   equipDistance: 3
-  equipKeyLeft: 113
-  equipKeyRight: 101
+  leftEquipKey: 113
+  rightEquipKey: 101
 --- !u!1 &300298648
 GameObject:
   m_ObjectHideFlags: 0
