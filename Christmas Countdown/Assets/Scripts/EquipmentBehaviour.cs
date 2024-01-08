@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+/// <summary>
+/// Public class for behaviour tasks of Equipments. <br/>
+/// Uses a ref to a scriptable object for it's equipment data, and reference to EquipmentSystemController for equip and drop actions
+/// </summary>
 public class EquipmentBehaviour : MonoBehaviour
 {
     /* ------------------------------------------  VARIABLES ------------------------------------------- */

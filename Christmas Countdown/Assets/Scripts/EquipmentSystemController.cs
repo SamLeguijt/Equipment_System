@@ -1,6 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Public class for the system of equipping objects, dropping and swapping them. <br/> 
+/// References the player's hands to equip types of EquipmentBehaviours to them when conditions are met
+/// </summary>
 public class EquipmentSystemController : MonoBehaviour
 {
     public Hand leftHand;
