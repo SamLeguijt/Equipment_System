@@ -301,8 +301,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 777c3a988bf59b448b77f7acbc080ac6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inHandPositionLeft: {x: 0, y: 0, z: 0}
-  inHandPositionRight: {x: 0, y: 0, z: 0}
   leftHand: {fileID: 1083083460}
   rightHand: {fileID: 523227022}
   equipDistance: 3
@@ -1248,6 +1246,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equipmentSystemController: {fileID: 49137011}
+  equipmentData: {fileID: 11400000, guid: dee75ac26b3b4f94abbef7b96b4710a9, type: 2}
+  player: {fileID: 49137009}
 --- !u!65 &1178460759
 BoxCollider:
   m_ObjectHideFlags: 0

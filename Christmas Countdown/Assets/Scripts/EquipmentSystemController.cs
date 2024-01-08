@@ -51,18 +51,13 @@ public class EquipmentSystemController : MonoBehaviour
     }
     private void Equip(EquipmentBehaviour _item, Hand _hand)
     {
-        _item.transform.position = _hand.transform.position;
-        _item.gameObject.transform.SetParent(_hand.transform, true);
-        _item.OnEquip();
-
         _hand.CurrentEquipment = _item;
+        _item.OnEquip(_hand);
     }
 
     private void Drop(EquipmentBehaviour _item, Hand _hand)
     {
-        _item.transform.parent = null;
-        _item.transform.position = gameObject.transform.position;
-        _item.OnDrop();
+        _item.OnDrop(_hand);
         _hand.CurrentEquipment = null;
     }
     

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.Progress;
+using UnityEngine.XR;
 
 /// <summary>
 /// Public class for behaviour tasks of Equipments. <br/>
@@ -76,25 +78,33 @@ public class EquipmentBehaviour : MonoBehaviour
 
     /// <summary>
     /// Public method called when equipping this object to hand <br/>
-    /// Sets status of bools
+    /// Sets status of bools`and positions this object to param
     /// </summary>
-    public void OnEquip()
+    public void OnEquip(Hand _targetHand)
     {
-        // Start coroutine to set value of CanDrop bool
-        if (!IsEquipped) StartCoroutine(EnableDropAfterFrame());
+        // Set position and parent to hand object
+        transform.position = _targetHand.transform.position;
+        gameObject.transform.SetParent(_targetHand.transform, true);
 
-
+        // Set value of bool true
         IsEquipped = true;
+
+        // Start coroutine to set value of CanDrop bool after this frame ends
+        StartCoroutine(EnableDropAfterFrame());
     }
 
     /// <summary>
     /// Public method called when dropping this equipment from hand
     /// </summary>
-    public void OnDrop()
+    public void OnDrop(Hand _ownerHand)
     {
         // Set values of booleans
         IsEquipped = false;
-        CanDrop = false;    
+        CanDrop = false;
+
+        // Set position and parent 
+        transform.parent = null;
+        transform.position = _ownerHand.transform.position;
     }
 
 
@@ -104,8 +114,10 @@ public class EquipmentBehaviour : MonoBehaviour
     /// </summary>
     private void OnMouseOver()
     {
+        // Firsdt check if this is not already equipped
         if (!IsEquipped)
         {
+            // Send message that mouse is targeting this object
             equipmentSystemController.OnCursorOver(this);
         }
     }
@@ -117,7 +129,10 @@ public class EquipmentBehaviour : MonoBehaviour
     /// <returns></returns>
     private IEnumerator EnableDropAfterFrame()
     {
+        // Wait for end of frame
         yield return new WaitForEndOfFrame();
+
+        // Set value to true to enable dropping this object
         CanDrop = true;
     }
 
