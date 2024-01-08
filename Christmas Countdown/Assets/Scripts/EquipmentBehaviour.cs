@@ -78,7 +78,7 @@ public class EquipmentBehaviour : MonoBehaviour
 
     /// <summary>
     /// Public method called when equipping this object to hand <br/>
-    /// Sets status of bools`and positions this object to param
+    /// Repositions object to hand, sets parent, and sets IsEquipped and CanDrop bool values true
     /// </summary>
     public void OnEquip(Hand _targetHand)
     {
@@ -94,7 +94,8 @@ public class EquipmentBehaviour : MonoBehaviour
     }
 
     /// <summary>
-    /// Public method called when dropping this equipment from hand
+    /// Public method called when dropping this equipment from hand <br/>
+    /// Removes hand as parent, repositions object and sets IsEquipped and CanDrop bool values to false
     /// </summary>
     public void OnDrop(Hand _ownerHand)
     {
@@ -118,7 +119,7 @@ public class EquipmentBehaviour : MonoBehaviour
         if (!IsEquipped)
         {
             // Send message that mouse is targeting this object
-            equipmentSystemController.OnCursorOver(this);
+            equipmentSystemController.OnCursorOnEquipment(this);
         }
     }
 
