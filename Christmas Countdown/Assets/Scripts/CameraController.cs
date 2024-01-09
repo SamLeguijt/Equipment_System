@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    [Tooltip("Object to put in center of the screen, child of camera")]
+    [SerializeField] private Transform centerTarget;
+
     [Tooltip("Forward orientation object attached to the player object")]
     [SerializeField] private Transform playerForwardOrientation;
 
@@ -30,6 +33,23 @@ public class CameraController : MonoBehaviour
     // Private variables used for setting the rotations
     private float rotationX;
     private float rotationY;
+
+    public float CameraRotationX
+    {
+        get { return rotationX; }
+        private set { rotationX = value; }
+    }
+
+    public float CameraRotationY
+    {
+        get { return rotationY; }
+        private set { rotationY = value; }
+    }
+
+    public Transform CenterTarget
+    {
+        get { return centerTarget; }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -74,7 +94,6 @@ public class CameraController : MonoBehaviour
 
         // Rotate the player's orientation object around the target rotations.
         playerForwardOrientation.rotation = Quaternion.Euler(0, rotationY, 0);
-
     }
 
     /// <summary>
@@ -91,8 +110,12 @@ public class CameraController : MonoBehaviour
         Vector3 worldPositionLeftHand = Camera.main.ViewportToWorldPoint(leftHandPosOffset);
         Vector3 worldPositionRightHand = Camera.main.ViewportToWorldPoint(rightHandPosOffset);
 
+        // Get position of the center of the camera's view, z distnce away from camera.
+        Vector3 centerPosition = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 5f));
+
         // Set position of the hands to the viewport positions
         playerLeftHand.position = worldPositionLeftHand;
         playerRightHand.position = worldPositionRightHand;
+        centerTarget.position = centerPosition;
     }
 }

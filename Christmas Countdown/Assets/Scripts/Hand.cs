@@ -19,4 +19,25 @@ public class Hand : MonoBehaviour
         get { return currentEquipment; }
         set { currentEquipment = value; }
     }
+
+    private void Update()
+    {
+     /*   CameraController cam = Camera.main.GetComponent<CameraController>();
+        Transform camCenter = cam.CenterTarget;
+
+        if (cam != null && camCenter != null)
+        {
+            Transform targetPoint = cam.CenterTarget;
+
+            if (targetPoint != null)
+            {
+                // Calculate the rotation needed to point towards the target point
+                Quaternion targetRotation = Quaternion.LookRotation(targetPoint.position - transform.position);
+
+                // Smoothly rotate the weapon towards the target rotation
+                float rotationSpeed = 5.0f; // Adjust this value to control the smoothness
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+            }
+        }*/
+    }
 }
