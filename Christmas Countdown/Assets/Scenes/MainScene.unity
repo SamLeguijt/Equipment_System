@@ -308,6 +308,7 @@ GameObject:
   - component: {fileID: 49137008}
   - component: {fileID: 49137010}
   - component: {fileID: 49137011}
+  - component: {fileID: 49137012}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -381,6 +382,20 @@ MonoBehaviour:
   rightHand: {fileID: 523227022}
   leftEquipKey: 113
   rightEquipKey: 101
+--- !u!136 &49137012
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49137007}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.9785364
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.016022325, z: 0}
 --- !u!1 &300298648
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,7 +407,6 @@ GameObject:
   - component: {fileID: 300298652}
   - component: {fileID: 300298651}
   - component: {fileID: 300298650}
-  - component: {fileID: 300298649}
   m_Layer: 8
   m_Name: PlayerGraphics
   m_TagString: Untagged
@@ -400,20 +414,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!136 &300298649
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 300298648}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &300298650
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -735,6 +735,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 1117582899397640, guid: 689946d975a0e55449b1e7ae41933e73, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4035219142733080, guid: 689946d975a0e55449b1e7ae41933e73, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -788,6 +792,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 49137009}
     - target: {fileID: 8398903672875652594, guid: 689946d975a0e55449b1e7ae41933e73, type: 3}
+      propertyPath: dropForce.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8398903672875652594, guid: 689946d975a0e55449b1e7ae41933e73, type: 3}
+      propertyPath: dropForce.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8398903672875652594, guid: 689946d975a0e55449b1e7ae41933e73, type: 3}
       propertyPath: playerOrien
       value: 
       objectReference: {fileID: 954617189}
@@ -817,7 +829,7 @@ GameObject:
   - component: {fileID: 600671276}
   - component: {fileID: 600671275}
   - component: {fileID: 600671274}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1109,7 +1121,7 @@ GameObject:
   - component: {fileID: 754096373}
   - component: {fileID: 754096372}
   - component: {fileID: 754096371}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1269,7 +1281,7 @@ GameObject:
   - component: {fileID: 1049449302}
   - component: {fileID: 1049449301}
   - component: {fileID: 1049449300}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1573,7 +1585,7 @@ GameObject:
   - component: {fileID: 1392713119}
   - component: {fileID: 1392713118}
   - component: {fileID: 1392713117}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1667,7 +1679,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1536794300}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Environment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2062,8 +2074,7 @@ MonoBehaviour:
   equipmentSystemController: {fileID: 49137011}
   player: {fileID: 49137009}
   equipmentData: {fileID: 11400000, guid: dee75ac26b3b4f94abbef7b96b4710a9, type: 2}
-  playerOrien: {fileID: 954617189}
-  rotateSpeed: 10
+  environmentLayerName: Environment
 --- !u!54 &2124524932
 Rigidbody:
   m_ObjectHideFlags: 0

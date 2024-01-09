@@ -23,19 +23,19 @@ public class EquipmentBehaviour : MonoBehaviour
     
     [Space]
     [Header("Equipment specifics")]
-    //[Tooltip("Prefab of this equipment model")]
-    //[SerializeField] GameObject modelPrefab;
-
     [Tooltip("Scriptable Object with this object's data")]
     [SerializeField] private BaseEquipmentObject equipmentData;
-    
-    private Rigidbody modelRb;
+
+    [Tooltip("Name of the layer for environmental objects")]
+    [SerializeField] private string environmentLayerName;
+
+    //Reference to the rigidbody for physics
+    private Rigidbody rb;
 
     // Bools for checking status of this object, used for properties
     private bool isEquipped;
     private bool canDrop;
-
-    public float rotateSpeed;
+    private bool isOnGround;
 
 
     /* ------------------------------------------  PROPERTIES ------------------------------------------- */
@@ -86,18 +86,33 @@ public class EquipmentBehaviour : MonoBehaviour
         private set { canDrop = value; }
     }
 
-    /* ------------------------------------------  METHODS ------------------------------------------- */
+    /// <summary>
+    /// Public property to check if the object is on ground
+    /// </summary>
+    public bool IsOnGround
+    {
+        get { return isOnGround; }
+        private set { isOnGround = value; }
+    }
 
+    /* ------------------------------------------  METHODS ------------------------------------------- */
+    
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player")?.transform;
+        if (player == null)
+            player = GameObject.FindGameObjectWithTag("Player")?.transform;
 
-        modelRb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
 
+        // Set rotation of this object to the data's values
         SetRotation(EquipmentData.UnequippedRotation);
     }
 
+    /// <summary>
+    /// Method to set the rotation of the model object 
+    /// </summary>
+    /// <param name="_targetRotation"></param>
     private void SetRotation(Vector3 _targetRotation)
     {
         transform.rotation = Quaternion.Euler(_targetRotation);
@@ -116,7 +131,8 @@ public class EquipmentBehaviour : MonoBehaviour
 
         // Set value of bools true
         IsEquipped = true;
-        modelRb.isKinematic = true;
+        IsOnGround = false;
+        rb.isKinematic = true;
 
         // Start coroutine to set value of CanDrop bool after this frame ends
         StartCoroutine(EnableDropAfterFrame());
@@ -128,19 +144,21 @@ public class EquipmentBehaviour : MonoBehaviour
     /// </summary>
     public void OnDrop(Hand _ownerHand)
     {
+        // Set rotation back 
+        SetRotation(EquipmentData.UnequippedRotation);
+
         // Set values of booleans
         IsEquipped = false;
         CanDrop = false;
-        modelRb.isKinematic = false;
+        rb.isKinematic = false; 
 
-        // Set rotation back 
-        SetRotation(EquipmentData.UnequippedRotation);
+        // Call method to throw equipment
+        ThrowEquipment(); // Note: Notice isKinematic = false before calling method
 
         // Set position and parent 
         transform.parent = null;
         transform.position = _ownerHand.transform.position;
     }
-
 
     /// <summary>
     /// Method gets called while the mouse cursor is over this object's collider <br/>
@@ -148,12 +166,27 @@ public class EquipmentBehaviour : MonoBehaviour
     /// </summary>
     private void OnMouseOver()
     {
-        // First check if this is not already equipped
-        if (!IsEquipped)
+        // First check if this is not already equipped and if the object is on ground
+        if (!IsEquipped && IsOnGround)
         {
             // Send message that mouse is targeting this object
             equipmentSystemController.OnMouseOverEquipment(this);
         }
+    }
+
+    /// <summary>
+    /// Method that throws the equipment from hand with a certain force 
+    /// </summary>
+    private void ThrowEquipment()
+    {
+        // Set object rigidbody to the player's velocity to carry momentum
+        rb.velocity = GetPlayerVelocity();
+
+        // Get the dropForce vector
+        Vector3 dropForce = GetDropForceVector();
+
+        // Apply the dropforce using Impulse forcemode to throw equipment 
+        rb.AddForce(dropForce, ForceMode.Impulse);
     }
 
     /// <summary>
@@ -171,6 +204,18 @@ public class EquipmentBehaviour : MonoBehaviour
     }
 
     /// <summary>
+    /// OnCollisionEnter method to detect collision with ground
+    /// </summary>
+    /// <param name="collision"></param>
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer(environmentLayerName))
+        {
+            IsOnGround = true;
+        }
+    }
+
+    /// <summary>
     /// Pubic bool method that returns true if this object is within { equip distance } of player
     /// </summary>
     /// <returns></returns>
@@ -179,6 +224,56 @@ public class EquipmentBehaviour : MonoBehaviour
         return (DistanceFromPlayer() < equipmentData.EquipDistance);
     }
 
+    /// <summary>
+    /// Calculates and returns the drop force vector based on the player's orientation.
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="System.Exception"></exception>
+    private Vector3 GetDropForceVector()
+    {
+        // Get the camera controller scipt to access the orientation of the player
+        CameraController cameraController = Camera.main.GetComponent<CameraController>();
+
+        // Check if found
+        if (cameraController != null)
+        {
+            // Get the forward and upwards directions by looking at the player's orientation 
+            Vector3 forwardDirection = cameraController.PlayerOrientation.forward;
+            Vector3 upwardDirection = cameraController.PlayerOrientation.up;
+
+            // Multiply the direction components with our dropForce vector components to apply force in correct directions
+            Vector3 dropForceVector = forwardDirection * EquipmentData.EquipmentDropForce.x + upwardDirection * EquipmentData.EquipmentDropForce.y;
+
+            // Return the calculated vector
+            return dropForceVector;
+        }
+        else // CameraController not found on main camera
+        {
+            throw new System.Exception("CameraController is not found on main camera, cannot calculate drop force.");
+        }
+    }
+
+    /// <summary>
+    /// Returns the velocity of the player if rigidbody is found
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="System.Exception"></exception>
+    private Vector3 GetPlayerVelocity()
+    {
+        // Get player rigidbody
+        Rigidbody playerRb = player.GetComponent<Rigidbody>();  
+
+        // Check if found
+        if (playerRb != null)
+        {
+            // Return it's velocity if found
+            return playerRb.velocity;
+        }
+        else // No rigidbody found on player transform
+        {
+            throw new System.Exception("Player rigidbody not found, cannot get player velocity");
+        }
+    }
     /// <summary>
     /// Private flaot method that returns the distance between the player and this object
     /// </summary>

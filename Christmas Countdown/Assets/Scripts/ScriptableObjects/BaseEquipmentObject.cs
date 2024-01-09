@@ -61,8 +61,11 @@ public abstract class BaseEquipmentObject : ScriptableObject
     [SerializeField] private float rotationSpeed;
     
     [Space] [Space]
-    [Header("EquipmentSystem variables")]
+    [Header("EquipmentSystem and behaviour variables")]
     [Space]
+
+    [Tooltip("Force of which to drop the equipment with, applies the force in upward-forward motion to throw equipment on drop")]
+    [SerializeField] private Vector2 equipmentDropForce;
 
     [Tooltip("Distance from where player is able to equip this object")]
     [SerializeField] private float equipDistance;
@@ -146,6 +149,17 @@ public abstract class BaseEquipmentObject : ScriptableObject
     {
         get { return rotationSpeed; }
         protected set { rotationSpeed = value; }
+    }
+
+    /// <summary>
+    /// Property to define the force of which to apply to the equipment when dropping it <br/>
+    /// Vector2 for forward-upward forces only <br/>
+    /// Protected set to enable defining in child classes
+    /// </summary>
+    public Vector2 EquipmentDropForce
+    {
+        get { return equipmentDropForce; }
+        protected set { equipmentDropForce = value; }
     }
 
     /// <summary>

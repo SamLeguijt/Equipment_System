@@ -46,11 +46,15 @@ public class CameraController : MonoBehaviour
         private set { rotationY = value; }
     }
 
+    public Transform PlayerOrientation
+    {
+        get { return playerForwardOrientation; }
+    }
+
     public Transform CenterTarget
     {
         get { return centerTarget; }
     }
-
     // Start is called before the first frame update
     void Start()
     {
