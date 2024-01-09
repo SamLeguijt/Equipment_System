@@ -99,6 +99,28 @@ public class EquipmentBehaviour : MonoBehaviour
 
     /* ------------------------------------------  METHODS ------------------------------------------- */
 
+    /* TODO THIS BRANCH :
+     * Make HandleCollision method that uses switch statement to handle different kind of colliders
+     * Physics.Overlap <- collider type
+     * foreach collider in ^^ { 
+     * if layer = 6 -> collision with ground 
+     * IsOnGround true
+     * Test everything
+     * 
+     * if it all works:
+     * clean up code, add private collider and drag parent in inspector
+     * Add rigidbody to collider in start
+     * Make parent object a child of hand instead of this. 
+     * Rotate parent object to correct thing
+     * MAYBE: 
+     * Add sphere collider to this object, then get the IsMouseOver collision for that collider if IsOnGround !IsEquipped 
+     * Sphere collider should be trigger, to prevent colliding with ground
+     * 
+     * If all works good, make empty gameobject, reset position and add the sphere collider with this script to it. 
+     * Add correct layer and make a prefab 
+     * Maybe add some things: auto layering in start for parent obj, set correct position (parent pos)
+     * Make sure position and rotation of equipment object gets reset to equipmentData properties on Equip.
+     */
 
     private void Start()
     {
