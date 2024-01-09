@@ -30,15 +30,14 @@ public class EquipmentBehaviour : MonoBehaviour
     [SerializeField] private BaseEquipmentObject equipmentData;
     
     private Rigidbody modelRb;
-    private Collider modelCollider;
-
-    public Transform playerOrien;
 
     // Bools for checking status of this object, used for properties
     private bool isEquipped;
     private bool canDrop;
 
     public float rotateSpeed;
+
+
     /* ------------------------------------------  PROPERTIES ------------------------------------------- */
 
     /// <summary>
@@ -90,44 +89,34 @@ public class EquipmentBehaviour : MonoBehaviour
     /* ------------------------------------------  METHODS ------------------------------------------- */
 
 
-    /* States: 
-     * InHand
-     * OutOfHand
-     * if outOfHand > Collider, rb, rotated
-     * if not in hand > no collider, no rb, rotated towards mouse
-     * 
-     * This script is attached to a prefab model object
-     * prefab model has a rb, collider 
-     */ 
-
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
 
         modelRb = GetComponent<Rigidbody>();
 
-
-        //SetRotation();
+        SetRotation(EquipmentData.UnequippedRotation);
     }
 
-    private void SetRotation(Quaternion _targetRotation)
+    private void SetRotation(Vector3 _targetRotation)
     {
-        transform.rotation = _targetRotation;
+        transform.rotation = Quaternion.Euler(_targetRotation);
     }
+
     /// <summary>
     /// Public method called when equipping this object to hand <br/>
     /// Repositions object to hand, sets parent, and sets IsEquipped and CanDrop bool values true
     /// </summary>
     public void OnEquip(Hand _targetHand)
     {
-         modelRb.isKinematic = true;
-
         // Set position and parent to hand object
         transform.position = _targetHand.transform.position;
         gameObject.transform.SetParent(_targetHand.transform, true);
+        SetRotation(EquipmentData.EquippedRotation);
 
-        // Set value of bool true
+        // Set value of bools true
         IsEquipped = true;
+        modelRb.isKinematic = true;
 
         // Start coroutine to set value of CanDrop bool after this frame ends
         StartCoroutine(EnableDropAfterFrame());
@@ -139,12 +128,13 @@ public class EquipmentBehaviour : MonoBehaviour
     /// </summary>
     public void OnDrop(Hand _ownerHand)
     {
-       // modelCollider.enabled = true;
-       modelRb.isKinematic = false;
-
         // Set values of booleans
         IsEquipped = false;
         CanDrop = false;
+        modelRb.isKinematic = false;
+
+        // Set rotation back 
+        SetRotation(EquipmentData.UnequippedRotation);
 
         // Set position and parent 
         transform.parent = null;
