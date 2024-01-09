@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEditor.Progress;
 using UnityEngine.XR;
+using Unity.VisualScripting.Antlr3.Runtime;
 
 /// <summary>
 /// Public class for behaviour tasks of Equipments. <br/>
@@ -27,18 +28,16 @@ public class EquipmentBehaviour : MonoBehaviour
     [SerializeField] private BaseEquipmentObject equipmentData;
 
     [Tooltip("Name of the layer for environmental objects")]
-    [SerializeField] private string environmentLayerName;
+    [SerializeField] public string environmentLayerName;
 
-    //Reference to the rigidbody for physics
-    private Rigidbody rb;
 
-    [SerializeField] private Collider colliderToCheck;
+     private Collider parentCollider;
+    [SerializeField] private GameObject parentEquipment; 
 
     // Bools for checking status of this object, used for properties
     private bool isEquipped;
     private bool canDrop;
     private bool isOnGround;
-
 
     /* ------------------------------------------  PROPERTIES ------------------------------------------- */
 
@@ -89,12 +88,12 @@ public class EquipmentBehaviour : MonoBehaviour
     }
 
     /// <summary>
-    /// Public property to check if the object is on ground
+    /// Public property to check or set if the object is on ground
     /// </summary>
     public bool IsOnGround
     {
         get { return isOnGround; }
-        private set { isOnGround = value; }
+        set { isOnGround = value; }
     }
 
     /* ------------------------------------------  METHODS ------------------------------------------- */
@@ -121,18 +120,25 @@ public class EquipmentBehaviour : MonoBehaviour
      * Maybe add some things: auto layering in start for parent obj, set correct position (parent pos)
      * Make sure position and rotation of equipment object gets reset to equipmentData properties on Equip.
      */
-
+    public EquipmentPhysicsManager equipmentPhysicsManager;
     private void Start()
     {
         if (player == null)
             player = GameObject.FindGameObjectWithTag("Player")?.transform;
 
-        rb = GetComponent<Rigidbody>();
+        //rb = GetComponent<Rigidbody>();
+
+        InititializeEquipment();
+    }
+
+    private void InititializeEquipment()
+    {
+        equipmentPhysicsManager = parentEquipment.AddComponent<EquipmentPhysicsManager>();
+
+        parentCollider = parentEquipment.GetComponent<Collider>();
 
         // Set rotation of this object to the data's values
         SetRotation(EquipmentData.UnequippedRotation);
-
-        HandleCollision(colliderToCheck, 1);
     }
 
     /// <summary>
@@ -141,24 +147,45 @@ public class EquipmentBehaviour : MonoBehaviour
     /// <param name="_targetRotation"></param>
     private void SetRotation(Vector3 _targetRotation)
     {
-        transform.rotation = Quaternion.Euler(_targetRotation);
+        //parentEquipment.transform.rotation = Quaternion.Euler(_targetRotation);
+        parentEquipment.transform.localRotation = Quaternion.Euler(_targetRotation);
+
     }
 
+    private void SetPosition(Hand _targetHand, bool _equipToHand)
+    {
+        // Set position and parent to hand object
+        if (_equipToHand)
+        {
+            parentEquipment.transform.localScale = Vector3.one;
+
+            //parentEquipment.transform.SetParent(_targetHand.transform, true) ;
+            parentEquipment.transform.SetParent(_targetHand.transform, false);
+            parentEquipment.transform.localPosition = Vector3.zero;
+        }
+        else
+        {
+            parentEquipment.transform.parent = null;
+        }
+
+        parentEquipment.transform.position = _targetHand.transform.position;
+
+    }
     /// <summary>
     /// Public method called when equipping this object to hand <br/>
     /// Repositions object to hand, sets parent, and sets IsEquipped and CanDrop bool values true
     /// </summary>
     public void OnEquip(Hand _targetHand)
     {
-        // Set position and parent to hand object
-        transform.position = _targetHand.transform.position;
-        gameObject.transform.SetParent(_targetHand.transform, true);
+        SetPosition(_targetHand, true);    
         SetRotation(EquipmentData.EquippedRotation);
 
         // Set value of bools true
         IsEquipped = true;
         IsOnGround = false;
-        rb.isKinematic = true;
+        equipmentPhysicsManager.Rb.isKinematic = true;
+        SetRotation(EquipmentData.EquippedRotation);
+
 
         // Start coroutine to set value of CanDrop bool after this frame ends
         StartCoroutine(EnableDropAfterFrame());
@@ -170,44 +197,36 @@ public class EquipmentBehaviour : MonoBehaviour
     /// </summary>
     public void OnDrop(Hand _ownerHand)
     {
-        // Set rotation back 
         SetRotation(EquipmentData.UnequippedRotation);
 
         // Set values of booleans
         IsEquipped = false;
         CanDrop = false;
-        rb.isKinematic = false;
+        equipmentPhysicsManager.Rb.isKinematic = false;
+
+        // Set rotation back 
+        SetPosition(_ownerHand, false);
 
         // Call method to throw equipment
-        ThrowEquipment(); // Note: Notice isKinematic = false before calling method
-
-        // Set position and parent 
-        transform.parent = null;
-        transform.position = _ownerHand.transform.position;
+        equipmentPhysicsManager.ThrowEquipment(); // Note: Notice isKinematic = false before calling method
     }
 
     private void Update()
     {
         // Return if the collider is not being targeted by the mouse, or if the player is not within equipdistance
-        if (!IsMouseOverCollider(colliderToCheck) || IsWithinEquipRange())
+        if (!IsMouseOverCollider(parentCollider) || !IsWithinEquipRange())
         {
-            Debug.Log("Return ");
-
             return;
         }
         else // Mouse is over equipment, and player is within equiprange
         {
-            Debug.Log("Else "); 
             // Check if the item is not equipped yet, and if it's not in the air
             if (!IsEquipped && IsOnGround)
             {
-                Debug.Log("TryEquip ");
-
                 // Send message that 
                 equipmentSystemController.TryEquip(this);
             }
         }
-
     }
 
     private bool IsMouseOverCollider(Collider colliderToCheck)
@@ -225,20 +244,6 @@ public class EquipmentBehaviour : MonoBehaviour
         // Mouse is not over the specified collider
         return false;
     }
-    /// <summary>
-    /// Method that throws the equipment from hand with a certain force 
-    /// </summary>
-    private void ThrowEquipment()
-    {
-        // Set object rigidbody to the player's velocity to carry momentum
-        rb.velocity = GetPlayerVelocity();
-
-        // Get the dropForce vector
-        Vector3 dropForce = GetDropForceVector();
-
-        // Apply the dropforce using Impulse forcemode to throw equipment 
-        rb.AddForce(dropForce, ForceMode.Impulse);
-    }
 
     /// <summary>
     /// IEnumerator that sets the value of CanDrop to true after end of frame <br/>
@@ -255,44 +260,6 @@ public class EquipmentBehaviour : MonoBehaviour
     }
 
     /// <summary>
-    /// OnCollisionEnter method to detect collision with ground
-    /// </summary>
-    /// <param name="collision"></param>
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer(environmentLayerName))
-        {
-            IsOnGround = true;
-        }
-    }
-
-    private void HandleCollision(Collider collider1, LayerMask _layer)
-    {
-        // Handle collision with different type of colliders 
-        switch (collider1)
-        {
-            case BoxCollider:
-                // Your custom logic for handling collisions with a BoxCollider goes here
-
-                Debug.Log("Box");
-                break;
-            case SphereCollider:
-                // Your custom logic for handling collisions with a SphereCollider goes here
-                break;
-            case CapsuleCollider:
-                // Your custom logic for handling collisions with a CapsuleCollider goes here
-                break;
-            // Add more cases for other collider types as needed
-            case Collider:
-                // Your generic custom logic for handling collisions with any collider goes here
-                break;
-            default:
-                Debug.Log("Collided with an unknown collider type: " + collider1.gameObject.name);
-                break;
-        }
-    }
-
-    /// <summary>
     /// Pubic bool method that returns true if this object is within { equip distance } of player
     /// </summary>
     /// <returns></returns>
@@ -301,7 +268,7 @@ public class EquipmentBehaviour : MonoBehaviour
         return (DistanceFromPlayer() < equipmentData.EquipDistance);
     }
 
-    /// <summary>
+/*    /// <summary>
     /// Calculates and returns the drop force vector based on the player's orientation.
     /// </summary>
     /// <returns></returns>
@@ -328,14 +295,14 @@ public class EquipmentBehaviour : MonoBehaviour
         {
             throw new System.Exception("CameraController is not found on main camera, cannot calculate drop force.");
         }
-    }
+    }*/
 
     /// <summary>
     /// Returns the velocity of the player if rigidbody is found
     /// </summary>
     /// <returns></returns>
     /// <exception cref="System.Exception"></exception>
-    private Vector3 GetPlayerVelocity()
+    public Vector3 GetPlayerVelocity()
     {
         // Get player rigidbody
         Rigidbody playerRb = player.GetComponent<Rigidbody>();
@@ -360,3 +327,4 @@ public class EquipmentBehaviour : MonoBehaviour
         return Vector3.Distance(Player.position, transform.position);
     }
 }
+

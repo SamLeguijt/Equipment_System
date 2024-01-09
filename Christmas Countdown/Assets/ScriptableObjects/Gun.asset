@@ -16,7 +16,7 @@ MonoBehaviour:
   equipmentDescription: M4 Assault rifle, firing in single mode or fully automatic
   leftHandPositionOffset: {x: 0, y: 0, z: 0}
   rightHandPositionOffset: {x: 0, y: 0, z: 0}
-  equippedRotation: {x: 0, y: 0, z: 0}
+  equippedRotation: {x: 0, y: 180, z: 0}
   unequippedRotation: {x: 0, y: 0, z: 0}
   rotationSpeed: 15
   equipmentDropForce: {x: 3, y: 3}
