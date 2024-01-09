@@ -19,5 +19,5 @@ MonoBehaviour:
   equippedRotation: {x: 0, y: 0, z: 0}
   unequippedRotation: {x: 0, y: 0, z: 0}
   rotationSpeed: 15
-  equipmentDropForce: {x: 3, y: 5}
+  equipmentDropForce: {x: 3, y: 3}
   equipDistance: 3
