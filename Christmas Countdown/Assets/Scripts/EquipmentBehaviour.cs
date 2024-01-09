@@ -98,51 +98,21 @@ public class EquipmentBehaviour : MonoBehaviour
      * 
      * This script is attached to a prefab model object
      * prefab model has a rb, collider 
-     */
-
-    private void RotateToCenter()
-    {
-
-        // Check if the weapon is equipped (you might have your own logic here)
-        if (IsEquipped)
-        {
-        /*    CameraController cam = Camera.main.GetComponent<CameraController>();
-            Transform camCenter = cam.CenterTarget;
-
-            if (cam != null && camCenter != null)
-            {
-                Transform targetPoint = cam.CenterTarget;
-
-                if (targetPoint != null)
-                {
-                    // Calculate the rotation needed to point towards the target point
-                    Quaternion targetRotation = Quaternion.LookRotation(targetPoint.position - transform.position);
-
-                    // Smoothly rotate the weapon towards the target rotation
-                    float rotationSpeed = 5.0f; // Adjust this value to control the smoothness
-                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
-                }
-            }*/
-
-            transform.rotation = playerOrien.rotation;
-
-        }
-    }
-        
+     */ 
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
 
         modelRb = GetComponent<Rigidbody>();
-        modelCollider = GetComponent<Collider>();
 
-        modelRb.transform.rotation = Quaternion.Euler(0, 0, 90f);
+
+        //SetRotation();
     }
 
-    private void Update()
+    private void SetRotation(Quaternion _targetRotation)
     {
-        if (IsEquipped) RotateToCenter();
+        transform.rotation = _targetRotation;
     }
     /// <summary>
     /// Public method called when equipping this object to hand <br/>
@@ -150,11 +120,7 @@ public class EquipmentBehaviour : MonoBehaviour
     /// </summary>
     public void OnEquip(Hand _targetHand)
     {
-       // modelCollider.enabled = false;
          modelRb.isKinematic = true;
-
-        transform.rotation = Quaternion.Euler(0, 0, 0);
-
 
         // Set position and parent to hand object
         transform.position = _targetHand.transform.position;
@@ -175,7 +141,6 @@ public class EquipmentBehaviour : MonoBehaviour
     {
        // modelCollider.enabled = true;
        modelRb.isKinematic = false;
-        transform.rotation = Quaternion.Euler(0, 0, 90f);
 
         // Set values of booleans
         IsEquipped = false;

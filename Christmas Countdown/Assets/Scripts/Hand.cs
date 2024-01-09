@@ -22,10 +22,11 @@ public class Hand : MonoBehaviour
 
     private void Update()
     {
-     /*   CameraController cam = Camera.main.GetComponent<CameraController>();
+
+        CameraController cam = Camera.main.GetComponent<CameraController>();
         Transform camCenter = cam.CenterTarget;
 
-        if (cam != null && camCenter != null)
+        if (cam != null && camCenter != null && CurrentEquipment != null)
         {
             Transform targetPoint = cam.CenterTarget;
 
@@ -35,9 +36,8 @@ public class Hand : MonoBehaviour
                 Quaternion targetRotation = Quaternion.LookRotation(targetPoint.position - transform.position);
 
                 // Smoothly rotate the weapon towards the target rotation
-                float rotationSpeed = 5.0f; // Adjust this value to control the smoothness
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * currentEquipment.rotateSpeed);
             }
-        }*/
+        }
     }
 }
