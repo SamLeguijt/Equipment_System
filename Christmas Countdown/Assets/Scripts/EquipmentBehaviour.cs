@@ -19,20 +19,23 @@ public class EquipmentBehaviour : MonoBehaviour
     [SerializeField] private EquipmentSystemController equipmentSystemController;
 
     [Space]
-    [Tooltip("Player object in scene, used for calculating equip distance")]
-    [SerializeField] private Transform player;
+    [Tooltip("Name of the layer for environmental objects")]
+    [SerializeField] private string environmentLayerName;
 
     [Space]
     [Header("Equipment specifics")]
+    [Space]
+
+    [Tooltip("Model of this equipment, used as parent")]
+    [SerializeField] private GameObject mainEquipmentObject;
+
     [Tooltip("Scriptable Object with this object's data")]
     [SerializeField] private BaseEquipmentObject equipmentData;
 
-    [Tooltip("Name of the layer for environmental objects")]
-    [SerializeField] public string environmentLayerName;
-
-
-     private Collider parentCollider;
-    [SerializeField] private GameObject parentEquipment; 
+    /*--- PRIVATE VARIABLES ---*/
+    private EquipmentPhysicsManager equipmentPhysicsManager; // Reference to this object's physics manager
+    private Collider parentCollider; // Store collider of the parent object
+    private Transform player;
 
     // Bools for checking status of this object, used for properties
     private bool isEquipped;
@@ -50,12 +53,44 @@ public class EquipmentBehaviour : MonoBehaviour
     }
 
     /// <summary>
+    /// Read only property to get the name of the environment layer
+    /// </summary>
+    public string EnvironmentLayerName
+    {
+        get { return environmentLayerName; }
+    }
+
+    /// <summary>
+    /// Read only property for the parent object
+    /// </summary>
+    public GameObject MainEquipmentObject
+    {
+        get { return mainEquipmentObject; }
+    }
+
+    /// <summary>
     /// Public property with private set to get access to object's data without changing it (Scriptable Object ref)
     /// </summary>
     public BaseEquipmentObject EquipmentData
     {
         get { return equipmentData ?? throw new System.NullReferenceException("No Scriptable Object assigned!"); }
         private set { equipmentData = value; }
+    }
+
+    /// <summary>
+    /// Public read-only property for the physics manager
+    /// </summary>
+    public EquipmentPhysicsManager EquipmentPhysicsManager
+    {
+        get { return equipmentPhysicsManager; }
+    }
+
+    /// <summary>
+    /// Public read-only property to get info about parent's collider
+    /// </summary>
+    public Collider ParentCollider
+    {
+        get { return parentCollider; }
     }
 
     /// <summary>
@@ -98,34 +133,13 @@ public class EquipmentBehaviour : MonoBehaviour
 
     /* ------------------------------------------  METHODS ------------------------------------------- */
 
-    /* TODO THIS BRANCH :
-     * Make HandleCollision method that uses switch statement to handle different kind of colliders
-     * Physics.Overlap <- collider type
-     * foreach collider in ^^ { 
-     * if layer = 6 -> collision with ground 
-     * IsOnGround true
-     * Test everything
-     * 
-     * if it all works:
-     * clean up code, add private collider and drag parent in inspector
-     * Add rigidbody to collider in start
-     * Make parent object a child of hand instead of this. 
-     * Rotate parent object to correct thing
-     * MAYBE: 
-     * Add sphere collider to this object, then get the IsMouseOver collision for that collider if IsOnGround !IsEquipped 
-     * Sphere collider should be trigger, to prevent colliding with ground
-     * 
-     * If all works good, make empty gameobject, reset position and add the sphere collider with this script to it. 
-     * Add correct layer and make a prefab 
-     * Maybe add some things: auto layering in start for parent obj, set correct position (parent pos)
-     * Make sure position and rotation of equipment object gets reset to equipmentData properties on Equip.
-     */
-    public EquipmentPhysicsManager equipmentPhysicsManager;
     private void Start()
     {
+        // Find player (no dragging in player for each object, yay)
         if (player == null)
             player = GameObject.FindGameObjectWithTag("Player")?.transform;
 
+        // Initialize
         InititializeEquipment();
     }
 
@@ -136,12 +150,13 @@ public class EquipmentBehaviour : MonoBehaviour
     /// </summary>
     private void InititializeEquipment()
     {
-        equipmentPhysicsManager = parentEquipment.AddComponent<EquipmentPhysicsManager>();
+        equipmentPhysicsManager = mainEquipmentObject.AddComponent<EquipmentPhysicsManager>();
 
-        parentCollider = parentEquipment.GetComponent<Collider>();
+        parentCollider = mainEquipmentObject.GetComponent<Collider>();
 
-        // Set rotation of this object to the data's values
+        // Set rotation and scale of parent object to the data's values
         SetRotation(EquipmentData.UnequippedRotation);
+        SetScale(EquipmentData.UnequippedLocalScale);
     }
 
 
@@ -152,8 +167,16 @@ public class EquipmentBehaviour : MonoBehaviour
     private void SetRotation(Vector3 _targetRotation)
     {
         // Set local rotation to param values
-        parentEquipment.transform.localRotation = Quaternion.Euler(_targetRotation);
+        mainEquipmentObject.transform.localRotation = Quaternion.Euler(_targetRotation);
+    }
 
+    /// <summary>
+    /// Method to set the scale of the parent object
+    /// </summary>
+    /// <param name="_targetScale"></param>
+    private void SetScale(Vector3 _targetScale)
+    {
+        mainEquipmentObject.transform.localScale = _targetScale;
     }
 
     /// <summary>
@@ -163,19 +186,10 @@ public class EquipmentBehaviour : MonoBehaviour
     private void ResetToParent(Transform _targetParent)
     {
         // First set position to zero to reset the pos
-        parentEquipment.transform.position = Vector3.zero;
+        mainEquipmentObject.transform.position = Vector3.zero;
 
         // Then set as parent, not using world space
-        parentEquipment.transform.SetParent(_targetParent, false);
-    }
-
-    /// <summary>
-    /// Method to set the scale of the parent object
-    /// </summary>
-    /// <param name="_targetScale"></param>
-    private void SetScale(Vector3 _targetScale)
-    {
-        parentEquipment.transform.localScale = _targetScale;
+        mainEquipmentObject.transform.SetParent(_targetParent, false);
     }
 
     private void Update()
@@ -208,8 +222,8 @@ public class EquipmentBehaviour : MonoBehaviour
         SetRotation(EquipmentData.EquippedRotation); // Lastly set the rotation
 
         // Set value of bools true
-        IsEquipped = true;  
-        IsOnGround = false; 
+        IsEquipped = true;
+        IsOnGround = false;
         equipmentPhysicsManager.Rb.isKinematic = true; // Set kinematic true to prevent gravity and other forces impacting object
 
         // Start coroutine to set value of CanDrop bool after this frame ends
@@ -223,12 +237,12 @@ public class EquipmentBehaviour : MonoBehaviour
     public void OnDrop(Hand _ownerHand)
     {
         // Set values of booleans first
-        IsEquipped = false; 
+        IsEquipped = false;
         CanDrop = false; // Set false to prevent calling again
         equipmentPhysicsManager.Rb.isKinematic = false; // Set false to apply gravity and other forces to parent object
 
         // Set transform properties
-        parentEquipment.transform.parent = null; // First drop the parent
+        mainEquipmentObject.transform.parent = null; // First drop the parent
         SetRotation(EquipmentData.UnequippedRotation); // Reset to unequipped rotation
         SetScale(EquipmentData.UnequippedLocalScale); // Set scale to initial
 
@@ -301,6 +315,7 @@ public class EquipmentBehaviour : MonoBehaviour
             throw new System.Exception("Player rigidbody not found, cannot get player velocity");
         }
     }
+
     /// <summary>
     /// Private flaot method that returns the distance between the player and this object
     /// </summary>

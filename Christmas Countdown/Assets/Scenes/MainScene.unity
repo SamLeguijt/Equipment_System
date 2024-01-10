@@ -1919,11 +1919,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equipmentSystemController: {fileID: 1064106617}
-  player: {fileID: 49137009}
-  equipmentData: {fileID: 11400000, guid: dee75ac26b3b4f94abbef7b96b4710a9, type: 2}
   environmentLayerName: Environment
-  parentEquipment: {fileID: 78936175}
-  equipmentPhysicsManager: {fileID: 0}
+  mainEquipmentObject: {fileID: 78936175}
+  equipmentData: {fileID: 11400000, guid: dee75ac26b3b4f94abbef7b96b4710a9, type: 2}
 --- !u!4 &2006409135
 Transform:
   m_ObjectHideFlags: 0

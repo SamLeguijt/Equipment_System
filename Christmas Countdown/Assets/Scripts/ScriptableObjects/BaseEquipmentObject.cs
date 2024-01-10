@@ -46,7 +46,7 @@ public abstract class BaseEquipmentObject : ScriptableObject
     [Tooltip("Position offset for equipped in left hand")]
     [SerializeField] private Vector3 rightHandPositionOffset;
 
-    [Space]
+    [Space] [Space]
 
     [Tooltip("Vector representing the quaternion of the rotation of the object when equipped")]
     [SerializeField] private Vector3 equippedRotation;
@@ -54,11 +54,16 @@ public abstract class BaseEquipmentObject : ScriptableObject
     [Tooltip("Vector representing the quaternion of the rotation of the object when not equipped")]
     [SerializeField] private Vector3 unequippedRotation;
 
+    [Space]
+
+    [Tooltip("Max speed of which to apply torque to the object with when throwing the equipment")]
+    [SerializeField] private Vector3 maxRotateTorqueSpeed;
+
     [Range(0f, 50f)]
     [Tooltip("Speed of which to rotate this equipment toward the cursor")]
-    [SerializeField] private float rotationSpeed;
+    [SerializeField] private float rotateToMouseSpeed;
 
-    [Space]
+    [Space] [Space]
 
     [Tooltip("Vector representing the desired local scale of the equipment when in hand, relative to the hand object")]
     [SerializeField] private Vector3 equippedLocalScale;
@@ -149,15 +154,24 @@ public abstract class BaseEquipmentObject : ScriptableObject
     }
 
     /// <summary>
+    /// Property to define the speed of which to apply torque with tot the rigidbody when equipment is dropped
+    /// </summary>
+    public Vector3 MaxRotateTorqueSpeed
+    {
+        get { return maxRotateTorqueSpeed; }
+        protected set { maxRotateTorqueSpeed = value; }
+    }
+
+    /// <summary>
     /// Property to define the speed to rotate towards the mouse cursor for this object <br/>
     /// Protected set to define for each type of equipment
     /// </summary>
-    public float RotationSpeed
+    public float RotateToMouseSpeed
     {
-        get { return rotationSpeed; }
-        protected set { rotationSpeed = value; }
+        get { return rotateToMouseSpeed; }
+        protected set { rotateToMouseSpeed = value; }
     }
-
+    
     /// <summary>
     /// Property to define the local scale of this equipment when in hand
     /// Protected set to set for child objects

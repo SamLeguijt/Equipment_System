@@ -8,18 +8,30 @@ using UnityEngine;
 /// </summary>
 public class EquipmentPhysicsManager : MonoBehaviour
 {
+
+    /* ------------------------------------------  VARIABLES ------------------------------------------- */
+
+
     // All privaye variables to prevent access from inspector or other classes
     private EquipmentBehaviour equipmentBehaviour;
     private Collider objectCollider;
     private Rigidbody rb;
     private int layerToCheckEnvironmentCollisions;
 
-    // Public get private set rb property to change rb properties in other classes
+
+    /* ------------------------------------------  PROPERTIES ------------------------------------------- */
+
+
+    // Public get, private set rb property to change rb properties in other classes
     public Rigidbody Rb
     {
         get { return rb; }
         private set { rb = value; }
     }
+
+
+    /* ------------------------------------------  METHODS ------------------------------------------- */
+
 
     private void Start()
     {
@@ -61,7 +73,7 @@ public class EquipmentPhysicsManager : MonoBehaviour
         rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
         
         // Assign value to layer which is used to check collision with ground and more
-        layerToCheckEnvironmentCollisions = LayerMask.NameToLayer(equipmentBehaviour.environmentLayerName);
+        layerToCheckEnvironmentCollisions = LayerMask.NameToLayer(equipmentBehaviour.EnvironmentLayerName);
     }
 
     /// <summary>
@@ -87,14 +99,17 @@ public class EquipmentPhysicsManager : MonoBehaviour
     /// </summary>
     public void ThrowEquipment()
     {
-        // Set object rigidbody to the player's velocity to carry momentum
-        rb.velocity = equipmentBehaviour.GetPlayerVelocity();
+        // Get Player velocity
+        Vector3 playerVelocity = equipmentBehaviour.GetPlayerVelocity();
 
-        // Get the dropForce vector
-        Vector3 dropForce = GetDropForceVector();
+        // Apply part of player momentum to this rb
+        rb.velocity = GetForwardDirection() * playerVelocity.magnitude;    
 
-        // Apply the dropforce using Impulse forcemode to throw equipment 
-        rb.AddForce(dropForce, ForceMode.Impulse);
+        // Apply dropforce using Impulse forcemode to throw equipment 
+        rb.AddForce(GetDropForceVector(), ForceMode.Impulse);
+
+        // Add torque to object to make it spinnn
+        rb.AddTorque(GetRandomTorgueVector(), ForceMode.Impulse);
     }
 
     /// <summary>
@@ -124,5 +139,30 @@ public class EquipmentPhysicsManager : MonoBehaviour
         {
             throw new System.Exception("CameraController is not found on main camera, cannot calculate drop force.");
         }
+    }
+    
+    /// <summary>
+    /// Vector returning a normalized vector of the player orientation's forward direction
+    /// </summary>
+    /// <returns></returns>
+    private Vector3 GetForwardDirection()
+    {
+        CameraController cameraController = Camera.main.GetComponent<CameraController>();
+
+        Vector3 forwardDirection = cameraController.PlayerOrientation.forward;
+
+        return forwardDirection;
+    }
+
+    /// <summary>
+    /// Returns a random vector with values ranging from 0 - max equipment torgue speed
+    /// </summary>
+    /// <returns></returns>
+    private Vector3 GetRandomTorgueVector()
+    {
+        Vector3 maxTorgue = equipmentBehaviour.EquipmentData.MaxRotateTorqueSpeed;
+        Vector3 randomTorque = new Vector3(Random.Range(0, maxTorgue.x), Random.Range(0, maxTorgue.y), Random.Range(0, maxTorgue.z));
+
+        return randomTorque;
     }
 }

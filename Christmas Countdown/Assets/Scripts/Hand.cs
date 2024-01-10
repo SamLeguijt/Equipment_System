@@ -36,7 +36,7 @@ public class Hand : MonoBehaviour
                 Quaternion targetRotation = Quaternion.LookRotation(targetPoint.position - transform.position);
 
                 // Smoothly rotate the weapon towards the target rotation
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * currentEquipment.EquipmentData.RotationSpeed);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * currentEquipment.EquipmentData.RotateToMouseSpeed);
             }
         }
     }

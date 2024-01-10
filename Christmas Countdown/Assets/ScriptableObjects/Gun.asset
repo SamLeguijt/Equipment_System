@@ -18,8 +18,9 @@ MonoBehaviour:
   rightHandPositionOffset: {x: 0, y: 0, z: 0}
   equippedRotation: {x: 0, y: 180, z: 0}
   unequippedRotation: {x: 0, y: 0, z: 90}
-  rotationSpeed: 15
+  maxRotateTorqueSpeed: {x: 10, y: 10, z: 10}
+  rotateToMouseSpeed: 15
   equippedLocalScale: {x: 5, y: 5, z: 5}
   unequippedLocalScale: {x: 1, y: 1, z: 1}
-  equipmentDropForce: {x: 3, y: 3}
+  equipmentDropForce: {x: 2, y: 2}
   equipDistance: 3
