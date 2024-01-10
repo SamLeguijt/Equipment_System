@@ -21,6 +21,7 @@ public class EquipmentBehaviour : MonoBehaviour
     [Space]
     [Tooltip("Name of the layer for environmental objects")]
     [SerializeField] private string environmentLayerName;
+    [SerializeField] private string equipmentLayerName;
 
     [Space]
     [Header("Equipment specifics")]
@@ -139,6 +140,10 @@ public class EquipmentBehaviour : MonoBehaviour
         if (player == null)
             player = GameObject.FindGameObjectWithTag("Player")?.transform;
 
+        // Find EquipmentSystemController instead of dragging, yay (probably temp only) 
+        if (equipmentSystemController == null)
+            equipmentSystemController = GameObject.FindObjectOfType<EquipmentSystemController>();
+
         // Initialize
         InititializeEquipment();
     }
@@ -150,15 +155,35 @@ public class EquipmentBehaviour : MonoBehaviour
     /// </summary>
     private void InititializeEquipment()
     {
+        // First assign our parent object to the main object slot
+        mainEquipmentObject = transform.parent.gameObject;
+        
+        // Set our parent to the equipment layer to be able to pick up when needed
+        mainEquipmentObject.gameObject.layer = LayerMask.NameToLayer(equipmentLayerName);
+
+        // Add and assign the PhysicsManager to the parent object
         equipmentPhysicsManager = mainEquipmentObject.AddComponent<EquipmentPhysicsManager>();
 
+        // Get the parent's collider to detect mouse
         parentCollider = mainEquipmentObject.GetComponent<Collider>();
 
-        // Set rotation and scale of parent object to the data's values
+        // Set rotation and scale of parent object to it's data values
         SetRotation(EquipmentData.UnequippedRotation);
         SetScale(EquipmentData.UnequippedLocalScale);
+
+        // Set position of this object to the main object position as reset
+        SetPosition(gameObject.transform, mainEquipmentObject.transform.position);
     }
 
+    /// <summary>
+    /// Method to set a transform's position to that of the given vector
+    /// </summary>
+    /// <param name="_toSet"></param>
+    /// <param name="_targetPos"></param>
+    private void SetPosition(Transform _toSet, Vector3 _targetPos)
+    {
+        _toSet.transform.position = _targetPos;
+    }
 
     /// <summary>
     /// Method to set the rotation of the parent object 
@@ -186,7 +211,7 @@ public class EquipmentBehaviour : MonoBehaviour
     private void ResetToParent(Transform _targetParent)
     {
         // First set position to zero to reset the pos
-        mainEquipmentObject.transform.position = Vector3.zero;
+        SetPosition(mainEquipmentObject.transform, Vector3.zero);
 
         // Then set as parent, not using world space
         mainEquipmentObject.transform.SetParent(_targetParent, false);

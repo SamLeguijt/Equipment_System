@@ -46,5 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   equipmentSystemController: {fileID: 0}
   environmentLayerName: Environment
+  equipmentLayerName: Equipment
   mainEquipmentObject: {fileID: 0}
   equipmentData: {fileID: 11400000, guid: dee75ac26b3b4f94abbef7b96b4710a9, type: 2}
