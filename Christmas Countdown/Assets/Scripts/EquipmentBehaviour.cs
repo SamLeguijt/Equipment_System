@@ -126,11 +126,14 @@ public class EquipmentBehaviour : MonoBehaviour
         if (player == null)
             player = GameObject.FindGameObjectWithTag("Player")?.transform;
 
-        //rb = GetComponent<Rigidbody>();
-
         InititializeEquipment();
     }
 
+
+    /// <summary>
+    /// Method for initializing the components needed for the equipment items <br/>
+    /// Adds PhysicsManager to parent as well, stores the collider of the parent and sets rotation of parent object.
+    /// </summary>
     private void InititializeEquipment()
     {
         equipmentPhysicsManager = parentEquipment.AddComponent<EquipmentPhysicsManager>();
@@ -141,74 +144,38 @@ public class EquipmentBehaviour : MonoBehaviour
         SetRotation(EquipmentData.UnequippedRotation);
     }
 
+
     /// <summary>
-    /// Method to set the rotation of the model object 
+    /// Method to set the rotation of the parent object 
     /// </summary>
     /// <param name="_targetRotation"></param>
     private void SetRotation(Vector3 _targetRotation)
     {
-        //parentEquipment.transform.rotation = Quaternion.Euler(_targetRotation);
+        // Set local rotation to param values
         parentEquipment.transform.localRotation = Quaternion.Euler(_targetRotation);
 
     }
 
-    private void SetPosition(Hand _targetHand, bool _equipToHand)
-    {
-        // Set position and parent to hand object
-        if (_equipToHand)
-        {
-            parentEquipment.transform.localScale = Vector3.one;
-
-            //parentEquipment.transform.SetParent(_targetHand.transform, true) ;
-            parentEquipment.transform.SetParent(_targetHand.transform, false);
-            parentEquipment.transform.localPosition = Vector3.zero;
-        }
-        else
-        {
-            parentEquipment.transform.parent = null;
-        }
-
-        parentEquipment.transform.position = _targetHand.transform.position;
-
-    }
     /// <summary>
-    /// Public method called when equipping this object to hand <br/>
-    /// Repositions object to hand, sets parent, and sets IsEquipped and CanDrop bool values true
+    /// Model to reset the equipment object's position to the targetparent position
     /// </summary>
-    public void OnEquip(Hand _targetHand)
+    /// <param name="_targetParent"></param>
+    private void ResetToParent(Transform _targetParent)
     {
-        SetPosition(_targetHand, true);    
-        SetRotation(EquipmentData.EquippedRotation);
+        // First set position to zero to reset the pos
+        parentEquipment.transform.position = Vector3.zero;
 
-        // Set value of bools true
-        IsEquipped = true;
-        IsOnGround = false;
-        equipmentPhysicsManager.Rb.isKinematic = true;
-        SetRotation(EquipmentData.EquippedRotation);
-
-
-        // Start coroutine to set value of CanDrop bool after this frame ends
-        StartCoroutine(EnableDropAfterFrame());
+        // Then set as parent, not using world space
+        parentEquipment.transform.SetParent(_targetParent, false);
     }
 
     /// <summary>
-    /// Public method called when dropping this equipment from hand <br/>
-    /// Removes hand as parent, repositions object and sets IsEquipped and CanDrop bool values to false
+    /// Method to set the scale of the parent object
     /// </summary>
-    public void OnDrop(Hand _ownerHand)
+    /// <param name="_targetScale"></param>
+    private void SetScale(Vector3 _targetScale)
     {
-        SetRotation(EquipmentData.UnequippedRotation);
-
-        // Set values of booleans
-        IsEquipped = false;
-        CanDrop = false;
-        equipmentPhysicsManager.Rb.isKinematic = false;
-
-        // Set rotation back 
-        SetPosition(_ownerHand, false);
-
-        // Call method to throw equipment
-        equipmentPhysicsManager.ThrowEquipment(); // Note: Notice isKinematic = false before calling method
+        parentEquipment.transform.localScale = _targetScale;
     }
 
     private void Update()
@@ -229,13 +196,58 @@ public class EquipmentBehaviour : MonoBehaviour
         }
     }
 
-    private bool IsMouseOverCollider(Collider colliderToCheck)
+    /// <summary>
+    /// Public method called when equipping this object to hand <br/>
+    /// Repositions object to hand, sets parent, and sets IsEquipped and CanDrop bool values true
+    /// </summary>
+    public void OnEquip(Hand _targetHand)
+    {
+        // Set transform properties
+        SetScale(EquipmentData.EquippedLocalScale); // First set scale 
+        ResetToParent(_targetHand.transform);  // Then reset the position
+        SetRotation(EquipmentData.EquippedRotation); // Lastly set the rotation
+
+        // Set value of bools true
+        IsEquipped = true;  
+        IsOnGround = false; 
+        equipmentPhysicsManager.Rb.isKinematic = true; // Set kinematic true to prevent gravity and other forces impacting object
+
+        // Start coroutine to set value of CanDrop bool after this frame ends
+        StartCoroutine(EnableDropAfterFrame());
+    }
+
+    /// <summary>
+    /// Public method called when dropping this equipment from hand <br/>
+    /// Removes hand as parent, repositions object and sets IsEquipped and CanDrop bool values to false
+    /// </summary>
+    public void OnDrop(Hand _ownerHand)
+    {
+        // Set values of booleans first
+        IsEquipped = false; 
+        CanDrop = false; // Set false to prevent calling again
+        equipmentPhysicsManager.Rb.isKinematic = false; // Set false to apply gravity and other forces to parent object
+
+        // Set transform properties
+        parentEquipment.transform.parent = null; // First drop the parent
+        SetRotation(EquipmentData.UnequippedRotation); // Reset to unequipped rotation
+        SetScale(EquipmentData.UnequippedLocalScale); // Set scale to initial
+
+        // Call method to throw equipment
+        equipmentPhysicsManager.ThrowEquipment(); // Note: Notice isKinematic = false before calling method
+    }
+
+    /// <summary>
+    /// Returns true if the mouse cursor is currently on the param collider
+    /// </summary>
+    /// <param name="_colliderToCheck"></param>
+    /// <returns></returns>
+    private bool IsMouseOverCollider(Collider _colliderToCheck)
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
         // Cast a ray from the mouse position
-        if (Physics.Raycast(ray, out hit) && hit.collider == colliderToCheck)
+        if (Physics.Raycast(ray, out hit) && hit.collider == _colliderToCheck)
         {
             // Mouse is over the specified collider
             return true;
@@ -267,35 +279,6 @@ public class EquipmentBehaviour : MonoBehaviour
     {
         return (DistanceFromPlayer() < equipmentData.EquipDistance);
     }
-
-/*    /// <summary>
-    /// Calculates and returns the drop force vector based on the player's orientation.
-    /// </summary>
-    /// <returns></returns>
-    /// <exception cref="System.Exception"></exception>
-    private Vector3 GetDropForceVector()
-    {
-        // Get the camera controller scipt to access the orientation of the player
-        CameraController cameraController = Camera.main.GetComponent<CameraController>();
-
-        // Check if found
-        if (cameraController != null)
-        {
-            // Get the forward and upwards directions by looking at the player's orientation 
-            Vector3 forwardDirection = cameraController.PlayerOrientation.forward;
-            Vector3 upwardDirection = cameraController.PlayerOrientation.up;
-
-            // Multiply the direction components with our dropForce vector components to apply force in correct directions
-            Vector3 dropForceVector = forwardDirection * EquipmentData.EquipmentDropForce.x + upwardDirection * EquipmentData.EquipmentDropForce.y;
-
-            // Return the calculated vector
-            return dropForceVector;
-        }
-        else // CameraController not found on main camera
-        {
-            throw new System.Exception("CameraController is not found on main camera, cannot calculate drop force.");
-        }
-    }*/
 
     /// <summary>
     /// Returns the velocity of the player if rigidbody is found

@@ -2,50 +2,84 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Class for handling the physics of the Equipments <br/>
+/// Gets added to parent object by EquipmentBehaviour
+/// </summary>
 public class EquipmentPhysicsManager : MonoBehaviour
 {
+    // All privaye variables to prevent access from inspector or other classes
     private EquipmentBehaviour equipmentBehaviour;
     private Collider objectCollider;
     private Rigidbody rb;
+    private int layerToCheckEnvironmentCollisions;
 
-    private int layerToCheck;
-
+    // Public get private set rb property to change rb properties in other classes
     public Rigidbody Rb
     {
         get { return rb; }
         private set { rb = value; }
     }
+
     private void Start()
     {
+        // Get the equipmentbehaviour by looking in our children (this gets added by the script to parent, so must be in children)
         equipmentBehaviour = GetComponentInChildren<EquipmentBehaviour>();
 
+        // Check if we found it to prevent manually putting this script on objects, or EquipBehaviour not as a child object
         if (equipmentBehaviour == null)
         {
+            //Show error message and destroy if not found in children
             Debug.LogError("EquipmentPhysicsManager relies on component EquipmentBehaviour in order to be used, remove EquipmentPhysicsManager and add EquipmentBehaviour as child object!");
             Destroy(this);
         }
-        else
+        else // Component found, everything good
         {
+            // Initialize this class methods and properties
             Initialize();
         }
     }
 
+    /// <summary>
+    /// Method to start up this class and it's properties
+    /// </summary>
     public void Initialize()
     {
+        // Get the collider manually attached to this object
         objectCollider = GetComponent<Collider>();
 
+        if (objectCollider == null)
+        {
+            Debug.LogError($"No collider attached to {gameObject.name}, add component and rerun!");
+            Destroy(gameObject);
+        }
+
+        // Add and assign rigidbody through here 
         rb = gameObject.AddComponent<Rigidbody>();
+
+        // Set the collision detection mode to prevent not calling correctly
         rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
         
-        layerToCheck = LayerMask.NameToLayer(equipmentBehaviour.environmentLayerName);
+        // Assign value to layer which is used to check collision with ground and more
+        layerToCheckEnvironmentCollisions = LayerMask.NameToLayer(equipmentBehaviour.environmentLayerName);
     }
 
+    /// <summary>
+    /// Checks when our collider hits an object on the Environment layer
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == layerToCheck)
+        if (!equipmentBehaviour.IsEquipped && !equipmentBehaviour.IsOnGround)
         {
-            equipmentBehaviour.IsOnGround = true; 
+            // Check if collision was on right layer
+            if (collision.gameObject.layer == layerToCheckEnvironmentCollisions)
+            {
+                // Set EquipmentBehaviour bool true to enable equipping
+                equipmentBehaviour.IsOnGround = true;
+            }
         }
+        else return;
     }
 
     /// <summary>

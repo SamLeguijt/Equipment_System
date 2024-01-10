@@ -37,7 +37,7 @@ public abstract class BaseEquipmentObject : ScriptableObject
     [SerializeField] private string equipmentDescription;
 
     [Space] [Space] 
-    [Header("Position variables")]
+    [Header("Transform variables")]
     [Space]
    
     [Tooltip("Position offset for equipped in left hand")]
@@ -46,8 +46,6 @@ public abstract class BaseEquipmentObject : ScriptableObject
     [Tooltip("Position offset for equipped in left hand")]
     [SerializeField] private Vector3 rightHandPositionOffset;
 
-    [Space] [Space]
-    [Header("Rotation variables")]
     [Space]
 
     [Tooltip("Vector representing the quaternion of the rotation of the object when equipped")]
@@ -59,6 +57,15 @@ public abstract class BaseEquipmentObject : ScriptableObject
     [Range(0f, 50f)]
     [Tooltip("Speed of which to rotate this equipment toward the cursor")]
     [SerializeField] private float rotationSpeed;
+
+    [Space]
+
+    [Tooltip("Vector representing the desired local scale of the equipment when in hand, relative to the hand object")]
+    [SerializeField] private Vector3 equippedLocalScale;
+
+    [Tooltip("Vector representing the desired local scale of the equipment when not in hand")]
+    [SerializeField] private Vector3 unequippedLocalScale;
+
     
     [Space] [Space]
     [Header("EquipmentSystem and behaviour variables")]
@@ -149,6 +156,26 @@ public abstract class BaseEquipmentObject : ScriptableObject
     {
         get { return rotationSpeed; }
         protected set { rotationSpeed = value; }
+    }
+
+    /// <summary>
+    /// Property to define the local scale of this equipment when in hand
+    /// Protected set to set for child objects
+    /// </summary>
+    public Vector3 EquippedLocalScale
+    {
+        get { return equippedLocalScale; }
+        protected set { equippedLocalScale = value; }
+    }
+
+    /// <summary>
+    /// Property to define the local scale of this equipment when not in hand 
+    /// Protected set to set for child objects
+    /// </summary>
+    public Vector3 UnequippedLocalScale
+    {
+        get { return unequippedLocalScale; }
+        protected set { unequippedLocalScale = value; }
     }
 
     /// <summary>
