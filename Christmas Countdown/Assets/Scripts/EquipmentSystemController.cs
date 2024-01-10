@@ -15,15 +15,21 @@ public class EquipmentSystemController : MonoBehaviour
     [Header("Hand objects attached to player")]
     [Space]
 
+    [Tooltip("Reference to the script on LeftHand of the player")]
     [SerializeField] private Hand leftHand;
+
+    [Tooltip("Reference to the script on RightHand of the player")]
     [SerializeField] private Hand rightHand;
 
     [Space] [Space]
     [Header("Keys for equipping/dropping equipment")]
     [Space]
 
-    [SerializeField] private KeyCode leftEquipKey;
-    [SerializeField] private KeyCode rightEquipKey;
+    [Tooltip("Input key to equip/drop equipment to/from the left hand")]
+    [SerializeField] private KeyCode leftHandInputKey;
+
+    [Tooltip("Input key to equip/drop equipment to/from the left hand")]
+    [SerializeField] private KeyCode rightHandInputKey;
 
     [Space] [Space]
     [Header("Other variables")]
@@ -45,19 +51,19 @@ public class EquipmentSystemController : MonoBehaviour
     /// <summary>
     /// Public property with private set used for getting and setting the value of the key to equip/drop items in left hand <br/> <br/>
     /// </summary>
-    public KeyCode LeftEquipKey
+    public KeyCode LeftHandInputKey
     {
-        get { return leftEquipKey; }
-        private set { leftEquipKey = value; }
+        get { return leftHandInputKey; }
+        private set { leftHandInputKey = value; }
     }
 
     /// <summary>
     /// Public property with private set used for getting and setting the value of the key to equip/drop items in right hand <br/> <br/>
     /// </summary>
-    public KeyCode RightEquipKey
+    public KeyCode RightHandInputKey
     {
-        get { return rightEquipKey; }
-        private set { rightEquipKey = value; }
+        get { return rightHandInputKey; }
+        private set { rightHandInputKey = value; }
     }
 
 
@@ -70,8 +76,8 @@ public class EquipmentSystemController : MonoBehaviour
         // Initialize the dictionary with its keys and values
         inputToHandKeyBindings = new Dictionary<Hand, KeyCode>
         {
-            { leftHand, LeftEquipKey },
-            { rightHand, RightEquipKey }
+            { leftHand, LeftHandInputKey },
+            { rightHand, RightHandInputKey }
         };
     }
 

@@ -12,7 +12,9 @@ using Unity.VisualScripting.Antlr3.Runtime;
 /// </summary>
 public class EquipmentBehaviour : MonoBehaviour
 {
+
     /* ------------------------------------------  VARIABLES ------------------------------------------- */
+
 
     [Space]
     [Tooltip("Drag in object with the EquipmentSystemController attached")]
@@ -21,29 +23,33 @@ public class EquipmentBehaviour : MonoBehaviour
     [Space]
     [Tooltip("Name of the layer for environmental objects")]
     [SerializeField] private string environmentLayerName;
+
+    [Tooltip("Name of the layer for equipment objects")]
     [SerializeField] private string equipmentLayerName;
 
     [Space]
     [Header("Equipment specifics")]
     [Space]
 
-    [Tooltip("Model of this equipment, used as parent")]
+    [Tooltip("Model of equipment as parent of this object")]
     [SerializeField] private GameObject mainEquipmentObject;
 
     [Tooltip("Scriptable Object with this object's data")]
     [SerializeField] private BaseEquipmentObject equipmentData;
 
-    /*--- PRIVATE VARIABLES ---*/
+    /* --- PRIVATE HIDDEN VARIABLES ---*/
     private EquipmentPhysicsManager equipmentPhysicsManager; // Reference to this object's physics manager
     private Collider parentCollider; // Store collider of the parent object
-    private Transform player;
+    private Transform player; // Reference to the player for distance and orientation
 
     // Bools for checking status of this object, used for properties
-    private bool isEquipped;
-    private bool canDrop;
-    private bool isOnGround;
+    private bool isEquipped; // Status of this object
+    private bool canDrop; // Flag used for checking if object can be dropped
+    private bool isOnGround; // Flag to determine if the equipment is grounded
+
 
     /* ------------------------------------------  PROPERTIES ------------------------------------------- */
+
 
     /// <summary>
     /// Public read only property of the EquipmentSystemController
@@ -133,11 +139,13 @@ public class EquipmentBehaviour : MonoBehaviour
         set { isOnGround = value; }
     }
 
+
     /* ------------------------------------------  METHODS ------------------------------------------- */
+
 
     private void Start()
     {
-        // Find player (no dragging in player for each object, yay)
+        // Find player (no dragging in player for each object)
         if (player == null)
             player = GameObject.FindGameObjectWithTag("Player")?.transform;
 

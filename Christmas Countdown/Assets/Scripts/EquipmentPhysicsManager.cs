@@ -11,29 +11,48 @@ public class EquipmentPhysicsManager : MonoBehaviour
 
     /* ------------------------------------------  VARIABLES ------------------------------------------- */
 
-
-    // All privayte variables to prevent access from inspector or other classes
-    private EquipmentBehaviour equipmentBehaviour;
     private CameraController cameraController; // CameraController used for orientation
-
-    // Necessary collider for collision handling
+    
+    /* Variables used for properties */
+    private EquipmentBehaviour equipmentBehaviour;
     private Collider objectCollider; 
-
-    // Necessary rigidbody for applying forces and torque
     private Rigidbody rb;
 
-    // Layer to check collisins on
     private int layerToCheckEnvironmentCollisions;
 
 
     /* ------------------------------------------  PROPERTIES ------------------------------------------- */
+   
+    /// <summary>
+    /// Read-onl property for reference to this object's equipment behaviour
+    /// </summary>
+    public EquipmentBehaviour EquipmentBehaviour
+    {
+        get { return equipmentBehaviour; }  
+    }
 
+    /// <summary>
+    /// Read-only property for reference to the kind of collider used for this equipment
+    /// </summary>
+    public Collider ObjectCollider
+    {
+        get { return objectCollider; }
+    }
 
-    // Public get, private set rb property to change rb properties in other classes
+    /// <summary>
+    /// Read-only Property for reference to the rigidbody of this object
+    /// </summary>
     public Rigidbody Rb
     {
         get { return rb; }
-        private set { rb = value; }
+    }
+
+    /// <summary>
+    /// Read-only property for getting the layer to check this object's colliion with
+    /// </summary>
+    public int LayerToCheckEnvironmentCollisions
+    {
+        get { return layerToCheckEnvironmentCollisions; }
     }
 
 

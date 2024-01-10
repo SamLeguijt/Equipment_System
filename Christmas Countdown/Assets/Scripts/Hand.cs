@@ -8,20 +8,33 @@ using UnityEngine;
 /// </summary>
 public class Hand : MonoBehaviour
 {
+    /// <summary>
+    /// Enum for setting the type of hand
+    /// </summary>
     public enum TypeOfHand
     {
         left,
         right
     }
 
+
+    /* ------------------------------------------  VARIABLES ------------------------------------------- */
+
+    [Tooltip("What type does this hand object have?")]
     [SerializeField] private TypeOfHand handType;
 
+    // Reference to the camera controller script, used for orientation and rotation
     private CameraController camController;
+
+    // Center target attached to the camera
     private Transform camCenter;
 
     // Reference to the current equipped item for this hand
     private EquipmentBehaviour currentEquipment;
 
+    /// <summary>
+    /// Read-only property to get the hand type of this object
+    /// </summary>
     public TypeOfHand HandType
     {
         get { return handType; }
@@ -94,7 +107,8 @@ public class Hand : MonoBehaviour
             case TypeOfHand.right:
                 handPosOffset = _equipment.EquipmentData.RightHandPositionOffset;
                 break;
-            default:
+            default: 
+                // Other hand type case:
                 Debug.LogError($"No HandType assigned to {gameObject.name}, can not get in hand position from data! ");
                 break;
         }

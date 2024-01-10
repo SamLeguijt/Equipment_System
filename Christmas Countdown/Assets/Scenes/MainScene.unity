@@ -364,7 +364,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerOrientation: {fileID: 954617189}
   movementSpeed: 10
-  speedDrag: 5
+  speedDrag: 2
 --- !u!136 &49137012
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1542,8 +1542,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftHand: {fileID: 1083083460}
   rightHand: {fileID: 523227022}
-  leftEquipKey: 113
-  rightEquipKey: 101
+  leftHandInputKey: 113
+  rightHandInputKey: 101
   equipDelayWhenSwapping: 0.2
 --- !u!4 &1064106618
 Transform:
@@ -1571,6 +1571,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EquipmentObject
       objectReference: {fileID: 0}
+    - target: {fileID: 8557418953104911914, guid: 7f8f55b1574a58f4699d4e796163e8f8, type: 3}
+      propertyPath: equipmentData
+      value: 
+      objectReference: {fileID: 11400000, guid: 157ce8f1128d9e144b73c306afb9c925, type: 2}
     - target: {fileID: 8557418953104911914, guid: 7f8f55b1574a58f4699d4e796163e8f8, type: 3}
       propertyPath: mainEquipmentObject
       value: 
