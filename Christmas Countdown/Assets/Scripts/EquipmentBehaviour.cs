@@ -5,6 +5,8 @@ using UnityEngine;
 using static UnityEditor.Progress;
 using UnityEngine.XR;
 using Unity.VisualScripting.Antlr3.Runtime;
+using UnityEngine.UI;
+using TMPro;
 
 /// <summary>
 /// Public class for behaviour tasks of Equipments. <br/>
@@ -36,6 +38,9 @@ public class EquipmentBehaviour : MonoBehaviour
 
     [Tooltip("Scriptable Object with this object's data")]
     [SerializeField] private BaseEquipmentObject equipmentData;
+
+    public TextMeshProUGUI uiElement;
+    public string baseTextUI;
 
     /* --- PRIVATE HIDDEN VARIABLES ---*/
     private EquipmentPhysicsManager equipmentPhysicsManager; // Reference to this object's physics manager
@@ -142,7 +147,18 @@ public class EquipmentBehaviour : MonoBehaviour
 
     /* ------------------------------------------  METHODS ------------------------------------------- */
 
+    private void OnMouseOver()
+    {
+        baseTextUI = $"Press {EquipmentSystemController.LeftHandInputKey} or {EquipmentSystemController.RightHandInputKey} to equip: {EquipmentData.EquipmentName} ";
 
+        uiElement.enabled = true;
+        uiElement.text = baseTextUI;
+    }
+
+    private void OnMouseExit()
+    {
+        uiElement.enabled = false;
+    }
     private void Start()
     {
         // Find player (no dragging in player for each object)
@@ -221,10 +237,15 @@ public class EquipmentBehaviour : MonoBehaviour
         // Return if the collider is not being targeted by the mouse, or if the player is not within equipdistance
         if (!IsMouseOverCollider(parentCollider) || !IsWithinEquipRange())
         {
+            uiElement.enabled = false;
             return;
         }
         else // Mouse is over equipment, and player is within equiprange
         {
+            baseTextUI = $"Press {EquipmentSystemController.LeftHandInputKey} or {EquipmentSystemController.RightHandInputKey} to equip: {EquipmentData.EquipmentName} ";
+
+            uiElement.enabled = true;
+            uiElement.text = baseTextUI;
             // Check if the item is not equipped yet, and if it's not in the air
             if (!IsEquipped && IsOnGround)
             {
