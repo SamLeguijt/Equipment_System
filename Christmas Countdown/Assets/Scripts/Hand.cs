@@ -17,7 +17,7 @@ public class Hand : MonoBehaviour
     [SerializeField] private TypeOfHand handType;
 
     private CameraController camController;
-    private Transform camCenter; 
+    private Transform camCenter;
 
     // Reference to the current equipped item for this hand
     private EquipmentBehaviour currentEquipment;
@@ -25,7 +25,6 @@ public class Hand : MonoBehaviour
     public TypeOfHand HandType
     {
         get { return handType; }
-        private set { handType = value; }
     }
 
     /// <summary>
@@ -39,27 +38,39 @@ public class Hand : MonoBehaviour
 
     private void Start()
     {
-        CameraController camController = Camera.main.GetComponent<CameraController>();
-        Transform cameraCenter = camController.CenterTarget;
-    }
-    private void Update()
-    {
+        camController = Camera.main.GetComponent<CameraController>();
+        camCenter = camController.CenterTarget;
 
-        if (camController != null && camCenter != null && CurrentEquipment != null)
+        // Check if camera components are found, otherwise log error and destroy this script 
+        if (camController == null || camCenter == null)
         {
-            Transform targetPoint = camCenter;
-
-            if (targetPoint != null)
-            {
-                // Calculate the rotation needed to point towards the target point
-                Quaternion targetRotation = Quaternion.LookRotation(targetPoint.position - transform.position);
-
-                // Smoothly rotate the weapon towards the target rotation
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * currentEquipment.EquipmentData.RotateToMouseSpeed);
-            }
+            Debug.LogError($"Camera components not set up correctly, destroying Hand script for {gameObject.name} ");
+            Destroy(this);
         }
     }
 
+    private void Update()
+    {
+        // Return first if no CurrentEquipment
+        if (CurrentEquipment == null) return;
+        else // We should rotate this object to the mouse to aim our equipment in correct direction
+        {
+            // Call method to rotate this object to mouse
+            RotateToMouse();
+        }
+    }
+
+    /// <summary>
+    /// Method that rotates this object to the mouse cursor (camCenter) 
+    /// </summary>
+    private void RotateToMouse()
+    {
+        // Calculate the rotation needed to point towards the target point
+        Quaternion targetRotation = Quaternion.LookRotation(camCenter.position - transform.position);
+
+        // Smoothly rotate the weapon towards the target rotation
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * currentEquipment.EquipmentData.RotateToMouseSpeed);
+    }
 
     /// <summary>
     /// Method for setting the equipment object to this hand's position as a child <br/>
@@ -77,7 +88,7 @@ public class Hand : MonoBehaviour
         {
             // Is left hand, so get the left hand pos offset from the data
             case TypeOfHand.left:
-                 handPosOffset = _equipment.EquipmentData.LeftHandPositionOffset;
+                handPosOffset = _equipment.EquipmentData.LeftHandPositionOffset;
                 break;
             // Is right hand, so get the left hand pos offset from the data
             case TypeOfHand.right:
@@ -91,12 +102,13 @@ public class Hand : MonoBehaviour
         // Conditions based on bool value
         if (_setParentOfBehaviour) // Should set the MainEquipmentOBject of the _behaviour
         {
-            _equipment.MainEquipmentObject.transform.position = transform.position + handPosOffset;
+            // First set parent before adjusting local position
             _equipment.MainEquipmentObject.transform.SetParent(transform);
-        } 
+            _equipment.MainEquipmentObject.transform.localPosition = handPosOffset; // Set local position to relative hand position offset (Zero is hand.pos, so only the offset)
+        }
         else // Should not set the MainEquipmentObject of _behaviour, so transform of behaviour self
         {
-            _equipment.transform.position = transform.position + handPosOffset;
+            _equipment.transform.localPosition = handPosOffset;
             _equipment.transform.SetParent(transform);
         }
     }

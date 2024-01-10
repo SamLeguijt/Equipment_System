@@ -12,10 +12,17 @@ public class EquipmentPhysicsManager : MonoBehaviour
     /* ------------------------------------------  VARIABLES ------------------------------------------- */
 
 
-    // All privaye variables to prevent access from inspector or other classes
+    // All privayte variables to prevent access from inspector or other classes
     private EquipmentBehaviour equipmentBehaviour;
-    private Collider objectCollider;
+    private CameraController cameraController; // CameraController used for orientation
+
+    // Necessary collider for collision handling
+    private Collider objectCollider; 
+
+    // Necessary rigidbody for applying forces and torque
     private Rigidbody rb;
+
+    // Layer to check collisins on
     private int layerToCheckEnvironmentCollisions;
 
 
@@ -60,20 +67,31 @@ public class EquipmentPhysicsManager : MonoBehaviour
         // Get the collider manually attached to this object
         objectCollider = GetComponent<Collider>();
 
+        // Add and assign rigidbody through here 
+        rb = gameObject.AddComponent<Rigidbody>();
+
+        // Set the collision detection mode to prevent not calling correctly
+        rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+
+        // Assign value to layer which is used to check collision with ground and more
+        layerToCheckEnvironmentCollisions = LayerMask.NameToLayer(equipmentBehaviour.EnvironmentLayerName);
+
+        cameraController = Camera.main.GetComponent<CameraController>();
+
+        // Destroy object if no collider on object
         if (objectCollider == null)
         {
             Debug.LogError($"No collider attached to {gameObject.name}, add component and rerun!");
             Destroy(gameObject);
         }
 
-        // Add and assign rigidbody through here 
-        rb = gameObject.AddComponent<Rigidbody>();
+        // Destroy object if camera controller not found
+        if (cameraController == null)
+        {
+            Debug.LogError($"CameraController not found on main camera, cannot handle physics for {gameObject.name}! Destroying this object.");
+            Destroy(gameObject);
+        }
 
-        // Set the collision detection mode to prevent not calling correctly
-        rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
-        
-        // Assign value to layer which is used to check collision with ground and more
-        layerToCheckEnvironmentCollisions = LayerMask.NameToLayer(equipmentBehaviour.EnvironmentLayerName);
     }
 
     /// <summary>
@@ -82,6 +100,7 @@ public class EquipmentPhysicsManager : MonoBehaviour
     /// <param name="collision"></param>
     private void OnCollisionEnter(Collision collision)
     {
+        // Only go through if equipment is not yet equipped, and if its not already marked as on ground
         if (!equipmentBehaviour.IsEquipped && !equipmentBehaviour.IsOnGround)
         {
             // Check if collision was on right layer
@@ -103,7 +122,7 @@ public class EquipmentPhysicsManager : MonoBehaviour
         Vector3 playerVelocity = equipmentBehaviour.GetPlayerVelocity();
 
         // Apply part of player momentum to this rb
-        rb.velocity = GetForwardDirection() * playerVelocity.magnitude;    
+        rb.velocity = GetForwardDirection() * playerVelocity.magnitude;
 
         // Apply dropforce using Impulse forcemode to throw equipment 
         rb.AddForce(GetDropForceVector(), ForceMode.Impulse);
@@ -119,36 +138,24 @@ public class EquipmentPhysicsManager : MonoBehaviour
     /// <exception cref="System.Exception"></exception>
     private Vector3 GetDropForceVector()
     {
-        // Get the camera controller scipt to access the orientation of the player
-        CameraController cameraController = Camera.main.GetComponent<CameraController>();
+        // Get the forward and upwards directions by looking at the player's orientation 
+        Vector3 forwardDirection = cameraController.PlayerOrientation.forward;
+        Vector3 upwardDirection = cameraController.PlayerOrientation.up;
 
-        // Check if found
-        if (cameraController != null)
-        {
-            // Get the forward and upwards directions by looking at the player's orientation 
-            Vector3 forwardDirection = cameraController.PlayerOrientation.forward;
-            Vector3 upwardDirection = cameraController.PlayerOrientation.up;
+        // Multiply the direction components with our dropForce vector components to apply force in correct directions
+        Vector3 dropForceVector = forwardDirection * equipmentBehaviour.EquipmentData.EquipmentDropForce.x + upwardDirection * equipmentBehaviour.EquipmentData.EquipmentDropForce.y;
 
-            // Multiply the direction components with our dropForce vector components to apply force in correct directions
-            Vector3 dropForceVector = forwardDirection * equipmentBehaviour.EquipmentData.EquipmentDropForce.x + upwardDirection * equipmentBehaviour.EquipmentData.EquipmentDropForce.y;
-
-            // Return the calculated vector
-            return dropForceVector;
-        }
-        else // CameraController not found on main camera
-        {
-            throw new System.Exception("CameraController is not found on main camera, cannot calculate drop force.");
-        }
+        // Return the calculated vector
+        return dropForceVector;
     }
-    
+
+
     /// <summary>
     /// Vector returning a normalized vector of the player orientation's forward direction
     /// </summary>
     /// <returns></returns>
     private Vector3 GetForwardDirection()
     {
-        CameraController cameraController = Camera.main.GetComponent<CameraController>();
-
         Vector3 forwardDirection = cameraController.PlayerOrientation.forward;
 
         return forwardDirection;

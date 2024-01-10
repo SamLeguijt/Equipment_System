@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   equipmentName: Gun
   equipmentDescription: M4 Assault rifle, firing in single mode or fully automatic
-  leftHandPositionOffset: {x: 2, y: 0.1, z: 0}
-  rightHandPositionOffset: {x: 0, y: 0, z: 0}
+  leftHandPositionOffset: {x: 0, y: 0.2, z: 0}
+  rightHandPositionOffset: {x: 0, y: 0, z: 1}
   equippedRotation: {x: 0, y: 180, z: 0}
   unequippedRotation: {x: 0, y: 0, z: 90}
-  maxRotateTorqueSpeed: {x: 10, y: 10, z: 10}
-  rotateToMouseSpeed: 15
-  equippedLocalScale: {x: 10, y: 10, z: 10}
+  maxRotateTorqueSpeed: {x: 1, y: 1, z: 1}
+  rotateToMouseSpeed: 29.2
+  equippedLocalScale: {x: 1, y: 1, z: 1}
   unequippedLocalScale: {x: 1, y: 1, z: 1}
   equipmentDropForce: {x: 2, y: 2}
   equipDistance: 3

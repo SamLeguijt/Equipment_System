@@ -206,22 +206,8 @@ public class EquipmentBehaviour : MonoBehaviour
     }
 
     /// <summary>
-    /// Model to reset the equipment object's position to the targetparent position
+    /// Handles equipment being available to pick up 
     /// </summary>
-    /// <param name="_targetParent"></param>
-    private void ResetObjectToParentPosition(Transform _targetObject, Transform _targetParent)
-    {
-        // First set position to zero to reset the pos
-        //SetObjectPosition(_targetObject.transform, Vector3.zero);
-
-        // Then set as parent, not using world space
-        //_targetObject.transform.SetParent(_targetParent, false);
-
-        //_targetObject.transform.position = new Vector3(0,0,0);
-       // SetObjectPosition(_targetObject.transform, Vector3.zero);
-
-    }
-
     private void Update()
     {
         // Return if the collider is not being targeted by the mouse, or if the player is not within equipdistance
@@ -246,9 +232,10 @@ public class EquipmentBehaviour : MonoBehaviour
     /// </summary>
     public void OnEquip(Hand _targetHand)
     {
-        _targetHand.SetObjectToHandPosition(this);
-        SetObjectRotation(MainEquipmentObject.transform, EquipmentData.EquippedRotation); // Lastly set the rotation
-        SetObjectScale(MainEquipmentObject.transform, EquipmentData.EquippedLocalScale); // First set scale 
+        // Set transform properties
+        SetObjectScale(MainEquipmentObject.transform, EquipmentData.EquippedLocalScale); // First set scale before parenting
+        _targetHand.SetObjectToHandPosition(this); // Call method to reposition and set hand as parent
+        SetObjectRotation(MainEquipmentObject.transform, EquipmentData.EquippedRotation); // Lastly, set the local rotation when in hand
 
         // Set value of bools true
         IsEquipped = true;
@@ -272,8 +259,8 @@ public class EquipmentBehaviour : MonoBehaviour
 
         // Set transform properties
         mainEquipmentObject.transform.parent = null; // First drop the parent
-        SetObjectRotation(MainEquipmentObject.transform, EquipmentData.UnequippedRotation); // Reset to unequipped rotation
-        SetObjectScale(MainEquipmentObject.transform, EquipmentData.UnequippedLocalScale); // Set scale to initial
+        SetObjectRotation(MainEquipmentObject.transform, EquipmentData.UnequippedRotation); // Set local rotation, not relative to parent anymore
+        SetObjectScale(MainEquipmentObject.transform, EquipmentData.UnequippedLocalScale); // Set local scale to original, not relative to parent anymore
 
         // Call method to throw equipment
         equipmentPhysicsManager.ThrowEquipment(); // Note: Notice isKinematic = false before calling method
