@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
@@ -8,16 +9,34 @@ using UnityEngine.XR;
 /// </summary>
 public class EquipmentSystemController : MonoBehaviour
 {
-
     /* ------------------------------------------  VARIABLES ------------------------------------------- */
-
+    
+    [Space] [Space]
     [Header("Hand objects attached to player")]
+    [Space]
+
+    [Tooltip("Reference to the script on LeftHand of the player")]
     [SerializeField] private Hand leftHand;
+
+    [Tooltip("Reference to the script on RightHand of the player")]
     [SerializeField] private Hand rightHand;
 
+    [Space] [Space]
     [Header("Keys for equipping/dropping equipment")]
-    [SerializeField] private KeyCode leftEquipKey;
-    [SerializeField] private KeyCode rightEquipKey;
+    [Space]
+
+    [Tooltip("Input key to equip/drop equipment to/from the left hand")]
+    [SerializeField] private KeyCode leftHandInputKey;
+
+    [Tooltip("Input key to equip/drop equipment to/from the left hand")]
+    [SerializeField] private KeyCode rightHandInputKey;
+
+    [Space] [Space]
+    [Header("Other variables")]
+    [Space]
+
+    [Tooltip("Delay for equipping the new item when swapping in seconds (Drop and Equip simultaneously")]
+    [SerializeField] [Range(0, 1)] private float equipDelayWhenSwapping; 
 
     /// <summary>
     /// Ditionary for associating a Hand object with an input key, vice versa <br/>
@@ -32,19 +51,19 @@ public class EquipmentSystemController : MonoBehaviour
     /// <summary>
     /// Public property with private set used for getting and setting the value of the key to equip/drop items in left hand <br/> <br/>
     /// </summary>
-    public KeyCode LeftEquipKey
+    public KeyCode LeftHandInputKey
     {
-        get { return leftEquipKey; }
-        private set { leftEquipKey = value; }
+        get { return leftHandInputKey; }
+        private set { leftHandInputKey = value; }
     }
 
     /// <summary>
     /// Public property with private set used for getting and setting the value of the key to equip/drop items in right hand <br/> <br/>
     /// </summary>
-    public KeyCode RightEquipKey
+    public KeyCode RightHandInputKey
     {
-        get { return rightEquipKey; }
-        private set { rightEquipKey = value; }
+        get { return rightHandInputKey; }
+        private set { rightHandInputKey = value; }
     }
 
 
@@ -57,8 +76,8 @@ public class EquipmentSystemController : MonoBehaviour
         // Initialize the dictionary with its keys and values
         inputToHandKeyBindings = new Dictionary<Hand, KeyCode>
         {
-            { leftHand, LeftEquipKey },
-            { rightHand, RightEquipKey }
+            { leftHand, LeftHandInputKey },
+            { rightHand, RightHandInputKey }
         };
     }
 
@@ -86,19 +105,15 @@ public class EquipmentSystemController : MonoBehaviour
     }
 
     /// <summary>
-    /// Public void method that gets called when the mouse cursor is over an equipment object <br/>
-    /// Gets called from the EquipmentBehaviour class in 'OnMouseOver' function <br/>
-    /// Calls method that equips the object when receiving input
+    /// Public void method that gets called when the mouse cursor is over an equipment object, is within range, not equipped and on the ground<br/>
+    /// Calls method that waits for equip input the object when receiving input
     /// </summary>
     /// <param name="_equipment"></param>
-    public void OnMouseOverEquipment(EquipmentBehaviour _equipment)
+    public void TryEquip(EquipmentBehaviour _equipment)
     {
-        // First check if the equipment object is within it's equip range
-        if (_equipment.IsWithinEquipRange())
-        {
-            // Call method to handle the inpiut for equipping the object
-            HandleEquipInput(_equipment);
-        }
+        // Call method to check for input for both hands
+        CheckForEquipInput(leftHand, _equipment);
+        CheckForEquipInput(rightHand, _equipment);
     }
 
     /// <summary>
@@ -151,18 +166,6 @@ public class EquipmentSystemController : MonoBehaviour
             }
         }
     }
-    
-    /// <summary>
-    /// Method that handles the input for equipping items <br/>
-    /// Waits for input for both hands with the _equipment to equip to either hand
-    /// </summary>
-    /// <param name="_equipment"> Equipment to be equipped </param>
-    private void HandleEquipInput(EquipmentBehaviour _equipment)
-    {
-        // Call method to check for input for both hands
-        CheckForEquipInput(leftHand, _equipment);
-        CheckForEquipInput(rightHand, _equipment);
-    }
 
 
     /// <summary>
@@ -182,9 +185,33 @@ public class EquipmentSystemController : MonoBehaviour
             // Wait for its input
             if (Input.GetKeyDown(inputKey))
             {
-                // Equip to the associated hand on input
-                Equip(_equipment, _hand);
+                // Check if the hand is not equipped 
+                if (_hand.CurrentEquipment == null)
+                {
+                    // Equip to the associated hand on input if not equipped
+                    Equip(_equipment, _hand);
+                }
+                else // Hand is already equipped
+                {
+                    // Use coroutine for small delay between swapping
+                    StartCoroutine(SwapEquipment(_hand, _equipment));
+                }
             }
         }
     } 
+
+    /// <summary>
+    /// Coroutine used for dropping current equipment from hand, then equipping new equipment 
+    /// </summary>
+    /// <param name="_hand"></param>
+    /// <param name="_newEquipment"></param>
+    /// <returns></returns>
+    private IEnumerator SwapEquipment(Hand _hand, EquipmentBehaviour _newEquipment)
+    {
+        Drop(_hand.CurrentEquipment, _hand);
+
+        yield return new WaitForSeconds(equipDelayWhenSwapping);
+
+        Equip(_newEquipment, _hand);
+    }
 }
