@@ -67,6 +67,7 @@ public class EquipmentBehaviour : MonoBehaviour
     public GameObject MainEquipmentObject
     {
         get { return mainEquipmentObject; }
+        private set { mainEquipmentObject = value; }
     }
 
     /// <summary>
@@ -168,53 +169,57 @@ public class EquipmentBehaviour : MonoBehaviour
         parentCollider = mainEquipmentObject.GetComponent<Collider>();
 
         // Set rotation and scale of parent object to it's data values
-        SetRotation(EquipmentData.UnequippedRotation);
-        SetScale(EquipmentData.UnequippedLocalScale);
+        SetObjectRotation(MainEquipmentObject.transform,EquipmentData.UnequippedRotation);
+        SetObjectScale(MainEquipmentObject.transform, EquipmentData.UnequippedLocalScale);
 
         // Set position of this object to the main object position as reset
-        SetPosition(gameObject.transform, mainEquipmentObject.transform.position);
+        SetObjectPosition(gameObject.transform, mainEquipmentObject.transform.position);
     }
 
     /// <summary>
     /// Method to set a transform's position to that of the given vector
     /// </summary>
-    /// <param name="_toSet"></param>
+    /// <param name="_targetObject"></param>
     /// <param name="_targetPos"></param>
-    private void SetPosition(Transform _toSet, Vector3 _targetPos)
+    private void SetObjectPosition(Transform _targetObject, Vector3 _targetPos)
     {
-        _toSet.transform.position = _targetPos;
+        _targetObject.transform.position = _targetPos;
     }
 
     /// <summary>
-    /// Method to set the rotation of the parent object 
+    /// Method to set the rotation of target object to target rotation
     /// </summary>
     /// <param name="_targetRotation"></param>
-    private void SetRotation(Vector3 _targetRotation)
+    private void SetObjectRotation(Transform _targetObject ,Vector3 _targetRotation)
     {
         // Set local rotation to param values
-        mainEquipmentObject.transform.localRotation = Quaternion.Euler(_targetRotation);
+        _targetObject.transform.localRotation = Quaternion.Euler(_targetRotation);
     }
 
     /// <summary>
-    /// Method to set the scale of the parent object
+    /// Method to set the scale of the target object to the target scaleparent object
     /// </summary>
     /// <param name="_targetScale"></param>
-    private void SetScale(Vector3 _targetScale)
+    private void SetObjectScale(Transform _targetObject,Vector3 _targetScale)
     {
-        mainEquipmentObject.transform.localScale = _targetScale;
+        _targetObject.transform.localScale = _targetScale;
     }
 
     /// <summary>
     /// Model to reset the equipment object's position to the targetparent position
     /// </summary>
     /// <param name="_targetParent"></param>
-    private void ResetToParent(Transform _targetParent)
+    private void ResetObjectToParentPosition(Transform _targetObject, Transform _targetParent)
     {
         // First set position to zero to reset the pos
-        SetPosition(mainEquipmentObject.transform, Vector3.zero);
+        //SetObjectPosition(_targetObject.transform, Vector3.zero);
 
         // Then set as parent, not using world space
-        mainEquipmentObject.transform.SetParent(_targetParent, false);
+        //_targetObject.transform.SetParent(_targetParent, false);
+
+        //_targetObject.transform.position = new Vector3(0,0,0);
+       // SetObjectPosition(_targetObject.transform, Vector3.zero);
+
     }
 
     private void Update()
@@ -241,10 +246,9 @@ public class EquipmentBehaviour : MonoBehaviour
     /// </summary>
     public void OnEquip(Hand _targetHand)
     {
-        // Set transform properties
-        SetScale(EquipmentData.EquippedLocalScale); // First set scale 
-        ResetToParent(_targetHand.transform);  // Then reset the position
-        SetRotation(EquipmentData.EquippedRotation); // Lastly set the rotation
+        _targetHand.SetObjectToHandPosition(this);
+        SetObjectRotation(MainEquipmentObject.transform, EquipmentData.EquippedRotation); // Lastly set the rotation
+        SetObjectScale(MainEquipmentObject.transform, EquipmentData.EquippedLocalScale); // First set scale 
 
         // Set value of bools true
         IsEquipped = true;
@@ -260,7 +264,7 @@ public class EquipmentBehaviour : MonoBehaviour
     /// Removes hand as parent, repositions object and sets IsEquipped and CanDrop bool values to false
     /// </summary>
     public void OnDrop(Hand _ownerHand)
-    {
+    {   
         // Set values of booleans first
         IsEquipped = false;
         CanDrop = false; // Set false to prevent calling again
@@ -268,8 +272,8 @@ public class EquipmentBehaviour : MonoBehaviour
 
         // Set transform properties
         mainEquipmentObject.transform.parent = null; // First drop the parent
-        SetRotation(EquipmentData.UnequippedRotation); // Reset to unequipped rotation
-        SetScale(EquipmentData.UnequippedLocalScale); // Set scale to initial
+        SetObjectRotation(MainEquipmentObject.transform, EquipmentData.UnequippedRotation); // Reset to unequipped rotation
+        SetObjectScale(MainEquipmentObject.transform, EquipmentData.UnequippedLocalScale); // Set scale to initial
 
         // Call method to throw equipment
         equipmentPhysicsManager.ThrowEquipment(); // Note: Notice isKinematic = false before calling method
