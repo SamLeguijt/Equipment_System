@@ -147,18 +147,6 @@ public class EquipmentBehaviour : MonoBehaviour
 
     /* ------------------------------------------  METHODS ------------------------------------------- */
 
-    private void OnMouseOver()
-    {
-        baseTextUI = $"Press {EquipmentSystemController.LeftHandInputKey} or {EquipmentSystemController.RightHandInputKey} to equip: {EquipmentData.EquipmentName} ";
-
-        uiElement.enabled = true;
-        uiElement.text = baseTextUI;
-    }
-
-    private void OnMouseExit()
-    {
-        uiElement.enabled = false;
-    }
     private void Start()
     {
         // Find player (no dragging in player for each object)
@@ -171,6 +159,7 @@ public class EquipmentBehaviour : MonoBehaviour
 
         // Initialize
         InititializeEquipment();
+
     }
 
 
@@ -182,7 +171,7 @@ public class EquipmentBehaviour : MonoBehaviour
     {
         // First assign our parent object to the main object slot
         mainEquipmentObject = transform.parent.gameObject;
-        
+
         // Set our parent to the equipment layer to be able to pick up when needed
         mainEquipmentObject.gameObject.layer = LayerMask.NameToLayer(equipmentLayerName);
 
@@ -193,7 +182,7 @@ public class EquipmentBehaviour : MonoBehaviour
         parentCollider = mainEquipmentObject.GetComponent<Collider>();
 
         // Set rotation and scale of parent object to it's data values
-        SetObjectRotation(MainEquipmentObject.transform,EquipmentData.UnequippedRotation);
+        SetObjectRotation(MainEquipmentObject.transform, EquipmentData.UnequippedRotation);
         SetObjectScale(MainEquipmentObject.transform, EquipmentData.UnequippedLocalScale);
 
         // Set position of this object to the main object position as reset
@@ -214,7 +203,7 @@ public class EquipmentBehaviour : MonoBehaviour
     /// Method to set the rotation of target object to target rotation
     /// </summary>
     /// <param name="_targetRotation"></param>
-    private void SetObjectRotation(Transform _targetObject ,Vector3 _targetRotation)
+    private void SetObjectRotation(Transform _targetObject, Vector3 _targetRotation)
     {
         // Set local rotation to param values
         _targetObject.transform.localRotation = Quaternion.Euler(_targetRotation);
@@ -224,7 +213,7 @@ public class EquipmentBehaviour : MonoBehaviour
     /// Method to set the scale of the target object to the target scaleparent object
     /// </summary>
     /// <param name="_targetScale"></param>
-    private void SetObjectScale(Transform _targetObject,Vector3 _targetScale)
+    private void SetObjectScale(Transform _targetObject, Vector3 _targetScale)
     {
         _targetObject.transform.localScale = _targetScale;
     }
@@ -237,15 +226,10 @@ public class EquipmentBehaviour : MonoBehaviour
         // Return if the collider is not being targeted by the mouse, or if the player is not within equipdistance
         if (!IsMouseOverCollider(parentCollider) || !IsWithinEquipRange())
         {
-            uiElement.enabled = false;
             return;
         }
         else // Mouse is over equipment, and player is within equiprange
         {
-            baseTextUI = $"Press {EquipmentSystemController.LeftHandInputKey} or {EquipmentSystemController.RightHandInputKey} to equip: {EquipmentData.EquipmentName} ";
-
-            uiElement.enabled = true;
-            uiElement.text = baseTextUI;
             // Check if the item is not equipped yet, and if it's not in the air
             if (!IsEquipped && IsOnGround)
             {
@@ -280,7 +264,7 @@ public class EquipmentBehaviour : MonoBehaviour
     /// Removes hand as parent, repositions object and sets IsEquipped and CanDrop bool values to false
     /// </summary>
     public void OnDrop(Hand _ownerHand)
-    {   
+    {
         // Set values of booleans first
         IsEquipped = false;
         CanDrop = false; // Set false to prevent calling again
