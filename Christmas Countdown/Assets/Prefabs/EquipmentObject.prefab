@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8557418953104911914}
   m_Layer: 7
   m_Name: EquipmentObject
-  m_TagString: Untagged
+  m_TagString: Equipment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equipmentSystemController: {fileID: 0}
+  uiObject: {fileID: 0}
   environmentLayerName: Environment
   equipmentLayerName: Equipment
   mainEquipmentObject: {fileID: 0}

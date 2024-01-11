@@ -66,7 +66,15 @@ public class EquipmentSystemController : MonoBehaviour
         private set { rightHandInputKey = value; }
     }
 
+    public Hand LeftHand
+    {
+        get { return leftHand; }
+    }
 
+    public Hand RightHand
+    {
+        get { return rightHand; }
+    }
     /* ------------------------------------------  METHODS ------------------------------------------- */
 
 

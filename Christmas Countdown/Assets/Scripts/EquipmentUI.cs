@@ -10,39 +10,89 @@ public class EquipmentUI : MonoBehaviour
 
     [SerializeField] private EquipmentSystemController controller;
 
-    private RectTransform rectTransform;
+     private RectTransform rectTransform;
 
     [SerializeField] private float transformWidth;
     [SerializeField] private float transformHeight;
 
     [SerializeField] private Vector3 targetPosition;
 
-    private string displayName;
-    private string baseText;
+    private bool isEnabled; 
 
-    public string DisplayName
-    { 
-        get { return displayName; }
+    private string displayNameUI;
+
+    private string fullString;
+    public string DisplayNameUI
+    {
+        get { return displayNameUI; }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void InitializeEquipmentUI(EquipmentBehaviour equipmentBehaviour)
     {
         rectTransform = equipmentText.GetComponent<RectTransform>();
-        baseText = $"  Equip Left {controller.LeftHandInputKey}  |  {controller.RightHandInputKey}  Equip Right";
-        InitializeEquipmentUI("shotgun");
-    }
 
-    public void InitializeEquipmentUI(string _equipmentName)
-    {
-        displayName = _equipmentName;
+        displayNameUI = equipmentBehaviour.EquipmentData.EquipmentName;
         SetTransformProperties();
-        UpdateText(displayName);
+        EnableEquipmentUI();
+
+        string equipOrSwapLeft = GetEquipOrSwapString(controller.LeftHand);
+        string equipOrSwapRight = GetEquipOrSwapString(controller.RightHand);
+
+        fullString = $" {controller.LeftHandInputKey} {equipOrSwapLeft} Left   |   {controller.RightHandInputKey} {equipOrSwapRight} Right";
+
+        GameObject canvas = GameObject.FindGameObjectWithTag("Canvas");
+        equipmentText.transform.SetParent(canvas.transform,true);
+        equipmentText.transform.localPosition = targetPosition;
     }
 
-    private void UpdateText(string _equipmentName)
+    public void EnableEquipmentUI()
     {
-        equipmentText.SetText($"{_equipmentName} \n {baseText} ");
+        if (isEnabled)
+        {
+            return;
+        } else
+        {
+            Debug.Log($"enable { gameObject.name} ");
+            equipmentText.enabled = true;
+            UpdateText(displayNameUI, fullString);
+            //isEnabled = true;
+        }
+    }
+
+    public void DisableEquipmentUI()
+    {
+        /*  if (!isEnabled)
+          {
+              return;
+          }
+          else
+          {
+              Debug.Log("disable");
+
+              equipmentText.enabled = false;
+              isEnabled = false;
+          }*/
+
+        UpdateText(string.Empty, string.Empty);
+    }
+    
+    private string GetEquipOrSwapString(Hand _hand)
+    {
+        if (_hand.CurrentEquipment == null)
+        {
+            return "Equip";
+        }
+        else
+        {
+            return "Swap";
+        }
+    }
+
+
+    private void UpdateText(string _equipmentName, string underText)
+    {
+    
+        equipmentText.SetText($"{_equipmentName} \n {underText} ");
     }
 
     private void SetTransformProperties()

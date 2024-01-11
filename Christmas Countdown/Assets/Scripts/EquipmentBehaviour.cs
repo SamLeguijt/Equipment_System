@@ -22,6 +22,8 @@ public class EquipmentBehaviour : MonoBehaviour
     [Tooltip("Drag in object with the EquipmentSystemController attached")]
     [SerializeField] private EquipmentSystemController equipmentSystemController;
 
+    [SerializeField] private EquipmentUI uiObject;
+
     [Space]
     [Tooltip("Name of the layer for environmental objects")]
     [SerializeField] private string environmentLayerName;
@@ -38,9 +40,6 @@ public class EquipmentBehaviour : MonoBehaviour
 
     [Tooltip("Scriptable Object with this object's data")]
     [SerializeField] private BaseEquipmentObject equipmentData;
-
-    public TextMeshProUGUI uiElement;
-    public string baseTextUI;
 
     /* --- PRIVATE HIDDEN VARIABLES ---*/
     private EquipmentPhysicsManager equipmentPhysicsManager; // Reference to this object's physics manager
@@ -155,11 +154,14 @@ public class EquipmentBehaviour : MonoBehaviour
 
         // Find EquipmentSystemController instead of dragging, yay (probably temp only) 
         if (equipmentSystemController == null)
-            equipmentSystemController = GameObject.FindObjectOfType<EquipmentSystemController>();
+            equipmentSystemController = FindObjectOfType<EquipmentSystemController>();
+
+
+
+        uiObject = GetComponentInChildren<EquipmentUI>();
 
         // Initialize
         InititializeEquipment();
-
     }
 
 
@@ -180,6 +182,8 @@ public class EquipmentBehaviour : MonoBehaviour
 
         // Get the parent's collider to detect mouse
         parentCollider = mainEquipmentObject.GetComponent<Collider>();
+
+        uiObject.InitializeEquipmentUI(this);
 
         // Set rotation and scale of parent object to it's data values
         SetObjectRotation(MainEquipmentObject.transform, EquipmentData.UnequippedRotation);
@@ -222,20 +226,29 @@ public class EquipmentBehaviour : MonoBehaviour
     /// Handles equipment being available to pick up 
     /// </summary>
     private void Update()
-    {
-        // Return if the collider is not being targeted by the mouse, or if the player is not within equipdistance
+    {        
+        // Disable ui element and return if not within range, or if not targeting the object's collider
         if (!IsMouseOverCollider(parentCollider) || !IsWithinEquipRange())
         {
+            uiObject.DisableEquipmentUI();
             return;
         }
-        else // Mouse is over equipment, and player is within equiprange
+        else // Mouse is over equipment, or player is within equiprange
         {
-            // Check if the item is not equipped yet, and if it's not in the air
-            if (!IsEquipped && IsOnGround)
+            // First check if both conditions are true
+            if (IsMouseOverCollider(parentCollider) && IsWithinEquipRange())
             {
-                // Send message that 
-                equipmentSystemController.TryEquip(this);
+                // Enable the ui if in range and mouse targetting equipment
+                uiObject.EnableEquipmentUI();
+
+                // Check if the item is not equipped yet, and if it's not in the air
+                if (!IsEquipped && IsOnGround)
+                {
+                    // Send message that equipment can be equipped
+                    equipmentSystemController.TryEquip(this);
+                }
             }
+            else return; // Return if only one of the conditions is met
         }
     }
 
