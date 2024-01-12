@@ -82,11 +82,29 @@ public class EquipmentSystemController : MonoBehaviour
     void Start()
     {
         // Initialize the dictionary with its keys and values
-        inputToHandKeyBindings = new Dictionary<Hand, KeyCode>
+        inputToHandKeyBindings = new Dictionary<Hand, KeyCode>();
+
+        // Check if any necessary components are missing on start
+        if (leftHand == null || rightHand == null || inputToHandKeyBindings == null)
         {
-            { leftHand, LeftHandInputKey },
-            { rightHand, RightHandInputKey }
-        };
+            // Disable object and throw message
+            gameObject.SetActive(false);
+            throw new System.Exception($"One or more components and references are missing from {gameObject.name}! Please assign components, then re-run. Disabling {this.name} for now.");
+        }
+        else // Everything is good, let's initialize
+        {
+            InitializeEquipmentSystemController();
+        }
+    }
+
+    /// <summary>
+    /// Method for initializing this instance <br/>
+    /// Adds key-value pairs to dictionary
+    /// </summary>
+    private void InitializeEquipmentSystemController()
+    {
+        inputToHandKeyBindings.Add(leftHand, leftHandInputKey);
+        inputToHandKeyBindings.Add(rightHand, rightHandInputKey);
     }
 
     // Update is called once per frame

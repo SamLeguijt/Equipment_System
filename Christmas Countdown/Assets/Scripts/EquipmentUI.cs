@@ -10,10 +10,10 @@ public class EquipmentUI : MonoBehaviour
 
 
     [Tooltip("TMP object attached to Canvas")]
-    [SerializeField] private TextMeshProUGUI textObject;
+    [SerializeField] private TextMeshProUGUI equipmentTextObject;
 
     [Tooltip("EquipmentSystemController object in scene")]
-    [SerializeField] private EquipmentSystemController controller;
+    [SerializeField] private EquipmentSystemController equipSystemController;
 
     [Tooltip("Desired width of the RectTransform of the TMP object")]
     [SerializeField] private float rectTransformWidth;
@@ -53,7 +53,7 @@ public class EquipmentUI : MonoBehaviour
     /// </summary>
     public TextMeshProUGUI TextObject
     {
-        get { return textObject; }
+        get { return equipmentTextObject; }
     }
 
     /// <summary>
@@ -133,17 +133,17 @@ public class EquipmentUI : MonoBehaviour
     private void Start()
     {
         // Get RectTransform from TMP object
-        rectTransform = textObject.GetComponent<RectTransform>();
+        rectTransform = equipmentTextObject.GetComponent<RectTransform>();
 
-        if (textObject != null && rectTransform != null && controller != null)
+        if (equipmentTextObject != null && rectTransform != null && equipSystemController != null)
         {
             // Call method to initialize if all references are found 
             InitializeEquipmentUI();
         }
         else // One or more missing references, log error and disable this object
         {
-            Debug.LogError($"One or more references from {gameObject.name} is null! Disabling this object, rerun with assigned references!");
             gameObject.SetActive(false);
+            throw new System.Exception($"One or more components and references are missing from {gameObject.name}! Please assign components, then re-run. Disabling object for now.");
         }
     }
 
@@ -260,12 +260,12 @@ public class EquipmentUI : MonoBehaviour
         if (_seperateLine)
         {
             // Set text with a new line between the string
-            textObject.SetText($"{_string1} \n {_string2}");
+            equipmentTextObject.SetText($"{_string1} \n {_string2}");
         }
         else // Should not be seperate, just one full string
         {
             // Set text by making one line
-            textObject.SetText($"{_string1} {_string2}");
+            equipmentTextObject.SetText($"{_string1} {_string2}");
         }
     }
 
@@ -314,11 +314,11 @@ public class EquipmentUI : MonoBehaviour
     private string GetInteractionInstructionString()
     {
         // Get string based on equip status for both hands
-        string leftHandText = GetEquipOrSwapString(controller.LeftHand); // Uses the references in the EquipmentSystemController to both hands
-        string rightHandText = GetEquipOrSwapString(controller.RightHand); 
+        string leftHandText = GetEquipOrSwapString(equipSystemController.LeftHand); // Uses the references in the EquipmentSystemController to both hands
+        string rightHandText = GetEquipOrSwapString(equipSystemController.RightHand); 
 
         // Make the full string by combining the input keys for the hands, with the equip status, and the type of hand, with a symbol between them for eyecandy 
-        string fullString = $" {controller.LeftHandInputKey} {leftHandText} Left   |   {controller.RightHandInputKey} {rightHandText} Right";
+        string fullString = $" {equipSystemController.LeftHandInputKey} {leftHandText} Left   |   {equipSystemController.RightHandInputKey} {rightHandText} Right";
 
         // Return the full string as Instruction
         return fullString;

@@ -17,16 +17,19 @@ public class EquipmentBehaviour : MonoBehaviour
 
     /* ------------------------------------------  VARIABLES ------------------------------------------- */
 
-
+    [Header("References to components in scene")]
     [Space]
+    
     [Tooltip("Drag in object with the EquipmentSystemController attached")]
     [SerializeField] private EquipmentSystemController equipmentSystemController;
 
-    [Space]
     [Tooltip("Object that holds the EquipmentUI script")]
     [SerializeField] private EquipmentUI equipmentUI;
 
     [Space]
+    [Header("Layer names")]
+    [Space]
+
     [Tooltip("Name of the layer for environmental objects")]
     [SerializeField] private string environmentLayerName;
 
@@ -46,7 +49,7 @@ public class EquipmentBehaviour : MonoBehaviour
     /* --- PRIVATE HIDDEN VARIABLES ---*/
     private EquipmentPhysicsManager equipmentPhysicsManager; // Reference to this object's physics manager
     private Collider parentCollider; // Store collider of the parent object
-    private Collider mouseDetectCollider; 
+    private Collider mouseDetectCollider;
     private Transform player; // Reference to the player for distance and orientation
 
     // Bools for checking status of this object, used for properties
@@ -63,7 +66,7 @@ public class EquipmentBehaviour : MonoBehaviour
     /// </summary>
     public EquipmentSystemController EquipmentSystemController
     {
-        get { return equipmentSystemController ?? throw new System.NullReferenceException("EquipmentSystemController is not assigned!"); }
+        get { return equipmentSystemController; }
     }
 
     // Read only property to reference the UI object on this behaviour
@@ -99,7 +102,7 @@ public class EquipmentBehaviour : MonoBehaviour
     /// </summary>
     public BaseEquipmentObject EquipmentData
     {
-        get { return equipmentData ?? throw new System.NullReferenceException("No Scriptable Object assigned!"); }
+        get { return equipmentData ; }
         private set { equipmentData = value; }
     }
 
@@ -129,7 +132,7 @@ public class EquipmentBehaviour : MonoBehaviour
     private Transform Player
     {
         // Get player if not null, else throw null reference exception with message
-        get { return player ?? throw new System.NullReferenceException("Player is not assigned!"); }
+        get { return player; }
     }
 
     /// <summary>
@@ -174,9 +177,28 @@ public class EquipmentBehaviour : MonoBehaviour
         if (equipmentSystemController == null)
             equipmentSystemController = FindObjectOfType<EquipmentSystemController>();
 
+        if (equipmentUI == null)
+            equipmentUI = FindObjectOfType<EquipmentUI>();
 
-        // Initialize
-        InititializeEquipment();
+        // First set parent object to the main object slot
+        mainEquipmentObject = transform.parent.gameObject;
+
+        // Add and assign the PhysicsManager to the parent object
+        equipmentPhysicsManager = mainEquipmentObject.AddComponent<EquipmentPhysicsManager>();
+
+        // Get the parent's collider to detect mouse
+        parentCollider = mainEquipmentObject.GetComponent<Collider>();
+
+        // Check if any components and references are missing
+        if (equipmentSystemController == null || equipmentUI == null || mainEquipmentObject == null || EquipmentData == null || equipmentPhysicsManager == null || player == null || parentCollider == null)
+        {
+            gameObject.transform.parent.gameObject.SetActive(false);
+            throw new System.Exception($"One or more components and references are missing from {gameObject.transform.parent.name}! Please assign components, then re-run. Disabling object for now.");
+        }
+        else // All components and references are present, so initialize
+        {
+            InititializeEquipmentBehaviour();
+        }
     }
 
 
@@ -184,19 +206,10 @@ public class EquipmentBehaviour : MonoBehaviour
     /// Method for initializing the components needed for the equipment items <br/>
     /// Adds PhysicsManager to parent as well, stores the collider of the parent and sets rotation of parent object.
     /// </summary>
-    private void InititializeEquipment()
+    private void InititializeEquipmentBehaviour()
     {
-        // First assign our parent object to the main object slot
-        mainEquipmentObject = transform.parent.gameObject;
-
         // Set our parent to the equipment layer to be able to pick up when needed
         mainEquipmentObject.gameObject.layer = LayerMask.NameToLayer(equipmentLayerName);
-
-        // Add and assign the PhysicsManager to the parent object
-        equipmentPhysicsManager = mainEquipmentObject.AddComponent<EquipmentPhysicsManager>();
-
-        // Get the parent's collider to detect mouse
-        parentCollider = mainEquipmentObject.GetComponent<Collider>();
         
         // TEMP
         mouseDetectCollider = parentCollider;
