@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     private float horizontalInput;
     private float verticalInput;
 
-    // Vector for storing the direction to move in
+    // Vector for storing the direction to move ins
     private Vector3 moveDirection; 
 
     // Start is called before the first frame update

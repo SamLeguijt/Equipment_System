@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Environment
+  - Equipment
+  - Canvas
   layers:
   - Default
   - TransparentFX
@@ -15,8 +17,8 @@ TagManager:
   - Environment
   - Equipment
   - Player
-  - 
-  - 
+  - MainEquipment
+  - MouseDetection
   - 
   - 
   - 

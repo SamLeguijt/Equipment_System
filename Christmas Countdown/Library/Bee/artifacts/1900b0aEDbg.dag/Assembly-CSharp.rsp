@@ -359,6 +359,7 @@
 "Assets/Scripts/EquipmentBehaviour.cs"
 "Assets/Scripts/EquipmentPhysicsManager.cs"
 "Assets/Scripts/EquipmentSystemController.cs"
+"Assets/Scripts/EquipmentUI.cs"
 "Assets/Scripts/Hand.cs"
 "Assets/Scripts/Player/PlayerMovement.cs"
 "Assets/Scripts/ScriptableObjects/AmmunitionEquipmentObject.cs"

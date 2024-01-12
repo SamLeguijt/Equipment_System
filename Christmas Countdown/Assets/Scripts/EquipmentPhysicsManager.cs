@@ -12,23 +12,24 @@ public class EquipmentPhysicsManager : MonoBehaviour
     /* ------------------------------------------  VARIABLES ------------------------------------------- */
 
     private CameraController cameraController; // CameraController used for orientation
-    
+
     /* Variables used for properties */
     private EquipmentBehaviour equipmentBehaviour;
-    private Collider objectCollider; 
+    private Collider objectCollider;
     private Rigidbody rb;
 
     private int layerToCheckEnvironmentCollisions;
+    private float secondsGroundedAfterCollision = 0.5f;
 
 
     /* ------------------------------------------  PROPERTIES ------------------------------------------- */
-   
+
     /// <summary>
     /// Read-onl property for reference to this object's equipment behaviour
     /// </summary>
     public EquipmentBehaviour EquipmentBehaviour
     {
-        get { return equipmentBehaviour; }  
+        get { return equipmentBehaviour; }
     }
 
     /// <summary>
@@ -55,6 +56,14 @@ public class EquipmentPhysicsManager : MonoBehaviour
         get { return layerToCheckEnvironmentCollisions; }
     }
 
+    /// <summary>
+    /// Public property to get or set the time it takes between hitting ground and enable picking up object again
+    /// </summary>
+    public float SecondsGroundedAfterCollision
+    {
+        get { return secondsGroundedAfterCollision; }
+        set { secondsGroundedAfterCollision = value; }
+    }
 
     /* ------------------------------------------  METHODS ------------------------------------------- */
 
@@ -64,53 +73,39 @@ public class EquipmentPhysicsManager : MonoBehaviour
         // Get the equipmentbehaviour by looking in our children (this gets added by the script to parent, so must be in children)
         equipmentBehaviour = GetComponentInChildren<EquipmentBehaviour>();
 
-        // Check if we found it to prevent manually putting this script on objects, or EquipBehaviour not as a child object
-        if (equipmentBehaviour == null)
-        {
-            //Show error message and destroy if not found in children
-            Debug.LogError("EquipmentPhysicsManager relies on component EquipmentBehaviour in order to be used, remove EquipmentPhysicsManager and add EquipmentBehaviour as child object!");
-            Destroy(this);
-        }
-        else // Component found, everything good
-        {
-            // Initialize this class methods and properties
-            Initialize();
-        }
-    }
-
-    /// <summary>
-    /// Method to start up this class and it's properties
-    /// </summary>
-    public void Initialize()
-    {
         // Get the collider manually attached to this object
         objectCollider = GetComponent<Collider>();
 
         // Add and assign rigidbody through here 
         rb = gameObject.AddComponent<Rigidbody>();
 
+        cameraController = Camera.main.GetComponent<CameraController>();
+
+
+        // Check if we found it to prevent manually putting this script on objects, or EquipBehaviour not as a child object
+        if (equipmentBehaviour == null || objectCollider == null || rb == null || cameraController == null)
+        {
+            //gameObject.SetActive(false);
+            //Show error message and destroy if not found in children
+            throw new System.Exception($"One or more components and references are missing from {gameObject.name}! Please assign components, then re-run. Disabling {this.name} for now.");
+        }
+        else // Components found, everything good
+        {
+            // Initialize this class methods and properties
+            InitializeEquipmentPhysicsManager();
+        }
+    }
+
+    /// <summary>
+    /// Method to start up this class and it's properties
+    /// </summary>
+    public void InitializeEquipmentPhysicsManager()
+    {
         // Set the collision detection mode to prevent not calling correctly
         rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
 
         // Assign value to layer which is used to check collision with ground and more
         layerToCheckEnvironmentCollisions = LayerMask.NameToLayer(equipmentBehaviour.EnvironmentLayerName);
-
-        cameraController = Camera.main.GetComponent<CameraController>();
-
-        // Destroy object if no collider on object
-        if (objectCollider == null)
-        {
-            Debug.LogError($"No collider attached to {gameObject.name}, add component and rerun!");
-            Destroy(gameObject);
-        }
-
-        // Destroy object if camera controller not found
-        if (cameraController == null)
-        {
-            Debug.LogError($"CameraController not found on main camera, cannot handle physics for {gameObject.name}! Destroying this object.");
-            Destroy(gameObject);
-        }
-
     }
 
     /// <summary>
@@ -125,8 +120,8 @@ public class EquipmentPhysicsManager : MonoBehaviour
             // Check if collision was on right layer
             if (collision.gameObject.layer == layerToCheckEnvironmentCollisions)
             {
-                // Set EquipmentBehaviour bool true to enable equipping
-                equipmentBehaviour.IsOnGround = true;
+                // Start coroutine to enable pick up again after touching ground
+                StartCoroutine(SetGroundBoolTrueAfterSeconds(SecondsGroundedAfterCollision));
             }
         }
         else return;
@@ -190,5 +185,18 @@ public class EquipmentPhysicsManager : MonoBehaviour
         Vector3 randomTorque = new Vector3(Random.Range(0, maxTorgue.x), Random.Range(0, maxTorgue.y), Random.Range(0, maxTorgue.z));
 
         return randomTorque;
+    }
+
+    /// <summary>
+    /// Coroutine used to set the IsOnGround bool to true after the param in seconds <br/>
+    /// Allows equipment to come (close) to stop 
+    /// </summary>
+    /// <param name="_seconds"></param>
+    /// <returns></returns>
+    private IEnumerator SetGroundBoolTrueAfterSeconds(float _seconds)
+    {
+        yield return new WaitForSeconds(_seconds);
+
+        equipmentBehaviour.IsOnGround = true;
     }
 }
