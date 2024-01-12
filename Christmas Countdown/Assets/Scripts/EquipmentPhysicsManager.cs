@@ -12,23 +12,24 @@ public class EquipmentPhysicsManager : MonoBehaviour
     /* ------------------------------------------  VARIABLES ------------------------------------------- */
 
     private CameraController cameraController; // CameraController used for orientation
-    
+
     /* Variables used for properties */
     private EquipmentBehaviour equipmentBehaviour;
-    private Collider objectCollider; 
+    private Collider objectCollider;
     private Rigidbody rb;
 
     private int layerToCheckEnvironmentCollisions;
+    private float secondsGroundedAfterCollision = 0.5f;
 
 
     /* ------------------------------------------  PROPERTIES ------------------------------------------- */
-   
+
     /// <summary>
     /// Read-onl property for reference to this object's equipment behaviour
     /// </summary>
     public EquipmentBehaviour EquipmentBehaviour
     {
-        get { return equipmentBehaviour; }  
+        get { return equipmentBehaviour; }
     }
 
     /// <summary>
@@ -55,6 +56,14 @@ public class EquipmentPhysicsManager : MonoBehaviour
         get { return layerToCheckEnvironmentCollisions; }
     }
 
+    /// <summary>
+    /// Public property to get or set the time it takes between hitting ground and enable picking up object again
+    /// </summary>
+    public float SecondsGroundedAfterCollision
+    {
+        get { return secondsGroundedAfterCollision; }
+        set { secondsGroundedAfterCollision = value; }  
+    }
 
     /* ------------------------------------------  METHODS ------------------------------------------- */
 
@@ -125,8 +134,8 @@ public class EquipmentPhysicsManager : MonoBehaviour
             // Check if collision was on right layer
             if (collision.gameObject.layer == layerToCheckEnvironmentCollisions)
             {
-                // Set EquipmentBehaviour bool true to enable equipping
-                equipmentBehaviour.IsOnGround = true;
+                // Start coroutine to enable pick up again after touching ground
+                StartCoroutine(SetGroundBoolTrueAfterSeconds(SecondsGroundedAfterCollision));
             }
         }
         else return;
@@ -190,5 +199,18 @@ public class EquipmentPhysicsManager : MonoBehaviour
         Vector3 randomTorque = new Vector3(Random.Range(0, maxTorgue.x), Random.Range(0, maxTorgue.y), Random.Range(0, maxTorgue.z));
 
         return randomTorque;
+    }
+
+    /// <summary>
+    /// Coroutine used to set the IsOnGround bool to true after the param in seconds <br/>
+    /// Allows equipment to come (close) to stop 
+    /// </summary>
+    /// <param name="_seconds"></param>
+    /// <returns></returns>
+    private IEnumerator SetGroundBoolTrueAfterSeconds(float _seconds)
+    {
+        yield return new WaitForSeconds(_seconds);
+
+        equipmentBehaviour.IsOnGround = true;
     }
 }

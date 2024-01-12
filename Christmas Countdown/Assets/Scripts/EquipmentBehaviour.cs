@@ -44,6 +44,7 @@ public class EquipmentBehaviour : MonoBehaviour
     /* --- PRIVATE HIDDEN VARIABLES ---*/
     private EquipmentPhysicsManager equipmentPhysicsManager; // Reference to this object's physics manager
     private Collider parentCollider; // Store collider of the parent object
+    private Collider mouseDetectCollider; 
     private Transform player; // Reference to the player for distance and orientation
 
     // Bools for checking status of this object, used for properties
@@ -69,6 +70,11 @@ public class EquipmentBehaviour : MonoBehaviour
     public string EnvironmentLayerName
     {
         get { return environmentLayerName; }
+    }
+
+    public string EquipmentLayerName
+    {
+        get { return equipmentLayerName; }
     }
 
     /// <summary>
@@ -105,6 +111,10 @@ public class EquipmentBehaviour : MonoBehaviour
         get { return parentCollider; }
     }
 
+    public Collider MouseDetectCollider
+    {
+        get { return mouseDetectCollider; }
+    }
     /// <summary>
     /// Private player property used for calculating distance from this object to player
     /// </summary>
@@ -157,9 +167,6 @@ public class EquipmentBehaviour : MonoBehaviour
             equipmentSystemController = FindObjectOfType<EquipmentSystemController>();
 
 
-
-        uiObject = GetComponentInChildren<EquipmentUI>();
-
         // Initialize
         InititializeEquipment();
     }
@@ -182,8 +189,9 @@ public class EquipmentBehaviour : MonoBehaviour
 
         // Get the parent's collider to detect mouse
         parentCollider = mainEquipmentObject.GetComponent<Collider>();
-
-        uiObject.InitializeEquipmentUI(this);
+        
+        // TEMP
+        mouseDetectCollider = parentCollider;
 
         // Set rotation and scale of parent object to it's data values
         SetObjectRotation(MainEquipmentObject.transform, EquipmentData.UnequippedRotation);
@@ -230,7 +238,6 @@ public class EquipmentBehaviour : MonoBehaviour
         // Disable ui element and return if not within range, or if not targeting the object's collider
         if (!IsMouseOverCollider(parentCollider) || !IsWithinEquipRange())
         {
-            uiObject.DisableEquipmentUI();
             return;
         }
         else // Mouse is over equipment, or player is within equiprange
@@ -239,7 +246,7 @@ public class EquipmentBehaviour : MonoBehaviour
             if (IsMouseOverCollider(parentCollider) && IsWithinEquipRange())
             {
                 // Enable the ui if in range and mouse targetting equipment
-                uiObject.EnableEquipmentUI();
+                uiObject.UpdateEquipmentInfo(this);
 
                 // Check if the item is not equipped yet, and if it's not in the air
                 if (!IsEquipped && IsOnGround)
