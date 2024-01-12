@@ -17,8 +17,8 @@ TagManager:
   - Environment
   - Equipment
   - Player
-  - 
-  - 
+  - MainEquipment
+  - MouseDetection
   - 
   - 
   - 

@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8557418953104911915}
   - component: {fileID: 8557418953104911914}
-  m_Layer: 7
+  - component: {fileID: 4201167509315550619}
+  m_Layer: 10
   m_Name: EquipmentObject
   m_TagString: Equipment
   m_Icon: {fileID: 0}
@@ -45,8 +46,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equipmentSystemController: {fileID: 0}
-  uiObject: {fileID: 0}
+  equipmentUI: {fileID: 0}
   environmentLayerName: Environment
-  equipmentLayerName: Equipment
+  mainEquipmentLayerName: MainEquipment
+  mouseDetectionLayerName: MouseDetection
   mainEquipmentObject: {fileID: 0}
   equipmentData: {fileID: 11400000, guid: dee75ac26b3b4f94abbef7b96b4710a9, type: 2}
+  mouseDetectCollider: {fileID: 4201167509315550619}
+--- !u!135 &4201167509315550619
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8557418953104911913}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.3
+  m_Center: {x: 0, y: 0, z: 0}

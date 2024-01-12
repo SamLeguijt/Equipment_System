@@ -34,7 +34,10 @@ public class EquipmentBehaviour : MonoBehaviour
     [SerializeField] private string environmentLayerName;
 
     [Tooltip("Name of the layer for equipment objects")]
-    [SerializeField] private string equipmentLayerName;
+    [SerializeField] private string mainEquipmentLayerName;
+
+    [Tooltip("Name of the layer for mouse detection")]
+    [SerializeField] private string mouseDetectionLayerName;
 
     [Space]
     [Header("Equipment specifics")]
@@ -49,7 +52,7 @@ public class EquipmentBehaviour : MonoBehaviour
     /* --- PRIVATE HIDDEN VARIABLES ---*/
     private EquipmentPhysicsManager equipmentPhysicsManager; // Reference to this object's physics manager
     private Collider parentCollider; // Store collider of the parent object
-    private Collider mouseDetectCollider;
+    public Collider mouseDetectCollider;
     private Transform player; // Reference to the player for distance and orientation
 
     // Bools for checking status of this object, used for properties
@@ -83,9 +86,20 @@ public class EquipmentBehaviour : MonoBehaviour
         get { return environmentLayerName; }
     }
 
-    public string EquipmentLayerName
+    /// <summary>
+    /// Read only property representing the name of the layer for Main Equipment
+    /// </summary>
+    public string MainEquipmentLayerName
     {
-        get { return equipmentLayerName; }
+        get { return mainEquipmentLayerName; }
+    }
+
+    /// <summary>
+    /// Read only property representing the name of the layer for mouse detection
+    /// </summary>
+    public string MouseDetectionLayerName
+    {
+        get { return mouseDetectionLayerName; }
     }
 
     /// <summary>
@@ -190,7 +204,7 @@ public class EquipmentBehaviour : MonoBehaviour
         parentCollider = mainEquipmentObject.GetComponent<Collider>();
 
         // Check if any components and references are missing
-        if (equipmentSystemController == null || equipmentUI == null || mainEquipmentObject == null || EquipmentData == null || equipmentPhysicsManager == null || player == null || parentCollider == null)
+        if (equipmentSystemController == null || equipmentUI == null || mainEquipmentObject == null || EquipmentData == null || equipmentPhysicsManager == null || player == null || parentCollider == null || mouseDetectCollider == null)
         {
             gameObject.transform.parent.gameObject.SetActive(false);
             throw new System.Exception($"One or more components and references are missing from {gameObject.transform.parent.name}! Please assign components, then re-run. Disabling object for now.");
@@ -209,10 +223,10 @@ public class EquipmentBehaviour : MonoBehaviour
     private void InititializeEquipmentBehaviour()
     {
         // Set our parent to the equipment layer to be able to pick up when needed
-        mainEquipmentObject.gameObject.layer = LayerMask.NameToLayer(equipmentLayerName);
-        
-        // TEMP
-        mouseDetectCollider = parentCollider;
+        mainEquipmentObject.gameObject.layer = LayerMask.NameToLayer(MainEquipmentLayerName);
+
+        // Set this object's layer to the mouse detect layer for mouse detection
+        gameObject.layer = LayerMask.NameToLayer(MouseDetectionLayerName);
 
         // Set rotation and scale of parent object to it's data values
         SetObjectRotation(MainEquipmentObject.transform, EquipmentData.UnequippedRotation);
@@ -220,6 +234,7 @@ public class EquipmentBehaviour : MonoBehaviour
 
         // Set position of this object to the main object position as reset
         SetObjectPosition(gameObject.transform, mainEquipmentObject.transform.position);
+
     }
 
     /// <summary>
@@ -256,18 +271,18 @@ public class EquipmentBehaviour : MonoBehaviour
     /// </summary>
     private void Update()
     {        
-        // Disable ui element and return if not within range, or if not targeting the object's collider
-        if (!IsMouseOverCollider(parentCollider) || !IsWithinEquipRange())
+        // return if not within range, or if not targeting the object's collider
+        if (!IsMouseOverCollider(mouseDetectCollider) || !IsWithinEquipRange())
         {
             return;
         }
         else // Mouse is over equipment, or player is within equiprange
         {
             // First check if both conditions are true
-            if (IsMouseOverCollider(parentCollider) && IsWithinEquipRange())
+            if (IsMouseOverCollider(mouseDetectCollider) && IsWithinEquipRange())
             {
                 // Enable the ui if in range and mouse targetting equipment
-                equipmentUI.UpdateEquipmentInfo(this);
+                 equipmentUI.UpdateEquipmentInfo(this);
 
                 // Check if the item is not equipped yet, and if it's not in the air
                 if (!IsEquipped && IsOnGround)
@@ -295,7 +310,11 @@ public class EquipmentBehaviour : MonoBehaviour
         IsEquipped = true;
         IsOnGround = false;
         equipmentPhysicsManager.Rb.isKinematic = true; // Set kinematic true to prevent gravity and other forces impacting object
-
+        
+        // Disable colliders to prevent collision events 
+        parentCollider.enabled = false;
+        mouseDetectCollider.enabled = false;   
+        
         // Start coroutine to set value of CanDrop bool after this frame ends
         StartCoroutine(EnableDropAfterFrame());
     }
@@ -310,6 +329,10 @@ public class EquipmentBehaviour : MonoBehaviour
         IsEquipped = false;
         CanDrop = false; // Set false to prevent calling again
         equipmentPhysicsManager.Rb.isKinematic = false; // Set false to apply gravity and other forces to parent object
+     
+        // Enable colliders to enable collision events
+        parentCollider.enabled = true;
+        mouseDetectCollider.enabled = true;
 
         // Set transform properties
         mainEquipmentObject.transform.parent = null; // First drop the parent
