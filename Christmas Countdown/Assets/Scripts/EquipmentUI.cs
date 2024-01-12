@@ -6,42 +6,111 @@ using UnityEngine;
 public class EquipmentUI : MonoBehaviour
 {
 
-    public TextMeshProUGUI textObject;
+    /* ------------------------------------------  VARIABLES ------------------------------------------- */
 
+
+    [Tooltip("TMP object attached to Canvas")]
+    [SerializeField] private TextMeshProUGUI textObject;
+
+    [Tooltip("EquipmentSystemController object in scene")]
     [SerializeField] private EquipmentSystemController controller;
 
+    [Tooltip("Desired width of the RectTransform of the TMP object")]
+    [SerializeField] private float rectTransformWidth;
+
+    [Tooltip("Desired height of the RectTransform of the TMP object")]
+    [SerializeField] private float rectTransformHeight;
+
+    [Tooltip("Desired position of the RectTransform of the TMP object")]
+    [SerializeField] private Vector3 rectTargetPosition;
+
+    // The current equipment being targeted by the UI (mouse, name, collider)
+    private EquipmentBehaviour currentEquipmentTarget;
+
+    // Reference to the RectTransform component of the TMP object
     private RectTransform rectTransform;
 
-    [SerializeField] private float transformWidth;
-    [SerializeField] private float transformHeight;
+    // String that holds a reference to the name of the current equipment, ui displays the name
+    private string currentEquipmentNameToDisplay;
 
-    [SerializeField] private Vector3 targetPosition;
+    // string that holds the instructions for player interaction, displayed below the name of equipment
+    private string interactInstructionsString;
 
-    private bool isTextDisplayed;
+    // Private bool to use for optimizing 
+    private bool isTextEnabled;
 
-    private string equipmentNameToDisplay;
 
-    private string fullString;
-    public string EquipmentNameToDisplay
+    /* ------------------------------------------  PROPERTIES ------------------------------------------- */
+
+    /// <summary>
+    /// Read only property for reference to the TMP object
+    /// </summary>
+    public TextMeshProUGUI TextObject
     {
-        get { return equipmentNameToDisplay; }
+        get { return textObject; }  
     }
 
-    public EquipmentBehaviour currentEquipmentTarget;
+    /// <summary>
+    /// Read-only property to get the width of the RectTransform
+    /// </summary>
+    public float RectTransformWidth
+    {
+        get { return rectTransformWidth; }
+    }
 
-    bool canDisplay;
+    /// <summary>
+    /// Read-only property to get the height of the RectTransform
+    /// </summary>
+    public float RectTransformHeight
+    {
+        get { return rectTransformHeight; }
+    }
+
+    /// <summary>
+    /// Read-only property to get the target position of the RectTransform
+    /// </summary>
+    public Vector3 RectTargetPosition
+    {
+        get { return rectTargetPosition; }
+    }
+
+    /// <summary>
+    /// Read only reference to the EquipmentBehaviour that's being targeted by this ui 
+    /// </summary>
+    public EquipmentBehaviour CurrentEquipmentTarget
+    {
+        get { return currentEquipmentTarget; }
+    }
+
+    /// <summary>
+    /// Read only string property to get the name of the current equipment thats being displayed
+    /// </summary>
+    public string CurrentEquipmentNameString
+    {
+        get { return currentEquipmentNameToDisplay; }
+    }
+
+    /// <summary>
+    /// Read only property to get the string holding the interact instructions
+    /// </summary>
+    public string InteractInstructionsString
+    {
+        get { return interactInstructionsString; }
+    }
+
+
+    /* ------------------------------------------  METHODS ------------------------------------------- */
+
+
+
     private void Start()
     {
         InitializeEquipmentUI();
     }
+
     public void InitializeEquipmentUI()
     {
         rectTransform = textObject.GetComponent<RectTransform>();
-
-        string equipOrSwapLeft = GetEquipOrSwapString(controller.LeftHand);
-        string equipOrSwapRight = GetEquipOrSwapString(controller.RightHand);
-
-        fullString = $" {controller.LeftHandInputKey} {equipOrSwapLeft} Left   |   {controller.RightHandInputKey} {equipOrSwapRight} Right";
 
         SetTransformProperties();
 
@@ -54,14 +123,11 @@ public class EquipmentUI : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        // Cast a ray from the mouse position
         if (Physics.Raycast(ray, out hit) && hit.collider == _colliderToCheck)
         {
-            // Mouse is over the specified collider
             return true;
         }
 
-        // Mouse is not over the specified collider
         return false;
     }
 
@@ -72,13 +138,14 @@ public class EquipmentUI : MonoBehaviour
         {
             if (!IsMouseOverCollider(currentEquipmentTarget.MouseDetectCollider))
             {
+                currentEquipmentTarget = null;
                 DisableEquipmentUI();
             }
             else
             {
                 if (currentEquipmentTarget.IsOnGround)
                 {
-                    EnableEquipmentUI(equipmentNameToDisplay, fullString);
+                    EnableEquipmentUI(currentEquipmentNameToDisplay, interactInstructionsString);
                 }
             }
         }
@@ -92,14 +159,14 @@ public class EquipmentUI : MonoBehaviour
     /// </summary>
     public void EnableEquipmentUI(string _equipmentName, string _instructionsText)
     {
-        if (isTextDisplayed)
+        if (isTextEnabled)
         {
             return;
         }
         else
         {
             UpdateEquipmentText(_equipmentName, _instructionsText);
-            isTextDisplayed = true;
+            isTextEnabled = true;
         }
     }
 
@@ -109,14 +176,14 @@ public class EquipmentUI : MonoBehaviour
     /// </summary>
     public void DisableEquipmentUI()
     {
-        if (!isTextDisplayed)
+        if (!isTextEnabled)
         {
             return;
         }
         else
         {
             UpdateEquipmentText(string.Empty, string.Empty);
-            isTextDisplayed = false;
+            isTextEnabled = false;
         }
     }
 
@@ -137,9 +204,9 @@ public class EquipmentUI : MonoBehaviour
             currentEquipmentTarget = _equipment;
 
             // Displlay the equipments name
-            equipmentNameToDisplay = _equipment.EquipmentData.EquipmentName;
+            currentEquipmentNameToDisplay = _equipment.EquipmentData.EquipmentName;
 
-            fullString = GetInstructionsString();
+            interactInstructionsString = GetInstructionsString();
         }
         else
         {
@@ -182,10 +249,10 @@ public class EquipmentUI : MonoBehaviour
     private void SetTransformProperties()
     {
         // Set the width and height of the RectTransform on both axis
-        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, transformWidth);
-        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, transformHeight);
+        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, rectTransformWidth);
+        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, rectTransformHeight);
 
         // Set the position to the desired target position (position based on anchors)
-        rectTransform.anchoredPosition = targetPosition;
+        rectTransform.anchoredPosition = rectTargetPosition;
     }
 }

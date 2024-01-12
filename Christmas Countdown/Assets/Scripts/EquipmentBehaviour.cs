@@ -22,7 +22,9 @@ public class EquipmentBehaviour : MonoBehaviour
     [Tooltip("Drag in object with the EquipmentSystemController attached")]
     [SerializeField] private EquipmentSystemController equipmentSystemController;
 
-    [SerializeField] private EquipmentUI uiObject;
+    [Space]
+    [Tooltip("Object that holds the EquipmentUI script")]
+    [SerializeField] private EquipmentUI equipmentUI;
 
     [Space]
     [Tooltip("Name of the layer for environmental objects")]
@@ -62,6 +64,12 @@ public class EquipmentBehaviour : MonoBehaviour
     public EquipmentSystemController EquipmentSystemController
     {
         get { return equipmentSystemController ?? throw new System.NullReferenceException("EquipmentSystemController is not assigned!"); }
+    }
+
+    // Read only property to reference the UI object on this behaviour
+    public EquipmentUI EquipmentUI
+    {
+        get { return equipmentUI; }
     }
 
     /// <summary>
@@ -246,7 +254,7 @@ public class EquipmentBehaviour : MonoBehaviour
             if (IsMouseOverCollider(parentCollider) && IsWithinEquipRange())
             {
                 // Enable the ui if in range and mouse targetting equipment
-                uiObject.UpdateEquipmentInfo(this);
+                equipmentUI.UpdateEquipmentInfo(this);
 
                 // Check if the item is not equipped yet, and if it's not in the air
                 if (!IsEquipped && IsOnGround)

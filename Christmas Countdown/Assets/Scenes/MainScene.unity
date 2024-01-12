@@ -621,6 +621,14 @@ PrefabInstance:
       value: ' Equip Left    '
       objectReference: {fileID: 0}
     - target: {fileID: 8557418953104911914, guid: 7f8f55b1574a58f4699d4e796163e8f8, type: 3}
+      propertyPath: equipmentUI
+      value: 
+      objectReference: {fileID: 1481329328}
+    - target: {fileID: 8557418953104911914, guid: 7f8f55b1574a58f4699d4e796163e8f8, type: 3}
+      propertyPath: equipmentData
+      value: 
+      objectReference: {fileID: 11400000, guid: 157ce8f1128d9e144b73c306afb9c925, type: 2}
+    - target: {fileID: 8557418953104911914, guid: 7f8f55b1574a58f4699d4e796163e8f8, type: 3}
       propertyPath: equipmentSystemController
       value: 
       objectReference: {fileID: 1064106617}
@@ -1658,6 +1666,10 @@ PrefabInstance:
       propertyPath: uiObject
       value: 
       objectReference: {fileID: 1481329328}
+    - target: {fileID: 8557418953104911914, guid: 7f8f55b1574a58f4699d4e796163e8f8, type: 3}
+      propertyPath: equipmentUI
+      value: 
+      objectReference: {fileID: 1481329328}
     - target: {fileID: 8557418953104911915, guid: 7f8f55b1574a58f4699d4e796163e8f8, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -2410,9 +2422,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textObject: {fileID: 1810350939}
   controller: {fileID: 1064106617}
-  transformWidth: 300
-  transformHeight: 300
-  targetPosition: {x: 0, y: -175, z: 0}
+  rectTransformWidth: 300
+  rectTransformHeight: 300
+  rectTargetPosition: {x: 0, y: -175, z: 0}
   currentEquipmentTarget: {fileID: 0}
 --- !u!4 &1481329329
 Transform:
