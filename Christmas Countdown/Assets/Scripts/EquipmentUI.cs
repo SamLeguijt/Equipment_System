@@ -8,12 +8,18 @@ public class EquipmentUI : MonoBehaviour
 
     /* ------------------------------------------  VARIABLES ------------------------------------------- */
 
+    [Header("Component references")]
+    [Space]
 
     [Tooltip("TMP object attached to Canvas")]
     [SerializeField] private TextMeshProUGUI equipmentTextObject;
 
     [Tooltip("EquipmentSystemController object in scene")]
     [SerializeField] private EquipmentSystemController equipSystemController;
+
+    [Space]
+    [Header("TMP object position properties")]
+    [Space]
 
     [Tooltip("Desired width of the RectTransform of the TMP object")]
     [SerializeField] private float rectTransformWidth;
@@ -23,6 +29,10 @@ public class EquipmentUI : MonoBehaviour
 
     [Tooltip("Desired position of the RectTransform of the TMP object")]
     [SerializeField] private Vector3 rectTargetPosition;
+
+    [Space]
+    [Header("Displayed text properties")]
+    [Space]
 
     [Tooltip("The word being displayed as text when hand is free ( {inputKey} to x Left hand/Right hand")]
     [SerializeField] private string equipActionWord;
