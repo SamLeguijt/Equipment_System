@@ -113,7 +113,7 @@ public class EquipmentUI : MonoBehaviour
     public string EquipActionWord
     {
         get { return equipActionWord; }
-        set { equipActionWord = value; }    
+        set { equipActionWord = value; }
     }
 
     /// <summary>
@@ -122,7 +122,7 @@ public class EquipmentUI : MonoBehaviour
     public string SwapActionWord
     {
         get { return swapActionWord; }
-        set { swapActionWord = value; } 
+        set { swapActionWord = value; }
     }
 
 
@@ -232,10 +232,10 @@ public class EquipmentUI : MonoBehaviour
     /// <param name="_newEquipment"> The equipment info being used to update the variables, called in EquipmentBehaviour class upon mouse collision and in range </param>
     public void UpdateEquipmentInfo(EquipmentBehaviour _newEquipment)
     {
-        // Prevent unnecessary calls if new equipment is already the current target
-        if (currentEquipmentTarget != _newEquipment)
+        // No equipment is being targeted currently
+        if (CurrentEquipmentTarget == null)
         {
-            // If not, set it to the current target first
+            // So set target to the new equipment 
             currentEquipmentTarget = _newEquipment;
 
             // Store the name of the new equipment by looking at its scriptable object
@@ -320,7 +320,7 @@ public class EquipmentUI : MonoBehaviour
     {
         // Get string based on equip status for both hands
         string leftHandText = GetEquipOrSwapString(equipSystemController.LeftHand); // Uses the references in the EquipmentSystemController to both hands
-        string rightHandText = GetEquipOrSwapString(equipSystemController.RightHand); 
+        string rightHandText = GetEquipOrSwapString(equipSystemController.RightHand);
 
         // Make the full string by combining the input keys for the hands, with the equip status, and the type of hand, with a symbol between them for eyecandy 
         string fullString = $" {equipSystemController.LeftHandInputKey} {leftHandText} Left   |   {equipSystemController.RightHandInputKey} {rightHandText} Right";
