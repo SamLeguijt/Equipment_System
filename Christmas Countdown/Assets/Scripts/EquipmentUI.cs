@@ -28,7 +28,10 @@ public class EquipmentUI : MonoBehaviour
     [SerializeField] private string equipActionWord;
 
     [Tooltip("The word being displayed as text when hand is not free ( {inputKey} to x Left hand/Right hand")]
-    [SerializeField] private string swapActionWord; 
+    [SerializeField] private string swapActionWord;
+
+    [Tooltip("Amount of empty lines between the weapon name and instructions string")]
+    [SerializeField] private int newLinesAmount = 1; // Default to 1
 
     // The current equipment being targeted by the UI (mouse, name, collider)
     private EquipmentBehaviour currentEquipmentTarget;
@@ -197,7 +200,7 @@ public class EquipmentUI : MonoBehaviour
         else // Text is not yet enabled
         {
             // Call method to display the new text, passing in both strings
-            UpdateTextBox(_equipmentName, _interactInstructions, true); // True to add a new line between strings
+            UpdateTextBox(_equipmentName, _interactInstructions, newLinesAmount); // True to add a new line between strings
 
             // Set bool for early returns if more calls to this method
             isTextEnabled = true;
@@ -215,7 +218,7 @@ public class EquipmentUI : MonoBehaviour
         else // Not disabled yet
         {
             // Call method to update the text box with empty strings (works better than disabling the object, that causes lag on re-enabling)
-            UpdateTextBox(string.Empty, string.Empty);
+            UpdateTextBox(string.Empty, string.Empty, 0);
 
             // Set bool for early returns when calling method again without changes
             isTextEnabled = false;
@@ -249,24 +252,26 @@ public class EquipmentUI : MonoBehaviour
 
 
     /// <summary>
-    /// Method that sets the text of the TMP object to the two input strings params
+    /// Method that sets the text of the TMP object to the two input strings params <br/>
+    /// Adds empty lines according to param
     /// </summary>
     /// <param name="_string1"> First string to display </param>
     /// <param name="_string2"> Second string to display</param>
-    /// <param name="_seperateLine"> Should the strings be seperated by a new line? Default to true </param>
-    private void UpdateTextBox(string _string1, string _string2, bool _seperateLine = true)
+    /// <param name="_newLinesAmount"> How many empty lines should be added between the two strings </param>
+    private void UpdateTextBox(string _string1, string _string2, int _newLinesAmount)
     {
-        // Should be seperated by new line
-        if (_seperateLine)
+        // Create new empty string
+        string newLines = "";
+
+        // Loop through the new lines amount
+        for (int i = 0; i < _newLinesAmount; i++)
         {
-            // Set text with a new line between the string
-            equipmentTextObject.SetText($"{_string1} \n {_string2}");
+            // Add new line to the string
+            newLines += "\n";
         }
-        else // Should not be seperate, just one full string
-        {
-            // Set text by making one line
-            equipmentTextObject.SetText($"{_string1} {_string2}");
-        }
+
+        // Set the text to the two strings, with the amount of new lines between them
+        equipmentTextObject.SetText($"{_string1} {newLines} {_string2}");
     }
 
     /// <summary>

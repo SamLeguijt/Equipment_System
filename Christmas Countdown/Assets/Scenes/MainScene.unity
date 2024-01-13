@@ -2300,9 +2300,10 @@ MonoBehaviour:
   equipSystemController: {fileID: 1064106617}
   rectTransformWidth: 300
   rectTransformHeight: 300
-  rectTargetPosition: {x: 0, y: -175, z: 0}
+  rectTargetPosition: {x: 0, y: -200, z: 0}
   equipActionWord: Equip
   swapActionWord: Swap
+  newLinesAmount: 1
 --- !u!4 &1481329329
 Transform:
   m_ObjectHideFlags: 0
