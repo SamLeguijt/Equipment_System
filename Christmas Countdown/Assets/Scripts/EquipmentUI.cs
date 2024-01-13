@@ -8,12 +8,18 @@ public class EquipmentUI : MonoBehaviour
 
     /* ------------------------------------------  VARIABLES ------------------------------------------- */
 
+    [Header("Component references")]
+    [Space]
 
     [Tooltip("TMP object attached to Canvas")]
     [SerializeField] private TextMeshProUGUI equipmentTextObject;
 
     [Tooltip("EquipmentSystemController object in scene")]
     [SerializeField] private EquipmentSystemController equipSystemController;
+
+    [Space]
+    [Header("TMP object position properties")]
+    [Space]
 
     [Tooltip("Desired width of the RectTransform of the TMP object")]
     [SerializeField] private float rectTransformWidth;
@@ -24,11 +30,18 @@ public class EquipmentUI : MonoBehaviour
     [Tooltip("Desired position of the RectTransform of the TMP object")]
     [SerializeField] private Vector3 rectTargetPosition;
 
+    [Space]
+    [Header("Displayed text properties")]
+    [Space]
+
     [Tooltip("The word being displayed as text when hand is free ( {inputKey} to x Left hand/Right hand")]
     [SerializeField] private string equipActionWord;
 
     [Tooltip("The word being displayed as text when hand is not free ( {inputKey} to x Left hand/Right hand")]
-    [SerializeField] private string swapActionWord; 
+    [SerializeField] private string swapActionWord;
+
+    [Tooltip("Amount of empty lines between the weapon name and instructions string")]
+    [SerializeField] private int newLinesAmount = 1; // Default to 1
 
     // The current equipment being targeted by the UI (mouse, name, collider)
     private EquipmentBehaviour currentEquipmentTarget;
@@ -110,7 +123,7 @@ public class EquipmentUI : MonoBehaviour
     public string EquipActionWord
     {
         get { return equipActionWord; }
-        set { equipActionWord = value; }    
+        set { equipActionWord = value; }
     }
 
     /// <summary>
@@ -119,7 +132,7 @@ public class EquipmentUI : MonoBehaviour
     public string SwapActionWord
     {
         get { return swapActionWord; }
-        set { swapActionWord = value; } 
+        set { swapActionWord = value; }
     }
 
 
@@ -197,7 +210,7 @@ public class EquipmentUI : MonoBehaviour
         else // Text is not yet enabled
         {
             // Call method to display the new text, passing in both strings
-            UpdateTextBox(_equipmentName, _interactInstructions, true); // True to add a new line between strings
+            UpdateTextBox(_equipmentName, _interactInstructions, newLinesAmount); // True to add a new line between strings
 
             // Set bool for early returns if more calls to this method
             isTextEnabled = true;
@@ -215,7 +228,7 @@ public class EquipmentUI : MonoBehaviour
         else // Not disabled yet
         {
             // Call method to update the text box with empty strings (works better than disabling the object, that causes lag on re-enabling)
-            UpdateTextBox(string.Empty, string.Empty);
+            UpdateTextBox(string.Empty, string.Empty, 0);
 
             // Set bool for early returns when calling method again without changes
             isTextEnabled = false;
@@ -229,10 +242,10 @@ public class EquipmentUI : MonoBehaviour
     /// <param name="_newEquipment"> The equipment info being used to update the variables, called in EquipmentBehaviour class upon mouse collision and in range </param>
     public void UpdateEquipmentInfo(EquipmentBehaviour _newEquipment)
     {
-        // Prevent unnecessary calls if new equipment is already the current target
-        if (currentEquipmentTarget != _newEquipment)
+        // No equipment is being targeted currently
+        if (CurrentEquipmentTarget == null)
         {
-            // If not, set it to the current target first
+            // So set target to the new equipment 
             currentEquipmentTarget = _newEquipment;
 
             // Store the name of the new equipment by looking at its scriptable object
@@ -249,24 +262,26 @@ public class EquipmentUI : MonoBehaviour
 
 
     /// <summary>
-    /// Method that sets the text of the TMP object to the two input strings params
+    /// Method that sets the text of the TMP object to the two input strings params <br/>
+    /// Adds empty lines according to param
     /// </summary>
     /// <param name="_string1"> First string to display </param>
     /// <param name="_string2"> Second string to display</param>
-    /// <param name="_seperateLine"> Should the strings be seperated by a new line? Default to true </param>
-    private void UpdateTextBox(string _string1, string _string2, bool _seperateLine = true)
+    /// <param name="_newLinesAmount"> How many empty lines should be added between the two strings </param>
+    private void UpdateTextBox(string _string1, string _string2, int _newLinesAmount)
     {
-        // Should be seperated by new line
-        if (_seperateLine)
+        // Create new empty string
+        string newLines = "";
+
+        // Loop through the new lines amount
+        for (int i = 0; i < _newLinesAmount; i++)
         {
-            // Set text with a new line between the string
-            equipmentTextObject.SetText($"{_string1} \n {_string2}");
+            // Add new line to the string
+            newLines += "\n";
         }
-        else // Should not be seperate, just one full string
-        {
-            // Set text by making one line
-            equipmentTextObject.SetText($"{_string1} {_string2}");
-        }
+
+        // Set the text to the two strings, with the amount of new lines between them
+        equipmentTextObject.SetText($"{_string1} {newLines} {_string2}");
     }
 
     /// <summary>
@@ -315,7 +330,7 @@ public class EquipmentUI : MonoBehaviour
     {
         // Get string based on equip status for both hands
         string leftHandText = GetEquipOrSwapString(equipSystemController.LeftHand); // Uses the references in the EquipmentSystemController to both hands
-        string rightHandText = GetEquipOrSwapString(equipSystemController.RightHand); 
+        string rightHandText = GetEquipOrSwapString(equipSystemController.RightHand);
 
         // Make the full string by combining the input keys for the hands, with the equip status, and the type of hand, with a symbol between them for eyecandy 
         string fullString = $" {equipSystemController.LeftHandInputKey} {leftHandText} Left   |   {equipSystemController.RightHandInputKey} {rightHandText} Right";
