@@ -17,4 +17,9 @@ public class ThrowablesEquipmentObject : BaseEquipmentObject
     {
         EquipmentType = EquipmentType.Throwable;
     }
+
+    public override void Activate()
+    {
+        Debug.Log("I am throwable activate");
+    }
 }

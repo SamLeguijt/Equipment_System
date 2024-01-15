@@ -16,4 +16,9 @@ public class AmmunitionEquipmentObject : BaseEquipmentObject
     {
         EquipmentType = EquipmentType.Ammunition;
     }
+
+    public override void Activate()
+    {
+        Debug.Log("I am Ammo activate");
+    }
 }

@@ -19,7 +19,7 @@ public class EquipmentBehaviour : MonoBehaviour
 
     [Header("References to components in scene")]
     [Space]
-    
+
     [Tooltip("Drag in object with the EquipmentSystemController attached")]
     [SerializeField] private EquipmentSystemController equipmentSystemController;
 
@@ -59,6 +59,7 @@ public class EquipmentBehaviour : MonoBehaviour
     private bool isEquipped; // Status of this object
     private bool canDrop; // Flag used for checking if object can be dropped
     private bool isOnGround; // Flag to determine if the equipment is grounded
+
 
 
     /* ------------------------------------------  PROPERTIES ------------------------------------------- */
@@ -116,7 +117,7 @@ public class EquipmentBehaviour : MonoBehaviour
     /// </summary>
     public BaseEquipmentObject EquipmentData
     {
-        get { return equipmentData ; }
+        get { return equipmentData; }
         private set { equipmentData = value; }
     }
 
@@ -178,6 +179,8 @@ public class EquipmentBehaviour : MonoBehaviour
         set { isOnGround = value; }
     }
 
+    public EquipmentActivation activation;
+
 
     /* ------------------------------------------  METHODS ------------------------------------------- */
 
@@ -213,6 +216,8 @@ public class EquipmentBehaviour : MonoBehaviour
         {
             InititializeEquipmentBehaviour();
         }
+
+        activation.Activate();
     }
 
 
@@ -270,7 +275,7 @@ public class EquipmentBehaviour : MonoBehaviour
     /// Handles equipment being available to pick up 
     /// </summary>
     private void Update()
-    {        
+    {
         // return if not within range, or if not targeting the object's collider
         if (!IsMouseOverCollider(mouseDetectCollider) || !IsWithinEquipRange())
         {
@@ -282,7 +287,7 @@ public class EquipmentBehaviour : MonoBehaviour
             if (IsMouseOverCollider(mouseDetectCollider) && IsWithinEquipRange())
             {
                 // Enable the ui if in range and mouse targetting equipment
-                 equipmentUI.UpdateEquipmentInfo(this);
+                equipmentUI.UpdateEquipmentInfo(this);
 
                 // Check if the item is not equipped yet, and if it's not in the air
                 if (!IsEquipped && IsOnGround)
@@ -310,11 +315,11 @@ public class EquipmentBehaviour : MonoBehaviour
         IsEquipped = true;
         IsOnGround = false;
         equipmentPhysicsManager.Rb.isKinematic = true; // Set kinematic true to prevent gravity and other forces impacting object
-        
+
         // Disable colliders to prevent collision events 
         parentCollider.enabled = false;
-        mouseDetectCollider.enabled = false;   
-        
+        mouseDetectCollider.enabled = false;
+
         // Start coroutine to set value of CanDrop bool after this frame ends
         StartCoroutine(EnableDropAfterFrame());
     }
@@ -329,7 +334,7 @@ public class EquipmentBehaviour : MonoBehaviour
         IsEquipped = false;
         CanDrop = false; // Set false to prevent calling again
         equipmentPhysicsManager.Rb.isKinematic = false; // Set false to apply gravity and other forces to parent object
-     
+
         // Enable colliders to enable collision events
         parentCollider.enabled = true;
         mouseDetectCollider.enabled = true;

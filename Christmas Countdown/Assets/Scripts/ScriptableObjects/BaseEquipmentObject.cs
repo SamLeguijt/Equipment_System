@@ -219,4 +219,6 @@ public abstract class BaseEquipmentObject : ScriptableObject
     /// Protected abstract OnEnable function to set individual equipment types on enable
     /// </summary>
     protected abstract void OnEnable();
+
+    public abstract void Activate();
 }
