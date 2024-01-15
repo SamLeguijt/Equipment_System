@@ -53,6 +53,8 @@ MonoBehaviour:
   mainEquipmentObject: {fileID: 0}
   equipmentData: {fileID: 11400000, guid: dee75ac26b3b4f94abbef7b96b4710a9, type: 2}
   mouseDetectCollider: {fileID: 4201167509315550619}
+  activation: {fileID: 0}
+  activationPrefab: {fileID: 1269775582735873541, guid: 8f1654ee355e59d478e55c727c954610, type: 3}
 --- !u!135 &4201167509315550619
 SphereCollider:
   m_ObjectHideFlags: 0
