@@ -8,12 +8,13 @@ using UnityEngine;
 /// </summary>
 public class EquipmentActivation : MonoBehaviour
 {
+
     public virtual void Activate()
     {
-        Debug.Log("Parent call to Activate");
 
     }
 
+    
 
     /* Add ref for base activation script to behaviour
      * In behaviour, checktype of data, then add corresponding child activation

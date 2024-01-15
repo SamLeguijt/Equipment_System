@@ -180,8 +180,6 @@ public class EquipmentBehaviour : MonoBehaviour
         set { isOnGround = value; }
     }
 
-    public GameObject activationPrefab;
-
 
     /* ------------------------------------------  METHODS ------------------------------------------- */
 
@@ -218,15 +216,6 @@ public class EquipmentBehaviour : MonoBehaviour
             InititializeEquipmentBehaviour();
         }
 
-        if (EquipmentData.EquipmentType == EquipmentType.Weapon)
-        {
-            GameObject a = Instantiate(activationPrefab, transform);
-            activation = a.GetComponent<WeaponActivation>();
-        }
-        else if (EquipmentData.EquipmentType == EquipmentType.Apparel)
-        {
-            activation = gameObject.AddComponent<ApparelActivation>();
-        }
     }
 
 
