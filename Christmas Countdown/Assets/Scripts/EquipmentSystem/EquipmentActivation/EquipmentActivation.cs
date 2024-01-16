@@ -12,10 +12,6 @@ public class EquipmentActivation : MonoBehaviour
     {
          EquipmentBehaviour equipment = GetComponent<EquipmentBehaviour>();
 
-        if (equipment.EquipmentData.EquipmentType == EquipmentType.Weapon)
-        {
-            ActivateWeapon(equipment);
-        }
     }
     public virtual void Activate()
     {

@@ -1829,6 +1829,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.447
       objectReference: {fileID: 0}
+    - target: {fileID: 2623189446994577243, guid: 7f8f55b1574a58f4699d4e796163e8f8, type: 3}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 3780945515249444240, guid: 6c9ce9205e6276c43994a59bf6ba7710, type: 3}
     - target: {fileID: 3485474070150780799, guid: 7f8f55b1574a58f4699d4e796163e8f8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.02009
@@ -1915,11 +1919,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f8f55b1574a58f4699d4e796163e8f8, type: 3}
---- !u!4 &912286883 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2411998423365053381, guid: 7f8f55b1574a58f4699d4e796163e8f8, type: 3}
-  m_PrefabInstance: {fileID: 912286882}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &913054532
 GameObject:
   m_ObjectHideFlags: 0
@@ -2000,7 +1999,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 3780945515249444240, guid: 6c9ce9205e6276c43994a59bf6ba7710, type: 3}
-  firepoint: {fileID: 0}
   firepointOffset: {x: 0, y: 0, z: 0}
   bulletRotation: {x: 0, y: 0, z: 0}
   bulletForce: 15
@@ -2603,29 +2601,6 @@ Transform:
   m_Father: {fileID: 1536794300}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1448147822 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8557418953104911913, guid: 7f8f55b1574a58f4699d4e796163e8f8, type: 3}
-  m_PrefabInstance: {fileID: 912286882}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1448147825
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1448147822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad518dd51eac6b54d996751e1853ff5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 3780945515249444240, guid: 6c9ce9205e6276c43994a59bf6ba7710, type: 3}
-  firepoint: {fileID: 912286883}
-  firepointOffset: {x: 0, y: 0, z: 0}
-  bulletRotation: {x: 0, y: 0, z: 0}
-  bulletForce: 15
-  maxHitRange: 50
 --- !u!1 &1481329327
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,7 +8,7 @@ public class WeaponActivation : EquipmentActivation
     [SerializeField] private GameObject bulletPrefab;
 
     [Tooltip("Transform point where bullets should fire from, without offset")]
-    [SerializeField] private Transform firepoint;
+     private Transform firepoint;
 
     [Tooltip("Offset in position for the firepoint where bullets should fire from")]
     [SerializeField] private Vector3 firepointOffset;
@@ -30,9 +30,10 @@ public class WeaponActivation : EquipmentActivation
         transform.localPosition = Vector3.zero;
     }
 
-    public void Inittialize(Transform _targetFirepoint)
+    public void Initialize(Transform _targetFirepoint, GameObject _bullet)
     {
-
+        firepoint = _targetFirepoint;
+        bulletPrefab = _bullet;
     }
 
     /// <summary>
