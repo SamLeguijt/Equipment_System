@@ -17,9 +17,4 @@ public class ToolEquipmentObject : BaseEquipmentObject
     {
         EquipmentType = EquipmentType.Tool;
     }
-
-    public override void Activate()
-    {
-        Debug.Log("I am tool activate");
-    }
 }

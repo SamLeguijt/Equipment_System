@@ -9,9 +9,13 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Weapon Equipment", menuName = "Equipment/Weapon")]
 public class WeaponEquipmentObject : BaseEquipmentObject
 {
-    public GameObject prefab;
+    [Space]
+    [Header("WeaponEquipment specifics")]
+    public GameObject bulletToFire;
 
-    public IEquipmentActivation activationLogic;
+    public float maxHitRange;
+
+    public float bulletSpeed;
 
     /// <summary>
     /// OnEnable method to set weapon type automatically when creating new object of this type
@@ -20,24 +24,4 @@ public class WeaponEquipmentObject : BaseEquipmentObject
     {
         EquipmentType = EquipmentType.Weapon;
     }
-
-    public override void Activate()
-    {
-
-    }
-
-
-    /* Create base class for Activation
-     * Make child clases for weapon and tools
-     * Assign variable of type base class to Behaviour script
-     * Check what activation child it is 
-     * Cast? then call Activate method from the 
-     * 
-     * 
-     * Base class has Activate method. 
-     * Child classes implement in own way.
-     * When calling the Activate from the base class,
-     * it does the child's activate method 
-     * 
-     */
 }

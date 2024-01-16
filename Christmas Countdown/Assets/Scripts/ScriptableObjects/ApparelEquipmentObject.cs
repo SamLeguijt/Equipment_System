@@ -17,9 +17,4 @@ public class ApparelEquipmentObject : BaseEquipmentObject
     {
         EquipmentType = EquipmentType.Apparel;
     }
-
-    public override void Activate()
-    {
-        Debug.Log("I am apparel activate");
-    }
 }

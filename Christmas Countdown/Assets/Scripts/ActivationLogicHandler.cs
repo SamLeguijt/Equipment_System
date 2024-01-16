@@ -5,17 +5,20 @@ using UnityEngine;
 
 public class ActivationLogicHandler : MonoBehaviour
 {
-    /* Prefab object child of EquipmentObject 
-* 
-* Adds correct EquipmentActivation to the object, based on type
-* Initializes the Activation script, passing in firepoint transform (referenced on this object, as a child as well) 
-* Adds the activation to the EquipmentBheaviour's gameobject, then destroys the child object (this after initializing the activation)
-* 
-*/
+    [Header("WeaponActivation variables")]
+    [Space]
+    [SerializeField] private Transform weaponFirepoint;
+    [Space]
+
+    [Header("AmmunitionActivation variables")]
+    [Header("ThrowableActivation variables")]
+    [Header("ToolActivation variables")]
+    [Header("ApparelActivation variables")]
+
+
 
     private EquipmentBehaviour equipmentBehaviour;
-    public Transform weaponFirepoint;
-    public GameObject bullet;
+  
     // Start is called before the first frame update
     void Start()
     {
@@ -50,12 +53,13 @@ public class ActivationLogicHandler : MonoBehaviour
         }
     }
 
+    
     private void InitializeWeaponActivation()
     {
         WeaponActivation activation = equipmentBehaviour.AddComponent<WeaponActivation>();
         equipmentBehaviour.activationLogic = activation;
-
-        activation.Initialize(weaponFirepoint, bullet);
+        
+        activation.Initialize(weaponFirepoint);
     }
 
     private void InitializeAmmunitionActivation()

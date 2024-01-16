@@ -30,10 +30,33 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
         transform.localPosition = Vector3.zero;
     }
 
-    public void Initialize(Transform _targetFirepoint, GameObject _bullet)
+    /// <summary>
+    /// Public method gets called when this script gets added to equipment object <br/>
+    /// Sets the firepoint and bullet to fire of this weapon
+    /// </summary>
+    /// <param name="_targetFirepoint"></param>
+    public void Initialize(Transform _targetFirepoint)
     {
+        // First get our equipmentBehaviour attached to same object
+        EquipmentBehaviour behaviour = GetComponent<EquipmentBehaviour>();
+
+        // Get the data of our object, casted as weapon (weapon activation so is a weapon)
+        WeaponEquipmentObject data = (WeaponEquipmentObject)behaviour.EquipmentData;
+
+        // Set this firepoint to the param
         firepoint = _targetFirepoint;
-        bulletPrefab = _bullet;
+
+        SetWeaponValues(data);
+    }
+
+    private void SetWeaponValues(WeaponEquipmentObject _weaponData)
+    {
+        // Set the bullet for this activation to the reference on the data
+        bulletPrefab = _weaponData.bulletToFire;
+
+        bulletForce = _weaponData.bulletSpeed;
+
+        maxHitRange = _weaponData.maxHitRange;
     }
 
     /// <summary>
