@@ -30,6 +30,10 @@ public class WeaponActivation : EquipmentActivation
         transform.localPosition = Vector3.zero;
     }
 
+    public void Inittialize(Transform _targetFirepoint)
+    {
+
+    }
 
     /// <summary>
     /// Overridden method that runs when player input is received <br/>

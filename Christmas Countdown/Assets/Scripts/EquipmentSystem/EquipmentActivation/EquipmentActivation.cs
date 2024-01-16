@@ -8,12 +8,24 @@ using UnityEngine;
 /// </summary>
 public class EquipmentActivation : MonoBehaviour
 {
+    private void Start()
+    {
+         EquipmentBehaviour equipment = GetComponent<EquipmentBehaviour>();
 
+        if (equipment.EquipmentData.EquipmentType == EquipmentType.Weapon)
+        {
+            ActivateWeapon(equipment);
+        }
+    }
     public virtual void Activate()
     {
 
     }
 
+    public virtual void ActivateWeapon(Transform _targetFirepoint)
+    {
+
+    }
     
 
     /* Add ref for base activation script to behaviour
