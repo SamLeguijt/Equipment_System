@@ -130,7 +130,7 @@ public class EquipmentSystemController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.X))
             {
-                _hand.CurrentEquipment.activation.Activate();
+                _hand.CurrentEquipment.activationLogic.Activate();
             }
         }
     }

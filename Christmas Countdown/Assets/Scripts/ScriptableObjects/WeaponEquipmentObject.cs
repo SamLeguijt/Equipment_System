@@ -11,7 +11,7 @@ public class WeaponEquipmentObject : BaseEquipmentObject
 {
     public GameObject prefab;
 
-    public EquipmentActivation activationLogic;
+    public IEquipmentActivation activationLogic;
 
     /// <summary>
     /// OnEnable method to set weapon type automatically when creating new object of this type

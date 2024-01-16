@@ -54,7 +54,7 @@ public class EquipmentBehaviour : MonoBehaviour
     private Collider parentCollider; // Store collider of the parent object
     public Collider mouseDetectCollider;
     private Transform player; // Reference to the player for distance and orientation
-    public EquipmentActivation activation;
+    public IEquipmentActivation activationLogic;
 
     // Bools for checking status of this object, used for properties
     private bool isEquipped; // Status of this object

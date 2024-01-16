@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponActivation : EquipmentActivation
+public class WeaponActivation : MonoBehaviour, IEquipmentActivation
 {
     [Tooltip("Prefab of the bullet object to clone upon firing")]
     [SerializeField] private GameObject bulletPrefab;
@@ -40,7 +40,7 @@ public class WeaponActivation : EquipmentActivation
     /// Overridden method that runs when player input is received <br/>
     /// Shoots a bullet toward the mouse cursor
     /// </summary>
-    public override void Activate()
+    public void Activate()
     {
         // Call method to fire a bullet upon activation
         FireBullet();
