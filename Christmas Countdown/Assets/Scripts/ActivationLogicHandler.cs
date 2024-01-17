@@ -86,11 +86,8 @@ public class ActivationLogicHandler : MonoBehaviour
         // Add a WeaponActivation to the equipmentBehaviour's gameobject
         WeaponActivation activationScript = equipmentBehaviour.gameObject.AddComponent<WeaponActivation>();
 
-        // Set the equipmentBehaviour's reference to EquipmentActivation to the specific type of activation
-        equipmentBehaviour.activationLogic = activationScript;
-        
         // Call Initialize method from the specific activation script, passing in the firepoint as firepoint
-        activationScript.Initialize(weaponFirepoint);
+        activationScript.Initialize(equipmentBehaviour, weaponFirepoint);
     }
 
 

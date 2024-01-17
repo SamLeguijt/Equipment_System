@@ -24,16 +24,12 @@ MonoBehaviour:
   unequippedLocalScale: {x: 1, y: 1, z: 1}
   equipmentDropForce: {x: 3, y: 3}
   equipDistance: 3
-  toolType: 0
-  lightRange: 0
-  spotAngle: 0
-  lightIntensity: 0
-  indirectMultiplier: 0
+  toolType: 1
+  spotAngle: 180
+  lightRange: 100
+  lightIntensity: 1
   lightType: 0
-  lightMode: 0
-  lightShadowType: 0
-  drawLightHalo: 0
   lightRenderMode: 0
   lightCullingmask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2147483647

@@ -22,13 +22,12 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
     /// Sets the firepoint and bullet to fire of this weapon
     /// </summary>
     /// <param name="_targetFirepoint"></param>
-    public void Initialize(Transform _targetFirepoint)
+    public void Initialize(EquipmentBehaviour _myEquipment, Transform _targetFirepoint)
     {
-        // First get our equipmentBehaviour attached to same object
-        EquipmentBehaviour behaviour = GetComponent<EquipmentBehaviour>();
+        // Get the tooldata in correct type by casting the behaviour's data reference
+        weaponData = (WeaponEquipmentObject)_myEquipment.EquipmentData;
 
-        // Set our weapon data according to our equipment behaviour, casted in correct type
-        weaponData = (WeaponEquipmentObject)behaviour.EquipmentData;
+        _myEquipment.activationLogic = this;
 
         // Set this firepoint to the param
         firepoint = _targetFirepoint;

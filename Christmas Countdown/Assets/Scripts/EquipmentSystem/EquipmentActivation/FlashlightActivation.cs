@@ -39,12 +39,18 @@ public class FlashlightActivation : ToolActivation
     {
         if (flashlightData != null)
         {
-            _light.type = LightType.Spot;
+            _light.spotAngle = flashlightData.SpotAngle;
 
-            _light.intensity = 30f;
+            _light.range = flashlightData.LightRange;
 
+            _light.intensity = flashlightData.LightIntensity;   
+
+            _light.type = flashlightData.LightType;
+
+             _light.renderMode = flashlightData.LightRenderMode;    
+
+            _light.cullingMask = flashlightData.LightCullingMask;   
         }
-
 
         return _light;
     }
