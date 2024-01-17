@@ -12,12 +12,19 @@ using UnityEngine.Experimental.GlobalIllumination;
 public class ToolEquipmentObject : BaseEquipmentObject
 {
 
+    /* ------------------------------------------  VARIABLES ------------------------------------------- */
+
+
     [Space]
     [Header("-----------------------  ToolEquipment specifics   -----------------------------------")]
     [Space]
 
     [Tooltip("Type of this tool")]
     [SerializeField] private TypeOfTool toolType;
+
+
+    /* ------------------------------------------  PROPERTIES ------------------------------------------- */
+
 
     /// <summary>
     /// Get type of tool, protected set to set in children classes
@@ -28,6 +35,10 @@ public class ToolEquipmentObject : BaseEquipmentObject
         protected set { toolType = value; }
     }
 
+
+    /* ------------------------------------------  METHODS ------------------------------------------- */
+
+
     /// <summary>
     /// Implement abstract OnEnable function from base class to set type when creating object
     /// </summary>
@@ -35,13 +46,13 @@ public class ToolEquipmentObject : BaseEquipmentObject
     {
         EquipmentType = EquipmentType.Tool;
     }
+}
 
-    /// <summary>
-    /// Enum for making types of tools 
-    /// </summary>
-    public enum TypeOfTool
-    {
-        Other,
-        Flashlight
-    }
+/// <summary>
+/// Enum for making types of tools, public and outside of class for global access 
+/// </summary>
+public enum TypeOfTool
+{
+    Other,
+    Flashlight
 }
