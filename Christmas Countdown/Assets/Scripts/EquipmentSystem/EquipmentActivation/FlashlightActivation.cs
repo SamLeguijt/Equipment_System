@@ -10,6 +10,7 @@ public class FlashlightActivation : ToolActivation
 
     // Reference to the ScriptableObject data for the light
     private FlashlightObject flashlightData;
+    private EquipmentBehaviour equipmentBehaviour;
 
     /// <summary>
     /// Overridden method to initialize this script, sets activation logic of behaviour to this and sets the light settings according to the data
@@ -17,11 +18,13 @@ public class FlashlightActivation : ToolActivation
     /// <param name="_myEquipment"></param>
     public override void Initialize(EquipmentBehaviour _myEquipment, Transform _lightFirepoint)
     {
+        equipmentBehaviour = _myEquipment;
+
         // Set activation logic to this
-        _myEquipment.activationLogic = this;
+        equipmentBehaviour.activationLogic = this;
 
         // Cast the data as FlashlightObject to access the specific properties
-        flashlightData = (FlashlightObject)_myEquipment.EquipmentData;
+        flashlightData = (FlashlightObject)equipmentBehaviour.EquipmentData;
 
         // Add a new Light component to the transform of the behaviour script
         Light newLight = _lightFirepoint.AddComponent<Light>();
@@ -42,12 +45,28 @@ public class FlashlightActivation : ToolActivation
     }
 
     /// <summary>
+    /// Handles auto disabling light on drop
+    /// </summary>
+    private void Update()
+    {
+        // If we're equipped, do nothing and return
+        if (equipmentBehaviour.IsEquipped) return;
+        else // No longer equipped, so disable the light
+        {
+            // Disable light if enabled
+            if (myLight.enabled)
+            {
+                myLight.enabled = false;
+            }
+        }
+    }
+
+    /// <summary>
     /// Method for turning the flashlight on/off, based on current status
     /// </summary>
     private void ToggleFlashlight()
     {
         myLight.enabled = !myLight.enabled;
-
     }
 
     /// <summary>
