@@ -1,36 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ToolActivation : MonoBehaviour, IEquipmentActivation
 {
-    private bool isLightOn;
-
-    private Light lightObject;
-
+    // Reference to the ToolEquipmentObject ScriptableObject for data
     private ToolEquipmentObject toolData;
 
-    public void Initialize(Light _light)
+    /// <summary>
+    /// Virtual method to override in children classes <br/>
+    /// Sets the toolData to the behaviours data if tool != flashlight, else adds flashlightActivation and removes this 
+    /// </summary>
+    /// <param name="_myEquipment"></param>
+    public virtual void Initialize(EquipmentBehaviour _myEquipment)
     {
-        // First get our equipmentBehaviour attached to same object
-        EquipmentBehaviour behaviour = GetComponent<EquipmentBehaviour>();
+        // Get the tooldata in correct type by casting the behaviour's data reference
+        toolData = (ToolEquipmentObject)_myEquipment.EquipmentData;
 
-        // Set our weapon data according to our equipment behaviour, casted in correct type
-        toolData = (ToolEquipmentObject)behaviour.EquipmentData;
+        // Check if the type of tool is a flahlight
+        if (toolData is FlashlightObject) // We use 'is' instead of checking ToolType to get the type of scriptable object
+        {            
+            // If it is, add a FlashLightActivation to the behaviour's object, and
+            FlashlightActivation light = _myEquipment.AddComponent<FlashlightActivation>();
 
-        SetLightSettings(_light);
+            // Call method to initialize the FlashlightActivation
+            light.Initialize(_myEquipment);
+            
+            // Disable this script since we're using the child script 
+            this.enabled= false;
+        }
+        else // This tool is not a flashlight
+        {
+            // Set activationlogic of behaviour to this so it will call this activaiton method
+            _myEquipment.activationLogic = this;
+        }
     }
 
-    public void Activate()
+    public virtual void Activate()
     {
-        isLightOn = true;
-    }
-
-    private Light SetLightSettings(Light _light)
-    {
-        _light.type = LightType.Spot;
-        
-
-        return _light;
+        Debug.Log("tool activate");
     }
 }

@@ -133,13 +133,11 @@ public class ActivationLogicHandler : MonoBehaviour
         ToolActivation activation = equipmentBehaviour.AddComponent<ToolActivation>();
 
         // Set the equipmentBehaviour's reference to activation interface to the specific activation script
-        equipmentBehaviour.activationLogic = activation;
+       // equipmentBehaviour.activationLogic = activation;
 
         // Add a light component to the behaviour object
-        Light light = equipmentBehaviour.AddComponent<Light>();
-
         // Call initialize method from specific script, sending the new light as reference
-        activation.Initialize(light);
+        activation.Initialize(equipmentBehaviour);
     }
 
     /// <summary>

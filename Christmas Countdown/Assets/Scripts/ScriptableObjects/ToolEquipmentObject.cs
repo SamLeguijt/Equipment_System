@@ -12,24 +12,21 @@ using UnityEngine.Experimental.GlobalIllumination;
 public class ToolEquipmentObject : BaseEquipmentObject
 {
 
-
     [Space]
-    [Header("-----------------------  WeaponEquipment specifics   -----------------------------------")]
+    [Header("-----------------------  ToolEquipment specifics   -----------------------------------")]
     [Space]
 
-    private UnityEngine.LightType lightType;
-    private float lightRange;
-    private float spotAngle;
-    private LightMode lightMode;
-    private float lightIntensity;
-    private float indirectMultiplier;
-    
-    LightShadows lightShadowType;
-    private bool drawLightHalo;
+    [Tooltip("Type of this tool")]
+    [SerializeField] private TypeOfTool toolType;
 
-private bool drawShadows;
-
-
+    /// <summary>
+    /// Get type of tool, protected set to set in children classes
+    /// </summary>
+    public TypeOfTool ToolType
+    {
+        get { return toolType; }
+        protected set { toolType = value; }
+    }
 
     /// <summary>
     /// Implement abstract OnEnable function from base class to set type when creating object
@@ -37,6 +34,14 @@ private bool drawShadows;
     protected override void OnEnable()
     {
         EquipmentType = EquipmentType.Tool;
+    }
 
+    /// <summary>
+    /// Enum for making types of tools 
+    /// </summary>
+    public enum TypeOfTool
+    {
+        Other,
+        Flashlight
     }
 }

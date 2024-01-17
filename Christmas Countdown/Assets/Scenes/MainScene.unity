@@ -2490,7 +2490,7 @@ PrefabInstance:
     - target: {fileID: 8557418953104911914, guid: 7f8f55b1574a58f4699d4e796163e8f8, type: 3}
       propertyPath: equipmentData
       value: 
-      objectReference: {fileID: 11400000, guid: 0f3461fd888330a49b577e4f64b8d672, type: 2}
+      objectReference: {fileID: 11400000, guid: 4cbece89ddad8f54a977b9ec9e6b09e3, type: 2}
     - target: {fileID: 8557418953104911914, guid: 7f8f55b1574a58f4699d4e796163e8f8, type: 3}
       propertyPath: mainEquipmentObject
       value: 

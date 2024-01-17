@@ -9,18 +9,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d0d8675b53b91048af9d6a5aeb04ec0, type: 3}
+  m_Script: {fileID: 11500000, guid: fe349731825b6b147977bc50c1bbb609, type: 3}
   m_Name: Flashlight
   m_EditorClassIdentifier: 
   equipmentName: Flashlight
   equipmentDescription: 
-  leftHandPositionOffset: {x: -0.2, y: 0, z: 1.5}
-  rightHandPositionOffset: {x: 0.2, y: 0, z: 1.5}
+  leftHandPositionOffset: {x: 0, y: 0, z: 0}
+  rightHandPositionOffset: {x: 0, y: 0, z: 0}
   equippedRotation: {x: 0, y: 270, z: 270}
   unequippedRotation: {x: 90, y: 0, z: 0}
-  maxRotateTorqueSpeed: {x: 2, y: 2, z: 0}
-  rotateToMouseSpeed: 18.6
+  maxRotateTorqueSpeed: {x: 2.5, y: 3, z: 0}
+  rotateToMouseSpeed: 18.4
   equippedLocalScale: {x: 1, y: 1, z: 1}
   unequippedLocalScale: {x: 1, y: 1, z: 1}
   equipmentDropForce: {x: 3, y: 3}
   equipDistance: 3
+  toolType: 0
+  lightRange: 0
+  spotAngle: 0
+  lightIntensity: 0
+  indirectMultiplier: 0
+  lightType: 0
+  lightMode: 0
+  lightShadowType: 0
+  drawLightHalo: 0
+  lightRenderMode: 0
+  lightCullingmask:
+    serializedVersion: 2
+    m_Bits: 0
