@@ -181,11 +181,6 @@ public class EquipmentSystemController : MonoBehaviour
         HandleCurrentEquipment(leftHand);
         HandleCurrentEquipment(rightHand);
 
-        CheckEmptyHandActivationInput(LeftHand);
-        CheckEmptyHandActivationInput(RightHand);
-
-        Debug.Log(LeftHand.CurrentEquipment);
-        Debug.Log(RightHand.CurrentEquipment);
     }
 
     public bool CheckEmptyHandActivationInput(Hand _hand)
@@ -197,7 +192,6 @@ public class EquipmentSystemController : MonoBehaviour
 
             if (Input.GetKeyDown(targetKey))
             {
-                Debug.Log($"{_hand.HandType} empty activation");
                 return true;
             }
         }

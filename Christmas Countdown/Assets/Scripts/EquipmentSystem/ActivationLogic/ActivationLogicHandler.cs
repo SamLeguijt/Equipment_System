@@ -12,16 +12,16 @@ public class ActivationLogicHandler : MonoBehaviour
     private EquipmentBehaviour equipmentBehaviour;
 
     // Start is called before the first frame update
-    void Start()
+    public void Initialize(EquipmentBehaviour _equipment)
     {
-        // Get the equipment behaviour from this object
-        equipmentBehaviour = GetComponentInParent<EquipmentBehaviour>();
+
+        equipmentBehaviour = _equipment;
 
         // Call method to add the correct activation logic
         AddActivationLogic(equipmentBehaviour);
 
         //Destroy this object after adding the activation logic since we have no use of it no more
-        Destroy(gameObject,2f);
+        Destroy(gameObject, 2f);
     }
 
     /// <summary>

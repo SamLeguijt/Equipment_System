@@ -35,7 +35,7 @@ public class ApparelActivation : MonoBehaviour, IEquipmentActivation
         myData = (ApparelEquipmentObject)myEquipBehaviour.EquipmentData;
 
         system = myEquipBehaviour.EquipmentSystemController;
-        
+
         // Get transform of the camera
         camTransform = Camera.main.transform;
 
@@ -45,6 +45,7 @@ public class ApparelActivation : MonoBehaviour, IEquipmentActivation
     }
     public void Activate()
     {
+
         if (!isOnHead)
         {
             EquipToHead(headTransform);
@@ -55,12 +56,8 @@ public class ApparelActivation : MonoBehaviour, IEquipmentActivation
 
     private void Update()
     {
-        EquipmentSystemController system = myEquipBehaviour.EquipmentSystemController;
-
-
-        if (isOnHead && system != null)
+        if (isOnHead)
         {
-            Debug.Log("Call to update");
             HandleEmptyHandEquip(system.LeftHand);
             HandleEmptyHandEquip(system.RightHand);
         }
@@ -68,13 +65,9 @@ public class ApparelActivation : MonoBehaviour, IEquipmentActivation
 
     private void HandleEmptyHandEquip(Hand _hand)
     {
-        EquipmentSystemController system = myEquipBehaviour.EquipmentSystemController;
 
         if (system.CheckEmptyHandActivationInput(_hand))
         {
-            Debug.Log($"{_hand.HandType} empty activation in activatiobs");
-
-
             system.Equip(myEquipBehaviour, _hand);
             isOnHead = false;
         }
@@ -88,8 +81,6 @@ public class ApparelActivation : MonoBehaviour, IEquipmentActivation
     /// <param name="_target"></param>
     private void EquipToHead(Transform _target)
     {
-        EquipmentSystemController system = myEquipBehaviour.EquipmentSystemController;
-
         headTransform.position = camTransform.position;
         headTransform.SetParent(camTransform);
 

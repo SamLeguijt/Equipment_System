@@ -62,6 +62,7 @@ public class EquipmentBehaviour : MonoBehaviour
     private bool canDrop; // Flag used for checking if object can be dropped
     private bool isOnGround; // Flag to determine if the equipment is grounded
 
+    public ActivationLogicHandler activationHandler;
 
 
     /* ------------------------------------------  PROPERTIES ------------------------------------------- */
@@ -203,6 +204,8 @@ public class EquipmentBehaviour : MonoBehaviour
         if (equipmentUI == null)
             equipmentUI = FindObjectOfType<EquipmentUI>();
 
+        activationHandler = GetComponentInChildren<ActivationLogicHandler>();
+
         // First set parent object to the main object slot
         mainEquipmentObject = transform.parent.gameObject;
 
@@ -213,7 +216,7 @@ public class EquipmentBehaviour : MonoBehaviour
         parentCollider = mainEquipmentObject.GetComponent<Collider>();
 
         // Check if any components and references are missing
-        if (equipmentSystemController == null || equipmentUI == null || mainEquipmentObject == null || EquipmentData == null || equipmentPhysicsManager == null || player == null || parentCollider == null || mouseDetectCollider == null)
+        if (equipmentSystemController == null || equipmentUI == null || mainEquipmentObject == null || EquipmentData == null || equipmentPhysicsManager == null || player == null || parentCollider == null || mouseDetectCollider == null || activationHandler == null)
         {
             gameObject.transform.parent.gameObject.SetActive(false);
             throw new System.Exception($"One or more components and references are missing from {gameObject.transform.parent.name}! Please assign components, then re-run. Disabling object for now.");
@@ -232,6 +235,8 @@ public class EquipmentBehaviour : MonoBehaviour
     /// </summary>
     private void InititializeEquipmentBehaviour()
     {
+        activationHandler.Initialize(this);
+
         // Set our parent to the equipment layer to be able to pick up when needed
         mainEquipmentObject.gameObject.layer = LayerMask.NameToLayer(MainEquipmentLayerName);
 
@@ -244,7 +249,6 @@ public class EquipmentBehaviour : MonoBehaviour
 
         // Set position of this object to the main object position as reset
         SetObjectPosition(gameObject.transform, mainEquipmentObject.transform.position);
-
     }
 
     /// <summary>
