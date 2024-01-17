@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe349731825b6b147977bc50c1bbb609, type: 3}
+  m_Name: Flashlight
+  m_EditorClassIdentifier: 
+  equipmentName: Flashlight
+  equipmentDescription: 
+  leftHandPositionOffset: {x: 0, y: 0, z: 0}
+  rightHandPositionOffset: {x: 0, y: 0, z: 0}
+  equippedRotation: {x: 0, y: 270, z: 270}
+  unequippedRotation: {x: 90, y: 0, z: 0}
+  maxRotateTorqueSpeed: {x: 2.5, y: 3, z: 0}
+  rotateToMouseSpeed: 18.4
+  equippedLocalScale: {x: 4, y: 4, z: 4}
+  unequippedLocalScale: {x: 1, y: 1, z: 1}
+  equipmentDropForce: {x: 3, y: 3}
+  equipDistance: 3
+  toolType: 1
+  lightObjectPrefab: {fileID: 3350217513762584097, guid: 404537d667ad3d947a1e54853fd723d7, type: 3}
+  spotAngle: 30
+  lightRange: 30
+  lightIntensity: 5
+  lightColor: {r: 0.9245283, g: 0.8482309, b: 0.44045925, a: 0.69411767}
+  lightType: 0
+  lightRenderMode: 0
+  lightCullingmask:
+    serializedVersion: 2
+    m_Bits: 2147483647
+  lightRotation: {x: 0, y: 180, z: 0}
