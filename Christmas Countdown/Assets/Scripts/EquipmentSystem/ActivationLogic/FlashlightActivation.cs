@@ -95,7 +95,9 @@ public class FlashlightActivation : ToolActivation
 
             _light.cullingMask = flashlightData.LightCullingMask;
 
-            _light.color = flashlightData.LightColor;   
+            _light.color = flashlightData.LightColor;
+
+            _light.transform.rotation = Quaternion.Euler(flashlightData.LightRotation);
         }
 
         // Return the light with new settings

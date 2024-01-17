@@ -54,6 +54,7 @@ public class EquipmentBehaviour : MonoBehaviour
     private Collider parentCollider; // Store collider of the parent object
     public Collider mouseDetectCollider;
     private Transform player; // Reference to the player for distance and orientation
+    private Hand currentHand;
     public IEquipmentActivation activationLogic;
 
     // Bools for checking status of this object, used for properties
@@ -149,6 +150,12 @@ public class EquipmentBehaviour : MonoBehaviour
     {
         // Get player if not null, else throw null reference exception with message
         get { return player; }
+    }
+
+    public Hand CurrentHand
+    {
+        get { return currentHand; }
+        private set {  currentHand = value; }   
     }
 
     /// <summary>
@@ -305,10 +312,11 @@ public class EquipmentBehaviour : MonoBehaviour
     public void OnEquip(Hand _targetHand)
     {
         // Set transform properties
-        SetObjectScale(MainEquipmentObject.transform, EquipmentData.EquippedLocalScale); // First set scale before parenting
         _targetHand.SetObjectToHandPosition(this); // Call method to reposition and set hand as parent
+        SetObjectScale(MainEquipmentObject.transform, EquipmentData.EquippedLocalScale); // First set scale before parenting
         SetObjectRotation(MainEquipmentObject.transform, EquipmentData.EquippedRotation); // Lastly, set the local rotation when in hand
 
+        CurrentHand = _targetHand;
         // Set value of bools true
         IsEquipped = true;
         IsOnGround = false;

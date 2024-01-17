@@ -180,6 +180,9 @@ public class EquipmentSystemController : MonoBehaviour
         // Handle the current equipment for both hands in update
         HandleCurrentEquipment(leftHand);
         HandleCurrentEquipment(rightHand);
+
+        Debug.Log(LeftHand.CurrentEquipment); 
+        Debug.Log(RightHand.CurrentEquipment); 
     }
 
     /// <summary>
@@ -218,7 +221,7 @@ public class EquipmentSystemController : MonoBehaviour
     /// </summary>
     /// <param name="_equipment">  Equipment target </param>
     /// <param name="_hand"> Hand to put target in </param>
-    private void Equip(EquipmentBehaviour _equipment, Hand _hand)
+    public void Equip(EquipmentBehaviour _equipment, Hand _hand)
     {
         // Call method from EquipmentBehaviour class to set additional info
         _equipment.OnEquip(_hand);
@@ -293,7 +296,7 @@ public class EquipmentSystemController : MonoBehaviour
     /// </summary>
     /// <param name="_hand"> Hand to check it's input </param>
     /// <param name="_equipment"> Equipment to be equipped in the hand</param>
-    private void CheckForEquipInput(Hand _hand, EquipmentBehaviour _equipment)
+    public void CheckForEquipInput(Hand _hand, EquipmentBehaviour _equipment)
     {
         // First check if the hand param is in the dictionary 
         if (fullHandKeyBindings.ContainsKey(_hand))

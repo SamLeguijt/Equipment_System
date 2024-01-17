@@ -85,6 +85,10 @@ public class FlashlightObject : ToolEquipmentObject
     /// </summary>
     public LayerMask LightCullingMask {  get { return lightCullingmask; } }
 
+    /// <summary>
+    ///  Rotation of the Light component when attached to parent (read-only)
+    /// </summary>
+    public Vector3 LightRotation { get { return lightRotation; } }  
 
     /* ------------------------------------------  METHODS ------------------------------------------- */
 

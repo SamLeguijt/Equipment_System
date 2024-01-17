@@ -13,8 +13,8 @@ public class Hand : MonoBehaviour
     /// </summary>
     public enum TypeOfHand
     {
-        left,
-        right
+        Left,
+        Right
     }
 
 
@@ -100,11 +100,11 @@ public class Hand : MonoBehaviour
         switch (HandType)
         {
             // Is left hand, so get the left hand pos offset from the data
-            case TypeOfHand.left:
+            case TypeOfHand.Left:
                 handPosOffset = _equipment.EquipmentData.LeftHandPositionOffset;
                 break;
             // Is right hand, so get the left hand pos offset from the data
-            case TypeOfHand.right:
+            case TypeOfHand.Right:
                 handPosOffset = _equipment.EquipmentData.RightHandPositionOffset;
                 break;
             default: 

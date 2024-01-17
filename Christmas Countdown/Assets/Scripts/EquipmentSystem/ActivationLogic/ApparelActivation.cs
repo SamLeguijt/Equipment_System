@@ -6,91 +6,97 @@ using UnityEngine;
 public class ApparelActivation : MonoBehaviour, IEquipmentActivation
 {
     public Transform headTransform;
-    private Transform cameraTransform;
     private EquipmentBehaviour myEquipBehaviour;
 
+    private Transform camTransform;
     private ApparelEquipmentObject myData;
 
+    private bool isOnHead;
+    /* We want: 
+ * Pick up hat, activate ->
+ * Activate removes from hand, puts on head pos
+ * Player can equip new item in hand while wearing hat 
+ * If player has 2nd hat, swap hats in hand
+ * if player has full hands, cant drop the hat 
+ * If hat is on head, and empty hand, activate empty hand to unequip from head in hand
+ */
     public void Initialize(EquipmentBehaviour _equipment, Transform _targetTransform)
     {
+        // Set behaviour script references
         myEquipBehaviour = _equipment;
         myEquipBehaviour.activationLogic = this;
 
-        myData = (ApparelEquipmentObject)myEquipBehaviour.EquipmentData;
-
-        cameraTransform = Camera.main.transform;
+        // Set our head transform target to the param
         headTransform = _targetTransform;
 
+        // Get the data of this object via behaviour script
+        myData = (ApparelEquipmentObject)myEquipBehaviour.EquipmentData;
+
+        // Get transform of the camera
+        camTransform = Camera.main.transform;
+
+        // Set camera and paren to the camera transform (FPS camera is located on player's head, so camera is our head)
+        headTransform.position = camTransform.position; 
+        headTransform.SetParent(camTransform); // Set as parent to rotate and stay in position with ease without Update
     }
     public void Activate()
     {
-        /* We want: 
-         * Pick up hat, activate ->
-         * Activate removes from hand, puts on head pos
-         * Player can equip new item in hand while wearing hat 
-         * If player has 2nd hat, swap hats in hand
-         * if player has full hands, cant drop the hat 
-         * If hat is on head, and empty hand, activate empty hand to unequip from head in hand
-         */
+        headTransform.position = camTransform.position;
+        headTransform.SetParent(camTransform);
 
-        EquipToHead(headTransform);
-
-        //   transform.parent = headTransform;
-        //     transform.localPosition = Vector3.zero;
-    }
-
-    private void Update()
-    {
-        if (headTransform != null)
+        if (!isOnHead)
         {
-            headTransform.position = cameraTransform.position + myData.headPosOffset;
-            Debug.Log("not null");
-
-
+            EquipToHead(headTransform);
+            isOnHead = true;
         }
-
-        GameObject hat = myEquipBehaviour.MainEquipmentObject;
-
-        hat.transform.localPosition = Vector3.zero + myData.headPosOffset;
-
+        else
+        {
+            Debug.Log("Test call");
+            //EquipToHand();
+        }
     }
 
+
+
+    /// <summary>
+    /// Method to equip the hat to the head position 
+    /// </summary>
+    /// <param name="_target"></param>
     private void EquipToHead(Transform _target)
     {
-        myEquipBehaviour.OnDrop(false);
-
+        // Short notation of the main equipment (hat object)
         GameObject hat = myEquipBehaviour.MainEquipmentObject;
 
+        // Call method to drop the equipment from hand, so no longer equipped in the hand
+        myEquipBehaviour.OnDrop(false);
+
+        // Set kinematic to true to prevent collisions and gravity mispositioning our object 
         hat.GetComponent<Rigidbody>().isKinematic = true;
 
-        SetObjectScale(hat.transform, myData.EquippedLocalScale); // First set scale before parenting
+        // Set the parent to the param
+        hat.transform.SetParent(_target);
 
-        hat.transform.SetParent(cameraTransform);
-
-        hat.transform.localPosition = Vector3.zero + myData.headPosOffset;
-
-        SetObjectRotation(hat.transform, myData.EquippedRotation); // Lastly, set the local rotation when in hand
+        // Set transform values to data properties to influence the looks while on head
+        hat.transform.localPosition = Vector3.zero + myData.onHeadPositionOffset;
+        hat.transform.localRotation = Quaternion.Euler(myData.onHeadRotation);
+        hat.transform.localScale = myData.onHeadScale;
 
     }
 
-
-    /// <summary>
-    /// Method to set the scale of the target object to the target scaleparent object
-    /// </summary>
-    /// <param name="_targetScale"></param>
-    private void SetObjectScale(Transform _targetObject, Vector3 _targetScale)
+    private void EquipToHand()
     {
-        _targetObject.transform.localScale = _targetScale;
-    }
+        /*  Calls upon activate input
+         *  
+         */
 
-    /// <summary>
-    /// Method to set the rotation of target object to target rotation
-    /// </summary>
-    /// <param name="_targetRotation"></param>
-    private void SetObjectRotation(Transform _targetObject, Vector3 _targetRotation)
-    {
-        // Set local rotation to param values
-        _targetObject.transform.rotation = Quaternion.Euler(_targetRotation);
-    }
 
+        EquipmentSystemController system = myEquipBehaviour.EquipmentSystemController;
+
+        
+        if (myEquipBehaviour.CurrentHand.HandType == Hand.TypeOfHand.Left)
+        {
+            system.Equip()
+        }
+      
+    }
 }

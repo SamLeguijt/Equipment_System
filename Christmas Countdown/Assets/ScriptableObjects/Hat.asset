@@ -19,9 +19,11 @@ MonoBehaviour:
   equippedRotation: {x: 0, y: 0, z: 0}
   unequippedRotation: {x: 0, y: 0, z: 0}
   maxRotateTorqueSpeed: {x: 0, y: 0, z: 0}
-  rotateToMouseSpeed: 0
+  rotateToMouseSpeed: 28.4
   equippedLocalScale: {x: 0.2, y: 0.2, z: 0.2}
   unequippedLocalScale: {x: 0.1, y: 0.1, z: 0.1}
   equipmentDropForce: {x: 5, y: 5}
   equipDistance: 5
-  headPosOffset: {x: 0, y: 0.3, z: 0.5}
+  onHeadPositionOffset: {x: 0.2, y: 1.3, z: 0.35}
+  onHeadRotation: {x: 0, y: 0, z: 0}
+  onHeadScale: {x: 1, y: 1, z: 1}
