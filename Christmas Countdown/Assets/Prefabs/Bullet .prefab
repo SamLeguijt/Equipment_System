@@ -130,7 +130,7 @@ MonoBehaviour:
   afterCollisionDestroyDelay: 1.5
   totalDestroyDelay: 10
   maxRandomNumberValue: 3
-  velocityDecreaseOnCollision: 0
+  velocityDecreaseOnCollision: 75
   collisionLayers:
     serializedVersion: 2
     m_Bits: 64
