@@ -235,7 +235,7 @@ public class EquipmentSystemController : MonoBehaviour
     private void Drop(EquipmentBehaviour _equipment, Hand _hand)
     {
         // Call method from EquipmentBehaviour class to handle its own drop code
-        _equipment.OnDrop(_hand);
+        _equipment.OnDrop();
 
         // Remove the hand's current equipment 
         _hand.CurrentEquipment = null;

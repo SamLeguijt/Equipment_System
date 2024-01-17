@@ -10,6 +10,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Apparel Equipment", menuName = "Equipment/Apparel")]
 public class ApparelEquipmentObject : BaseEquipmentObject
 {
+    public Vector3 headPosOffset;
+
     /// <summary>
     /// Implement abstract OnEnable function from base class to set type when creating object
     /// </summary>

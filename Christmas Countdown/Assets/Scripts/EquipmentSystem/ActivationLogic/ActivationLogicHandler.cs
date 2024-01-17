@@ -6,33 +6,7 @@ using UnityEngine.Experimental.GlobalIllumination;
 
 public class ActivationLogicHandler : MonoBehaviour
 {
-    [Header("WeaponActivation variables")]
-    [Space]
-
-    [Tooltip("The firepoint for this weapon, attached as child of this object")]
-    [SerializeField] private Transform weaponFirepoint;
-
-    [Space]
-    [Header("ToolActivation variables")]
-    [Space]
-
-    [Tooltip("The firepoint for this flashlight, attached as child of this object. Set at correct position and rotation")]
-    [SerializeField] private Transform lightFirepoint;
-
-    [SerializeField] private GameObject lightObject;
-
-    [Space]
-    [Header("AmmunitionActivation variables")]
-    [Space]
-
-    [Space]
-    [Header("ThrowableActivation variables")]
-    [Space]
-
-    [Space]
-    [Header("ApparelActivation variables")]
-    [Space]
-
+    [SerializeField] private Transform equipmentSpecificTransform;
 
     // Reference to the equipment behaviour attached on the EquipmentObject
     private EquipmentBehaviour equipmentBehaviour;
@@ -47,7 +21,7 @@ public class ActivationLogicHandler : MonoBehaviour
         AddActivationLogic(equipmentBehaviour);
 
         //Destroy this object after adding the activation logic since we have no use of it no more
-        Destroy(gameObject);
+        Destroy(gameObject,2f);
     }
 
     /// <summary>
@@ -87,13 +61,13 @@ public class ActivationLogicHandler : MonoBehaviour
     private void InitializeWeaponActivation()
     {
         // Set the attached firpoint as parent to the gameobject of our behaviour 
-        weaponFirepoint.SetParent(equipmentBehaviour.transform, true); // Keep world position so changes in edit mode are kept, firepoint stays at the same position ;)
+        equipmentSpecificTransform.SetParent(equipmentBehaviour.transform, true); // Keep world position so changes in edit mode are kept, firepoint stays at the same position ;)
 
         // Add a WeaponActivation to the equipmentBehaviour's gameobject
         WeaponActivation activationScript = equipmentBehaviour.gameObject.AddComponent<WeaponActivation>();
 
         // Call Initialize method from the specific activation script, passing in the firepoint as firepoint
-        activationScript.Initialize(equipmentBehaviour, weaponFirepoint);
+        activationScript.Initialize(equipmentBehaviour, equipmentSpecificTransform);
     }
 
 
@@ -133,13 +107,13 @@ public class ActivationLogicHandler : MonoBehaviour
     private void InitializeToolActivation()
     {
         // Set the attached firpoint as parent to the gameobject of our behaviour 
-        lightFirepoint.SetParent(equipmentBehaviour.transform, true); // Keep world position so changes in edit mode are kept, firepoint stays at the same position ;)
+        equipmentSpecificTransform.SetParent(equipmentBehaviour.transform, true); // Keep world position so changes in edit mode are kept, firepoint stays at the same position ;)
 
         // Add the specif script to the behaviour's gameobject
         ToolActivation activation = equipmentBehaviour.AddComponent<ToolActivation>();
 
         // Call initialize method from specific script, sending the new light as reference
-        activation.Initialize(equipmentBehaviour, lightFirepoint);
+        activation.Initialize(equipmentBehaviour, equipmentSpecificTransform);
     }
 
     /// <summary>
@@ -147,13 +121,12 @@ public class ActivationLogicHandler : MonoBehaviour
     /// </summary>
     private void InitializeApparelActivation()
     {
+        equipmentSpecificTransform.SetParent(equipmentBehaviour.transform, true); // Keep world position so changes in edit mode are kept, firepoint stays at the same position ;)
+
         // Add the specif script to the behaviour's gameobject
         ApparelActivation activation = equipmentBehaviour.AddComponent<ApparelActivation>();
 
-        // Set the equipmentBehaviour's reference to activation interface to the specific activation script
-        equipmentBehaviour.activationLogic = activation;
-
         // Call initialize method from specific script
-        activation.InitializeActivation();
+        activation.Initialize(equipmentBehaviour, equipmentSpecificTransform);
     }
 }

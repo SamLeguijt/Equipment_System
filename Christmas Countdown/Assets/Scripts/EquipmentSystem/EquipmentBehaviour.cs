@@ -326,7 +326,7 @@ public class EquipmentBehaviour : MonoBehaviour
     /// Public method called when dropping this equipment from hand <br/>
     /// Removes hand as parent, repositions object and sets IsEquipped and CanDrop bool values to false
     /// </summary>
-    public void OnDrop(Hand _ownerHand)
+    public void OnDrop(bool _applyForces = true)
     {
         // Set values of booleans first
         IsEquipped = false;
@@ -343,7 +343,7 @@ public class EquipmentBehaviour : MonoBehaviour
         SetObjectScale(MainEquipmentObject.transform, EquipmentData.UnequippedLocalScale); // Set local scale to original, not relative to parent anymore
 
         // Call method to throw equipment
-        equipmentPhysicsManager.ThrowEquipment(); // Note: Notice isKinematic = false before calling method
+        if (_applyForces) equipmentPhysicsManager.ThrowEquipment(); // Note: Notice isKinematic = false before calling method
     }
 
     /// <summary>
