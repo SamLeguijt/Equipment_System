@@ -9,9 +9,37 @@ using UnityEngine.XR;
 /// </summary>
 public class EquipmentSystemController : MonoBehaviour
 {
+    /// <summary>
+    /// Nested class for key bindings for each hand
+    /// Nested because we don't need access outside this class to the class
+    /// </summary>
+    public class HandKeyBindings
+    {
+        // Reference to the hand
+        public Hand hand;
+
+        // Define private keycodes for activation and drop/equip keys
+        private KeyCode activationKey;
+        private KeyCode dropEquipKey;
+
+        // Public read-only references to both keys (don't want to set them outside constructor)
+        public KeyCode ActivationKey { get { return activationKey; } }
+        public KeyCode DropEquipKey { get { return dropEquipKey; } }
+
+        // Constructor sets hand with activation and equip key to param values
+        public HandKeyBindings(Hand _hand, KeyCode _activationKey, KeyCode _dropEquipKey)
+        {
+            this.hand = _hand;
+            this.activationKey = _activationKey;
+            this.dropEquipKey = _dropEquipKey;
+        }
+    }
+
+
     /* ------------------------------------------  VARIABLES ------------------------------------------- */
-    
-    [Space] [Space]
+
+    [Space]
+    [Space]
     [Header("Hand objects attached to player")]
     [Space]
 
@@ -21,59 +49,98 @@ public class EquipmentSystemController : MonoBehaviour
     [Tooltip("Reference to the script on RightHand of the player")]
     [SerializeField] private Hand rightHand;
 
-    [Space] [Space]
-    [Header("Keys for equipping/dropping equipment")]
+    [Space]
+    [Space]
+    [Header("Input keys for equipment system")]
     [Space]
 
     [Tooltip("Input key to equip/drop equipment to/from the left hand")]
-    [SerializeField] private KeyCode leftHandInputKey;
+    [SerializeField] private KeyCode leftHandEquipDropKey;
 
     [Tooltip("Input key to equip/drop equipment to/from the left hand")]
-    [SerializeField] private KeyCode rightHandInputKey;
+    [SerializeField] private KeyCode rightHandEquipDropKey;
 
-    [Space] [Space]
+    [Tooltip("Input key to activate equipment in left hand")]
+    [SerializeField] private KeyCode leftHandActivationKey;
+
+    [Tooltip("Input key to activate equipment in right hand")]
+    [SerializeField] private KeyCode rightHandActivationKey;
+
+    [Space]
+    [Space]
     [Header("Other variables")]
     [Space]
 
     [Tooltip("Delay for equipping the new item when swapping in seconds (Drop and Equip simultaneously")]
-    [SerializeField] [Range(0, 1)] private float equipDelayWhenSwapping; 
+    [SerializeField][Range(0, 1)] private float equipDelayWhenSwapping;
 
     /// <summary>
-    /// Ditionary for associating a Hand object with an input key, vice versa <br/>
-    /// Used for equipping objects to hand with its own input
+    /// Dictionary for associating a Hand object with its activtion and equip/drop keys <br/>
+    /// Stores both hands and their keybindings in one dict, so full dict.
     /// </summary>
-    private Dictionary<Hand, KeyCode> inputToHandKeyBindings;
+    private Dictionary<Hand, HandKeyBindings> fullHandKeyBindings;
 
 
     /* ------------------------------------------  PROPERTIES ------------------------------------------- */
 
-
     /// <summary>
-    /// Public property with private set used for getting and setting the value of the key to equip/drop items in left hand <br/> <br/>
+    /// Public read only reference to the left hand 
     /// </summary>
-    public KeyCode LeftHandInputKey
-    {
-        get { return leftHandInputKey; }
-        private set { leftHandInputKey = value; }
-    }
-
-    /// <summary>
-    /// Public property with private set used for getting and setting the value of the key to equip/drop items in right hand <br/> <br/>
-    /// </summary>
-    public KeyCode RightHandInputKey
-    {
-        get { return rightHandInputKey; }
-        private set { rightHandInputKey = value; }
-    }
-
     public Hand LeftHand
     {
         get { return leftHand; }
     }
 
+    /// <summary>
+    /// Public read only reference to the right hand
+    /// </summary>
     public Hand RightHand
     {
         get { return rightHand; }
+    }
+
+    /// <summary>
+    /// Public property with private set used for getting and setting the value of the key to equip/drop items in left hand 
+    /// </summary>
+    public KeyCode LeftHandEquipDropKey
+    {
+        get { return leftHandEquipDropKey; }
+        private set { leftHandEquipDropKey = value; }
+    }
+
+    /// <summary>
+    /// Public property with private set used for getting and setting the value of the key to equip/drop items in right hand
+    /// </summary>
+    public KeyCode RightHandEquipDropKey
+    {
+        get { return rightHandEquipDropKey; }
+        private set { rightHandEquipDropKey = value; }
+    }
+
+    /// <summary>
+    /// Public get, private set property for getting the key to activate equipment in left hand
+    /// </summary>
+    public KeyCode LeftHandActivationKey
+    {
+        get { return LeftHandActivationKey; }
+        private set { leftHandActivationKey = value; }
+    }
+
+    /// <summary>
+    /// Public get, private set property for getting the key to activate equipment in right hand
+    /// </summary>
+    public KeyCode RightHandActivationKey
+    {
+        get { return RightHandActivationKey; }
+        private set { RightHandActivationKey = value; }
+    }
+
+    /// <summary>
+    /// Read only property to get the key bindings for all hands
+    /// </summary>
+    public Dictionary<Hand, HandKeyBindings> FullHandKeyBindings
+    {
+        get { return fullHandKeyBindings; }
     }
     /* ------------------------------------------  METHODS ------------------------------------------- */
 
@@ -82,10 +149,10 @@ public class EquipmentSystemController : MonoBehaviour
     void Start()
     {
         // Initialize the dictionary with its keys and values
-        inputToHandKeyBindings = new Dictionary<Hand, KeyCode>();
+        fullHandKeyBindings = new Dictionary<Hand, HandKeyBindings>();
 
         // Check if any necessary components are missing on start
-        if (leftHand == null || rightHand == null || inputToHandKeyBindings == null)
+        if (leftHand == null || rightHand == null || fullHandKeyBindings == null)
         {
             // Disable object and throw message
             gameObject.SetActive(false);
@@ -99,12 +166,12 @@ public class EquipmentSystemController : MonoBehaviour
 
     /// <summary>
     /// Method for initializing this instance <br/>
-    /// Adds key-value pairs to dictionary
+    /// Adds hand with its key bindings to full dict
     /// </summary>
     private void InitializeEquipmentSystemController()
     {
-        inputToHandKeyBindings.Add(leftHand, leftHandInputKey);
-        inputToHandKeyBindings.Add(rightHand, rightHandInputKey);
+        fullHandKeyBindings.Add(leftHand, new HandKeyBindings(leftHand, leftHandActivationKey, LeftHandEquipDropKey));
+        fullHandKeyBindings.Add(rightHand, new HandKeyBindings(rightHand, rightHandActivationKey, RightHandEquipDropKey));
     }
 
     // Update is called once per frame
@@ -123,15 +190,14 @@ public class EquipmentSystemController : MonoBehaviour
     private void HandleCurrentEquipment(Hand _hand)
     {
         // First check if the hand currently has an equipment equipped
-        if (_hand.CurrentEquipment != null)
+        if (_hand.CurrentEquipment == null) return;
+        else 
         {
             // Call method to drop the equipment when input is given
             CheckForDropInput(_hand, _hand.CurrentEquipment);
 
-            if (Input.GetKeyDown(KeyCode.X))
-            {
-                _hand.CurrentEquipment.activationLogic.Activate();
-            }
+            // Call method to activate equipment on input
+            CheckForActivationInput(_hand, _hand.CurrentEquipment);
         }
     }
 
@@ -174,7 +240,29 @@ public class EquipmentSystemController : MonoBehaviour
         // Remove the hand's current equipment 
         _hand.CurrentEquipment = null;
     }
-    
+
+    /// <summary>
+    /// Method that waits for input to activate an equipment item <br/>
+    /// Gets the associated input key from the hand and waits for its input to activate the equipment 
+    /// </summary>
+    /// <param name="_hand"> Hand to drop from </param>
+    /// <param name="_equipment"> Equipment to drop from the hand </param>
+    private void CheckForActivationInput(Hand _hand, EquipmentBehaviour _equipment)
+    {
+        // First check if the equipment can be dropped and if the hand is present in the dictionary 
+        if (fullHandKeyBindings.ContainsKey(_hand))
+        {
+            // Get the wanted input key by looking in the dict
+            KeyCode targetKey = fullHandKeyBindings[_hand].ActivationKey;
+
+            // Then check for its input
+            if (Input.GetKeyDown(targetKey))
+            {
+                _equipment.activationLogic.Activate();
+            }
+        }
+    }
+
     /// <summary>
     /// Method that waits for input to drop an equipment item <br/>
     /// Gets the associated input key from the hand and waits for its input to drop the equipment 
@@ -184,13 +272,13 @@ public class EquipmentSystemController : MonoBehaviour
     private void CheckForDropInput(Hand _hand, EquipmentBehaviour _equipment)
     {
         // First check if the equipment can be dropped and if the hand is present in the dictionary 
-        if (_equipment.CanDrop && inputToHandKeyBindings.ContainsKey(_hand))
+        if (_equipment.CanDrop && fullHandKeyBindings.ContainsKey(_hand))
         {
             // Get the wanted input key by looking in the dict
-            KeyCode inputKey = inputToHandKeyBindings[_hand];
+            KeyCode targetKey = fullHandKeyBindings[_hand].DropEquipKey;
 
             // Then check for its input
-            if (Input.GetKeyDown(inputKey))
+            if (Input.GetKeyDown(targetKey))
             {
                 // Drop the equipment on input 
                 Drop(_equipment, _hand);
@@ -208,13 +296,13 @@ public class EquipmentSystemController : MonoBehaviour
     private void CheckForEquipInput(Hand _hand, EquipmentBehaviour _equipment)
     {
         // First check if the hand param is in the dictionary 
-        if (inputToHandKeyBindings.ContainsKey(_hand))
+        if (fullHandKeyBindings.ContainsKey(_hand))
         {
             // Get the key to check for input
-            KeyCode inputKey = inputToHandKeyBindings[_hand];
+            KeyCode targetKey = fullHandKeyBindings[_hand].DropEquipKey;
 
             // Wait for its input
-            if (Input.GetKeyDown(inputKey))
+            if (Input.GetKeyDown(targetKey))
             {
                 // Check if the hand is not equipped 
                 if (_hand.CurrentEquipment == null)
@@ -229,7 +317,7 @@ public class EquipmentSystemController : MonoBehaviour
                 }
             }
         }
-    } 
+    }
 
     /// <summary>
     /// Coroutine used for dropping current equipment from hand, then equipping new equipment 

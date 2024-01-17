@@ -333,7 +333,7 @@ public class EquipmentUI : MonoBehaviour
         string rightHandText = GetEquipOrSwapString(equipSystemController.RightHand);
 
         // Make the full string by combining the input keys for the hands, with the equip status, and the type of hand, with a symbol between them for eyecandy 
-        string fullString = $" {equipSystemController.LeftHandInputKey} {leftHandText} Left   |   {equipSystemController.RightHandInputKey} {rightHandText} Right";
+        string fullString = $" {equipSystemController.LeftHandEquipDropKey} {leftHandText} Left   |   {equipSystemController.RightHandEquipDropKey} {rightHandText} Right";
 
         // Return the full string as Instruction
         return fullString;

@@ -2061,11 +2061,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad518dd51eac6b54d996751e1853ff5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 3780945515249444240, guid: 6c9ce9205e6276c43994a59bf6ba7710, type: 3}
-  firepointOffset: {x: 0, y: 0, z: 0}
-  bulletRotation: {x: 0, y: 0, z: 0}
-  bulletForce: 15
-  maxHitRange: 50
+  firepoint: {fileID: 0}
 --- !u!1001 &961409236
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2282,9 +2278,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftHand: {fileID: 1083083460}
   rightHand: {fileID: 523227022}
-  leftHandInputKey: 113
-  rightHandInputKey: 101
-  equipDelayWhenSwapping: 0.2
+  leftHandEquipDropKey: 113
+  rightHandEquipDropKey: 101
+  leftHandActivationKey: 323
+  rightHandActivationKey: 324
+  equipDelayWhenSwapping: 0.1
 --- !u!4 &1064106618
 Transform:
   m_ObjectHideFlags: 0

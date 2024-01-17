@@ -71,7 +71,7 @@ public class Bullet : MonoBehaviour
                 float randomTorgueValueZ = Random.Range(-maxRandomNumberValue, maxRandomNumberValue);
 
                 // Reduce velocity by percentage on collision
-                rb.velocity *= (100 - velocityDecreaseOnCollision) / 100f; // 100 - var value for decreasing using multiplication
+                rb.velocity *= (100 - velocityDecreaseOnCollision) / 100f; // Gets multiplied by percentage ranging from 0-1 to decrease speed
 
                 // Add force in the horizontal direction of our rb, using the horizontal random force value
                 rb.AddForce(Vector3.right * randomForceHorizontal, ForceMode.Impulse);
