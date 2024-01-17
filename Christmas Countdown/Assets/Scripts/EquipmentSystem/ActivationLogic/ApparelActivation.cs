@@ -6,10 +6,12 @@ using UnityEngine;
 public class ApparelActivation : MonoBehaviour, IEquipmentActivation
 {
     public Transform headTransform;
-    private EquipmentBehaviour myEquipBehaviour;
+    public EquipmentBehaviour myEquipBehaviour;
 
     private Transform camTransform;
     private ApparelEquipmentObject myData;
+
+    EquipmentSystemController system;
 
     private bool isOnHead;
     /* We want: 
@@ -32,27 +34,49 @@ public class ApparelActivation : MonoBehaviour, IEquipmentActivation
         // Get the data of this object via behaviour script
         myData = (ApparelEquipmentObject)myEquipBehaviour.EquipmentData;
 
+        system = myEquipBehaviour.EquipmentSystemController;
+        
         // Get transform of the camera
         camTransform = Camera.main.transform;
 
         // Set camera and paren to the camera transform (FPS camera is located on player's head, so camera is our head)
-        headTransform.position = camTransform.position; 
+        headTransform.position = camTransform.position;
         headTransform.SetParent(camTransform); // Set as parent to rotate and stay in position with ease without Update
     }
     public void Activate()
     {
-        headTransform.position = camTransform.position;
-        headTransform.SetParent(camTransform);
-
         if (!isOnHead)
         {
             EquipToHead(headTransform);
-            isOnHead = true;
+
+            StartCoroutine(SetOnHeadAfterSecond());
         }
-        else
+    }
+
+    private void Update()
+    {
+        EquipmentSystemController system = myEquipBehaviour.EquipmentSystemController;
+
+
+        if (isOnHead && system != null)
         {
-            Debug.Log("Test call");
-            //EquipToHand();
+            Debug.Log("Call to update");
+            HandleEmptyHandEquip(system.LeftHand);
+            HandleEmptyHandEquip(system.RightHand);
+        }
+    }
+
+    private void HandleEmptyHandEquip(Hand _hand)
+    {
+        EquipmentSystemController system = myEquipBehaviour.EquipmentSystemController;
+
+        if (system.CheckEmptyHandActivationInput(_hand))
+        {
+            Debug.Log($"{_hand.HandType} empty activation in activatiobs");
+
+
+            system.Equip(myEquipBehaviour, _hand);
+            isOnHead = false;
         }
     }
 
@@ -64,11 +88,29 @@ public class ApparelActivation : MonoBehaviour, IEquipmentActivation
     /// <param name="_target"></param>
     private void EquipToHead(Transform _target)
     {
+        EquipmentSystemController system = myEquipBehaviour.EquipmentSystemController;
+
+        headTransform.position = camTransform.position;
+        headTransform.SetParent(camTransform);
+
+        if (system != null)
+        {
+            if (myEquipBehaviour.CurrentHand == system.LeftHand)
+            {
+                system.Drop(myEquipBehaviour, system.LeftHand, false);
+            }
+            else if (myEquipBehaviour.CurrentHand == system.RightHand)
+            {
+                system.Drop(myEquipBehaviour, system.RightHand, false);
+
+            }
+        }
+        else if (system == null) Debug.Log("System null");
+
         // Short notation of the main equipment (hat object)
         GameObject hat = myEquipBehaviour.MainEquipmentObject;
 
         // Call method to drop the equipment from hand, so no longer equipped in the hand
-        myEquipBehaviour.OnDrop(false);
 
         // Set kinematic to true to prevent collisions and gravity mispositioning our object 
         hat.GetComponent<Rigidbody>().isKinematic = true;
@@ -80,23 +122,12 @@ public class ApparelActivation : MonoBehaviour, IEquipmentActivation
         hat.transform.localPosition = Vector3.zero + myData.onHeadPositionOffset;
         hat.transform.localRotation = Quaternion.Euler(myData.onHeadRotation);
         hat.transform.localScale = myData.onHeadScale;
-
     }
 
-    private void EquipToHand()
+    private IEnumerator SetOnHeadAfterSecond()
     {
-        /*  Calls upon activate input
-         *  
-         */
+        yield return new WaitForSeconds(1);
 
-
-        EquipmentSystemController system = myEquipBehaviour.EquipmentSystemController;
-
-        
-        if (myEquipBehaviour.CurrentHand.HandType == Hand.TypeOfHand.Left)
-        {
-            system.Equip()
-        }
-      
+        isOnHead = true;
     }
 }

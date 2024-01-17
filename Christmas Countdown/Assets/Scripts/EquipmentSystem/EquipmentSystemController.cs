@@ -181,8 +181,27 @@ public class EquipmentSystemController : MonoBehaviour
         HandleCurrentEquipment(leftHand);
         HandleCurrentEquipment(rightHand);
 
-        Debug.Log(LeftHand.CurrentEquipment); 
-        Debug.Log(RightHand.CurrentEquipment); 
+        CheckEmptyHandActivationInput(LeftHand);
+        CheckEmptyHandActivationInput(RightHand);
+
+        Debug.Log(LeftHand.CurrentEquipment);
+        Debug.Log(RightHand.CurrentEquipment);
+    }
+
+    public bool CheckEmptyHandActivationInput(Hand _hand)
+    {
+        // Returns if an empty hand presses the activation input
+        if (_hand.CurrentEquipment == null)
+        {
+            KeyCode targetKey = FullHandKeyBindings[_hand].ActivationKey;
+
+            if (Input.GetKeyDown(targetKey))
+            {
+                Debug.Log($"{_hand.HandType} empty activation");
+                return true;
+            }
+        }
+        return false;
     }
 
     /// <summary>
@@ -235,10 +254,10 @@ public class EquipmentSystemController : MonoBehaviour
     /// </summary>
     /// <param name="_equipment"> Equipment to drop </param>
     /// <param name="_hand"> Hand to drop the equipment from </param>
-    private void Drop(EquipmentBehaviour _equipment, Hand _hand)
+    public void Drop(EquipmentBehaviour _equipment, Hand _hand, bool _applyDropForces = true)
     {
         // Call method from EquipmentBehaviour class to handle its own drop code
-        _equipment.OnDrop();
+        _equipment.OnDrop(_applyDropForces);
 
         // Remove the hand's current equipment 
         _hand.CurrentEquipment = null;
@@ -337,3 +356,4 @@ public class EquipmentSystemController : MonoBehaviour
         Equip(_newEquipment, _hand);
     }
 }
+
