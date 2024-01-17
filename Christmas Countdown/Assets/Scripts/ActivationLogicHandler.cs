@@ -17,7 +17,9 @@ public class ActivationLogicHandler : MonoBehaviour
     [Space]
 
     [Tooltip("The firepoint for this flashlight, attached as child of this object. Set at correct position and rotation")]
-    [SerializeField] Transform lightFirepoint;
+    [SerializeField] private Transform lightFirepoint;
+
+    [SerializeField] private GameObject lightObject;
 
     [Space]
     [Header("AmmunitionActivation variables")]

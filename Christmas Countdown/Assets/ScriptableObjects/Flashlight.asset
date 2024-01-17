@@ -25,8 +25,9 @@ MonoBehaviour:
   equipmentDropForce: {x: 3, y: 3}
   equipDistance: 3
   toolType: 1
-  spotAngle: 45
-  lightRange: 50
+  lightObjectPrefab: {fileID: 3350217513762584097, guid: 404537d667ad3d947a1e54853fd723d7, type: 3}
+  spotAngle: 30
+  lightRange: 30
   lightIntensity: 5
   lightColor: {r: 0.9245283, g: 0.8482309, b: 0.44045925, a: 0.69411767}
   lightType: 0

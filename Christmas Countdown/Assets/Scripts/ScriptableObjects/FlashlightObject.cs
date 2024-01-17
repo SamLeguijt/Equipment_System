@@ -10,6 +10,8 @@ public class FlashlightObject : ToolEquipmentObject
 
     /* ------------------------------------------  VARIABLES ------------------------------------------- */
 
+    [Tooltip("Light prefab to instantiate")]
+    [SerializeField] private GameObject lightObjectPrefab;
 
     [Header("Light values:")]
     [Space]
@@ -42,6 +44,11 @@ public class FlashlightObject : ToolEquipmentObject
 
 
     /* ------------------------------------------  PROPERTIES ------------------------------------------- */
+
+    /// <summary>
+    /// Light object to instantiate 
+    /// </summary>
+    public GameObject LightObjectPrefab { get { return lightObjectPrefab; } }
 
     /// <summary>
     /// Angle of the spot (read-only)

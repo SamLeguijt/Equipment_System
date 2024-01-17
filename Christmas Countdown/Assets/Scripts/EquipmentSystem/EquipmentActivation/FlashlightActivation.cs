@@ -26,13 +26,14 @@ public class FlashlightActivation : ToolActivation
         // Cast the data as FlashlightObject to access the specific properties
         flashlightData = (FlashlightObject)equipmentBehaviour.EquipmentData;
 
-        // Add a new Light component to the transform of the behaviour script
-        Light newLight = _lightFirepoint.AddComponent<Light>();
+        // Instantiate new light object on the firepoint pos and rotation, as child of the firepoint
+        GameObject lightPrefab = Instantiate(flashlightData.LightObjectPrefab, _lightFirepoint.position, _lightFirepoint.rotation, _lightFirepoint);
 
-        // Set the light settings to script.obj values
-        myLight = GetLightValues(newLight); // Method returns a light with settings adjusted according to data.
+        // Get the light component
+        Light light = lightPrefab.GetComponent<Light>();
 
-        myLight.enabled = false;
+        // Change the values accordign to data
+        myLight = GetLightValues(light);
     }
 
     /// <summary>
