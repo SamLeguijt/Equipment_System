@@ -51,6 +51,7 @@ public class EquipmentBehaviour : MonoBehaviour
 
     /* --- PRIVATE HIDDEN VARIABLES ---*/
     private EquipmentPhysicsManager equipmentPhysicsManager; // Reference to this object's physics manager
+    private ActivationLogicHandler activationHandler; // Reference to component in child. Note: no property because component will be destroyed after init
     private Collider parentCollider; // Store collider of the parent object
     public Collider mouseDetectCollider;
     private Transform player; // Reference to the player for distance and orientation
@@ -61,8 +62,6 @@ public class EquipmentBehaviour : MonoBehaviour
     private bool isEquipped; // Status of this object
     private bool canDrop; // Flag used for checking if object can be dropped
     private bool isOnGround; // Flag to determine if the equipment is grounded
-
-    public ActivationLogicHandler activationHandler;
 
 
     /* ------------------------------------------  PROPERTIES ------------------------------------------- */
@@ -204,6 +203,7 @@ public class EquipmentBehaviour : MonoBehaviour
         if (equipmentUI == null)
             equipmentUI = FindObjectOfType<EquipmentUI>();
 
+        // Get the activation handler in the child object
         activationHandler = GetComponentInChildren<ActivationLogicHandler>();
 
         // First set parent object to the main object slot
@@ -225,7 +225,6 @@ public class EquipmentBehaviour : MonoBehaviour
         {
             InititializeEquipmentBehaviour();
         }
-
     }
 
 
@@ -235,6 +234,7 @@ public class EquipmentBehaviour : MonoBehaviour
     /// </summary>
     private void InititializeEquipmentBehaviour()
     {
+        // Initialize the activation logic at this point
         activationHandler.Initialize(this);
 
         // Set our parent to the equipment layer to be able to pick up when needed

@@ -90,6 +90,7 @@ public class FlashlightObject : ToolEquipmentObject
     /// </summary>
     public Vector3 LightRotation { get { return lightRotation; } }  
 
+
     /* ------------------------------------------  METHODS ------------------------------------------- */
 
     /// <summary>

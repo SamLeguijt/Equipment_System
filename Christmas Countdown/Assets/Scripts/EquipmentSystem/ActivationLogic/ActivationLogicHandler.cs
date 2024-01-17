@@ -6,22 +6,29 @@ using UnityEngine.Experimental.GlobalIllumination;
 
 public class ActivationLogicHandler : MonoBehaviour
 {
+    [Tooltip("Reference to the transform attached to this object as child, used for many Activation scripts (firepoint i.e)")]
     [SerializeField] private Transform equipmentSpecificTransform;
+
+    [Tooltip("Seconds before destroying this object after being initialized")]
+    [SerializeField] private float destroyThisAfterSeconds;
 
     // Reference to the equipment behaviour attached on the EquipmentObject
     private EquipmentBehaviour equipmentBehaviour;
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// Method gets called by EquipmentBehaviour class that passes itself as param for safety 
+    /// </summary>
+    /// <param name="_equipment"></param>
     public void Initialize(EquipmentBehaviour _equipment)
     {
-
+        // Set reference to the param
         equipmentBehaviour = _equipment;
 
         // Call method to add the correct activation logic
         AddActivationLogic(equipmentBehaviour);
 
         //Destroy this object after adding the activation logic since we have no use of it no more
-        Destroy(gameObject, 2f);
+        Destroy(gameObject, destroyThisAfterSeconds);
     }
 
     /// <summary>

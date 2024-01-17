@@ -183,21 +183,6 @@ public class EquipmentSystemController : MonoBehaviour
 
     }
 
-    public bool CheckEmptyHandActivationInput(Hand _hand)
-    {
-        // Returns if an empty hand presses the activation input
-        if (_hand.CurrentEquipment == null)
-        {
-            KeyCode targetKey = FullHandKeyBindings[_hand].ActivationKey;
-
-            if (Input.GetKeyDown(targetKey))
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
     /// <summary>
     /// Private void method that handles the current equipment of the parameter hand <br/>
     /// Drops item on receiving input
@@ -309,7 +294,7 @@ public class EquipmentSystemController : MonoBehaviour
     /// </summary>
     /// <param name="_hand"> Hand to check it's input </param>
     /// <param name="_equipment"> Equipment to be equipped in the hand</param>
-    public void CheckForEquipInput(Hand _hand, EquipmentBehaviour _equipment)
+    private void CheckForEquipInput(Hand _hand, EquipmentBehaviour _equipment)
     {
         // First check if the hand param is in the dictionary 
         if (fullHandKeyBindings.ContainsKey(_hand))
@@ -348,6 +333,26 @@ public class EquipmentSystemController : MonoBehaviour
         yield return new WaitForSeconds(equipDelayWhenSwapping);
 
         Equip(_newEquipment, _hand);
+    }
+
+    /// <summary>
+    /// Returns true if the param hand is empty when receiving its activation key input
+    /// </summary>
+    /// <param name="_hand"></param>
+    /// <returns></returns>
+    public bool CheckEmptyHandActivationInput(Hand _hand)
+    {
+        // Returns if an empty hand presses the activation input
+        if (_hand.CurrentEquipment == null)
+        {
+            KeyCode targetKey = FullHandKeyBindings[_hand].ActivationKey;
+
+            if (Input.GetKeyDown(targetKey))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
 

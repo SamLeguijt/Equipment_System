@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
-/// Base class for Activation logic of different equipments
+/// Interface for Activating different type of equipment
 /// </summary>
 public interface IEquipmentActivation
 {
