@@ -13,7 +13,7 @@ public class ToolActivation : MonoBehaviour, IEquipmentActivation
     /// Sets the toolData to the behaviours data if tool != flashlight, else adds flashlightActivation and removes this 
     /// </summary>
     /// <param name="_myEquipment"></param>
-    public virtual void Initialize(EquipmentBehaviour _myEquipment)
+    public virtual void Initialize(EquipmentBehaviour _myEquipment, Transform _lightFirepoint)
     {
         // Get the tooldata in correct type by casting the behaviour's data reference
         toolData = (ToolEquipmentObject)_myEquipment.EquipmentData;
@@ -25,7 +25,7 @@ public class ToolActivation : MonoBehaviour, IEquipmentActivation
             FlashlightActivation light = _myEquipment.AddComponent<FlashlightActivation>();
 
             // Call method to initialize the FlashlightActivation
-            light.Initialize(_myEquipment);
+            light.Initialize(_myEquipment, _lightFirepoint);
             
             // Disable this script since we're using the child script 
             this.enabled= false;

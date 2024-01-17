@@ -8,8 +8,16 @@ public class ActivationLogicHandler : MonoBehaviour
 {
     [Header("WeaponActivation variables")]
     [Space]
+
     [Tooltip("The firepoint for this weapon, attached as child of this object")]
     [SerializeField] private Transform weaponFirepoint;
+
+    [Space]
+    [Header("ToolActivation variables")]
+    [Space]
+
+    [Tooltip("The firepoint for this flashlight, attached as child of this object. Set at correct position and rotation")]
+    [SerializeField] Transform lightFirepoint;
 
     [Space]
     [Header("AmmunitionActivation variables")]
@@ -20,17 +28,13 @@ public class ActivationLogicHandler : MonoBehaviour
     [Space]
 
     [Space]
-    [Header("ToolActivation variables")]
-    [Space]
-
-    [Space]
     [Header("ApparelActivation variables")]
     [Space]
 
 
     // Reference to the equipment behaviour attached on the EquipmentObject
     private EquipmentBehaviour equipmentBehaviour;
-  
+
     // Start is called before the first frame update
     void Start()
     {
@@ -55,7 +59,7 @@ public class ActivationLogicHandler : MonoBehaviour
         {
             // Call specific methid to inittialize the corresponding Activation script for each case
             case EquipmentType.Weapon:
-                InitializeWeaponActivation(); 
+                InitializeWeaponActivation();
                 break;
             case EquipmentType.Ammunition:
                 InitializeAmmunitionActivation();
@@ -82,7 +86,7 @@ public class ActivationLogicHandler : MonoBehaviour
     {
         // Set the attached firpoint as parent to the gameobject of our behaviour 
         weaponFirepoint.SetParent(equipmentBehaviour.transform, true); // Keep world position so changes in edit mode are kept, firepoint stays at the same position ;)
-        
+
         // Add a WeaponActivation to the equipmentBehaviour's gameobject
         WeaponActivation activationScript = equipmentBehaviour.gameObject.AddComponent<WeaponActivation>();
 
@@ -126,15 +130,14 @@ public class ActivationLogicHandler : MonoBehaviour
     /// </summary>
     private void InitializeToolActivation()
     {
+        // Set the attached firpoint as parent to the gameobject of our behaviour 
+        lightFirepoint.SetParent(equipmentBehaviour.transform, true); // Keep world position so changes in edit mode are kept, firepoint stays at the same position ;)
+
         // Add the specif script to the behaviour's gameobject
         ToolActivation activation = equipmentBehaviour.AddComponent<ToolActivation>();
 
-        // Set the equipmentBehaviour's reference to activation interface to the specific activation script
-       // equipmentBehaviour.activationLogic = activation;
-
-        // Add a light component to the behaviour object
         // Call initialize method from specific script, sending the new light as reference
-        activation.Initialize(equipmentBehaviour);
+        activation.Initialize(equipmentBehaviour, lightFirepoint);
     }
 
     /// <summary>

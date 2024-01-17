@@ -23,6 +23,9 @@ public class FlashlightObject : ToolEquipmentObject
     [Tooltip("Intensity value of the spot light")]
     [SerializeField] private float lightIntensity;
 
+    [Tooltip("Color of the light")]
+    [SerializeField] private Color lightColor;
+
     [Header("Light settings:")]
     [Space]
 
@@ -34,6 +37,8 @@ public class FlashlightObject : ToolEquipmentObject
 
     [Tooltip("Culling mask of the light")]
     [SerializeField] LayerMask lightCullingmask;
+
+    [SerializeField] private Vector3 lightRotation;
 
 
     /* ------------------------------------------  PROPERTIES ------------------------------------------- */
@@ -54,6 +59,11 @@ public class FlashlightObject : ToolEquipmentObject
     public float LightIntensity { get { return lightIntensity; } }
 
     /// <summary>
+    /// Color of the light (read-only)
+    /// </summary>
+    public Color LightColor { get { return lightColor; } }  
+
+    /// <summary>
     /// Type of the light (read_only)
     /// </summary>
     public UnityEngine.LightType LightType { get { return lightType; } }
@@ -66,7 +76,7 @@ public class FlashlightObject : ToolEquipmentObject
     /// <summary>
     /// Culling mask of the light (read_only)
     /// </summary>
-    public LayerMask LightCullingMask {  get { return lightCullingmask; } } 
+    public LayerMask LightCullingMask {  get { return lightCullingmask; } }
 
 
     /* ------------------------------------------  METHODS ------------------------------------------- */

@@ -25,11 +25,13 @@ MonoBehaviour:
   equipmentDropForce: {x: 3, y: 3}
   equipDistance: 3
   toolType: 1
-  spotAngle: 180
-  lightRange: 100
-  lightIntensity: 1
+  spotAngle: 45
+  lightRange: 50
+  lightIntensity: 5
+  lightColor: {r: 0.9245283, g: 0.8482309, b: 0.44045925, a: 0.69411767}
   lightType: 0
   lightRenderMode: 0
   lightCullingmask:
     serializedVersion: 2
     m_Bits: 2147483647
+  lightRotation: {x: 0, y: 0, z: 0}
