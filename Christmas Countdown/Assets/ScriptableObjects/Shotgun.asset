@@ -24,3 +24,6 @@ MonoBehaviour:
   unequippedLocalScale: {x: 1, y: 1, z: 1}
   equipmentDropForce: {x: 4, y: 4}
   equipDistance: 3
+  bulletToFire: {fileID: 3780945515249444240, guid: a38c566ca3169ee4f9cacbfa236b8a30, type: 3}
+  maxHitRange: 20
+  bulletSpeed: 1
