@@ -15,36 +15,24 @@ public class ApparelEquipmentObject : BaseEquipmentObject
 
 
     [Space]
-    [Header("-----------------------  ToolEquipment specifics   -----------------------------------")]
+    [Header("-----------------------  ApparelEquipment specifics   -----------------------------------")]
     [Space]
 
-    [Tooltip("Vector representing the position offset of this object when on head")]
-    [SerializeField] private Vector3 onHeadPositionOffset;
+    [Tooltip("Type of this tool")]
+    [SerializeField] private TypeOfApparel apparelType;
 
-    [Tooltip("Vector representing the rotation of this object when on head")]
-    [SerializeField] private Vector3 onHeadRotation;
-
-    [Tooltip("Vector representing the scale of this object when on head")]
-    [SerializeField] private Vector3 onHeadScale;
 
 
     /* ------------------------------------------  PROPERTIES ------------------------------------------- */
 
     /// <summary>
-    /// Position offset of this object when on head (read-only)
+    /// Type of this apparel
     /// </summary>
-    public Vector3 OnHeadPositionOffset { get { return onHeadPositionOffset; } }
-
-    /// <summary>
-    /// Rotation of this object when on head (read-only)
-    /// </summary>
-    public Vector3 OnHeadRotation { get { return onHeadRotation; } }
-
-    /// <summary>
-    /// Scale of this object when on head (read-only)
-    /// </summary>
-    public Vector3 OnHeadScale { get { return onHeadScale; } }
-
+    public TypeOfApparel ApparelType
+    {
+        get { return apparelType; } 
+        protected set { apparelType = value; } 
+    }
 
 
     /* ------------------------------------------  METHODS ------------------------------------------- */
@@ -57,4 +45,13 @@ public class ApparelEquipmentObject : BaseEquipmentObject
     {
         EquipmentType = EquipmentType.Apparel;
     }
+}
+
+/// <summary>
+/// Public enum for types of apparel, outside of class for global access
+/// </summary>
+public enum TypeOfApparel
+{
+    Hat,
+    Other
 }

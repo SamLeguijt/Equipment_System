@@ -39,6 +39,6 @@ public class ToolActivation : MonoBehaviour, IEquipmentActivation
 
     public virtual void Activate()
     {
-        Debug.Log("tool activate");
+
     }
 }

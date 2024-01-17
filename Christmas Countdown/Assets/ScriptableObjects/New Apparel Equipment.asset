@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 679e0b1aed4f5704399fa63d4d024562, type: 3}
+  m_Name: New Apparel Equipment
+  m_EditorClassIdentifier: 
+  equipmentName: 
+  equipmentDescription: 
+  leftHandPositionOffset: {x: 0, y: 0, z: 0}
+  rightHandPositionOffset: {x: 0, y: 0, z: 0}
+  equippedRotation: {x: 0, y: 0, z: 0}
+  unequippedRotation: {x: 0, y: 0, z: 0}
+  maxRotateTorqueSpeed: {x: 0, y: 0, z: 0}
+  rotateToMouseSpeed: 0
+  equippedLocalScale: {x: 0, y: 0, z: 0}
+  unequippedLocalScale: {x: 0, y: 0, z: 0}
+  equipmentDropForce: {x: 0, y: 0}
+  equipDistance: 0
+  apparelType: 0
