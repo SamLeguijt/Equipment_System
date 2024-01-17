@@ -180,6 +180,7 @@ public class EquipmentSystemController : MonoBehaviour
         // Handle the current equipment for both hands in update
         HandleCurrentEquipment(leftHand);
         HandleCurrentEquipment(rightHand);
+
     }
 
     /// <summary>
@@ -218,7 +219,7 @@ public class EquipmentSystemController : MonoBehaviour
     /// </summary>
     /// <param name="_equipment">  Equipment target </param>
     /// <param name="_hand"> Hand to put target in </param>
-    private void Equip(EquipmentBehaviour _equipment, Hand _hand)
+    public void Equip(EquipmentBehaviour _equipment, Hand _hand)
     {
         // Call method from EquipmentBehaviour class to set additional info
         _equipment.OnEquip(_hand);
@@ -232,10 +233,10 @@ public class EquipmentSystemController : MonoBehaviour
     /// </summary>
     /// <param name="_equipment"> Equipment to drop </param>
     /// <param name="_hand"> Hand to drop the equipment from </param>
-    private void Drop(EquipmentBehaviour _equipment, Hand _hand)
+    public void Drop(EquipmentBehaviour _equipment, Hand _hand, bool _applyDropForces = true)
     {
         // Call method from EquipmentBehaviour class to handle its own drop code
-        _equipment.OnDrop(_hand);
+        _equipment.OnDrop(_applyDropForces);
 
         // Remove the hand's current equipment 
         _hand.CurrentEquipment = null;
@@ -333,4 +334,25 @@ public class EquipmentSystemController : MonoBehaviour
 
         Equip(_newEquipment, _hand);
     }
+
+    /// <summary>
+    /// Returns true if the param hand is empty when receiving its activation key input
+    /// </summary>
+    /// <param name="_hand"></param>
+    /// <returns></returns>
+    public bool CheckEmptyHandActivationInput(Hand _hand)
+    {
+        // Returns if an empty hand presses the activation input
+        if (_hand.CurrentEquipment == null)
+        {
+            KeyCode targetKey = FullHandKeyBindings[_hand].ActivationKey;
+
+            if (Input.GetKeyDown(targetKey))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }
+

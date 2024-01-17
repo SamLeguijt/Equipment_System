@@ -8,7 +8,6 @@ using UnityEngine.Experimental.GlobalIllumination;
 /// Deriving from base equipment scriptable object class
 /// Sets type automatically on enable
 /// </summary>
-[CreateAssetMenu(fileName = "New Tool Equipment", menuName = "Equipment/Tool")]
 public class ToolEquipmentObject : BaseEquipmentObject
 {
 

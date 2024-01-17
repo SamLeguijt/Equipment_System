@@ -51,16 +51,17 @@ public class EquipmentBehaviour : MonoBehaviour
 
     /* --- PRIVATE HIDDEN VARIABLES ---*/
     private EquipmentPhysicsManager equipmentPhysicsManager; // Reference to this object's physics manager
+    private ActivationLogicHandler activationHandler; // Reference to component in child. Note: no property because component will be destroyed after init
     private Collider parentCollider; // Store collider of the parent object
     public Collider mouseDetectCollider;
     private Transform player; // Reference to the player for distance and orientation
+    private Hand currentHand;
     public IEquipmentActivation activationLogic;
 
     // Bools for checking status of this object, used for properties
     private bool isEquipped; // Status of this object
     private bool canDrop; // Flag used for checking if object can be dropped
     private bool isOnGround; // Flag to determine if the equipment is grounded
-
 
 
     /* ------------------------------------------  PROPERTIES ------------------------------------------- */
@@ -151,6 +152,12 @@ public class EquipmentBehaviour : MonoBehaviour
         get { return player; }
     }
 
+    public Hand CurrentHand
+    {
+        get { return currentHand; }
+        private set {  currentHand = value; }   
+    }
+
     /// <summary>
     /// Public property with private set to prevent setting its value outside this class <br/><br/>
     /// Used for determining if this object is currently equipped by player
@@ -196,6 +203,9 @@ public class EquipmentBehaviour : MonoBehaviour
         if (equipmentUI == null)
             equipmentUI = FindObjectOfType<EquipmentUI>();
 
+        // Get the activation handler in the child object
+        activationHandler = GetComponentInChildren<ActivationLogicHandler>();
+
         // First set parent object to the main object slot
         mainEquipmentObject = transform.parent.gameObject;
 
@@ -206,7 +216,7 @@ public class EquipmentBehaviour : MonoBehaviour
         parentCollider = mainEquipmentObject.GetComponent<Collider>();
 
         // Check if any components and references are missing
-        if (equipmentSystemController == null || equipmentUI == null || mainEquipmentObject == null || EquipmentData == null || equipmentPhysicsManager == null || player == null || parentCollider == null || mouseDetectCollider == null)
+        if (equipmentSystemController == null || equipmentUI == null || mainEquipmentObject == null || EquipmentData == null || equipmentPhysicsManager == null || player == null || parentCollider == null || mouseDetectCollider == null || activationHandler == null)
         {
             gameObject.transform.parent.gameObject.SetActive(false);
             throw new System.Exception($"One or more components and references are missing from {gameObject.transform.parent.name}! Please assign components, then re-run. Disabling object for now.");
@@ -215,7 +225,6 @@ public class EquipmentBehaviour : MonoBehaviour
         {
             InititializeEquipmentBehaviour();
         }
-
     }
 
 
@@ -225,6 +234,9 @@ public class EquipmentBehaviour : MonoBehaviour
     /// </summary>
     private void InititializeEquipmentBehaviour()
     {
+        // Initialize the activation logic at this point
+        activationHandler.Initialize(this);
+
         // Set our parent to the equipment layer to be able to pick up when needed
         mainEquipmentObject.gameObject.layer = LayerMask.NameToLayer(MainEquipmentLayerName);
 
@@ -237,7 +249,6 @@ public class EquipmentBehaviour : MonoBehaviour
 
         // Set position of this object to the main object position as reset
         SetObjectPosition(gameObject.transform, mainEquipmentObject.transform.position);
-
     }
 
     /// <summary>
@@ -305,10 +316,11 @@ public class EquipmentBehaviour : MonoBehaviour
     public void OnEquip(Hand _targetHand)
     {
         // Set transform properties
-        SetObjectScale(MainEquipmentObject.transform, EquipmentData.EquippedLocalScale); // First set scale before parenting
         _targetHand.SetObjectToHandPosition(this); // Call method to reposition and set hand as parent
+        SetObjectScale(MainEquipmentObject.transform, EquipmentData.EquippedLocalScale); // First set scale before parenting
         SetObjectRotation(MainEquipmentObject.transform, EquipmentData.EquippedRotation); // Lastly, set the local rotation when in hand
 
+        CurrentHand = _targetHand;
         // Set value of bools true
         IsEquipped = true;
         IsOnGround = false;
@@ -326,7 +338,7 @@ public class EquipmentBehaviour : MonoBehaviour
     /// Public method called when dropping this equipment from hand <br/>
     /// Removes hand as parent, repositions object and sets IsEquipped and CanDrop bool values to false
     /// </summary>
-    public void OnDrop(Hand _ownerHand)
+    public void OnDrop(bool _applyForces = true)
     {
         // Set values of booleans first
         IsEquipped = false;
@@ -343,7 +355,7 @@ public class EquipmentBehaviour : MonoBehaviour
         SetObjectScale(MainEquipmentObject.transform, EquipmentData.UnequippedLocalScale); // Set local scale to original, not relative to parent anymore
 
         // Call method to throw equipment
-        equipmentPhysicsManager.ThrowEquipment(); // Note: Notice isKinematic = false before calling method
+        if (_applyForces) equipmentPhysicsManager.ThrowEquipment(); // Note: Notice isKinematic = false before calling method
     }
 
     /// <summary>

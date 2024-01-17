@@ -20,7 +20,7 @@ MonoBehaviour:
   unequippedRotation: {x: 0, y: 0, z: 90}
   maxRotateTorqueSpeed: {x: 0, y: 0, z: 0}
   rotateToMouseSpeed: 25
-  equippedLocalScale: {x: 1, y: 1, z: 1}
+  equippedLocalScale: {x: 3.5, y: 3.5, z: 3.5}
   unequippedLocalScale: {x: 1, y: 1, z: 1}
   equipmentDropForce: {x: 4, y: 4}
   equipDistance: 3
