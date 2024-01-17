@@ -7,7 +7,6 @@ using UnityEngine;
 /// Deriving from base equipment scriptable object class
 /// Sets type automatically on enable
 /// </summary>
-[CreateAssetMenu(fileName = "New Apparel Equipment", menuName = "Equipment/Apparel")]
 public class ApparelEquipmentObject : BaseEquipmentObject
 {
 
