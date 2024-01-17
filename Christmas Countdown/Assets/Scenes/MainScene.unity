@@ -2475,6 +2475,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1642366073}
     m_Modifications:
+    - target: {fileID: 2623189446994577243, guid: 7f8f55b1574a58f4699d4e796163e8f8, type: 3}
+      propertyPath: light
+      value: 
+      objectReference: {fileID: 5882145830490936024, guid: 6dcc97f7838a5244699396f38ad80330, type: 3}
     - target: {fileID: 8557418953104911913, guid: 7f8f55b1574a58f4699d4e796163e8f8, type: 3}
       propertyPath: m_Name
       value: EquipmentObject
@@ -3619,3 +3623,80 @@ MonoBehaviour:
   mouseSensitivityX: 250
   mouseSensitivityY: 250
   maxVerticalAngle: 90
+--- !u!1001 &2609222425137237813
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5882145830490936024, guid: 6dcc97f7838a5244699396f38ad80330, type: 3}
+      propertyPath: m_Name
+      value: Flashlight
+      objectReference: {fileID: 0}
+    - target: {fileID: 8488454273505639870, guid: 6dcc97f7838a5244699396f38ad80330, type: 3}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8488454273505639870, guid: 6dcc97f7838a5244699396f38ad80330, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.1348748
+      objectReference: {fileID: 0}
+    - target: {fileID: 8488454273505639870, guid: 6dcc97f7838a5244699396f38ad80330, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 8488454273505639870, guid: 6dcc97f7838a5244699396f38ad80330, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 52.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8488454273505639870, guid: 6dcc97f7838a5244699396f38ad80330, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9978047
+      objectReference: {fileID: 0}
+    - target: {fileID: 8488454273505639870, guid: 6dcc97f7838a5244699396f38ad80330, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.050284617
+      objectReference: {fileID: 0}
+    - target: {fileID: 8488454273505639870, guid: 6dcc97f7838a5244699396f38ad80330, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.04304162
+      objectReference: {fileID: 0}
+    - target: {fileID: 8488454273505639870, guid: 6dcc97f7838a5244699396f38ad80330, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.0021690931
+      objectReference: {fileID: 0}
+    - target: {fileID: 8488454273505639870, guid: 6dcc97f7838a5244699396f38ad80330, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -5.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 8488454273505639870, guid: 6dcc97f7838a5244699396f38ad80330, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 4.94
+      objectReference: {fileID: 0}
+    - target: {fileID: 8488454273505639870, guid: 6dcc97f7838a5244699396f38ad80330, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9019610452113500484, guid: 6dcc97f7838a5244699396f38ad80330, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9019610452113500484, guid: 6dcc97f7838a5244699396f38ad80330, type: 3}
+      propertyPath: m_Intensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9019610452113500484, guid: 6dcc97f7838a5244699396f38ad80330, type: 3}
+      propertyPath: m_Lightmapping
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9019610452113500484, guid: 6dcc97f7838a5244699396f38ad80330, type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9019610452113500484, guid: 6dcc97f7838a5244699396f38ad80330, type: 3}
+      propertyPath: m_BounceIntensity
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6dcc97f7838a5244699396f38ad80330, type: 3}

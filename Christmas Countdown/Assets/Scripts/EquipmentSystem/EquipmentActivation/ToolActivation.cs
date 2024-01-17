@@ -4,23 +4,33 @@ using UnityEngine;
 
 public class ToolActivation : MonoBehaviour, IEquipmentActivation
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private bool isLightOn;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    public void InitializeActivation()
-    {
+    private Light lightObject;
 
+    private ToolEquipmentObject toolData;
+
+    public void Initialize(Light _light)
+    {
+        // First get our equipmentBehaviour attached to same object
+        EquipmentBehaviour behaviour = GetComponent<EquipmentBehaviour>();
+
+        // Set our weapon data according to our equipment behaviour, casted in correct type
+        toolData = (ToolEquipmentObject)behaviour.EquipmentData;
+
+        SetLightSettings(_light);
     }
 
     public void Activate()
     {
+        isLightOn = true;
+    }
+
+    private Light SetLightSettings(Light _light)
+    {
+        _light.type = LightType.Spot;
+        
+
+        return _light;
     }
 }

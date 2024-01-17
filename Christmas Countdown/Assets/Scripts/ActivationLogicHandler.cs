@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 
 public class ActivationLogicHandler : MonoBehaviour
 {
@@ -134,8 +135,11 @@ public class ActivationLogicHandler : MonoBehaviour
         // Set the equipmentBehaviour's reference to activation interface to the specific activation script
         equipmentBehaviour.activationLogic = activation;
 
-        // Call initialize method from specific script
-        activation.InitializeActivation();
+        // Add a light component to the behaviour object
+        Light light = equipmentBehaviour.AddComponent<Light>();
+
+        // Call initialize method from specific script, sending the new light as reference
+        activation.Initialize(light);
     }
 
     /// <summary>
