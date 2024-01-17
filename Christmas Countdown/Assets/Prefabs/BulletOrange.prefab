@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2905079465566062972}
   - component: {fileID: 1238411268865879989}
   - component: {fileID: 8735739610970956182}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BulletOrange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,6 +127,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 186522eb8cb90a1479c0f1d118dde7ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  afterCollisionLifetime: 1.5
-  totalMaxLifetime: 10
+  afterCollisionDestroyDelay: 2
+  totalDestroyDelay: 10
   maxRandomNumberValue: 5
+  velocityDecreaseOnCollision: 75
+  collisionLayers:
+    serializedVersion: 2
+    m_Bits: 64
