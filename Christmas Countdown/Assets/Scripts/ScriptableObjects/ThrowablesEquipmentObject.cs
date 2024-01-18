@@ -10,6 +10,16 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Throwable Equipment", menuName = "Equipment/Throwable")]
 public class ThrowablesEquipmentObject : BaseEquipmentObject
 {
+
+    public Vector3 throwForce;
+
+    public float throwDelaySeconds; 
+
+    public float throwForceValue;
+
+    public float MaxThrowDistance;
+
+    public float distanceDivider;
     /// <summary>
     /// Implement abstract OnEnable function from base class to set type
     /// </summary>

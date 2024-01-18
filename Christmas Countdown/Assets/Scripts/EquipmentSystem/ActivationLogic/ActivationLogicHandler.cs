@@ -105,7 +105,7 @@ public class ActivationLogicHandler : MonoBehaviour
         equipmentBehaviour.activationLogic = activation;
 
         // Call initialize method from specific script
-        activation.InitializeActivation();
+        activation.Initialize(equipmentBehaviour);
     }
 
     /// <summary>
