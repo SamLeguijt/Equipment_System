@@ -11,15 +11,55 @@ using UnityEngine;
 public class ThrowablesEquipmentObject : BaseEquipmentObject
 {
 
-    public Vector3 throwForce;
+    /* ------------------------------------------  VARIABLES ------------------------------------------- */
 
-    public float throwDelaySeconds; 
+    [Space]
+    [Header("-----------------------  ThrowableEquipment specifics   -----------------------------------")]
+    [Space]
 
-    public float throwForceValue;
+    [Tooltip("Delay when activating equipment to throwing it, in seconds")]
+    [SerializeField] private float throwDelaySeconds;
 
-    public float MaxThrowDistance;
+    [Tooltip("Force to throw the equipment with")]
+    [SerializeField] private float throwForceValue;
 
-    public float distanceDivider;
+    [Tooltip("Maximum distance the equipment can get a point to throw to")]
+    [SerializeField] private float maxThrowDistance;
+
+    [Tooltip("Equipment curve gets measured by (distance / this), low= high curve, high= low curve")]
+    [SerializeField] private float distanceDivider;
+
+
+
+    /* ------------------------------------------  PROPERTIES ------------------------------------------- */
+
+
+
+    /// <summary>
+    /// Secondds delay when activating to throwing equipment, read-only
+    /// </summary>
+    public float ThrowDelaySeconds { get { return throwDelaySeconds;  } }
+
+    /// <summary>
+    /// Force to throw equipment with, read-only
+    /// </summary>
+    public float ThrowForceValue { get { return throwForceValue; } }    
+
+    /// <summary>
+    /// Maximum distance to get a point to throw to, read-only
+    /// </summary>
+    public float MaxThrowDistance { get { return maxThrowDistance; } }
+
+    /// <summary>
+    /// Divider to the distance when calculating Vector3.Up force apply, read-only
+    /// </summary>
+    public float DistanceDivider {  get { return distanceDivider; } }
+
+
+    /* ------------------------------------------  METHODS ------------------------------------------- */
+
+
+
     /// <summary>
     /// Implement abstract OnEnable function from base class to set type
     /// </summary>
