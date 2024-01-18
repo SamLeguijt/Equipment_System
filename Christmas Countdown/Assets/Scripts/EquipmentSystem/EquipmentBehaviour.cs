@@ -152,6 +152,9 @@ public class EquipmentBehaviour : MonoBehaviour
         get { return player; }
     }
 
+    /// <summary>
+    /// The hand this object is currently in
+    /// </summary>
     public Hand CurrentHand
     {
         get { return currentHand; }
