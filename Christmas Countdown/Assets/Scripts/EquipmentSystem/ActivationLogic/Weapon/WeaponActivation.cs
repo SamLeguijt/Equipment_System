@@ -17,8 +17,6 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
 
     private int currentAmmoCapacity;
 
-    private int maxAmmoCapacity;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -41,14 +39,13 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
         // Set this firepoint to the param
         firepoint = _targetFirepoint;
 
-        bulletToFire = weaponData.BulletToFire;
+        bulletToFire = weaponData.baseAmmoClip.BulletPrefab;
 
-        bulletRotation = weaponData.BulletStartRotation;
+        bulletRotation = weaponData.baseAmmoClip.BulletData.BulletFireRotation;
 
-        bulletSpeed = weaponData.BulletSpeed;
+        bulletSpeed = weaponData.baseAmmoClip.BulletData.BulletFireSpeed;
 
-        maxAmmoCapacity = weaponData.MaxClipCapacity;
-        currentAmmoCapacity = maxAmmoCapacity;
+        currentAmmoCapacity = weaponData.baseAmmoClip.BulletsAmount;
     }
 
 
@@ -127,48 +124,39 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
         }
     }
 
+    /// <summary>
+    /// Method to reload the weapon object with new ammo object, refilling the current ammo <br/>
+    /// Sets the bullet that will be fired to param bullets, as well as other bullet specific values 
+    /// </summary>
+    /// <param name="ammoClip"></param>
     public void Reload(AmmunitionEquipmentObject ammoClip)
     {
-        bulletToFire = ammoClip.bulletPrefab;
+        // Set new bullet to fire
+        bulletToFire = ammoClip.BulletPrefab;
 
-        bulletRotation = ammoClip.BulletData.BulletRotation;
+        // Set the rotation 
+        bulletRotation = ammoClip.BulletData.BulletFireRotation;
 
-        bulletSpeed = ammoClip.BulletData.BulletSpeed;
+        // Set speed of the bullet
+        bulletSpeed = ammoClip.BulletData.BulletFireSpeed;
 
-        currentAmmoCapacity = ammoClip.bulletsAmount;
+        // Call method to refill ammo
+        RefillAmmo(ammoClip.BulletsAmount);
+    }
 
-        if (currentAmmoCapacity > maxAmmoCapacity)
+    /// <summary>
+    /// Sets the value of the current ammo to the param value, keeping it within max capacity of weapon
+    /// </summary>
+    /// <param name="_newAmmo"></param>
+    private void RefillAmmo(int _newAmmo)
+    {
+        // Refill ammo by setting current to new ammo
+        currentAmmoCapacity = _newAmmo;
+
+        // Keep current ammo within the max of its weapon
+        if (currentAmmoCapacity > weaponData.MaxAmmoCapacity)
         {
-            currentAmmoCapacity = maxAmmoCapacity;
+            currentAmmoCapacity = weaponData.MaxAmmoCapacity;
         }
-
-        /*  Bullets: 
-         *  Bullet has damage, max distance, speed etc
-         *  Ammunition object has a reference to the bullet prefab as object.
-         *  The bullet script has a script object reference for its values (distance, speed, damage)
-         *  
-         * 
-         */
-
-
-        /* AK47 can shoot 30 bullets per clip <- MAxClipSize = 30 
-         * It can not reload without picking up an ammo object <- Can't fire if currentAmmo <= 0, cant call Reload();
-         * By activating the ammo object, ak47 reloads <- AmmoActivation calls Reload(); 
-         * reload: fill currentBullets till maxClipsize <- currentAmmo = AmmoClip.BulletsAmount : if (currentAmmo > maxClipSize) currentammo = maxclipsize
-         * 
-         * So:
-         * WeaponObject has MaxClipSize variable 
-         * WeaponActivation has currentAmmo, that sets to max On Initialize()
-         * FireBullet does -1 on currentAmmo
-         *  In Activate: if (currentAmmo <= 0) return;  else{ FireBullet}
-         *  
-         *  Reload method gets called in AmmoActivation on activation if other hand is holding a weapon. 
-         *  Reload () receives an AmmoObject to get its data and does:
-         *  currentAmmo set to the bullets in the data
-         *  bullet to fire to bullet prefab in the data
-         *  Can make multiple bullet prefabs to make different ammo types, referencing the prefabs in ammo object
-         *  
-         *  AmmoActivation: Reload() and Destroy after reloading (ammo clip should be consumed when reloading)
-         */
     }
 }

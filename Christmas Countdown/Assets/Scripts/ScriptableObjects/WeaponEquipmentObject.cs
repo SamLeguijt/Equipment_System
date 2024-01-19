@@ -16,6 +16,8 @@ public class WeaponEquipmentObject : BaseEquipmentObject
     [Header("-----------------------  WeaponEquipment specifics   -----------------------------------")]
     [Space]
 
+    [SerializeField] public AmmunitionEquipmentObject baseAmmoClip;
+
     [Tooltip("The bullet prefab to fire for this weapon")]
     [SerializeField] private GameObject bulletToFire;
 
@@ -58,7 +60,8 @@ public class WeaponEquipmentObject : BaseEquipmentObject
     /// <summary>
     /// Maximum size of bullets this weapon holds per clip
     /// </summary>
-    public int MaxClipCapacity { get { return maxClipCapacity; } }  
+    public int MaxAmmoCapacity { get { return maxClipCapacity; } }  
+
 
     /* ------------------------------------------  METHODS ------------------------------------------- */
 

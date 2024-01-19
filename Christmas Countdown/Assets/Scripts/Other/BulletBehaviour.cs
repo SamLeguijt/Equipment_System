@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class BulletBehaviour : MonoBehaviour
 {
+
+    /* ------------------------------------------  VARIABLES ------------------------------------------- */
+
+
     [Tooltip("Reference to the ScriptableObject holding this bullet's data")]
     [SerializeField] private BulletObject bulletData;
 
@@ -13,7 +17,20 @@ public class BulletBehaviour : MonoBehaviour
     // Bool to track if the bullet already collided
     private bool hasCollided;
 
+
+    /* ------------------------------------------  PROPERTIES ------------------------------------------- */
+
+
+
+    /// <summary>
+    /// This behaviours Bullet ScriptableObject to get its values from
+    /// </summary>
     public BulletObject BulletData { get { return bulletData; } }
+
+
+    /* ------------------------------------------  METHODS ------------------------------------------- */
+
+
 
     private void Start()
     {
@@ -22,7 +39,7 @@ public class BulletBehaviour : MonoBehaviour
         rb.useGravity = false;
 
         // Destroy the whole object after the total delay
-        Destroy(gameObject, bulletData.TotalDestroyDelay);
+        Destroy(gameObject, bulletData.MaxObjectLifetime);
     }
 
     private void Update()

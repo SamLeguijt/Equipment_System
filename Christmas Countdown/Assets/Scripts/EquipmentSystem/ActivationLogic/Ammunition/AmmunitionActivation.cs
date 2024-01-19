@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class AmmunitionActivation : MonoBehaviour, IEquipmentActivation
 {
+
+    /* ------------------------------------------  VARIABLES ------------------------------------------- */
+
+
     // Reference to the equipment controller
     private EquipmentSystemController equipmentController;
 
@@ -12,6 +16,15 @@ public class AmmunitionActivation : MonoBehaviour, IEquipmentActivation
 
     // Reference to this equipment's data
     private AmmunitionEquipmentObject ammoData;
+
+
+    /* ------------------------------------------  PROPERTIES ------------------------------------------- */
+
+
+
+    /* ------------------------------------------  METHODS ------------------------------------------- */
+
+
 
     public void Initialize(EquipmentBehaviour _equipment)
     {
@@ -48,7 +61,7 @@ public class AmmunitionActivation : MonoBehaviour, IEquipmentActivation
                 GameObject parent = gameObject.transform.parent.gameObject;
 
                 // Destroy the whole object upon reloading
-                Destroy(parent, ammoData.destroyAfterActivationDelay);
+                Destroy(parent, ammoData.DestroyAfterActivationDelay);
             }
         }
         else
