@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR;
 
@@ -355,27 +356,21 @@ public class EquipmentSystemController : MonoBehaviour
         return false;
     }
 
-
-
-    public bool IsEquippedInOppositeHandOf(Hand _hand)
+    /// <summary>
+    /// Returns if the _handToCheck param is holding an equipment of equipmentType param _typeToCheck
+    /// </summary>
+    /// <param name="_typeToCheck"></param>
+    /// <param name="_handToCheck"></param>
+    /// <returns></returns>
+    public bool IsEquipmentTypeInHandOf(EquipmentType _typeToCheck, Hand _handToCheck)
     {
-        if (_hand.HandType == LeftHand.HandType)
+        // Return false if the hand does not have a current equipment
+        if (_handToCheck.CurrentEquipment == null) return false;
+        else // Hand has a current equipment
         {
-            return (RightHand.CurrentEquipment != null);
+            // Return if the type in the hand matches th param type
+            return (_handToCheck.CurrentEquipment.EquipmentData.EquipmentType == _typeToCheck);
         }
-        else if (_hand.HandType == RightHand.HandType)
-        {
-            return (LeftHand.CurrentEquipment != null); 
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    public bool IsEquippedInHand(Hand _handToCheck)
-    {
-        return _handToCheck.CurrentEquipment != null;
     }
 }
 
