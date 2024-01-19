@@ -354,5 +354,28 @@ public class EquipmentSystemController : MonoBehaviour
         }
         return false;
     }
+
+
+
+    public bool IsEquippedInOppositeHandOf(Hand _hand)
+    {
+        if (_hand.HandType == LeftHand.HandType)
+        {
+            return (RightHand.CurrentEquipment != null);
+        }
+        else if (_hand.HandType == RightHand.HandType)
+        {
+            return (LeftHand.CurrentEquipment != null); 
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public bool IsEquippedInHand(Hand _handToCheck)
+    {
+        return _handToCheck.CurrentEquipment != null;
+    }
 }
 

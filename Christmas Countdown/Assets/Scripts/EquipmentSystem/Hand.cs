@@ -8,15 +8,6 @@ using UnityEngine;
 /// </summary>
 public class Hand : MonoBehaviour
 {
-    /// <summary>
-    /// Enum for setting the type of hand
-    /// </summary>
-    public enum TypeOfHand
-    {
-        Left,
-        Right
-    }
-
 
     /* ------------------------------------------  VARIABLES ------------------------------------------- */
 
@@ -126,4 +117,13 @@ public class Hand : MonoBehaviour
             _equipment.transform.SetParent(transform);
         }
     }
+}
+
+/// <summary>
+/// Enum for setting the type of hand
+/// </summary>
+public enum TypeOfHand
+{
+    Left,
+    Right
 }

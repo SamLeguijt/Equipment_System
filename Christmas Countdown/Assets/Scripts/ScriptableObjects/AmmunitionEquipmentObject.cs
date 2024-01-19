@@ -9,6 +9,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Ammunition Equipment", menuName = "Equipment/Ammunition")]
 public class AmmunitionEquipmentObject : BaseEquipmentObject
 {
+
+
     /// <summary>
     /// Implement abstract method from base class and set the equipment type of this object
     /// </summary>

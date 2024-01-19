@@ -4,24 +4,33 @@ using UnityEngine;
 
 public class AmmunitionActivation : MonoBehaviour, IEquipmentActivation
 {
-    // Start is called before the first frame update
-    void Start()
+
+    private EquipmentSystemController equipmentController; 
+    private EquipmentBehaviour equipmentBehaviour;
+    private AmmunitionEquipmentObject ammoData;
+
+    public void Initialize(EquipmentBehaviour _equipment)
     {
-        
+        equipmentBehaviour = _equipment;
+        equipmentBehaviour.activationLogic = this;
+
+        equipmentController = equipmentBehaviour.EquipmentSystemController;
+
+        ammoData = (AmmunitionEquipmentObject)equipmentBehaviour.EquipmentData;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
-    public void InitializeActivation()
-    {
-
-    }
     public void Activate()
     {
+        /* Check if the opposite hand is equipped
+         * If it is, check what type of equipment it is
+         * If its a weapon, do something
+         * 
+         */
 
+        if (equipmentController.IsEquippedInOppositeHandOf(equipmentBehaviour.CurrentHand))
+        {
+            Debug.Log("Activationv 1: Opposite hand is equipped");
+        }
     }
 }
