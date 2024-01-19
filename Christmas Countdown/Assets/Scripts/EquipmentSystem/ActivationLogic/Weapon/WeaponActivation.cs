@@ -131,9 +131,9 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
     {
         bulletToFire = ammoClip.bulletPrefab;
 
-        bulletRotation = ammoClip.bulletInfo.bulletRotation;
+        bulletRotation = ammoClip.BulletData.BulletRotation;
 
-        bulletSpeed = ammoClip.bulletInfo.bulletSpeed;
+        bulletSpeed = ammoClip.BulletData.BulletSpeed;
 
         currentAmmoCapacity = ammoClip.bulletsAmount;
 

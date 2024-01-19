@@ -127,10 +127,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 186522eb8cb90a1479c0f1d118dde7ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  afterCollisionDestroyDelay: 1.5
-  totalDestroyDelay: 10
-  maxRandomNumberValue: 3
-  velocityDecreaseOnCollision: 75
-  collisionLayers:
-    serializedVersion: 2
-    m_Bits: 64
+  bulletData: {fileID: 11400000, guid: 84db3bff0d937eb4799f0d6b469c9fb1, type: 2}

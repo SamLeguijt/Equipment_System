@@ -13,11 +13,12 @@ public class AmmunitionEquipmentObject : BaseEquipmentObject
     public int bulletsAmount;
 
     public int bulletsPerShot;
+
     public int bulletSpread;
 
     public GameObject bulletPrefab;
 
-    public Bullet bulletInfo;
+    private BulletObject bulletData;
 
     public float destroyAfterActivationDelay;
 
@@ -27,6 +28,7 @@ public class AmmunitionEquipmentObject : BaseEquipmentObject
 
     // Change bullet script with scriptable object of bullet (later)
 
+    public BulletObject BulletData { get { return bulletData; } }
 
     /// <summary>
     /// Implement abstract method from base class and set the equipment type of this object
@@ -35,6 +37,6 @@ public class AmmunitionEquipmentObject : BaseEquipmentObject
     {
         EquipmentType = EquipmentType.Ammunition;
 
-        bulletInfo = bulletPrefab.GetComponent<Bullet>();
+        bulletData = bulletPrefab.GetComponent<BulletBehaviour>().BulletData;
     }
 }

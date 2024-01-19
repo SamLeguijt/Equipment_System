@@ -55,7 +55,9 @@ public class WeaponEquipmentObject : BaseEquipmentObject
     /// </summary>
     public Vector3 BulletStartRotation {  get { return bulletStartRotation; } }
 
-
+    /// <summary>
+    /// Maximum size of bullets this weapon holds per clip
+    /// </summary>
     public int MaxClipCapacity { get { return maxClipCapacity; } }  
 
     /* ------------------------------------------  METHODS ------------------------------------------- */

@@ -28,3 +28,4 @@ MonoBehaviour:
   bulletsPerShot: 0
   bulletSpread: 0
   bulletPrefab: {fileID: 3780945515249444240, guid: a38c566ca3169ee4f9cacbfa236b8a30, type: 3}
+  destroyAfterActivationDelay: 0.25
