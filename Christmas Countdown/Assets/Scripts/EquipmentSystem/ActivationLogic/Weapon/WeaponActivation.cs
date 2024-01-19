@@ -9,6 +9,15 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
 
     WeaponEquipmentObject weaponData;
 
+    GameObject bulletToFire;
+
+    Vector3 bulletRotation;
+
+    float bulletSpeed;
+
+    private int currentAmmoCapacity;
+
+    private int maxAmmoCapacity;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +40,15 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
 
         // Set this firepoint to the param
         firepoint = _targetFirepoint;
+
+        bulletToFire = weaponData.BulletToFire;
+
+        bulletRotation = weaponData.BulletStartRotation;
+
+        bulletSpeed = weaponData.BulletSpeed;
+
+        maxAmmoCapacity = weaponData.maxClipCapacity;
+        currentAmmoCapacity = maxAmmoCapacity;
     }
 
 
@@ -40,14 +58,20 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
     /// </summary>
     public void Activate()
     {
-        // Call method to fire a bullet upon activation
-        FireBullet();
+        if (currentAmmoCapacity >0 )
+        {
+            // Call method to fire a bullet upon activation
+            FireBullet();
+        }
     }
 
     private void FireBullet()
     {
         // Instantiate new bullet at the firepoint position, with an pos offset and  
-        GameObject bullet = Instantiate(weaponData.BulletToFire, (firepoint.position), Quaternion.Euler(weaponData.BulletStartRotation));
+        GameObject bullet = Instantiate(bulletToFire, (firepoint.position), Quaternion.Euler(bulletRotation));
+
+        currentAmmoCapacity--;
+        Debug.Log(currentAmmoCapacity);
 
         // Get the mouse position 
         Vector3 mousePosition = Input.mousePosition;
@@ -71,7 +95,7 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
         if (rb != null)
         {
             // Add force using our bulletForce, and forcemode impulse
-            rb.AddForce(shootingDirection * weaponData.BulletSpeed, ForceMode.Impulse);
+            rb.AddForce(shootingDirection * bulletSpeed, ForceMode.Impulse);
         }
         else // Throw error
         {
@@ -104,6 +128,19 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
 
     public void Reload(AmmunitionEquipmentObject ammoClip)
     {
+        bulletToFire = ammoClip.bulletPrefab;
+
+        bulletRotation = ammoClip.bulletInfo.bulletRotation;
+
+        bulletSpeed = ammoClip.bulletInfo.bulletSpeed;
+
+        currentAmmoCapacity = ammoClip.bulletsAmount;
+
+        if (currentAmmoCapacity > maxAmmoCapacity)
+        {
+            currentAmmoCapacity = maxAmmoCapacity;
+        }
+
         // bulletToFire = ammoClip.Bullet;
 
         // currentBullets = maxClipSize; 

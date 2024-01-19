@@ -28,6 +28,8 @@ public class WeaponEquipmentObject : BaseEquipmentObject
     [Tooltip("Start rotation of the bullet when flying out of the weapon")]
     [SerializeField] private Vector3 bulletStartRotation;
 
+    public int maxClipCapacity;
+
 
 
     /* ------------------------------------------  PROPERTIES ------------------------------------------- */

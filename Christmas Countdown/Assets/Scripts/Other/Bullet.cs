@@ -20,6 +20,10 @@ public class Bullet : MonoBehaviour
     [Tooltip("Layers that the bullet can collide with")]
     [SerializeField] private LayerMask collisionLayers;
 
+    public Vector3 bulletRotation;
+
+    public float bulletSpeed;
+
     // Reference to the rigidbody for applying forces
     private Rigidbody rb;
 

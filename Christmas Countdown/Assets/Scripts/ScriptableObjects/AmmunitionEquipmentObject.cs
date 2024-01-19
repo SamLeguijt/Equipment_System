@@ -10,12 +10,21 @@ using UnityEngine;
 public class AmmunitionEquipmentObject : BaseEquipmentObject
 {
 
+    public int bulletsAmount;
 
+    public int bulletsPerShot;
+    public int bulletSpread;
+
+    public GameObject bulletPrefab;
+
+    public Bullet bulletInfo;
     /// <summary>
     /// Implement abstract method from base class and set the equipment type of this object
     /// </summary>
     protected override void OnEnable()
     {
         EquipmentType = EquipmentType.Ammunition;
+
+        bulletInfo = bulletPrefab.GetComponent<Bullet>();
     }
 }

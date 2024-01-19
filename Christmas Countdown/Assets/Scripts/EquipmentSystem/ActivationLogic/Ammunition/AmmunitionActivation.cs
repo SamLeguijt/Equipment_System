@@ -45,6 +45,15 @@ public class AmmunitionActivation : MonoBehaviour, IEquipmentActivation
             // Then call reload from there
 
             // Also, destroy this whole gameobject on activation (equipmentBehaviour.Mainpart.Destory)
+
+            // Get weapon: 
+            WeaponActivation weapon = oppositeHand.GetComponentInChildren<WeaponActivation>();
+
+            if (weapon != null)
+            {
+                weapon.Reload(ammoData);
+            }
+
         }
         else
         {
