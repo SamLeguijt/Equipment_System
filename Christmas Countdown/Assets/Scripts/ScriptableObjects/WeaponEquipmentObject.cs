@@ -28,7 +28,8 @@ public class WeaponEquipmentObject : BaseEquipmentObject
     [Tooltip("Start rotation of the bullet when flying out of the weapon")]
     [SerializeField] private Vector3 bulletStartRotation;
 
-    public int maxClipCapacity;
+    [Tooltip("Maximum amount of bullets per clip for this weapon")]
+    [SerializeField] private int maxClipCapacity;
 
 
 
@@ -53,6 +54,10 @@ public class WeaponEquipmentObject : BaseEquipmentObject
     /// Read only reference to the start rotation of this weapon's bullets
     /// </summary>
     public Vector3 BulletStartRotation {  get { return bulletStartRotation; } }
+
+
+    public int MaxClipCapacity { get { return maxClipCapacity; } }  
+
     /* ------------------------------------------  METHODS ------------------------------------------- */
 
 

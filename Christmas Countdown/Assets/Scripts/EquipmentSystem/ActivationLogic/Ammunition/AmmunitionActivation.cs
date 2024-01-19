@@ -37,23 +37,19 @@ public class AmmunitionActivation : MonoBehaviour, IEquipmentActivation
         // Check if the opposite hand is holdng a weapon
         if (equipmentController.IsEquipmentTypeInHandOf(EquipmentType.Weapon, oppositeHand))
         {
-            Debug.Log("Opposite hand is weapon!");
-
-            // Call method to reload weapon by sending this objects data as params
-
-            // Get the WeaponActivation script from the other hand's weapon,  (Hand.GetComponent in children)
-            // Then call reload from there
-
-            // Also, destroy this whole gameobject on activation (equipmentBehaviour.Mainpart.Destory)
-
-            // Get weapon: 
             WeaponActivation weapon = oppositeHand.GetComponentInChildren<WeaponActivation>();
 
             if (weapon != null)
             {
+                // Call method to reload the weapon, using this ammo's data
                 weapon.Reload(ammoData);
-            }
 
+                // Get parent object 
+                GameObject parent = gameObject.transform.parent.gameObject;
+
+                // Destroy the whole object upon reloading
+                Destroy(parent, ammoData.destroyAfterActivationDelay);
+            }
         }
         else
         {

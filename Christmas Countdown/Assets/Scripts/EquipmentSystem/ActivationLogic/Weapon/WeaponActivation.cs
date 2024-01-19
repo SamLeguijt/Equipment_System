@@ -47,7 +47,7 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
 
         bulletSpeed = weaponData.BulletSpeed;
 
-        maxAmmoCapacity = weaponData.maxClipCapacity;
+        maxAmmoCapacity = weaponData.MaxClipCapacity;
         currentAmmoCapacity = maxAmmoCapacity;
     }
 
@@ -71,6 +71,7 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
         GameObject bullet = Instantiate(bulletToFire, (firepoint.position), Quaternion.Euler(bulletRotation));
 
         currentAmmoCapacity--;
+
         Debug.Log(currentAmmoCapacity);
 
         // Get the mouse position 
@@ -141,13 +142,13 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
             currentAmmoCapacity = maxAmmoCapacity;
         }
 
-        // bulletToFire = ammoClip.Bullet;
-
-        // currentBullets = maxClipSize; 
-
-        // 
-
-        //
+        /*  Bullets: 
+         *  Bullet has damage, max distance, speed etc
+         *  Ammunition object has a reference to the bullet prefab as object.
+         *  The bullet script has a script object reference for its values (distance, speed, damage)
+         *  
+         * 
+         */
 
 
         /* AK47 can shoot 30 bullets per clip <- MAxClipSize = 30 

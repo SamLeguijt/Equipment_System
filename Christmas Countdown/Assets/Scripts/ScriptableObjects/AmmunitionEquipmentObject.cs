@@ -18,6 +18,16 @@ public class AmmunitionEquipmentObject : BaseEquipmentObject
     public GameObject bulletPrefab;
 
     public Bullet bulletInfo;
+
+    public float destroyAfterActivationDelay;
+
+    // Reference to bullet object (prefab
+    // Reference to the bullet script
+    // Reference to bullet script object 
+
+    // Change bullet script with scriptable object of bullet (later)
+
+
     /// <summary>
     /// Implement abstract method from base class and set the equipment type of this object
     /// </summary>
