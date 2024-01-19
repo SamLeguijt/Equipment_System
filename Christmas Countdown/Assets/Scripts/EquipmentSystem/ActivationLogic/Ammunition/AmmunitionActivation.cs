@@ -21,6 +21,12 @@ public class AmmunitionActivation : MonoBehaviour, IEquipmentActivation
     /* ------------------------------------------  PROPERTIES ------------------------------------------- */
 
 
+    /* TODO: 
+     * In ActivationLogicHandler 
+     * Check in here if ammoData is AmmoClipObject, then cast is as such. 
+     * Then, Reload using the AmmoClipObject as param, not the AmmunitionObject
+     */
+
 
     /* ------------------------------------------  METHODS ------------------------------------------- */
 
