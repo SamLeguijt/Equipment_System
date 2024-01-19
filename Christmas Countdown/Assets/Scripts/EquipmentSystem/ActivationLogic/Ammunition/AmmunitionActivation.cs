@@ -40,6 +40,11 @@ public class AmmunitionActivation : MonoBehaviour, IEquipmentActivation
             Debug.Log("Opposite hand is weapon!");
 
             // Call method to reload weapon by sending this objects data as params
+
+            // Get the WeaponActivation script from the other hand's weapon,  (Hand.GetComponent in children)
+            // Then call reload from there
+
+            // Also, destroy this whole gameobject on activation (equipmentBehaviour.Mainpart.Destory)
         }
         else
         {
