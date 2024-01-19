@@ -16,10 +16,7 @@ public class WeaponEquipmentObject : BaseEquipmentObject
     [Header("-----------------------  WeaponEquipment specifics   -----------------------------------")]
     [Space]
 
-    [SerializeField] public AmmunitionEquipmentObject baseAmmoClip;
-
-    [Tooltip("The bullet prefab to fire for this weapon")]
-    [SerializeField] private GameObject bulletToFire;
+    [SerializeField] public AmmoClipObject baseAmmoClip;
 
     [Tooltip("Maximum range bullets from this weapon can fire to")]
     [SerializeField] private float maxHitDistance;
@@ -36,11 +33,6 @@ public class WeaponEquipmentObject : BaseEquipmentObject
 
 
     /* ------------------------------------------  PROPERTIES ------------------------------------------- */
-
-    /// <summary>
-    /// Read only reference to the bullet to fire from this weapon
-    /// </summary>
-    public GameObject BulletToFire { get { return bulletToFire; } }
     
     /// <summary>
     /// Read only reference to the max hit distance this weapon can shoot

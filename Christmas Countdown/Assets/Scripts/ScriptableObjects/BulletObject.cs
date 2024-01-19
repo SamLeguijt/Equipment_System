@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName ="New Bullet Object", menuName = "Bullet")]
+[CreateAssetMenu(fileName ="New Bullet Object", menuName = "Equipment/Ammunition/Bullet")]
 public class BulletObject : ScriptableObject
 {
 

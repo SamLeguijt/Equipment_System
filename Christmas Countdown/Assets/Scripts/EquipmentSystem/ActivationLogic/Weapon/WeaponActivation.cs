@@ -45,7 +45,7 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
 
         bulletSpeed = weaponData.baseAmmoClip.BulletData.BulletFireSpeed;
 
-        currentAmmoCapacity = weaponData.baseAmmoClip.BulletsAmount;
+        currentAmmoCapacity = weaponData.baseAmmoClip.ClipSize;
     }
 
 
@@ -141,7 +141,7 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
         bulletSpeed = ammoClip.BulletData.BulletFireSpeed;
 
         // Call method to refill ammo
-        RefillAmmo(ammoClip.BulletsAmount);
+        RefillAmmo(ammoClip.ClipSize);
     }
 
     /// <summary>

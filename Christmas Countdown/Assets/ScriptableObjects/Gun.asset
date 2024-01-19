@@ -24,8 +24,7 @@ MonoBehaviour:
   unequippedLocalScale: {x: 1, y: 1, z: 1}
   equipmentDropForce: {x: 2, y: 2}
   equipDistance: 3
-  baseAmmoClip: {fileID: 11400000, guid: e5c7e20672420f9488ae3ddc259eeb95, type: 2}
-  bulletToFire: {fileID: 3780945515249444240, guid: 6c9ce9205e6276c43994a59bf6ba7710, type: 3}
+  baseAmmoClip: {fileID: 11400000, guid: 1309ae3ea2c219849b24314cf4a0511e, type: 2}
   maxHitDistance: 50
   bulletSpeed: 25
   bulletStartRotation: {x: 0, y: 0, z: 0}

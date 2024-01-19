@@ -17,23 +17,23 @@ public class AmmunitionEquipmentObject : BaseEquipmentObject
     [Space]
 
     [Tooltip("Reference to the prefab that will be instantiated after reloading with this ammo")]
-    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] protected GameObject bulletPrefab;
    
     [Tooltip("How many bullets this ammunition object holds")]
-    [SerializeField] private int bulletsAmount;
+    [SerializeField] protected int clipSize;
 
     [Tooltip("How many bullets per fire will be shot using this ammo clip")]
-    [SerializeField] private int bulletsPerFire;
+    [SerializeField] protected int bulletsPerFire;
 
     [Tooltip("How wide the bullets spread when firing multiple bullets")]
-    [SerializeField] private float bulletSpread;
+    [SerializeField] protected float bulletSpread;
 
     [Tooltip("Delay in seconds to destroy this object after activating")]
-    [SerializeField] private float destroyAfterActivationDelay;
+    [SerializeField] protected float destroyAfterActivationDelay;
 
 
     // Ref to the ScriptableObject holding the bullet's data, Will be assigned by looking at prefab
-    private BulletObject bulletData;
+    protected BulletObject bulletData;
 
 
 
@@ -53,7 +53,7 @@ public class AmmunitionEquipmentObject : BaseEquipmentObject
     /// <summary>
     /// Reference to the amount of bullets this ammunition holds, read-only
     /// </summary>
-    public int BulletsAmount { get { return bulletsAmount; } }
+    public int ClipSize { get { return clipSize; } }
 
     /// <summary>
     /// Reference to how many bullets will be fired per shot, read-only
