@@ -19,5 +19,5 @@ MonoBehaviour:
   collisionLayers:
     serializedVersion: 2
     m_Bits: 64
-  bulletFireRotation: {x: 0, y: 0, z: 0}
-  bulletFireSpeed: 20
+  bulletFireRotation: {x: 0, y: 180, z: 0}
+  bulletFireSpeed: 30

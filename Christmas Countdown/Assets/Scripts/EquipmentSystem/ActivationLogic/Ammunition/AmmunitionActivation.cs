@@ -52,8 +52,8 @@ public class AmmunitionActivation : MonoBehaviour, IEquipmentActivation
             // Get the weapon activation script to call reload method
             WeaponActivation weapon = oppositeHand.GetComponentInChildren<WeaponActivation>();
 
-            // Check if weapon is not null, and if its weapon type matches our ammo target weapon type
-            if (weapon != null && weapon.WeaponData.WeaponType == ammoData.TargetWeapon)
+            // Check if weapon is not null, and if the targetweapon matches the weapon's type, or if the targetweapon is all 
+            if (weapon != null && (weapon.WeaponData.WeaponType == ammoData.TargetWeapon || ammoData.TargetWeapon == TypeOfWeapon.All))
             {
                 // Call method to reload the weapon, using this ammo's data
                 weapon.Reload(ammoData);

@@ -373,6 +373,7 @@
 "Assets/Scripts/Other/CameraController.cs"
 "Assets/Scripts/Other/PlayerMovement.cs"
 "Assets/Scripts/ScriptableObjects/AmmoClipObject.cs"
+"Assets/Scripts/ScriptableObjects/AmmoCrateObject.cs"
 "Assets/Scripts/ScriptableObjects/AmmunitionEquipmentObject.cs"
 "Assets/Scripts/ScriptableObjects/ApparelEquipmentObject.cs"
 "Assets/Scripts/ScriptableObjects/BaseEquipmentObject.cs"

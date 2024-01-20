@@ -3805,7 +3805,7 @@ PrefabInstance:
     - target: {fileID: 8557418953104911914, guid: 7f8f55b1574a58f4699d4e796163e8f8, type: 3}
       propertyPath: equipmentData
       value: 
-      objectReference: {fileID: 11400000, guid: e5c7e20672420f9488ae3ddc259eeb95, type: 2}
+      objectReference: {fileID: 11400000, guid: 0d115701f6fb9d644a06a2b58a67a1c6, type: 2}
     - target: {fileID: 8557418953104911914, guid: 7f8f55b1574a58f4699d4e796163e8f8, type: 3}
       propertyPath: mainEquipmentObject
       value: 
