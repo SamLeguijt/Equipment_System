@@ -31,9 +31,11 @@ public class AmmunitionEquipmentObject : BaseEquipmentObject
     [Tooltip("Delay in seconds to destroy this object after activating")]
     [SerializeField] protected float destroyAfterActivationDelay;
 
-
     // Ref to the ScriptableObject holding the bullet's data, Will be assigned by looking at prefab
     protected BulletObject bulletData;
+
+    protected TypeOfWeapon targetWeapon;
+
 
 
 
@@ -50,6 +52,10 @@ public class AmmunitionEquipmentObject : BaseEquipmentObject
     /// </summary>
     public BulletObject BulletData { get { return bulletData; } }
 
+    /// <summary>
+    /// Reference to the weapon type this ammo targets, read-only
+    /// </summary>
+    public TypeOfWeapon TargetWeapon { get { return targetWeapon; } }
     /// <summary>
     /// Reference to the amount of bullets this ammunition holds, read-only
     /// </summary>

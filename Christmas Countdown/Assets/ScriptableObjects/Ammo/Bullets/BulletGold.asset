@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: BulletGold
   m_EditorClassIdentifier: 
   afterCollisionDestroyDelay: 0
-  maxObjectLifetime: 0
-  maxRandomNumberValue: 0
-  velocityDecreasePercentageOnCollision: 0
+  maxObjectLifetime: 10
+  maxRandomNumberValue: 5
+  velocityDecreasePercentageOnCollision: 60
   collisionLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   bulletFireRotation: {x: 0, y: 0, z: 0}
   bulletFireSpeed: 20

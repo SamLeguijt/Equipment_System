@@ -29,4 +29,4 @@ MonoBehaviour:
   bulletsPerFire: 1
   bulletSpread: 0
   destroyAfterActivationDelay: 0.2
-  targetWeapon: 1
+  weaponTarget: 1

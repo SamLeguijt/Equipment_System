@@ -91,5 +91,6 @@ public enum TypeOfWeapon
     Submachine,
     Pistol,
     Rocket,
-    Sniper
+    Sniper,
+    All // To reload all kind of weapons
 }

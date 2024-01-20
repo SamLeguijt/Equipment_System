@@ -4,18 +4,44 @@ using UnityEngine;
 
 public class WeaponActivation : MonoBehaviour, IEquipmentActivation
 {
+
+    /* ------------------------------------------  VARIABLES ------------------------------------------- */
+
+
     [Tooltip("Transform point where bullets should fire from. Place at correct position relative to weapon barrel")]
     [SerializeField] private Transform firepoint;
 
-    WeaponEquipmentObject weaponData;
+    /* Private variables for inside this class only */
 
-    GameObject bulletToFire;
+    // Reference to the weapon object for data
+    private WeaponEquipmentObject weaponData;
 
-    Vector3 bulletRotation;
+    // Store the current bullet being fired
+    private GameObject currentBullet;
 
-    float bulletSpeed;
+    // Store the rotation of the bullet when firing
+    private Vector3 bulletStartRotation;
 
+    // Store the current bullet's speed 
+    private float currentBulletSpeed;
+
+    // Reference the current ammo capacity of this weapon
     private int currentAmmoCapacity;
+
+
+    /* ------------------------------------------  PROPERTIES ------------------------------------------- */
+
+
+    /// <summary>
+    /// Reference to this weapon's data
+    /// </summary>
+    public WeaponEquipmentObject WeaponData {  get { return weaponData; } }
+
+
+
+    /* ------------------------------------------  METHODS ------------------------------------------- */
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -60,7 +86,7 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
     private void FireBullet()
     {
         // Instantiate new bullet at the firepoint position, with an pos offset and  
-        GameObject bullet = Instantiate(bulletToFire, (firepoint.position), Quaternion.Euler(bulletRotation));
+        GameObject bullet = Instantiate(currentBullet, (firepoint.position), Quaternion.Euler(bulletStartRotation));
 
         currentAmmoCapacity--;
 
@@ -88,7 +114,7 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
         if (rb != null)
         {
             // Add force using our bulletForce, and forcemode impulse
-            rb.AddForce(shootingDirection * bulletSpeed, ForceMode.Impulse);
+            rb.AddForce(shootingDirection * currentBulletSpeed, ForceMode.Impulse);
         }
         else // Throw error
         {
@@ -127,13 +153,13 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
     public void Reload(AmmunitionEquipmentObject ammoClip)
     {
         // Set new bullet to fire
-        bulletToFire = ammoClip.BulletPrefab;
+        currentBullet = ammoClip.BulletPrefab;
 
         // Set the rotation 
-        bulletRotation = ammoClip.BulletData.BulletFireRotation;
+        bulletStartRotation = ammoClip.BulletData.BulletFireRotation;
 
         // Set speed of the bullet
-        bulletSpeed = ammoClip.BulletData.BulletFireSpeed;
+        currentBulletSpeed = ammoClip.BulletData.BulletFireSpeed;
 
         // Call method to refill ammo
         RefillAmmo(ammoClip.ClipSize);

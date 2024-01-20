@@ -49,9 +49,11 @@ public class AmmunitionActivation : MonoBehaviour, IEquipmentActivation
         // Check if the opposite hand is holdng a weapon
         if (equipmentController.IsEquipmentTypeInHandOf(EquipmentType.Weapon, oppositeHand))
         {
+            // Get the weapon activation script to call reload method
             WeaponActivation weapon = oppositeHand.GetComponentInChildren<WeaponActivation>();
 
-            if (weapon != null)
+            // Check if weapon is not null, and if its weapon type matches our ammo target weapon type
+            if (weapon != null && weapon.WeaponData.WeaponType == ammoData.TargetWeapon)
             {
                 // Call method to reload the weapon, using this ammo's data
                 weapon.Reload(ammoData);
@@ -63,7 +65,7 @@ public class AmmunitionActivation : MonoBehaviour, IEquipmentActivation
                 Destroy(parent, ammoData.DestroyAfterActivationDelay);
             }
         }
-        else
+        else // No weapon in other hand, so return
         {
             return;
         }

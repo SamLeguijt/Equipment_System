@@ -5,22 +5,17 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Ammo Clip", menuName = "Equipment/Ammunition/Ammo clip")]
 public class AmmoClipObject : AmmunitionEquipmentObject
 {
+    [Tooltip("The weapon type this ammo belongs to")]
+    [SerializeField] private TypeOfWeapon weaponTarget;
 
-    [SerializeField] private TypeOfWeapon targetWeapon; 
+    /// <summary>
+    /// Override on enable method to set type of equipment and bullet data
+    /// </summary>
+    protected override void OnEnable()
+    {
+        base.OnEnable();
 
-    public TypeOfWeapon TargetWeapon { get { return targetWeapon; } }   
-
-
-    /* AmmoObject: 
-     * We need:
-     * 
-     * Ammo clip for each weapon, base values to initiate a weapon with 
-     * Ammo clip references a type of bullet and its data
-     * Ammo clip have types of clips: Shotgun, RPG, AR, pistol etc. 
-     * Each type of clip refernces a certain bullet tht matches (Shotgunclip ref to ShotgunBullet prefab, with ShotgunBullet scriptObject bullet)
-     * 
-     * Also ammo object: 
-     * Crates, much more ammo capacit, referncing ammo clips of all? 
-     * 
-     */
+        // Set target weapon to our weapon target
+        targetWeapon = weaponTarget;
+    }
 }
