@@ -6,6 +6,10 @@ using UnityEngine;
 public class AmmoClipObject : AmmunitionEquipmentObject
 {
 
+    [SerializeField] private TypeOfWeapon targetWeapon; 
+
+    public TypeOfWeapon TargetWeapon { get { return targetWeapon; } }   
+
 
     /* AmmoObject: 
      * We need:

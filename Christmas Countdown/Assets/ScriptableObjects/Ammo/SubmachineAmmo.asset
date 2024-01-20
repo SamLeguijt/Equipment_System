@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32baf69d78a00d94aa43889db35f0cf7, type: 3}
+  m_Name: SubmachineAmmo
+  m_EditorClassIdentifier: 
+  equipmentName: Ammo clip (Submachine)
+  equipmentDescription: 
+  leftHandPositionOffset: {x: 0, y: 0, z: 0}
+  rightHandPositionOffset: {x: 0, y: 0, z: 0}
+  equippedRotation: {x: 0, y: 0, z: 0}
+  unequippedRotation: {x: 0, y: 0, z: 0}
+  maxRotateTorqueSpeed: {x: 0, y: 0, z: 0}
+  rotateToMouseSpeed: 24.1
+  equippedLocalScale: {x: 0.65, y: 0.3, z: 0.6}
+  unequippedLocalScale: {x: 0.15, y: 0.1, z: 0.2}
+  equipmentDropForce: {x: 2, y: 1}
+  equipDistance: 3
+  bulletPrefab: {fileID: 3780945515249444240, guid: 1f207b5f5cc0df947b0e604bd171e939, type: 3}
+  clipSize: 50
+  bulletsPerFire: 1
+  bulletSpread: 0
+  destroyAfterActivationDelay: 0.1
+  targetWeapon: 2

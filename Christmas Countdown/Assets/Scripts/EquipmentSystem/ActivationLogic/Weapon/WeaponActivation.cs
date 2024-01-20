@@ -39,13 +39,8 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
         // Set this firepoint to the param
         firepoint = _targetFirepoint;
 
-        bulletToFire = weaponData.baseAmmoClip.BulletPrefab;
-
-        bulletRotation = weaponData.baseAmmoClip.BulletData.BulletFireRotation;
-
-        bulletSpeed = weaponData.baseAmmoClip.BulletData.BulletFireSpeed;
-
-        currentAmmoCapacity = weaponData.baseAmmoClip.ClipSize;
+        // Reload the weapon with the base ammo clip 
+        Reload(weaponData.BaseAmmoClip);
     }
 
 

@@ -16,7 +16,11 @@ public class WeaponEquipmentObject : BaseEquipmentObject
     [Header("-----------------------  WeaponEquipment specifics   -----------------------------------")]
     [Space]
 
-    [SerializeField] public AmmoClipObject baseAmmoClip;
+    [Tooltip("Starting ammo clip for this weapon")]
+    [SerializeField] private AmmoClipObject baseAmmoClip;
+
+    [Tooltip("Specify what type of weapon this object is")]
+    [SerializeField] private TypeOfWeapon weaponType;
 
     [Tooltip("Maximum range bullets from this weapon can fire to")]
     [SerializeField] private float maxHitDistance;
@@ -33,12 +37,22 @@ public class WeaponEquipmentObject : BaseEquipmentObject
 
 
     /* ------------------------------------------  PROPERTIES ------------------------------------------- */
-    
+
+    /// <summary>
+    /// The starting ammo clip of the weapon, read-only
+    /// </summary>
+    public AmmoClipObject BaseAmmoClip { get { return baseAmmoClip; } }
+
+    /// <summary>
+    /// Type of weapon this object is, read-only
+    /// </summary>
+    public TypeOfWeapon WeaponType { get { return weaponType; } }   
+
     /// <summary>
     /// Read only reference to the max hit distance this weapon can shoot
     /// </summary>
     public float MaxHitDistance { get { return maxHitDistance; } }
-    
+
     /// <summary>
     /// Read only reference to the bullet speed for this weapon
     /// </summary>
@@ -47,12 +61,12 @@ public class WeaponEquipmentObject : BaseEquipmentObject
     /// <summary>
     /// Read only reference to the start rotation of this weapon's bullets
     /// </summary>
-    public Vector3 BulletStartRotation {  get { return bulletStartRotation; } }
+    public Vector3 BulletStartRotation { get { return bulletStartRotation; } }
 
     /// <summary>
     /// Maximum size of bullets this weapon holds per clip
     /// </summary>
-    public int MaxAmmoCapacity { get { return maxClipCapacity; } }  
+    public int MaxAmmoCapacity { get { return maxClipCapacity; } }
 
 
     /* ------------------------------------------  METHODS ------------------------------------------- */
@@ -65,4 +79,17 @@ public class WeaponEquipmentObject : BaseEquipmentObject
     {
         EquipmentType = EquipmentType.Weapon;
     }
+}
+
+/// <summary>
+/// Enum for specifying the type of weapon
+/// </summary>
+public enum TypeOfWeapon
+{
+    AssaultRifle,
+    Shotgun,
+    Submachine,
+    Pistol,
+    Rocket,
+    Sniper
 }
