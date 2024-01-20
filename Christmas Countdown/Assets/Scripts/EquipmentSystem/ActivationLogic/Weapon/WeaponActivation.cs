@@ -76,10 +76,12 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
     /// </summary>
     public void Activate()
     {
-        if (currentAmmoCapacity >0 )
+        if (currentAmmoCapacity > 0)
         {
-            // Call method to fire a bullet upon activation
-            FireBullet();
+            for (int i = 0; i < weaponData.BaseAmmoClip.BulletsPerFire; i++)
+            {
+                FireBullet();
+            }
         }
     }
 
@@ -90,11 +92,20 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
         Quaternion startRotation = GetBulletStartRotationTowards(fireDirection);
 
         // Instantiate new bullet at the firepoint position, with an pos offset and  
-        GameObject bullet = Instantiate(currentBullet, firepoint.position, startRotation);
+       // GameObject bullet = Instantiate(currentBullet, firepoint.position, startRotation);
 
         currentAmmoCapacity--;
 
         Debug.Log(currentAmmoCapacity);
+
+        // Get the base fire direction towards the mouse
+        Vector3 baseFireDirection = GetFireDirectionToMouse(firepoint.position);
+
+        // Apply bullet spread
+        Vector3 spreadDirection = ApplyBulletSpread(baseFireDirection);
+
+
+        GameObject bullet = Instantiate(currentBullet, firepoint.position, Quaternion.LookRotation(spreadDirection));
 
         // Find the rigidbody on the bullet prefab
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
@@ -103,11 +114,57 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
         if (rb != null)
         {
             // Add force using our bulletForce, and forcemode impulse
-            rb.AddForce(fireDirection * currentBulletSpeed, ForceMode.Impulse);
+            rb.AddForce(spreadDirection * currentBulletSpeed, ForceMode.Impulse);
         }
         else // Throw error
         {
             throw new System.Exception("Rigidbody on bullet prefab is missing, assign please, then try to fire bullets again");
+        }
+    }
+
+    private Vector3 ApplyBulletSpread(Vector3 baseDirection)
+    {
+        // Calculate random spread angle within the specified range
+        float spreadAngle = Random.Range(-weaponData.BaseAmmoClip.BulletSpread / 2f, weaponData.BaseAmmoClip.BulletSpread / 2f);
+
+        // Rotate the base direction with the spread angle
+        Vector3 spreadDirection = Quaternion.Euler(spreadAngle, spreadAngle, spreadAngle) * baseDirection;
+
+        return spreadDirection.normalized;
+    }
+    /// <summary>
+    /// Method to reload the weapon object with new ammo object, refilling the current ammo <br/>
+    /// Sets the bullet that will be fired to param bullets, as well as other bullet specific values 
+    /// </summary>
+    /// <param name="ammoClip"></param>
+    public void Reload(AmmunitionEquipmentObject ammoClip)
+    {
+        // Set new bullet to fire
+        currentBullet = ammoClip.BulletPrefab;
+
+        // Set the rotation 
+        bulletStartRotation = ammoClip.BulletData.BulletStartRotation;
+
+        // Set speed of the bullet
+        currentBulletSpeed = ammoClip.BulletData.BulletFireSpeed;
+
+        // Call method to refill ammo
+        RefillAmmo(ammoClip.ClipSize);
+    }
+
+    /// <summary>
+    /// Sets the value of the current ammo to the param value, keeping it within max capacity of weapon
+    /// </summary>
+    /// <param name="_newAmmo"></param>
+    private void RefillAmmo(int _newAmmo)
+    {
+        // Refill ammo by setting current to new ammo
+        currentAmmoCapacity = _newAmmo;
+
+        // Keep current ammo within the max of its weapon
+        if (currentAmmoCapacity > weaponData.MaxAmmoCapacity)
+        {
+            currentAmmoCapacity = weaponData.MaxAmmoCapacity;
         }
     }
 
@@ -174,40 +231,5 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
         Vector3 shootingDirection = targetPoint - _fromVector;
 
         return shootingDirection.normalized;
-    }
-    /// <summary>
-    /// Method to reload the weapon object with new ammo object, refilling the current ammo <br/>
-    /// Sets the bullet that will be fired to param bullets, as well as other bullet specific values 
-    /// </summary>
-    /// <param name="ammoClip"></param>
-    public void Reload(AmmunitionEquipmentObject ammoClip)
-    {
-        // Set new bullet to fire
-        currentBullet = ammoClip.BulletPrefab;
-
-        // Set the rotation 
-        bulletStartRotation = ammoClip.BulletData.BulletStartRotation;
-
-        // Set speed of the bullet
-        currentBulletSpeed = ammoClip.BulletData.BulletFireSpeed;
-
-        // Call method to refill ammo
-        RefillAmmo(ammoClip.ClipSize);
-    }
-
-    /// <summary>
-    /// Sets the value of the current ammo to the param value, keeping it within max capacity of weapon
-    /// </summary>
-    /// <param name="_newAmmo"></param>
-    private void RefillAmmo(int _newAmmo)
-    {
-        // Refill ammo by setting current to new ammo
-        currentAmmoCapacity = _newAmmo;
-
-        // Keep current ammo within the max of its weapon
-        if (currentAmmoCapacity > weaponData.MaxAmmoCapacity)
-        {
-            currentAmmoCapacity = weaponData.MaxAmmoCapacity;
-        }
     }
 }

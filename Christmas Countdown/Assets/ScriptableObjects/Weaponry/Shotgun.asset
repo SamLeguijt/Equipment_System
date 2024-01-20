@@ -29,4 +29,4 @@ MonoBehaviour:
   maxHitDistance: 50
   bulletSpeed: 25
   bulletStartRotation: {x: 1, y: 1, z: 1}
-  maxClipCapacity: 30
+  maxClipCapacity: 100
