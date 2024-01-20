@@ -63,7 +63,7 @@ public class BulletObject : ScriptableObject
     /// <summary>
     /// The rotation of the bullet when firing, read-only
     /// </summary>
-    public Vector3 BulletFireRotation { get { return bulletFireRotation; } }
+    public Vector3 BulletStartRotation { get { return bulletFireRotation; } }
 
     /// <summary>
     /// Speed of the bullet when firing, read-only

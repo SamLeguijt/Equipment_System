@@ -4849,6 +4849,26 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.7661
       objectReference: {fileID: 0}
+    - target: {fileID: 1207664901652205942, guid: 7f8f55b1574a58f4699d4e796163e8f8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1207664901652205942, guid: 7f8f55b1574a58f4699d4e796163e8f8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1207664901652205942, guid: 7f8f55b1574a58f4699d4e796163e8f8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1207664901652205942, guid: 7f8f55b1574a58f4699d4e796163e8f8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1207664901652205942, guid: 7f8f55b1574a58f4699d4e796163e8f8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8557418953104911913, guid: 7f8f55b1574a58f4699d4e796163e8f8, type: 3}
       propertyPath: m_Name
       value: EquipmentObject

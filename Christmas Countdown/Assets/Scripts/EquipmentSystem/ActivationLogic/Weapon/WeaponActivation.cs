@@ -85,27 +85,16 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
 
     private void FireBullet()
     {
+        Vector3 fireDirection = GetFireDirectionToMouse(firepoint.position);
+  
+        Quaternion startRotation = GetBulletStartRotationTowards(fireDirection);
+
         // Instantiate new bullet at the firepoint position, with an pos offset and  
-        GameObject bullet = Instantiate(currentBullet, (firepoint.position), Quaternion.Euler(bulletStartRotation));
+        GameObject bullet = Instantiate(currentBullet, firepoint.position, startRotation);
 
         currentAmmoCapacity--;
 
         Debug.Log(currentAmmoCapacity);
-
-        // Get the mouse position 
-        Vector3 mousePosition = Input.mousePosition;
-
-        // Create a ray from the main camera through the mouse position
-        Ray ray = Camera.main.ScreenPointToRay(mousePosition);
-
-        // Call method to get the targetPoint, depending on the max range of our ray
-        Vector3 targetPoint = GetTargetPoint(ray);
-
-        // Calculate direction for the bullet by subtracting firepoint pos from the mouse pos
-        Vector3 shootingDirection = targetPoint - firepoint.position;
-
-        // Normalize to get the direction vector
-        shootingDirection.Normalize();
 
         // Find the rigidbody on the bullet prefab
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
@@ -114,7 +103,7 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
         if (rb != null)
         {
             // Add force using our bulletForce, and forcemode impulse
-            rb.AddForce(shootingDirection * currentBulletSpeed, ForceMode.Impulse);
+            rb.AddForce(fireDirection * currentBulletSpeed, ForceMode.Impulse);
         }
         else // Throw error
         {
@@ -146,6 +135,47 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
     }
 
     /// <summary>
+    /// Returns a Quaternion rotated towards targetDirection multiplied with current bullet's startrotation
+    /// </summary>
+    /// <param name="_targetDirection"></param>
+    /// <returns></returns>
+    private Quaternion GetBulletStartRotationTowards(Vector3 _targetDirection)
+    {
+        // Get initial rotation towards param point
+        Quaternion targetRotation = Quaternion.LookRotation(_targetDirection);
+
+        // Get the start rotation from the current bullet prefab
+        Vector3 bulletFireRotation = currentBullet.GetComponent<BulletBehaviour>().BulletData.BulletStartRotation;
+
+        // Multiply the target direction with the start rotation of the bullets data
+        targetRotation *= Quaternion.Euler(bulletFireRotation);
+
+        // Return the multiplied vector
+        return targetRotation;
+    }
+
+    /// <summary>
+    /// Returns a normalized vector from param to the mouse position
+    /// </summary>
+    /// <param name="_fromVector"></param>
+    /// <returns></returns>
+    private Vector3 GetFireDirectionToMouse(Vector3 _fromVector)
+    {
+        // Get the mouse position 
+        Vector3 mousePosition = Input.mousePosition;
+
+        // Create a ray from the main camera through the mouse position
+        Ray ray = Camera.main.ScreenPointToRay(mousePosition);
+
+        // Call method to get the targetPoint, depending on the max range of our ray
+        Vector3 targetPoint = GetTargetPoint(ray);
+
+        // Calculate direction for the bullet by subtracting firepoint pos from the mouse pos
+        Vector3 shootingDirection = targetPoint - _fromVector;
+
+        return shootingDirection.normalized;
+    }
+    /// <summary>
     /// Method to reload the weapon object with new ammo object, refilling the current ammo <br/>
     /// Sets the bullet that will be fired to param bullets, as well as other bullet specific values 
     /// </summary>
@@ -156,7 +186,7 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
         currentBullet = ammoClip.BulletPrefab;
 
         // Set the rotation 
-        bulletStartRotation = ammoClip.BulletData.BulletFireRotation;
+        bulletStartRotation = ammoClip.BulletData.BulletStartRotation;
 
         // Set speed of the bullet
         currentBulletSpeed = ammoClip.BulletData.BulletFireSpeed;
