@@ -12,20 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32baf69d78a00d94aa43889db35f0cf7, type: 3}
   m_Name: ShotgunClip
   m_EditorClassIdentifier: 
-  equipmentName: ShotgunClip
+  equipmentName: Ammo clip (shotgun)
   equipmentDescription: 
   leftHandPositionOffset: {x: 0, y: 0, z: 0}
   rightHandPositionOffset: {x: 0, y: 0, z: 0}
   equippedRotation: {x: 0, y: 0, z: 0}
   unequippedRotation: {x: 0, y: 0, z: 0}
-  maxRotateTorqueSpeed: {x: 0, y: 0, z: 0}
-  rotateToMouseSpeed: 0
-  equippedLocalScale: {x: 3, y: 3, z: 3}
-  unequippedLocalScale: {x: 1, y: 1, z: 1}
-  equipmentDropForce: {x: 0, y: 0}
+  maxRotateTorqueSpeed: {x: 5, y: 10, z: 0}
+  rotateToMouseSpeed: 22.6
+  equippedLocalScale: {x: 0.45, y: 0.3, z: 0.6}
+  unequippedLocalScale: {x: 0.15, y: 0.1, z: 0.2}
+  equipmentDropForce: {x: 3, y: 1}
   equipDistance: 3
   bulletPrefab: {fileID: 3780945515249444240, guid: a38c566ca3169ee4f9cacbfa236b8a30, type: 3}
-  clipSize: 100
-  bulletsPerFire: 3
+  clipSize: 10
+  bulletsPerFire: 1
   bulletSpread: 0
   destroyAfterActivationDelay: 0.2

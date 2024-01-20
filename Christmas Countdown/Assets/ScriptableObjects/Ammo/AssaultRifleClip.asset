@@ -12,20 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32baf69d78a00d94aa43889db35f0cf7, type: 3}
   m_Name: AssaultRifleClip
   m_EditorClassIdentifier: 
-  equipmentName: Assault rifle ammo
+  equipmentName: Ammo clip (Assault Rifle)
   equipmentDescription: 
   leftHandPositionOffset: {x: 0, y: 0, z: 0}
   rightHandPositionOffset: {x: 0, y: 0, z: 0}
   equippedRotation: {x: 0, y: 0, z: 0}
   unequippedRotation: {x: 0, y: 0, z: 0}
-  maxRotateTorqueSpeed: {x: 0, y: 0, z: 0}
-  rotateToMouseSpeed: 0
-  equippedLocalScale: {x: 1, y: 1, z: 1}
-  unequippedLocalScale: {x: 1, y: 1, z: 1}
-  equipmentDropForce: {x: 0, y: 0}
+  maxRotateTorqueSpeed: {x: 5, y: 10, z: 0}
+  rotateToMouseSpeed: 20.9
+  equippedLocalScale: {x: 0.65, y: 0.3, z: 0.6}
+  unequippedLocalScale: {x: 0.15, y: 0.1, z: 0.2}
+  equipmentDropForce: {x: 3, y: 1}
   equipDistance: 3
   bulletPrefab: {fileID: 3780945515249444240, guid: 6c9ce9205e6276c43994a59bf6ba7710, type: 3}
   clipSize: 30
-  bulletsPerFire: 2
+  bulletsPerFire: 1
   bulletSpread: 0
   destroyAfterActivationDelay: 0.2

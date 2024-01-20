@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Ammo Clip", menuName = "Equipment/Ammunition/Ammo clip")]
 public class AmmoClipObject : AmmunitionEquipmentObject
 {
-    
+
 
     /* AmmoObject: 
      * We need:
@@ -19,5 +19,4 @@ public class AmmoClipObject : AmmunitionEquipmentObject
      * Crates, much more ammo capacit, referncing ammo clips of all? 
      * 
      */
-
 }
