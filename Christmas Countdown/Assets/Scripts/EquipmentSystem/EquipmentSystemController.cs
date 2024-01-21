@@ -174,8 +174,8 @@ public class EquipmentSystemController : MonoBehaviour
         fullHandKeyBindings.Add(leftHand, new HandKeyBindings(leftHand, leftHandActivationKey, LeftHandEquipDropKey));
         fullHandKeyBindings.Add(rightHand, new HandKeyBindings(rightHand, rightHandActivationKey, RightHandEquipDropKey));
 
-        leftHand.activationKey = leftHandActivationKey;
-        rightHand.activationKey = rightHandActivationKey;
+        leftHand.ActivationKey = leftHandActivationKey;
+        rightHand.ActivationKey = rightHandActivationKey;
     }
 
     // Update is called once per frame
@@ -184,7 +184,6 @@ public class EquipmentSystemController : MonoBehaviour
         // Handle the current equipment for both hands in update
         HandleCurrentEquipment(leftHand);
         HandleCurrentEquipment(rightHand);
-
     }
 
     /// <summary>

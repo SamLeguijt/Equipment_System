@@ -1,5 +1,7 @@
+using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -31,9 +33,20 @@ public class WeaponEquipmentObject : BaseEquipmentObject
     [Tooltip("Maximum amount of bullets per clip for this weapon")]
     [SerializeField] private int maxClipCapacity;
 
-    public WeaponActivation.WeaponFireMode BaseFireMode;
-    public WeaponActivation.WeaponFireMode[] fireModes;
-    public int burstShotAmount;
+    [Tooltip("Array containing the possible fire modes for this weapon. First index is starting fire mode")]
+    [SerializeField] private WeaponFireMode[] fireModes;
+
+    [Tooltip("Represents how many shots a round of burst fires per activation")]
+    [SerializeField] private int burstShootCount;
+
+    [Tooltip("Delay between shots in burst fire mode")]
+    [SerializeField] private float burstShootDelay;
+
+    [Tooltip("Delay between shots in full auto fire mode")]
+    [SerializeField] private float fullAutoShootDelay;
+    
+    // Reference to the key to swap fire modes (Not adjustable in inspector to set default key)
+    private KeyCode fireModeSwapKey;
 
 
     /* ------------------------------------------  PROPERTIES ------------------------------------------- */
@@ -63,9 +76,34 @@ public class WeaponEquipmentObject : BaseEquipmentObject
     /// </summary>
     public int MaxAmmoCapacity { get { return maxClipCapacity; } }
 
+    /// <summary>
+    /// Possible fire modes for this weapon, stored in an array (read-only)
+    /// </summary>
+    public WeaponFireMode[] FireModes { get { return fireModes; } }
+
+    /// <summary>
+    /// Representing the amount of shots fired per burst activation, read-only
+    /// </summary>
+    public int BurstShootCount {  get { return burstShootCount; } } 
+
+    /// <summary>
+    /// Delay between shots in burst mode, read-only
+    /// </summary>
+    public float BurstShootDelay {  get { return burstShootDelay; } }
+
+    /// <summary>
+    /// Delay between shots in full-auto mode, read-only
+    /// </summary>
+    public float FullAutoShootDelay { get { return fullAutoShootDelay; } }
+
+    /// <summary>
+    /// Reference to the key to swap to another fire mode, read-only
+    /// </summary>
+    public KeyCode FireModeSwapKey {  get { return fireModeSwapKey; } }
+
+
 
     /* ------------------------------------------  METHODS ------------------------------------------- */
-
 
     /// <summary>
     /// OnEnable method to set weapon type automatically when creating new object of this type
@@ -73,6 +111,7 @@ public class WeaponEquipmentObject : BaseEquipmentObject
     protected override void OnEnable()
     {
         EquipmentType = EquipmentType.Weapon;
+        fireModeSwapKey = KeyCode.Space;
     }
 }
 

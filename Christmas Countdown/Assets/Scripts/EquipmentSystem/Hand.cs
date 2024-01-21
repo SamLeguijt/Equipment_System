@@ -23,8 +23,14 @@ public class Hand : MonoBehaviour
     // Reference to the current equipped item for this hand
     private EquipmentBehaviour currentEquipment;
 
-    public KeyCode equipDropKey;
-    public KeyCode activationKey;
+    // Keycodes for this hand 
+    private KeyCode equipDropKey;
+    private KeyCode activationKey;
+
+
+    /* ------------------------------------------  PROPERTIES ------------------------------------------- */
+
+
 
     /// <summary>
     /// Read-only property to get the hand type of this object
@@ -35,6 +41,24 @@ public class Hand : MonoBehaviour
     }
 
     /// <summary>
+    /// Reference to the Key used for equipping and dropping equipment for this hand
+    /// </summary>
+    public KeyCode EquipDropKey
+    {
+        get { return equipDropKey; }
+        set { equipDropKey = value; }
+    }
+
+    /// <summary>
+    /// Reference tot the key used for activating equipment for this hand
+    /// </summary>
+    public KeyCode ActivationKey
+    {
+        get { return activationKey; }
+        set {  activationKey = value; } 
+    }
+
+    /// <summary>
     /// Public property to get and set the Current Equipment of this hand
     /// </summary>
     public EquipmentBehaviour CurrentEquipment
@@ -42,6 +66,10 @@ public class Hand : MonoBehaviour
         get { return currentEquipment; }
         set { currentEquipment = value; }
     }
+
+
+    /* ------------------------------------------  METHODS ------------------------------------------- */
+
 
     private void Start()
     {
@@ -101,7 +129,7 @@ public class Hand : MonoBehaviour
             case TypeOfHand.Right:
                 handPosOffset = _equipment.EquipmentData.RightHandPositionOffset;
                 break;
-            default: 
+            default:
                 // Other hand type case:
                 Debug.LogError($"No HandType assigned to {gameObject.name}, can not get in hand position from data! ");
                 break;
