@@ -26,7 +26,7 @@ public class AmmunitionEquipmentObject : BaseEquipmentObject
     [SerializeField] protected int bulletsPerFire;
 
     [Tooltip("How wide the bullets spread when firing multiple bullets")]
-    [SerializeField] protected float bulletSpread;
+    [SerializeField] protected float randomSpreadRange;
 
     [Tooltip("Delay in seconds to destroy this object after activating")]
     [SerializeField] protected float destroyAfterActivationDelay;
@@ -67,9 +67,9 @@ public class AmmunitionEquipmentObject : BaseEquipmentObject
     public int BulletsPerFire {  get { return bulletsPerFire; } }
 
     /// <summary>
-    /// Reference to the spread between bullets, read-only
+    /// Reference to the spread between bullets. used to calculate within -x and +x to create random spread. read-only
     /// </summary>
-    public float BulletSpread { get { return bulletSpread; } }
+    public float RandomSpreadRange { get { return randomSpreadRange; } }
 
     /// <summary>
     /// Reference to the delay to destroy this object after activating, read- only

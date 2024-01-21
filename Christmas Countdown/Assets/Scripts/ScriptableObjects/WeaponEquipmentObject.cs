@@ -25,9 +25,6 @@ public class WeaponEquipmentObject : BaseEquipmentObject
     [Tooltip("Maximum range bullets from this weapon can fire to")]
     [SerializeField] private float maxHitDistance;
 
-    [Tooltip("Speed of what the bullet from this weapon flies with")]
-    [SerializeField] private float bulletSpeed;
-
     [Tooltip("Start rotation of the bullet when flying out of the weapon")]
     [SerializeField] private Vector3 bulletStartRotation;
 
@@ -52,11 +49,6 @@ public class WeaponEquipmentObject : BaseEquipmentObject
     /// Read only reference to the max hit distance this weapon can shoot
     /// </summary>
     public float MaxHitDistance { get { return maxHitDistance; } }
-
-    /// <summary>
-    /// Read only reference to the bullet speed for this weapon
-    /// </summary>
-    public float BulletSpeed { get { return bulletSpeed; } }
 
     /// <summary>
     /// Read only reference to the start rotation of this weapon's bullets

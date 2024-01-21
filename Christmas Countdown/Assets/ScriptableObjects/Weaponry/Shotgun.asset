@@ -26,7 +26,6 @@ MonoBehaviour:
   equipDistance: 3
   baseAmmoClip: {fileID: 11400000, guid: 1c82b2c640b72e94294aa5b4d6c1c299, type: 2}
   weaponType: 1
-  maxHitDistance: 50
-  bulletSpeed: 25
+  maxHitDistance: 25
   bulletStartRotation: {x: 1, y: 1, z: 1}
-  maxClipCapacity: 100
+  maxClipCapacity: 15

@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 934affefbe5547145a71b28fe525c039, type: 3}
   m_Name: BulletShotgun
   m_EditorClassIdentifier: 
-  afterCollisionDestroyDelay: 2
+  afterCollisionDestroyDelay: 1
   maxObjectLifetime: 10
-  maxRandomNumberValue: 5
-  velocityDecreasePercentageOnCollision: 75
+  maxRandomNumberValue: 2
+  velocityDecreasePercentageOnCollision: 80
   collisionLayers:
     serializedVersion: 2
     m_Bits: 64
   bulletFireRotation: {x: 0, y: 0, z: 0}
-  bulletFireSpeed: 15
+  bulletFireSpeed: 20

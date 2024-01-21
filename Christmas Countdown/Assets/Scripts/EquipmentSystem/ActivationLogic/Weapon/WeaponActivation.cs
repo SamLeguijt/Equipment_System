@@ -35,7 +35,7 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
     /// <summary>
     /// Reference to this weapon's data
     /// </summary>
-    public WeaponEquipmentObject WeaponData {  get { return weaponData; } }
+    public WeaponEquipmentObject WeaponData { get { return weaponData; } }
 
 
 
@@ -76,8 +76,10 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
     /// </summary>
     public void Activate()
     {
+        // Only fire if we have >0 ammo
         if (currentAmmoCapacity > 0)
         {
+            // Call method to fire a bullet for every bullets ammoclip want to fire per shot
             for (int i = 0; i < weaponData.BaseAmmoClip.BulletsPerFire; i++)
             {
                 FireBullet();
@@ -85,36 +87,34 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
         }
     }
 
+    /// <summary>
+    /// Fires a bullet towards the mouse direction
+    /// </summary>
+    /// <exception cref="System.Exception"></exception>
     private void FireBullet()
     {
+        // Get the direction to fire in
         Vector3 fireDirection = GetFireDirectionToMouse(firepoint.position);
-  
+
+        // Get Quaterion to get correct starting rotation towards the fire direction
         Quaternion startRotation = GetBulletStartRotationTowards(fireDirection);
 
-        // Instantiate new bullet at the firepoint position, with an pos offset and  
-       // GameObject bullet = Instantiate(currentBullet, firepoint.position, startRotation);
+        // Instantiate a new bullet from the firepoint with the startRotation, using the currentBulelt as prefab
+        GameObject bullet = Instantiate(currentBullet, firepoint.position, startRotation);
 
+        // Take one of the current ammo after instantiating
         currentAmmoCapacity--;
 
         Debug.Log(currentAmmoCapacity);
 
-        // Get the base fire direction towards the mouse
-        Vector3 baseFireDirection = GetFireDirectionToMouse(firepoint.position);
-
-        // Apply bullet spread
-        Vector3 spreadDirection = ApplyBulletSpread(baseFireDirection);
-
-
-        GameObject bullet = Instantiate(currentBullet, firepoint.position, startRotation);
-
-        // Find the rigidbody on the bullet prefab
+        // Find the rigidbody on the bullet 
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
 
         // Check if its not null 
         if (rb != null)
         {
-            // Add force using our bulletForce, and forcemode impulse
-            rb.AddForce(spreadDirection * currentBulletSpeed, ForceMode.Impulse);
+            // Add force towards the fire direction, multiplied with the current speed for the bullet
+            rb.AddForce(fireDirection * currentBulletSpeed, ForceMode.Impulse);
         }
         else // Throw error
         {
@@ -122,16 +122,6 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
         }
     }
 
-    private Vector3 ApplyBulletSpread(Vector3 baseDirection)
-    {
-        // Calculate random spread angle within the specified range
-        float spreadAngle = Random.Range(-weaponData.BaseAmmoClip.BulletSpread / 2f, weaponData.BaseAmmoClip.BulletSpread / 2f);
-
-        // Rotate the base direction with the spread angle
-        Vector3 spreadVector = new Vector3(baseDirection.x + spreadAngle, baseDirection.y + spreadAngle, baseDirection.z + spreadAngle);
-       
-        return spreadVector;
-    }
     /// <summary>
     /// Method to reload the weapon object with new ammo object, refilling the current ammo <br/>
     /// Sets the bullet that will be fired to param bullets, as well as other bullet specific values 
@@ -168,28 +158,43 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
         }
     }
 
-    /// <summary>
-    /// Method to get a hit point on trajectory ray <br/>
-    /// Returns a point as Vector3 representing either the end of our range, or the point where the ray collides with something
-    /// </summary>
-    /// <param name="ray"></param>
-    /// <returns></returns>
-    Vector3 GetTargetPoint(Ray ray)
-    {
-        RaycastHit hit;
 
-        // Perform the raycast
-        if (Physics.Raycast(ray, out hit, weaponData.MaxHitDistance))
+    /// <summary>
+    /// Returns a normalized vector from param to the mouse direction, applying bullet spread around it. 
+    /// </summary>
+    /// <param name="_fromVector"></param>
+    /// <param name="_applyBulletSpread"></param>
+    /// <returns></returns>
+    private Vector3 GetFireDirectionToMouse(Vector3 _fromVector, bool _applyBulletSpread = true)
+    {
+        // Get the mouse position 
+        Vector3 mousePosition = Input.mousePosition;
+
+        // Create a ray from the main camera through the mouse position
+        Ray ray = Camera.main.ScreenPointToRay(mousePosition);
+
+        // Call method to get the targetPoint, depending on the max range of our ray
+        Vector3 targetPoint = GetTargetPoint(ray);
+
+        Vector3 shootingDirection = Vector3.zero;
+
+        if (_applyBulletSpread)
         {
-            // If the ray hits an object within the shooting range, return the hit point
-            return hit.point;
+            Vector3 spreadTargetPoint = GetRandomSpreadVector(targetPoint);
+
+            // Calculate direction for the bullet by subtracting firepoint pos from the target pos
+            shootingDirection = spreadTargetPoint - _fromVector;
         }
-        else
+        else // Do not apply bullet spread
         {
-            // If the ray doesn't hit anything, return a point at the maximum shooting range
-            return ray.GetPoint(weaponData.MaxHitDistance);
+            // So get directiom from the targetpoint itself
+            shootingDirection = targetPoint - _fromVector;
         }
+
+        // Return normalized vector for direction
+        return shootingDirection.normalized;
     }
+
 
     /// <summary>
     /// Returns a Quaternion rotated towards targetDirection multiplied with current bullet's startrotation
@@ -212,26 +217,62 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
     }
 
     /// <summary>
-    /// Returns a normalized vector from param to the mouse position
+    /// Returns a new vector with random calculated offsets on the param vector, used for bullet spread <br/>
+    /// Gets the point, then gets a random point within x value around it, scaling it with the distance from the firepoint towards the param
     /// </summary>
-    /// <param name="_fromVector"></param>
+    /// <param name="_targetPoint"></param>
     /// <returns></returns>
-    private Vector3 GetFireDirectionToMouse(Vector3 _fromVector)
+    private Vector3 GetRandomSpreadVector(Vector3 _targetPoint)
     {
-        // Get the mouse position 
-        Vector3 mousePosition = Input.mousePosition;
+        // Var for setting the amount of vecotr axis we want to apply spread to
+        int vectorAxis = 3;
 
-        // Create a ray from the main camera through the mouse position
-        Ray ray = Camera.main.ScreenPointToRay(mousePosition);
+        // We make a new float array to store random values, with size of above int
+        float[] randomSpreadValues = new float[vectorAxis];
 
-        // Call method to get the targetPoint, depending on the max range of our ray
-        Vector3 targetPoint = GetTargetPoint(ray);
+        //Calculate distance from firepoint to the target point
+        float distanceToPoint = Vector3.Distance(_targetPoint, firepoint.position);
 
-        Vector3 spreadTargetPoint = ApplyBulletSpread(targetPoint); 
+        // We loop through the vectorAxis' and fill the array with a random calculated spread, scaled to distance to point
+        for (int i = 0; i < vectorAxis; i++)
+        {
+            // Calculate random spread using the value from the ammo clip as range
+            float randomSpread = Random.Range(-weaponData.BaseAmmoClip.RandomSpreadRange, weaponData.BaseAmmoClip.RandomSpreadRange);
 
-        // Calculate direction for the bullet by subtracting firepoint pos from the mouse pos
-        Vector3 shootingDirection = spreadTargetPoint - _fromVector;
+            // We multiply the spread with the distance to scale it with distance (prevents closer aimed shots having more spread than further aimed shots)
+            randomSpread *= distanceToPoint;
 
-        return shootingDirection.normalized;
+            // We store the random calculated spread value in the array 
+            randomSpreadValues[i] = randomSpread;
+        }
+
+        // We create a new vector that takes the params vector and applies a value from the array to each axis.
+        Vector3 spreadVector = new Vector3(_targetPoint.x + randomSpreadValues[0], _targetPoint.y + randomSpreadValues[1], _targetPoint.z + randomSpreadValues[2]);
+
+        // We return the new vector as spreadVector;
+        return spreadVector;
+    }
+
+    /// <summary>
+    /// Method to get a hit point on trajectory ray <br/>
+    /// Returns a point as Vector3 representing either the end of our range, or the point where the ray collides with something
+    /// </summary>
+    /// <param name="ray"></param>
+    /// <returns></returns>
+    private Vector3 GetTargetPoint(Ray ray)
+    {
+        RaycastHit hit;
+
+        // Perform the raycast
+        if (Physics.Raycast(ray, out hit, weaponData.MaxHitDistance))
+        {
+            // If the ray hits an object within the shooting range, return the hit point
+            return hit.point;
+        }
+        else
+        {
+            // If the ray doesn't hit anything, return a point at the maximum shooting range
+            return ray.GetPoint(weaponData.MaxHitDistance);
+        }
     }
 }
