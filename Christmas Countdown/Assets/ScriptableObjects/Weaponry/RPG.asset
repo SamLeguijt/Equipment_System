@@ -29,3 +29,6 @@ MonoBehaviour:
   maxHitDistance: 25
   bulletStartRotation: {x: 0, y: 0, z: 0}
   maxClipCapacity: 5
+  BaseFireMode: 0
+  fireModes: 00000000
+  burstShotAmount: 0

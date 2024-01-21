@@ -30,8 +30,13 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
     // Reference the current ammo capacity of this weapon
     private int currentAmmoCapacity;
 
-    private bool isFiring;
+    private bool isShooting;
 
+    private bool canAutomaticFire;
+
+    private WeaponFireMode currentFireMode;
+
+    private int currentFireModeIndex;
 
     /* ------------------------------------------  PROPERTIES ------------------------------------------- */
 
@@ -73,62 +78,112 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
 
         // Reload the weapon with the base ammo clip 
         Reload(weaponData.BaseAmmoClip);
+
+        currentFireModeIndex = 0;
+        SwitchFireMode(currentFireModeIndex);
     }
 
     private void Update()
     {
-        if (equipmentBehaviour.CurrentHand != null)
+
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            
-            if (Input.GetKey(equipmentBehaviour.CurrentHand.activationKey))
+            if (currentFireModeIndex >= weaponData.fireModes.Length)
             {
-                if (!isFiring)
-                {
-                    StartCoroutine(AutomaticFire());
-                }
+                currentFireModeIndex = 0;
             }
+
+            SwitchFireMode(currentFireModeIndex);
         }
 
-        // Check if the left mouse button is released
-        if (Input.GetKeyUp(equipmentBehaviour.CurrentHand.activationKey) || equipmentBehaviour.CurrentHand == null)
+        if (isShooting)
         {
-            isFiring = false;
-            // Stop the firing coroutine
-            StopAllCoroutines();
+            // Check if the left mouse button is released
+            if (Input.GetKeyUp(equipmentBehaviour.CurrentHand.activationKey) || equipmentBehaviour.CurrentHand == null)
+            {
+                // Stop the firing coroutine
+                StopCoroutine(AutomaticFire());
+
+                isShooting = false;
+            }
         }
     }
 
+    private void SwitchFireMode(int _targetIndex)
+    {
+
+        currentFireMode = weaponData.fireModes[_targetIndex];
+        currentFireModeIndex++;
+
+        Debug.Log(currentFireMode);
+    }
     private IEnumerator AutomaticFire()
     {
-        isFiring = true;
+        isShooting = true;
 
-        while (isFiring)
+        while (isShooting)
         {
-            Debug.Log("In coroutine fire now!");
-            // Call your firing function here (replace FireBullet() with your actual firing function)
-            FireBullet();
+            PerformShot();
 
             // Wait for the specified interval before firing again
             yield return new WaitForSeconds(.2f);
         }
     }
+
     /// <summary>
     /// Overridden method that runs when player input is received <br/>
     /// Shoots a bullet toward the mouse cursor
     /// </summary>
     public void Activate()
     {
+        switch (currentFireMode)
+        {
+            case WeaponFireMode.SemiAutomatic:
+
+                PerformShot();
+
+                break;
+            case WeaponFireMode.FullAutomatic:
+
+                if (Input.GetKey(equipmentBehaviour.CurrentHand.activationKey))
+                {
+                    if (!isShooting)
+                    {
+                        StartCoroutine(AutomaticFire());
+                    }
+                }
+
+                break;
+            case WeaponFireMode.BurstFire:
+                StartCoroutine(BurstFireShot(weaponData.burstShotAmount));        
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void PerformShot(int _amount = 1)
+    {
         // Only fire if we have >0 ammo
-        if (currentAmmoCapacity > 0)
+        if (currentAmmoCapacity >= _amount)
         {
             // Call method to fire a bullet for every bullets ammoclip want to fire per shot
-            for (int i = 0; i < weaponData.BaseAmmoClip.BulletsPerFire; i++)
+            for (int i = 0; i < weaponData.BaseAmmoClip.BulletsPerShot; i++)
             {
                 FireBullet();
             }
         }
     }
 
+    private IEnumerator BurstFireShot(int _bulletsToFire)
+    {
+        for (int i = 0; i < _bulletsToFire; i++)
+        {
+            PerformShot();
+
+            yield return new WaitForSeconds(.1f);
+        }
+    }
     /// <summary>
     /// Fires a bullet towards the mouse direction
     /// </summary>
@@ -147,7 +202,7 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
         // Take one of the current ammo after instantiating
         currentAmmoCapacity--;
 
-        Debug.Log(currentAmmoCapacity);
+        // Debug.Log(currentAmmoCapacity);
 
         // Find the rigidbody on the bullet 
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
@@ -317,4 +372,12 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
             return ray.GetPoint(weaponData.MaxHitDistance);
         }
     }
+
+    public enum WeaponFireMode
+    {
+        SemiAutomatic, // Fires a single shot each activation
+        FullAutomatic, // Fires a single shot with delay while holding activation key
+        BurstFire // Fires multiple shots in quick succession each activation
+    }
 }
+

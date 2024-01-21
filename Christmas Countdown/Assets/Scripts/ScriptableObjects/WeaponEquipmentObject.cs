@@ -31,6 +31,9 @@ public class WeaponEquipmentObject : BaseEquipmentObject
     [Tooltip("Maximum amount of bullets per clip for this weapon")]
     [SerializeField] private int maxClipCapacity;
 
+    public WeaponActivation.WeaponFireMode BaseFireMode;
+    public WeaponActivation.WeaponFireMode[] fireModes;
+    public int burstShotAmount;
 
 
     /* ------------------------------------------  PROPERTIES ------------------------------------------- */

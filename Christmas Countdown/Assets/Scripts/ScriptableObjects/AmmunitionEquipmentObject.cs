@@ -64,7 +64,7 @@ public class AmmunitionEquipmentObject : BaseEquipmentObject
     /// <summary>
     /// Reference to how many bullets will be fired per shot, read-only
     /// </summary>
-    public int BulletsPerFire {  get { return bulletsPerFire; } }
+    public int BulletsPerShot {  get { return bulletsPerFire; } }
 
     /// <summary>
     /// Reference to the spread between bullets. used to calculate within -x and +x to create random spread. read-only
