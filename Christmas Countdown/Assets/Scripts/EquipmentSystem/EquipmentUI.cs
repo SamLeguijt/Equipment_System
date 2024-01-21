@@ -13,6 +13,9 @@ public class EquipmentUI : MonoBehaviour
 
     [Tooltip("TMP object attached to Canvas")]
     [SerializeField] private TextMeshProUGUI equipmentTextObject;
+    
+    [Tooltip("TMP object attached to Canvas")]
+    [SerializeField] private TextMeshProUGUI ammoTextObject;
 
     [Tooltip("EquipmentSystemController object in scene")]
     [SerializeField] private EquipmentSystemController equipSystemController;
@@ -48,6 +51,7 @@ public class EquipmentUI : MonoBehaviour
 
     // Reference to the RectTransform component of the TMP object
     private RectTransform rectTransform;
+    private RectTransform rectTransformAmmo;
 
     // String that holds a reference to the name of the current equipment, ui displays the name
     private string currentEquipmentNameToDisplay;
@@ -147,6 +151,7 @@ public class EquipmentUI : MonoBehaviour
     {
         // Get RectTransform from TMP object
         rectTransform = equipmentTextObject.GetComponent<RectTransform>();
+        rectTransformAmmo = ammoTextObject.GetComponent<RectTransform>();
 
         if (equipmentTextObject != null && rectTransform != null && equipSystemController != null)
         {
@@ -166,7 +171,8 @@ public class EquipmentUI : MonoBehaviour
     public void InitializeEquipmentUI()
     {
         // Set the RectTransform properties to set UI text at correct position in game view
-        SetTransformProperties();
+        SetTransformProperties(rectTransform);
+        SetTransformProperties(rectTransformAmmo);
     }
 
 
@@ -174,6 +180,41 @@ public class EquipmentUI : MonoBehaviour
     /// Handles the text being displayed 
     /// </summary>
     private void Update()
+    {
+
+        if (equipSystemController.IsEquipmentTypeInHandOf(EquipmentType.Weapon, equipSystemController.LeftHand))
+        {
+            EquipmentBehaviour equipment = equipSystemController.LeftHand.CurrentEquipment;
+
+            WeaponActivation weaponInfo = equipment.GetComponentInChildren<WeaponActivation>();
+
+            ammoTextObject.SetText(weaponInfo.CurrentAmmoCapacity.ToString());
+        }
+        else
+        {
+            ammoTextObject.SetText("");
+        }
+
+
+        /* Ammo UI:
+         * 
+         * Have two TMP objects for each hand
+         * Disable them, unless the current equipment for that hand is not null 
+         * If enabled, display the current ammo of the weaponActivation at the position set in inspector
+         * 
+         * So we need: 
+         * TMP objects
+         * UpdateTextBox method takes TMP object as target 
+         * Clean ref to the equipment in each hand (or to hand itself) 
+         * Position that can be set in inspector, make sure its scaling with screen size to prevent dumby thingies
+         * Position to hand pos + yOffset? 
+         */
+
+
+        HandleUnequippedText();
+    }
+
+    private void HandleUnequippedText()
     {
         // Return immediatily if there is no equipment target
         if (currentEquipmentTarget == null) return;
@@ -287,14 +328,14 @@ public class EquipmentUI : MonoBehaviour
     /// <summary>
     /// Method that sets the transform properties of the Text object to place in the right position
     /// </summary>
-    private void SetTransformProperties()
+    private void SetTransformProperties(RectTransform _target)
     {
         // Set the width and height of the RectTransform on both axis
-        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, rectTransformWidth);
-        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, rectTransformHeight);
+        _target.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, rectTransformWidth);
+        _target.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, rectTransformHeight);
 
         // Set the position to the desired target position (position based on anchors)
-        rectTransform.anchoredPosition = rectTargetPosition;
+        _target.anchoredPosition = rectTargetPosition;
     }
 
     /// <summary>
