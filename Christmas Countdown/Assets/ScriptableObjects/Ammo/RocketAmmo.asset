@@ -27,6 +27,6 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1626126354896630758, guid: 7e1e9e9a928cfbc4d891ad0a1aa5f7b8, type: 3}
   clipSize: 100
   bulletsPerFire: 1
-  bulletSpread: 0
+  bulletSpread: 1
   destroyAfterActivationDelay: 0.2
   weaponTarget: 4

@@ -105,7 +105,7 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
         Vector3 spreadDirection = ApplyBulletSpread(baseFireDirection);
 
 
-        GameObject bullet = Instantiate(currentBullet, firepoint.position, Quaternion.LookRotation(spreadDirection));
+        GameObject bullet = Instantiate(currentBullet, firepoint.position, startRotation);
 
         // Find the rigidbody on the bullet prefab
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
@@ -128,9 +128,9 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
         float spreadAngle = Random.Range(-weaponData.BaseAmmoClip.BulletSpread / 2f, weaponData.BaseAmmoClip.BulletSpread / 2f);
 
         // Rotate the base direction with the spread angle
-        Vector3 spreadDirection = Quaternion.Euler(spreadAngle, spreadAngle, spreadAngle) * baseDirection;
-
-        return spreadDirection.normalized;
+        Vector3 spreadVector = new Vector3(baseDirection.x + spreadAngle, baseDirection.y + spreadAngle, baseDirection.z + spreadAngle);
+       
+        return spreadVector;
     }
     /// <summary>
     /// Method to reload the weapon object with new ammo object, refilling the current ammo <br/>
@@ -227,8 +227,10 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
         // Call method to get the targetPoint, depending on the max range of our ray
         Vector3 targetPoint = GetTargetPoint(ray);
 
+        Vector3 spreadTargetPoint = ApplyBulletSpread(targetPoint); 
+
         // Calculate direction for the bullet by subtracting firepoint pos from the mouse pos
-        Vector3 shootingDirection = targetPoint - _fromVector;
+        Vector3 shootingDirection = spreadTargetPoint - _fromVector;
 
         return shootingDirection.normalized;
     }
