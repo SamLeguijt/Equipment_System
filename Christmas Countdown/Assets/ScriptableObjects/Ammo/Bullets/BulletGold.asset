@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 934affefbe5547145a71b28fe525c039, type: 3}
   m_Name: BulletGold
   m_EditorClassIdentifier: 
-  afterCollisionDestroyDelay: 0
+  afterCollisionDestroyDelay: 1
   maxObjectLifetime: 10
   maxRandomNumberValue: 5
   velocityDecreasePercentageOnCollision: 60

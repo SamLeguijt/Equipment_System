@@ -18,23 +18,25 @@ public class WeaponEquipmentObject : BaseEquipmentObject
     [Header("-----------------------  WeaponEquipment specifics   -----------------------------------")]
     [Space]
 
-    [Tooltip("Starting ammo clip for this weapon")]
-    [SerializeField] private AmmoClipObject baseAmmoClip;
-
     [Tooltip("Specify what type of weapon this object is")]
     [SerializeField] private TypeOfWeapon weaponType;
 
-    [Tooltip("Maximum range bullets from this weapon can fire to")]
-    [SerializeField] private float maxHitDistance;
-
-    [Tooltip("Start rotation of the bullet when flying out of the weapon")]
-    [SerializeField] private Vector3 bulletStartRotation;
+    [Tooltip("Starting ammo clip for this weapon")]
+    [SerializeField] private AmmoClipObject baseAmmoClip;
 
     [Tooltip("Maximum amount of bullets per clip for this weapon")]
     [SerializeField] private int maxClipCapacity;
 
+    [Tooltip("Maximum range bullets from this weapon can fire to")]
+    [SerializeField] private float maxHitDistance;
+
+    [Space]
+
     [Tooltip("Array containing the possible fire modes for this weapon. First index is starting fire mode")]
     [SerializeField] private WeaponFireMode[] fireModes;
+
+    [Tooltip("Delay between shots in full auto fire mode")]
+    [SerializeField] private float fullAutoShootDelay;
 
     [Tooltip("Represents how many shots a round of burst fires per activation")]
     [SerializeField] private int burstShootCount;
@@ -42,9 +44,6 @@ public class WeaponEquipmentObject : BaseEquipmentObject
     [Tooltip("Delay between shots in burst fire mode")]
     [SerializeField] private float burstShootDelay;
 
-    [Tooltip("Delay between shots in full auto fire mode")]
-    [SerializeField] private float fullAutoShootDelay;
-    
     // Reference to the key to swap fire modes (Not adjustable in inspector to set default key)
     private KeyCode fireModeSwapKey;
 
@@ -59,17 +58,12 @@ public class WeaponEquipmentObject : BaseEquipmentObject
     /// <summary>
     /// Type of weapon this object is, read-only
     /// </summary>
-    public TypeOfWeapon WeaponType { get { return weaponType; } }   
+    public TypeOfWeapon WeaponType { get { return weaponType; } }
 
     /// <summary>
     /// Read only reference to the max hit distance this weapon can shoot
     /// </summary>
     public float MaxHitDistance { get { return maxHitDistance; } }
-
-    /// <summary>
-    /// Read only reference to the start rotation of this weapon's bullets
-    /// </summary>
-    public Vector3 BulletStartRotation { get { return bulletStartRotation; } }
 
     /// <summary>
     /// Maximum size of bullets this weapon holds per clip
@@ -84,12 +78,12 @@ public class WeaponEquipmentObject : BaseEquipmentObject
     /// <summary>
     /// Representing the amount of shots fired per burst activation, read-only
     /// </summary>
-    public int BurstShootCount {  get { return burstShootCount; } } 
+    public int BurstShootCount { get { return burstShootCount; } }
 
     /// <summary>
     /// Delay between shots in burst mode, read-only
     /// </summary>
-    public float BurstShootDelay {  get { return burstShootDelay; } }
+    public float BurstShootDelay { get { return burstShootDelay; } }
 
     /// <summary>
     /// Delay between shots in full-auto mode, read-only
@@ -99,7 +93,7 @@ public class WeaponEquipmentObject : BaseEquipmentObject
     /// <summary>
     /// Reference to the key to swap to another fire mode, read-only
     /// </summary>
-    public KeyCode FireModeSwapKey {  get { return fireModeSwapKey; } }
+    public KeyCode FireModeSwapKey { get { return fireModeSwapKey; } }
 
 
 
@@ -111,7 +105,7 @@ public class WeaponEquipmentObject : BaseEquipmentObject
     protected override void OnEnable()
     {
         EquipmentType = EquipmentType.Weapon;
-        fireModeSwapKey = KeyCode.Space;
+        fireModeSwapKey = KeyCode.Space; // Set default to space key
     }
 }
 

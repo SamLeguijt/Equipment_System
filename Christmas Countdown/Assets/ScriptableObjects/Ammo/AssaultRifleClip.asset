@@ -25,8 +25,8 @@ MonoBehaviour:
   equipmentDropForce: {x: 3, y: 1}
   equipDistance: 3
   bulletPrefab: {fileID: 3780945515249444240, guid: 6c9ce9205e6276c43994a59bf6ba7710, type: 3}
-  clipSize: 30
-  bulletsPerFire: 1
+  bulletAmount: 45
+  bulletsPerShot: 1
   randomSpreadRange: 0.01
   destroyAfterActivationDelay: 0.2
   weaponTarget: 0

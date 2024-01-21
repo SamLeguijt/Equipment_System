@@ -24,12 +24,11 @@ MonoBehaviour:
   unequippedLocalScale: {x: 1, y: 1, z: 1}
   equipmentDropForce: {x: 4, y: 4}
   equipDistance: 3
-  baseAmmoClip: {fileID: 11400000, guid: 1c82b2c640b72e94294aa5b4d6c1c299, type: 2}
   weaponType: 1
-  maxHitDistance: 25
-  bulletStartRotation: {x: 1, y: 1, z: 1}
+  baseAmmoClip: {fileID: 11400000, guid: 1c82b2c640b72e94294aa5b4d6c1c299, type: 2}
   maxClipCapacity: 15
+  maxHitDistance: 25
   fireModes: 0000000002000000
+  fullAutoShootDelay: 0
   burstShootCount: 2
-  burstShootDelay: 0.25
-  fullAutoShootDelay: 0.25
+  burstShootDelay: 0.3

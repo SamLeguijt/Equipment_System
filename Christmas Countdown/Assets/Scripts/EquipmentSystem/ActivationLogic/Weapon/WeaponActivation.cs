@@ -49,12 +49,12 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
     /// <summary>
     /// Reference to this weapon's behaviour component, read-only
     /// </summary>
-    public EquipmentBehaviour EquipmentBehaviour { get {  return equipmentBehaviour; } }
+    public EquipmentBehaviour EquipmentBehaviour { get { return equipmentBehaviour; } }
 
     /// <summary>
     ///  Reference to this weapon's current ammo, read-only
     /// </summary>
-    public int CurrentAmmoCapacity { get { return currentAmmoCapacity; } }  
+    public int CurrentAmmoCapacity { get { return currentAmmoCapacity; } }
 
     /// <summary>
     /// Reference to this weapon's current fire mode, read-only
@@ -64,7 +64,6 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
 
 
     /* ------------------------------------------  METHODS ------------------------------------------- */
-
 
 
     // Start is called before the first frame update
@@ -102,7 +101,10 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
     private void Update()
     {
         // If CurrentHand == null, this object is not currently equipped so no need to check for anything
-        if (equipmentBehaviour.CurrentHand == null) return;
+        if (equipmentBehaviour.CurrentHand == null)
+        {
+            return;
+        }
         else  // Object is in one of the hands...
         {
             // Check if we want to swap fire modes
@@ -236,7 +238,7 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
         currentBulletSpeed = ammoClip.BulletData.BulletFireSpeed;
 
         // Call method to refill ammo
-        RefillAmmo(ammoClip.ClipSize);
+        RefillAmmo(ammoClip.BulletAmount);
     }
 
     /// <summary>

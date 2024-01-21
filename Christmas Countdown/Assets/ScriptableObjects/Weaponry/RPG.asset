@@ -17,18 +17,18 @@ MonoBehaviour:
   leftHandPositionOffset: {x: 0, y: 0, z: 0}
   rightHandPositionOffset: {x: 0, y: 0, z: 0}
   equippedRotation: {x: 0, y: 180, z: 0}
-  unequippedRotation: {x: 0, y: 0, z: 0}
+  unequippedRotation: {x: 0, y: 0, z: 90}
   maxRotateTorqueSpeed: {x: 0, y: 0, z: 0}
   rotateToMouseSpeed: 16.1
   equippedLocalScale: {x: 3, y: 3, z: 3}
   unequippedLocalScale: {x: 1, y: 1, z: 1}
   equipmentDropForce: {x: 2, y: -1}
   equipDistance: 3
+  weaponType: 4
   baseAmmoClip: {fileID: 11400000, guid: c3dcff8267b03994da5ac8fa525ddd4c, type: 2}
-  weaponType: 3
-  maxHitDistance: 25
-  bulletStartRotation: {x: 0, y: 0, z: 0}
   maxClipCapacity: 5
-  BaseFireMode: 0
+  maxHitDistance: 25
   fireModes: 00000000
-  burstShotAmount: 0
+  fullAutoShootDelay: 0
+  burstShootCount: 0
+  burstShootDelay: 0

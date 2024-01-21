@@ -25,6 +25,6 @@ MonoBehaviour:
   equipmentDropForce: {x: 2, y: -1}
   equipDistance: 3
   throwDelaySeconds: 0.25
-  throwForceValue: 15
-  maxThrowDistance: 20
+  throwForceValue: 10
+  maxThrowDistance: 15
   distanceDivider: 2.5

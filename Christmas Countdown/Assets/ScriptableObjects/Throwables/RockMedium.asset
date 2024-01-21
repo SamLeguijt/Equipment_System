@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 553f213a1d50ef04b9cba4dd72b7e057, type: 3}
-  m_Name: RockBig
+  m_Name: RockMedium
   m_EditorClassIdentifier: 
-  equipmentName: RockBig
+  equipmentName: Medium rock
   equipmentDescription: 
   leftHandPositionOffset: {x: 0, y: 0, z: 0}
   rightHandPositionOffset: {x: 0, y: 0, z: 0}
   equippedRotation: {x: 0, y: 0, z: 0}
   unequippedRotation: {x: 0, y: 0, z: 0}
-  maxRotateTorqueSpeed: {x: 10, y: 2, z: 5}
-  rotateToMouseSpeed: 10
-  equippedLocalScale: {x: 30, y: 30, z: 30}
-  unequippedLocalScale: {x: 10, y: 10, z: 10}
-  equipmentDropForce: {x: 1, y: -2}
+  maxRotateTorqueSpeed: {x: 10, y: 10, z: 10}
+  rotateToMouseSpeed: 20
+  equippedLocalScale: {x: 15, y: 15, z: 15}
+  unequippedLocalScale: {x: 5, y: 5, z: 5}
+  equipmentDropForce: {x: -2, y: -1}
   equipDistance: 3
-  throwDelaySeconds: 0.6
-  throwForceValue: 5
-  maxThrowDistance: 5
-  distanceDivider: 5
+  throwDelaySeconds: 0.5
+  throwForceValue: 8
+  maxThrowDistance: 12
+  distanceDivider: 3

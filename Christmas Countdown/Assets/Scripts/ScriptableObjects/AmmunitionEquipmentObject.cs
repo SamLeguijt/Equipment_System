@@ -20,13 +20,13 @@ public class AmmunitionEquipmentObject : BaseEquipmentObject
     [SerializeField] protected GameObject bulletPrefab;
    
     [Tooltip("How many bullets this ammunition object holds")]
-    [SerializeField] protected int clipSize;
+    [SerializeField] protected int bulletAmount;
 
     [Tooltip("How many bullets per fire will be shot using this ammo clip")]
-    [SerializeField] protected int bulletsPerFire;
+    [SerializeField] protected int bulletsPerShot;
 
     [Tooltip("How wide the bullets spread when firing multiple bullets")]
-    [SerializeField] protected float randomSpreadRange;
+    [SerializeField] [Range(0, 1f)] protected float randomSpreadRange;
 
     [Tooltip("Delay in seconds to destroy this object after activating")]
     [SerializeField] protected float destroyAfterActivationDelay;
@@ -34,6 +34,7 @@ public class AmmunitionEquipmentObject : BaseEquipmentObject
     // Ref to the ScriptableObject holding the bullet's data, Will be assigned by looking at prefab
     protected BulletObject bulletData;
 
+    // Reference to the weapon this ammo is for, protected to set in childs
     protected TypeOfWeapon targetWeapon;
 
 
@@ -59,12 +60,12 @@ public class AmmunitionEquipmentObject : BaseEquipmentObject
     /// <summary>
     /// Reference to the amount of bullets this ammunition holds, read-only
     /// </summary>
-    public int ClipSize { get { return clipSize; } }
+    public int BulletAmount { get { return bulletAmount; } }
 
     /// <summary>
     /// Reference to how many bullets will be fired per shot, read-only
     /// </summary>
-    public int BulletsPerShot {  get { return bulletsPerFire; } }
+    public int BulletsPerShot {  get { return bulletsPerShot; } }
 
     /// <summary>
     /// Reference to the spread between bullets. used to calculate within -x and +x to create random spread. read-only
@@ -75,7 +76,6 @@ public class AmmunitionEquipmentObject : BaseEquipmentObject
     /// Reference to the delay to destroy this object after activating, read- only
     /// </summary>
     public float DestroyAfterActivationDelay {  get { return destroyAfterActivationDelay; } }
-
 
 
     /* ------------------------------------------  METHODS ------------------------------------------- */

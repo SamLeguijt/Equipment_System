@@ -9,22 +9,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a7e256808b6f184dadac72078e29db4, type: 3}
-  m_Name: SantaHat
+  m_Script: {fileID: 11500000, guid: 553f213a1d50ef04b9cba4dd72b7e057, type: 3}
+  m_Name: RockBig
   m_EditorClassIdentifier: 
-  equipmentName: 
+  equipmentName: RockBig
   equipmentDescription: 
   leftHandPositionOffset: {x: 0, y: 0, z: 0}
   rightHandPositionOffset: {x: 0, y: 0, z: 0}
   equippedRotation: {x: 0, y: 0, z: 0}
   unequippedRotation: {x: 0, y: 0, z: 0}
-  maxRotateTorqueSpeed: {x: 10, y: 10, z: 10}
-  rotateToMouseSpeed: 11.8
-  equippedLocalScale: {x: 0.2, y: 0.2, z: 0.2}
-  unequippedLocalScale: {x: 0.1, y: 0.1, z: 0.1}
-  equipmentDropForce: {x: 10, y: 10}
+  maxRotateTorqueSpeed: {x: 10, y: 2, z: 5}
+  rotateToMouseSpeed: 10
+  equippedLocalScale: {x: 30, y: 30, z: 30}
+  unequippedLocalScale: {x: 10, y: 10, z: 10}
+  equipmentDropForce: {x: 1, y: -2}
   equipDistance: 3
-  apparelType: 0
-  onHeadPositionOffset: {x: 0.25, y: 1.25, z: 0.35}
-  onHeadRotation: {x: 0, y: 0, z: 0}
-  onHeadScale: {x: 1, y: 1, z: 1}
+  throwDelaySeconds: 0.6
+  throwForceValue: 5
+  maxThrowDistance: 8
+  distanceDivider: 5
