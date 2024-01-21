@@ -15,7 +15,7 @@ public class ThrowableActivation : MonoBehaviour, IEquipmentActivation
     // Reference to the equipment controller for input and key bindings
     private EquipmentSystemController equipmentController;
 
-
+    private bool isThrowActivated;
     /// <summary>
     /// Initializes this activation by getting neccesary components
     /// </summary>
@@ -40,11 +40,14 @@ public class ThrowableActivation : MonoBehaviour, IEquipmentActivation
             // Get the ascociated activation key for that hand
             KeyCode targetKey = equipmentController.FullHandKeyBindings[equipmentBehaviour.CurrentHand].ActivationKey;
 
-            // Check if the key is down
-            if (Input.GetKey(targetKey))
+            // Check if the key is down and if the throw did not activate yet
+            if (Input.GetKey(targetKey) && !isThrowActivated)
             {
                 // If down, activate this so call method to throw equipment
                 StartCoroutine(ThrowEquipment());
+
+                // Set true to prevent starting coroutine multiple times
+                isThrowActivated = true;
             }
         }
     }
@@ -61,9 +64,6 @@ public class ThrowableActivation : MonoBehaviour, IEquipmentActivation
         // Get the rigidbody of the actual object to throw it
         Rigidbody rb = equipmentBehaviour.MainEquipmentObject.GetComponent<Rigidbody>();
 
-        // Call method to drop the euqipment from the hand, not applying drop forces
-        equipmentController.Drop(equipmentBehaviour, equipmentBehaviour.CurrentHand, false);
-
         // Call method to get the targetPoint, depending on mouse pos and max throw dist
         Vector3 targetPoint = GetTargetPoint();
 
@@ -77,6 +77,9 @@ public class ThrowableActivation : MonoBehaviour, IEquipmentActivation
         Vector3 dataTorque = throwableData.MaxRotateTorqueSpeed;
         Vector3 randomTorque = new Vector3(Random.Range(0, dataTorque.x), Random.Range(0, dataTorque.y), Random.Range(0, dataTorque.z));
 
+        // Call method to drop the euqipment from the hand, not applying drop forces
+        equipmentController.Drop(equipmentBehaviour, equipmentBehaviour.CurrentHand, false);
+
         //Apply force to the Rigidbody in the direction of target point
         rb.AddForce(direction * throwableData.ThrowForceValue, ForceMode.Impulse);
 
@@ -85,6 +88,9 @@ public class ThrowableActivation : MonoBehaviour, IEquipmentActivation
 
         // Apply random torque
         rb.AddTorque(randomTorque, ForceMode.Impulse);
+
+        // Set bool false to enable throwing again
+        isThrowActivated = false;
     }
 
 

@@ -8,15 +8,6 @@ using UnityEngine;
 /// </summary>
 public class Hand : MonoBehaviour
 {
-    /// <summary>
-    /// Enum for setting the type of hand
-    /// </summary>
-    public enum TypeOfHand
-    {
-        Left,
-        Right
-    }
-
 
     /* ------------------------------------------  VARIABLES ------------------------------------------- */
 
@@ -32,12 +23,39 @@ public class Hand : MonoBehaviour
     // Reference to the current equipped item for this hand
     private EquipmentBehaviour currentEquipment;
 
+    // Keycodes for this hand 
+    private KeyCode equipDropKey;
+    private KeyCode activationKey;
+
+
+    /* ------------------------------------------  PROPERTIES ------------------------------------------- */
+
+
+
     /// <summary>
     /// Read-only property to get the hand type of this object
     /// </summary>
     public TypeOfHand HandType
     {
         get { return handType; }
+    }
+
+    /// <summary>
+    /// Reference to the Key used for equipping and dropping equipment for this hand
+    /// </summary>
+    public KeyCode EquipDropKey
+    {
+        get { return equipDropKey; }
+        set { equipDropKey = value; }
+    }
+
+    /// <summary>
+    /// Reference tot the key used for activating equipment for this hand
+    /// </summary>
+    public KeyCode ActivationKey
+    {
+        get { return activationKey; }
+        set {  activationKey = value; } 
     }
 
     /// <summary>
@@ -48,6 +66,10 @@ public class Hand : MonoBehaviour
         get { return currentEquipment; }
         set { currentEquipment = value; }
     }
+
+
+    /* ------------------------------------------  METHODS ------------------------------------------- */
+
 
     private void Start()
     {
@@ -107,7 +129,7 @@ public class Hand : MonoBehaviour
             case TypeOfHand.Right:
                 handPosOffset = _equipment.EquipmentData.RightHandPositionOffset;
                 break;
-            default: 
+            default:
                 // Other hand type case:
                 Debug.LogError($"No HandType assigned to {gameObject.name}, can not get in hand position from data! ");
                 break;
@@ -126,4 +148,13 @@ public class Hand : MonoBehaviour
             _equipment.transform.SetParent(transform);
         }
     }
+}
+
+/// <summary>
+/// Enum for setting the type of hand
+/// </summary>
+public enum TypeOfHand
+{
+    Left,
+    Right
 }

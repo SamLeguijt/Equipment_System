@@ -66,8 +66,6 @@ public class HatActivation : ApparelActivation
     /// </summary>
     public override void Activate()
     {
-        Debug.Log("Activate hat");
-
         // Check if not already  on head
         if (!isOnHead)
         {

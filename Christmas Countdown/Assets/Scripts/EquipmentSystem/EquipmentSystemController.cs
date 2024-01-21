@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR;
 
@@ -172,6 +173,9 @@ public class EquipmentSystemController : MonoBehaviour
     {
         fullHandKeyBindings.Add(leftHand, new HandKeyBindings(leftHand, leftHandActivationKey, LeftHandEquipDropKey));
         fullHandKeyBindings.Add(rightHand, new HandKeyBindings(rightHand, rightHandActivationKey, RightHandEquipDropKey));
+
+        leftHand.ActivationKey = leftHandActivationKey;
+        rightHand.ActivationKey = rightHandActivationKey;
     }
 
     // Update is called once per frame
@@ -180,7 +184,6 @@ public class EquipmentSystemController : MonoBehaviour
         // Handle the current equipment for both hands in update
         HandleCurrentEquipment(leftHand);
         HandleCurrentEquipment(rightHand);
-
     }
 
     /// <summary>
@@ -353,6 +356,23 @@ public class EquipmentSystemController : MonoBehaviour
             }
         }
         return false;
+    }
+
+    /// <summary>
+    /// Returns if the _handToCheck param is holding an equipment of equipmentType param _typeToCheck
+    /// </summary>
+    /// <param name="_typeToCheck"></param>
+    /// <param name="_handToCheck"></param>
+    /// <returns></returns>
+    public bool IsEquipmentTypeInHandOf(EquipmentType _typeToCheck, Hand _handToCheck)
+    {
+        // Return false if the hand does not have a current equipment
+        if (_handToCheck.CurrentEquipment == null) return false;
+        else // Hand has a current equipment
+        {
+            // Return if the type in the hand matches th param type
+            return (_handToCheck.CurrentEquipment.EquipmentData.EquipmentType == _typeToCheck);
+        }
     }
 }
 

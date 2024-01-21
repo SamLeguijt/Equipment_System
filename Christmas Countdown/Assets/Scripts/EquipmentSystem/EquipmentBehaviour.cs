@@ -347,6 +347,7 @@ public class EquipmentBehaviour : MonoBehaviour
         IsEquipped = false;
         CanDrop = false; // Set false to prevent calling again
         equipmentPhysicsManager.Rb.isKinematic = false; // Set false to apply gravity and other forces to parent object
+        CurrentHand = null;
 
         // Enable colliders to enable collision events
         parentCollider.enabled = true;

@@ -86,11 +86,8 @@ public class ActivationLogicHandler : MonoBehaviour
         // Add the specif script to the behaviour's gameobject
         AmmunitionActivation activation = equipmentBehaviour.AddComponent<AmmunitionActivation>();
 
-        // Set the equipmentBehaviour's reference to activation interface to the specific activation script
-        equipmentBehaviour.activationLogic = activation;
-
         // Call initialize method from specific script
-        activation.InitializeActivation();
+        activation.Initialize(equipmentBehaviour);
     }
 
     /// <summary>
@@ -100,9 +97,6 @@ public class ActivationLogicHandler : MonoBehaviour
     {
         // Add the specif script to the behaviour's gameobject
         ThrowableActivation activation = equipmentBehaviour.AddComponent<ThrowableActivation>();
-
-        // Set the equipmentBehaviour's reference to activation interface to the specific activation script
-        equipmentBehaviour.activationLogic = activation;
 
         // Call initialize method from specific script
         activation.Initialize(equipmentBehaviour);
