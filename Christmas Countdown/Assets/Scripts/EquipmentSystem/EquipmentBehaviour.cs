@@ -344,6 +344,7 @@ public class EquipmentBehaviour : MonoBehaviour
     public void OnDrop(bool _applyForces = true)
     {
         // Set values of booleans first
+        CurrentHand = null;
         IsEquipped = false;
         CanDrop = false; // Set false to prevent calling again
         equipmentPhysicsManager.Rb.isKinematic = false; // Set false to apply gravity and other forces to parent object

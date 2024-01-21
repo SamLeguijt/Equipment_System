@@ -23,6 +23,9 @@ public class Hand : MonoBehaviour
     // Reference to the current equipped item for this hand
     private EquipmentBehaviour currentEquipment;
 
+    public KeyCode equipDropKey;
+    public KeyCode activationKey;
+
     /// <summary>
     /// Read-only property to get the hand type of this object
     /// </summary>

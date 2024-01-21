@@ -16,6 +16,8 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
     // Reference to the weapon object for data
     private WeaponEquipmentObject weaponData;
 
+    private EquipmentBehaviour equipmentBehaviour;
+
     // Store the current bullet being fired
     private GameObject currentBullet;
 
@@ -27,6 +29,8 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
 
     // Reference the current ammo capacity of this weapon
     private int currentAmmoCapacity;
+
+    private bool isFiring;
 
 
     /* ------------------------------------------  PROPERTIES ------------------------------------------- */
@@ -62,6 +66,8 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
 
         _myEquipment.activationLogic = this;
 
+        equipmentBehaviour = _myEquipment;
+
         // Set this firepoint to the param
         firepoint = _targetFirepoint;
 
@@ -69,7 +75,43 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
         Reload(weaponData.BaseAmmoClip);
     }
 
+    private void Update()
+    {
+        if (equipmentBehaviour.CurrentHand != null)
+        {
+            
+            if (Input.GetKey(equipmentBehaviour.CurrentHand.activationKey))
+            {
+                if (!isFiring)
+                {
+                    StartCoroutine(AutomaticFire());
+                }
+            }
+        }
 
+        // Check if the left mouse button is released
+        if (Input.GetKeyUp(equipmentBehaviour.CurrentHand.activationKey) || equipmentBehaviour.CurrentHand == null)
+        {
+            isFiring = false;
+            // Stop the firing coroutine
+            StopAllCoroutines();
+        }
+    }
+
+    private IEnumerator AutomaticFire()
+    {
+        isFiring = true;
+
+        while (isFiring)
+        {
+            Debug.Log("In coroutine fire now!");
+            // Call your firing function here (replace FireBullet() with your actual firing function)
+            FireBullet();
+
+            // Wait for the specified interval before firing again
+            yield return new WaitForSeconds(.2f);
+        }
+    }
     /// <summary>
     /// Overridden method that runs when player input is received <br/>
     /// Shoots a bullet toward the mouse cursor
