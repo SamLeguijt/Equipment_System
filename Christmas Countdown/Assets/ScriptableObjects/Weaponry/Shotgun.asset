@@ -28,4 +28,7 @@ MonoBehaviour:
   weaponType: 1
   maxHitDistance: 25
   bulletStartRotation: {x: 1, y: 1, z: 1}
-  maxClipCapacity: 15
+  maxClipCapacity: 100
+  BaseFireMode: 0
+  fireModes: 0000000002000000
+  burstShotAmount: 2

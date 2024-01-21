@@ -30,7 +30,7 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
     // Reference the current ammo capacity of this weapon
     private int currentAmmoCapacity;
 
-    private bool isShooting;
+    private bool isFullAutoCoroutineStarted;
 
     private bool canAutomaticFire;
 
@@ -86,6 +86,15 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
     private void Update()
     {
 
+        /* TODO:
+         * 
+         * Make variables and properties for amount of shots per burst, delay between burst shot, delay between full auto shots
+         * Optimize updaye method to only check while weapon is in hand
+         */
+
+
+
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (currentFireModeIndex >= weaponData.fireModes.Length)
@@ -96,7 +105,7 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
             SwitchFireMode(currentFireModeIndex);
         }
 
-        if (isShooting)
+        if (isFullAutoCoroutineStarted)
         {
             // Check if the left mouse button is released
             if (Input.GetKeyUp(equipmentBehaviour.CurrentHand.activationKey) || equipmentBehaviour.CurrentHand == null)
@@ -104,7 +113,7 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
                 // Stop the firing coroutine
                 StopCoroutine(AutomaticFire());
 
-                isShooting = false;
+                isFullAutoCoroutineStarted = false;
             }
         }
     }
@@ -119,9 +128,9 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
     }
     private IEnumerator AutomaticFire()
     {
-        isShooting = true;
+        isFullAutoCoroutineStarted = true;
 
-        while (isShooting)
+        while (isFullAutoCoroutineStarted)
         {
             PerformShot();
 
@@ -132,66 +141,86 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
 
     /// <summary>
     /// Overridden method that runs when player input is received <br/>
-    /// Shoots a bullet toward the mouse cursor
+    /// Performs a shoot action depending on the current fire mode of the weapon
     /// </summary>
     public void Activate()
     {
+        // Switch statement for switching between the current fire mode
         switch (currentFireMode)
         {
+            // Semi automatic only fires one bullet a time, so just call function to shoot once on activation call
             case WeaponFireMode.SemiAutomatic:
 
                 PerformShot();
 
                 break;
+            // Full automatic fires bullet with a small delay while the activation key is being held down
             case WeaponFireMode.FullAutomatic:
 
+                // Check if the activation key for the current hand is being held down
                 if (Input.GetKey(equipmentBehaviour.CurrentHand.activationKey))
                 {
-                    if (!isShooting)
+                    // Check if the corotoutine has started already 
+                    if (!isFullAutoCoroutineStarted)
                     {
+                        // Start it if not started
                         StartCoroutine(AutomaticFire());
                     }
                 }
-
                 break;
+            // Burst fire mode performs multiple shots in quick succession (Shots, not just bullets)
             case WeaponFireMode.BurstFire:
-                StartCoroutine(BurstFireShot(weaponData.burstShotAmount));        
+
+                // Start coroutine to fire a burstfire shot
+                StartCoroutine(BurstFireShot(weaponData.burstShotAmount));
                 break;
             default:
                 break;
         }
     }
 
-    private void PerformShot(int _amount = 1)
+
+    private void PerformShot(int _ammoThreshold = 1)
     {
-        // Only fire if we have >0 ammo
-        if (currentAmmoCapacity >= _amount)
+        // Only fire if we have > threshold ammo
+        if (currentAmmoCapacity >= _ammoThreshold)
         {
-            // Call method to fire a bullet for every bullets ammoclip want to fire per shot
+            // Fire a bullet for every bullet a single shot should fire (according to weaponData) 
             for (int i = 0; i < weaponData.BaseAmmoClip.BulletsPerShot; i++)
             {
+                // Call method to fire bullet
                 FireBullet();
             }
         }
     }
 
-    private IEnumerator BurstFireShot(int _bulletsToFire)
+    /// <summary>
+    /// Coroutine that shoots a burst of shots 
+    /// </summary>
+    /// <param name="_shotsToFire"> How many shots should the burst fire? </param>
+    /// <returns></returns>
+    private IEnumerator BurstFireShot(int _shotsToFire)
     {
-        for (int i = 0; i < _bulletsToFire; i++)
+        // Perform a shot and wait a small delay for param shots
+        for (int i = 0; i < _shotsToFire; i++)
         {
+            // Call method to fire 'weaponData.BulletsPerShot' bullets
             PerformShot();
 
+            // Wait a small delay between the shots to make it burst
             yield return new WaitForSeconds(.1f);
         }
     }
+    
     /// <summary>
-    /// Fires a bullet towards the mouse direction
+    /// Fires a bullet from the firepoint.position towards the direction of the mouse
     /// </summary>
+    /// <param name="_applyBulletSpread"> Should there be bullet spread applied to the bullet(s)? Default to true</param>
     /// <exception cref="System.Exception"></exception>
-    private void FireBullet()
+    private void FireBullet(bool _applyBulletSpread = true)
     {
         // Get the direction to fire in
-        Vector3 fireDirection = GetFireDirectionToMouse(firepoint.position);
+        Vector3 fireDirection = GetFireDirectionToMouse(firepoint.position, _applyBulletSpread);
 
         // Get Quaterion to get correct starting rotation towards the fire direction
         Quaternion startRotation = GetBulletStartRotationTowards(fireDirection);
