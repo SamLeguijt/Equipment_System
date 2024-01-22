@@ -369,6 +369,7 @@
 "Assets/Scripts/EquipmentSystem/EquipmentSystemController.cs"
 "Assets/Scripts/EquipmentSystem/EquipmentUI.cs"
 "Assets/Scripts/EquipmentSystem/Hand.cs"
+"Assets/Scripts/EquipmentSystem/HandKeyBindings.cs"
 "Assets/Scripts/Other/BulletBehaviour.cs"
 "Assets/Scripts/Other/CameraController.cs"
 "Assets/Scripts/Other/PlayerMovement.cs"

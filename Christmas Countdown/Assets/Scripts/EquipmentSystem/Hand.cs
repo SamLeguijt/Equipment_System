@@ -14,18 +14,18 @@ public class Hand : MonoBehaviour
     [Tooltip("What type does this hand object have?")]
     [SerializeField] private TypeOfHand handType;
 
+    // Key bindings for this hand
+    private HandKeyBindings keyBindings;
+
+    // Reference to the current equipped item for this hand
+    private EquipmentBehaviour currentEquipment;
+
     // Reference to the camera controller script, used for orientation and rotation
     private CameraController camController;
 
     // Center target attached to the camera
     private Transform camCenter;
 
-    // Reference to the current equipped item for this hand
-    private EquipmentBehaviour currentEquipment;
-
-    // Keycodes for this hand 
-    private KeyCode equipDropKey;
-    private KeyCode activationKey;
 
 
     /* ------------------------------------------  PROPERTIES ------------------------------------------- */
@@ -41,21 +41,12 @@ public class Hand : MonoBehaviour
     }
 
     /// <summary>
-    /// Reference to the Key used for equipping and dropping equipment for this hand
+    /// Reference to the KeyBindings for this hand
     /// </summary>
-    public KeyCode EquipDropKey
+    public HandKeyBindings KeyBindings
     {
-        get { return equipDropKey; }
-        set { equipDropKey = value; }
-    }
-
-    /// <summary>
-    /// Reference tot the key used for activating equipment for this hand
-    /// </summary>
-    public KeyCode ActivationKey
-    {
-        get { return activationKey; }
-        set {  activationKey = value; } 
+        get { return keyBindings; }
+        set { keyBindings = value; }
     }
 
     /// <summary>
