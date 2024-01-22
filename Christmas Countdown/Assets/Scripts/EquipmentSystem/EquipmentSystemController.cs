@@ -10,31 +10,6 @@ using UnityEngine.XR;
 /// </summary>
 public class EquipmentSystemController : MonoBehaviour
 {
-    /// <summary>
-    /// Nested class for key bindings for each hand
-    /// Nested because we don't need access outside this class to the class
-    /// </summary>
-    public class HandKeyBindings
-    {
-        // Reference to the hand
-        public Hand hand;
-
-        // Define private keycodes for activation and drop/equip keys
-        private KeyCode activationKey;
-        private KeyCode dropEquipKey;
-
-        // Public read-only references to both keys (don't want to set them outside constructor)
-        public KeyCode ActivationKey { get { return activationKey; } }
-        public KeyCode DropEquipKey { get { return dropEquipKey; } }
-
-        // Constructor sets hand with activation and equip key to param values
-        public HandKeyBindings(Hand _hand, KeyCode _activationKey, KeyCode _dropEquipKey)
-        {
-            this.hand = _hand;
-            this.activationKey = _activationKey;
-            this.dropEquipKey = _dropEquipKey;
-        }
-    }
 
 
     /* ------------------------------------------  VARIABLES ------------------------------------------- */
@@ -58,14 +33,24 @@ public class EquipmentSystemController : MonoBehaviour
     [Tooltip("Input key to equip/drop equipment to/from the left hand")]
     [SerializeField] private KeyCode leftHandEquipDropKey;
 
-    [Tooltip("Input key to equip/drop equipment to/from the left hand")]
-    [SerializeField] private KeyCode rightHandEquipDropKey;
-
     [Tooltip("Input key to activate equipment in left hand")]
     [SerializeField] private KeyCode leftHandActivationKey;
 
+    [Tooltip("Input key to swap fire modes for weapon equipment in left hand")]
+    [SerializeField] private KeyCode leftHandFireModeSwapKey;
+
+    [Space]
+
+    [Tooltip("Input key to equip/drop equipment to/from the left hand")]
+    [SerializeField] private KeyCode rightHandEquipDropKey;
+
     [Tooltip("Input key to activate equipment in right hand")]
     [SerializeField] private KeyCode rightHandActivationKey;
+
+    [Tooltip("Input key to swap fire modes for weapon equipment in right hand")]
+    [SerializeField] private KeyCode rightHandFireModeSwapKey;
+
+
 
     [Space]
     [Space]
@@ -137,6 +122,23 @@ public class EquipmentSystemController : MonoBehaviour
     }
 
     /// <summary>
+    /// Reference to the key to swap fire modes in left hand 
+    /// </summary>
+    public KeyCode LeftHandFireModeSwapKey
+    {
+        get { return leftHandFireModeSwapKey; }
+        private set { leftHandFireModeSwapKey = value; }
+    }
+
+    /// <summary>
+    /// Reference to the key to swap fire modes in right hand 
+    /// </summary>
+    public KeyCode RightHandFireModeSwapKey
+    {
+        get { return rightHandFireModeSwapKey; }
+        private set { rightHandFireModeSwapKey = value; }
+    }
+    /// <summary>
     /// Read only property to get the key bindings for all hands
     /// </summary>
     public Dictionary<Hand, HandKeyBindings> FullHandKeyBindings
@@ -171,11 +173,19 @@ public class EquipmentSystemController : MonoBehaviour
     /// </summary>
     private void InitializeEquipmentSystemController()
     {
-        fullHandKeyBindings.Add(leftHand, new HandKeyBindings(leftHand, leftHandActivationKey, LeftHandEquipDropKey));
-        fullHandKeyBindings.Add(rightHand, new HandKeyBindings(rightHand, rightHandActivationKey, RightHandEquipDropKey));
+        SetKeyBindings();
+    }
 
-        leftHand.ActivationKey = leftHandActivationKey;
-        rightHand.ActivationKey = rightHandActivationKey;
+    private void SetKeyBindings()
+    {
+        HandKeyBindings leftHandKeyBindings = new HandKeyBindings(leftHand, leftHandActivationKey, LeftHandEquipDropKey, leftHandFireModeSwapKey);
+        HandKeyBindings rightHandKeyBindings = new HandKeyBindings(rightHand, rightHandActivationKey, RightHandEquipDropKey, rightHandFireModeSwapKey);
+
+        fullHandKeyBindings.Add(leftHand, leftHandKeyBindings);
+        fullHandKeyBindings.Add(rightHand, rightHandKeyBindings);
+
+        leftHand.KeyBindings = leftHandKeyBindings;
+        rightHand.KeyBindings = rightHandKeyBindings;
     }
 
     // Update is called once per frame
@@ -195,7 +205,7 @@ public class EquipmentSystemController : MonoBehaviour
     {
         // First check if the hand currently has an equipment equipped
         if (_hand.CurrentEquipment == null) return;
-        else 
+        else
         {
             // Call method to drop the equipment when input is given
             CheckForDropInput(_hand, _hand.CurrentEquipment);

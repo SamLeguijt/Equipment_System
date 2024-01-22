@@ -3323,9 +3323,11 @@ MonoBehaviour:
   leftHand: {fileID: 1083083460}
   rightHand: {fileID: 523227022}
   leftHandEquipDropKey: 113
-  rightHandEquipDropKey: 101
   leftHandActivationKey: 323
+  leftHandFireModeSwapKey: 122
+  rightHandEquipDropKey: 101
   rightHandActivationKey: 324
+  rightHandFireModeSwapKey: 120
   equipDelayWhenSwapping: 0.1
 --- !u!4 &1064106618
 Transform:
