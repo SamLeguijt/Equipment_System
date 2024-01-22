@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EquipmentUI : MonoBehaviour
@@ -13,9 +14,13 @@ public class EquipmentUI : MonoBehaviour
 
     [Tooltip("TMP object attached to Canvas")]
     [SerializeField] private TextMeshProUGUI equipmentTextObject;
-    
+
     [Tooltip("TMP object attached to Canvas")]
-    [SerializeField] private TextMeshProUGUI ammoTextObject;
+    [SerializeField] private TextMeshProUGUI leftHandAmmoTextObject;
+
+    [Tooltip("TMP object attached to Canvas")]
+    [SerializeField] private TextMeshProUGUI rightHandAmmoTextObject;
+    [Space]
 
     [Tooltip("EquipmentSystemController object in scene")]
     [SerializeField] private EquipmentSystemController equipSystemController;
@@ -25,10 +30,10 @@ public class EquipmentUI : MonoBehaviour
     [Space]
 
     [Tooltip("Desired width of the RectTransform of the TMP object")]
-    [SerializeField] private float rectTransformWidth;
+    [SerializeField] private float equipTextObjectWidth;
 
     [Tooltip("Desired height of the RectTransform of the TMP object")]
-    [SerializeField] private float rectTransformHeight;
+    [SerializeField] private float equipTextObjectHeight;
 
     [Tooltip("Desired position of the RectTransform of the TMP object")]
     [SerializeField] private Vector3 rectTargetPosition;
@@ -50,8 +55,15 @@ public class EquipmentUI : MonoBehaviour
     private EquipmentBehaviour currentEquipmentTarget;
 
     // Reference to the RectTransform component of the TMP object
-    private RectTransform rectTransform;
-    private RectTransform rectTransformAmmo;
+    private RectTransform equipTextTransform;
+    private RectTransform leftTextTransform;
+    private RectTransform rightTextTransform;
+
+    public float ammoWidth;
+    public float ammoHeight;
+    public float ammoXpos;
+    public float ammoYpos;
+    public Vector3 ammoPos;
 
     // String that holds a reference to the name of the current equipment, ui displays the name
     private string currentEquipmentNameToDisplay;
@@ -78,7 +90,7 @@ public class EquipmentUI : MonoBehaviour
     /// </summary>
     public float RectTransformWidth
     {
-        get { return rectTransformWidth; }
+        get { return equipTextObjectWidth; }
     }
 
     /// <summary>
@@ -86,7 +98,7 @@ public class EquipmentUI : MonoBehaviour
     /// </summary>
     public float RectTransformHeight
     {
-        get { return rectTransformHeight; }
+        get { return equipTextObjectHeight; }
     }
 
     /// <summary>
@@ -150,10 +162,12 @@ public class EquipmentUI : MonoBehaviour
     private void Start()
     {
         // Get RectTransform from TMP object
-        rectTransform = equipmentTextObject.GetComponent<RectTransform>();
-        rectTransformAmmo = ammoTextObject.GetComponent<RectTransform>();
+        equipTextTransform = equipmentTextObject.GetComponent<RectTransform>();
+        leftTextTransform = leftHandAmmoTextObject.GetComponent<RectTransform>();
+        rightTextTransform = rightHandAmmoTextObject.GetComponent<RectTransform>();
 
-        if (equipmentTextObject != null && rectTransform != null && equipSystemController != null)
+
+        if (equipmentTextObject != null && equipTextTransform != null && leftTextTransform != null && rightTextTransform != null && equipSystemController != null)
         {
             // Call method to initialize if all references are found 
             InitializeEquipmentUI();
@@ -171,9 +185,75 @@ public class EquipmentUI : MonoBehaviour
     public void InitializeEquipmentUI()
     {
         // Set the RectTransform properties to set UI text at correct position in game view
-        SetTransformProperties(rectTransform);
-        SetTransformProperties(rectTransformAmmo);
+        SetTransformProperties(equipTextTransform, rectTargetPosition, equipTextObjectWidth, equipTextObjectHeight);
+
+        Vector3 leftPos = new Vector3(-ammoPos.x, ammoPos.y, ammoPos.z);
+
+        SetTransformProperties(leftTextTransform, leftPos, ammoWidth, ammoHeight);
+        SetTransformProperties(rightTextTransform, ammoPos, ammoWidth, ammoHeight);
     }
+
+    private Color GetAmmoColorFromBullet(WeaponActivation _bulletOwner)
+    {
+        // Get the renderer of the bullet prefab that is assigned to the base ammo clip of the weapon 
+        Renderer bulletRenderer = _bulletOwner.WeaponData.BaseAmmoClip.BulletPrefab.GetComponent<Renderer>();
+
+        // Get its material from the prefab
+        Material bulletMaterial = bulletRenderer.sharedMaterial;
+
+        if (bulletRenderer != null && bulletMaterial != null)
+        {
+            // Return the color of the prefab' s material if found
+            return bulletMaterial.color;
+        }
+        else
+        {
+            // Return white if not found 
+            return Color.white;
+        }
+    }
+
+    private void DisplayAmmoText(Hand _handToCheck, TextMeshProUGUI _tmpObjectForHand)
+    {
+        if (equipSystemController.IsEquipmentTypeInHandOf(EquipmentType.Weapon, _handToCheck))
+        {
+            WeaponActivation weaponInfo = _handToCheck.CurrentEquipment.GetComponentInChildren<WeaponActivation>();
+
+            if (weaponInfo != null)
+            {
+                // Not activated yet, so update the color to new equipment color
+                if (_tmpObjectForHand.gameObject.activeSelf == false)
+                {
+                    UpdateTextColor(_tmpObjectForHand, GetAmmoColorFromBullet(weaponInfo));
+
+                    _tmpObjectForHand.gameObject.SetActive(true);
+
+                }
+                else // Already activated, so update text only
+                {
+                    string textToDisplay = weaponInfo.CurrentAmmoCapacity.ToString();
+                    UpdateText(_tmpObjectForHand, textToDisplay);
+                }
+            }
+        }
+        else
+        {
+            _tmpObjectForHand.gameObject.SetActive(false);
+        }
+    }
+
+    private void UpdateTextColor(TextMeshProUGUI _targetTextObject, Color _targetColor)
+    {
+        TMP_Text text = _targetTextObject.GetComponent<TMP_Text>();
+
+        text.color = _targetColor;
+    }
+
+    private void UpdateText(TextMeshProUGUI _targetTextObject, string _targetText)
+    {
+        _targetTextObject.SetText(_targetText);
+    }
+
 
 
     /// <summary>
@@ -182,39 +262,12 @@ public class EquipmentUI : MonoBehaviour
     private void Update()
     {
 
-        if (equipSystemController.IsEquipmentTypeInHandOf(EquipmentType.Weapon, equipSystemController.LeftHand))
-        {
-            EquipmentBehaviour equipment = equipSystemController.LeftHand.CurrentEquipment;
-
-            WeaponActivation weaponInfo = equipment.GetComponentInChildren<WeaponActivation>();
-
-            ammoTextObject.SetText(weaponInfo.CurrentAmmoCapacity.ToString());
-        }
-        else
-        {
-            ammoTextObject.SetText("");
-        }
-
-
-        /* Ammo UI:
-         * 
-         * Have two TMP objects for each hand
-         * Disable them, unless the current equipment for that hand is not null 
-         * If enabled, display the current ammo of the weaponActivation at the position set in inspector
-         * 
-         * So we need: 
-         * TMP objects
-         * UpdateTextBox method takes TMP object as target 
-         * Clean ref to the equipment in each hand (or to hand itself) 
-         * Position that can be set in inspector, make sure its scaling with screen size to prevent dumby thingies
-         * Position to hand pos + yOffset? 
-         */
-
-
-        HandleUnequippedText();
+        DisplayAmmoText(equipSystemController.LeftHand, leftHandAmmoTextObject);
+        DisplayAmmoText(equipSystemController.RightHand, rightHandAmmoTextObject);
+        HandleEquipText();
     }
 
-    private void HandleUnequippedText()
+    private void HandleEquipText()
     {
         // Return immediatily if there is no equipment target
         if (currentEquipmentTarget == null) return;
@@ -328,14 +381,14 @@ public class EquipmentUI : MonoBehaviour
     /// <summary>
     /// Method that sets the transform properties of the Text object to place in the right position
     /// </summary>
-    private void SetTransformProperties(RectTransform _target)
+    private void SetTransformProperties(RectTransform _target, Vector3 _targetPosition, float _targetWidth, float _targetHeight)
     {
         // Set the width and height of the RectTransform on both axis
-        _target.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, rectTransformWidth);
-        _target.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, rectTransformHeight);
+        _target.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, _targetWidth);
+        _target.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, _targetHeight);
 
         // Set the position to the desired target position (position based on anchors)
-        _target.anchoredPosition = rectTargetPosition;
+        _target.anchoredPosition = _targetPosition;
     }
 
     /// <summary>

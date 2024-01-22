@@ -3578,9 +3578,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '
-
-'
+  m_text: Je moeder
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3607,8 +3605,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 15
-  m_fontSizeBase: 15
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4114,14 +4112,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equipmentTextObject: {fileID: 1810350939}
-  ammoTextObject: {fileID: 1125136165}
+  leftHandAmmoTextObject: {fileID: 1125136165}
+  rightHandAmmoTextObject: {fileID: 1667586527}
   equipSystemController: {fileID: 1064106617}
-  rectTransformWidth: 300
-  rectTransformHeight: 300
+  equipTextObjectWidth: 300
+  equipTextObjectHeight: 300
   rectTargetPosition: {x: 0, y: -200, z: 0}
   equipActionWord: Equip
   swapActionWord: Swap
   newLinesAmount: 1
+  ammoWidth: 200
+  ammoHeight: 200
+  ammoXpos: 0
+  ammoYpos: 0
+  ammoPos: {x: 150, y: -350, z: 0}
 --- !u!4 &1481329329
 Transform:
   m_ObjectHideFlags: 0
@@ -4468,9 +4472,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '
-
-'
+  m_text: Wat NOU?!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4497,8 +4499,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 15
-  m_fontSizeBase: 15
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
