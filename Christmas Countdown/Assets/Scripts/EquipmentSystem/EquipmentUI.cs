@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -203,6 +204,21 @@ public class EquipmentUI : MonoBehaviour
 
         SetTransformProperties(leftTextTransform, leftAmmoTextObjectPosition, ammoTextObjectWidth, ammoTextObjectHeight);
         SetTransformProperties(rightTextTransform, rightAmmoTextObjectPosition, ammoTextObjectWidth, ammoTextObjectHeight);
+
+        DisableEquipText();
+    }
+
+    /// <summary>
+    /// Method that sets the transform properties of the Text object to place in the right position
+    /// </summary>
+    private void SetTransformProperties(RectTransform _target, Vector3 _targetPosition, float _targetWidth, float _targetHeight)
+    {
+        // Set the width and height of the RectTransform on both axis
+        _target.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, _targetWidth);
+        _target.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, _targetHeight);
+
+        // Set the position to the desired target position (position based on anchors)
+        _target.anchoredPosition = _targetPosition;
     }
 
     /// <summary>
@@ -213,6 +229,28 @@ public class EquipmentUI : MonoBehaviour
         DisplayAmmoText(equipSystemController.LeftHand, leftHandAmmoTextObject);
         DisplayAmmoText(equipSystemController.RightHand, rightHandAmmoTextObject);
         HandleEquipText();
+    }
+
+    /// <summary>
+    /// Method that updates the CurrentEquipment to a new equipment object <br/>
+    /// Sets name to new equipments name, and gets a new Instruction string to display
+    /// </summary>
+    /// <param name="_newEquipment"> The equipment info being used to update the variables, called in EquipmentBehaviour class upon mouse collision and in range </param>
+    public void UpdateEquipmentInfo(EquipmentBehaviour _newEquipment)
+    {
+        // No equipment is being targeted currently
+        if (CurrentEquipmentTarget == null)
+        {
+            // So set target to the new equipment 
+            currentEquipmentTarget = _newEquipment;
+
+            // Store the name of the new equipment by looking at its scriptable object
+            currentEquipmentNameToDisplay = _newEquipment.EquipmentData.EquipmentName;
+        }
+        else // _newEquipment is already the current target, so no need to update everything
+        {
+            return;
+        }
     }
 
     /// <summary>
@@ -254,19 +292,68 @@ public class EquipmentUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Method that updates the text color of param _TMP object to param _targetColor
+    /// Handles displaying the  equip UI text based on conditions
     /// </summary>
-    /// <param name="_targetObject"></param>
-    /// <param name="_targetColor"></param>
-    private void UpdateTextColor(TextMeshProUGUI _targetObject, Color _targetColor)
+    private void HandleEquipText()
     {
-        TMP_Text text = _targetObject.GetComponent<TMP_Text>();
-
-        text.color = _targetColor;
-
-        // Keep track of the current color of the text
-        currentAmmoTextColor = text.color;  
+        // Return immediatily if there is no equipment target
+        if (currentEquipmentTarget == null)
+        {
+            return;
+            //DisableEquipText();
+        }
+        else // There is a target
+        {
+            // Check if the mouse is over the MouseDetectCollider of the equipment, and if the equipment is grounded (prevent ui display when object is in air)
+            if (IsMouseOverCollider(currentEquipmentTarget.MouseDetectCollider) && (currentEquipmentTarget.IsOnGround))
+            {
+                // Enable the UI text by calling method, passing the current equipment name and the interact string as text
+                EnableEquipText();
+            }
+            else // Mouse is not over collider, or equipment is not grounded so dont display text 
+            {
+                currentEquipmentTarget = null;
+                DisableEquipText();
+            }
+        }
     }
+
+    /// <summary>
+    ///  Public method to enable the equipment UI text <br/>
+    ///  Receives two parameters as display text
+    /// </summary>
+    /// <param name="_equipmentName"> Name of the equipment to display </param>
+    /// <param name="_interactInstructions"> String holding instructions for interacting </param>
+    private void EnableEquipText()
+    {
+        // Prevent unnecessary calls if already enabled 
+        if (equipTextObject.gameObject.activeSelf) return;
+        else // Text is not yet enabled
+        {
+            // Get the full string to display
+            string fullEquipString = GetFullEquipTextString(newLinesAmount);
+
+            // Call method to update the text with the new string
+            UpdateText(equipTextObject, fullEquipString, equipTextObject.color);
+
+            // Set object active to display
+            equipTextObject.gameObject.SetActive(true);
+        }
+    }
+
+    /// <summary>
+    /// Method that disables the equipment UI text by updating the text with empty strings
+    /// </summary>
+    private void DisableEquipText()
+    {
+        // Prevent unnecessary calls if already disabled 
+        if (!equipTextObject.gameObject.activeSelf) return;
+        else // Not disabled yet
+        {
+            equipTextObject.gameObject.SetActive(false);
+        }
+    }
+
 
     /// <summary>
     /// Method that updates the text of param _targetObject to param _targetText, updating color to _targetColor if not current color
@@ -276,8 +363,7 @@ public class EquipmentUI : MonoBehaviour
     /// <param name="_targetColor"></param>
     private void UpdateText(TextMeshProUGUI _targetTextObject, string _targetText, Color _targetColor)
     {
-        // Update the text color if its a different color from the current one
-        if (_targetColor != currentAmmoTextColor)
+        if (_targetTextObject.GetComponent<TMP_Text>().color != _targetColor)
         {
             UpdateTextColor(_targetTextObject, _targetColor);
         }
@@ -286,6 +372,17 @@ public class EquipmentUI : MonoBehaviour
         _targetTextObject.SetText(_targetText);
     }
 
+    /// <summary>
+    /// Method that updates the text color of param _TMP object to param _targetColor
+    /// </summary>
+    /// <param name="_targetObject"></param>
+    /// <param name="_targetColor"></param>
+    private void UpdateTextColor(TextMeshProUGUI _targetObject, Color _targetColor)
+    {
+        TMP_Text text = _targetObject.GetComponent<TMP_Text>();
+
+        text.color = _targetColor;
+    }
     /// <summary>
     /// Returns a string containing the current ammo and max ammo of the param _weapon
     /// </summary>
@@ -306,104 +403,17 @@ public class EquipmentUI : MonoBehaviour
         return fullString;
     }
 
-
-    private void HandleEquipText()
-    {
-        // Return immediatily if there is no equipment target
-        if (currentEquipmentTarget == null) return;
-        else // There is a target
-        {
-            // Check if the mouse is over the MouseDetectCollider of the equipment, and if the equipment is grounded (prevent ui display when object is in air)
-            if (IsMouseOverCollider(currentEquipmentTarget.MouseDetectCollider) && (currentEquipmentTarget.IsOnGround))
-            {
-                // Enable the UI text by calling method, passing the current equipment name and the interact string as text
-                EnableEquipmentUI(currentEquipmentNameToDisplay, interactInstructionsString);
-
-            }
-            else // Mouse is not over collider, or equipment is not grounded so dont displlay text 
-            {
-                // Remove the target (enables early return)
-                currentEquipmentTarget = null;
-
-                // Call method to disable the UI text
-                DisableEquipmentUI();
-            }
-        }
-    }
-
     /// <summary>
-    ///  Public method to enable the equipment UI text <br/>
-    ///  Receives two parameters as display text
+    /// Returns the full string being displayed when mouse is over equipment <br/>
+    /// Combines the equipment name with x new lines and an instruction string
     /// </summary>
-    /// <param name="_equipmentName"> Name of the equipment to display </param>
-    /// <param name="_interactInstructions"> String holding instructions for interacting </param>
-    private void EnableEquipmentUI(string _equipmentName, string _interactInstructions)
+    /// <param name="_newLinesAmount"></param>
+    /// <returns></returns>
+    private string GetFullEquipTextString(int _newLinesAmount)
     {
-        // Prevent unnecessary calls if already enabled 
-        if (isTextEnabled) return;
-        else // Text is not yet enabled
-        {
-            // Call method to display the new text, passing in both strings
-            UpdateTextBox(_equipmentName, _interactInstructions, newLinesAmount); // True to add a new line between strings
+        string equipmentName = currentEquipmentNameToDisplay;
+        string instructionText = GetInteractionInstructionString();
 
-            // Set bool for early returns if more calls to this method
-            isTextEnabled = true;
-        }
-    }
-
-
-    /// <summary>
-    /// Method that disables the equipment UI text by updating the text with empty strings
-    /// </summary>
-    private void DisableEquipmentUI()
-    {
-        // Prevent unnecessary calls if already disabled 
-        if (!isTextEnabled) return;
-        else // Not disabled yet
-        {
-            // Call method to update the text box with empty strings (works better than disabling the object, that causes lag on re-enabling)
-            UpdateTextBox(string.Empty, string.Empty, 0);
-
-            // Set bool for early returns when calling method again without changes
-            isTextEnabled = false;
-        }
-    }
-
-    /// <summary>
-    /// Method that updates the CurrentEquipment to a new equipment object <br/>
-    /// Sets name to new equipments name, and gets a new Instruction string to display
-    /// </summary>
-    /// <param name="_newEquipment"> The equipment info being used to update the variables, called in EquipmentBehaviour class upon mouse collision and in range </param>
-    public void UpdateEquipmentInfo(EquipmentBehaviour _newEquipment)
-    {
-        // No equipment is being targeted currently
-        if (CurrentEquipmentTarget == null)
-        {
-            // So set target to the new equipment 
-            currentEquipmentTarget = _newEquipment;
-
-            // Store the name of the new equipment by looking at its scriptable object
-            currentEquipmentNameToDisplay = _newEquipment.EquipmentData.EquipmentName;
-
-            // Update the InteractInstruction string to display based on hand status'
-            interactInstructionsString = GetInteractionInstructionString();
-        }
-        else // _newEquipment is already the current target, so no need to update everything
-        {
-            return;
-        }
-    }
-
-
-    /// <summary>
-    /// Method that sets the text of the TMP object to the two input strings params <br/>
-    /// Adds empty lines according to param
-    /// </summary>
-    /// <param name="_string1"> First string to display </param>
-    /// <param name="_string2"> Second string to display</param>
-    /// <param name="_newLinesAmount"> How many empty lines should be added between the two strings </param>
-    private void UpdateTextBox(string _string1, string _string2, int _newLinesAmount)
-    {
         // Create new empty string
         string newLines = "";
 
@@ -414,45 +424,10 @@ public class EquipmentUI : MonoBehaviour
             newLines += "\n";
         }
 
-        // Set the text to the two strings, with the amount of new lines between them
-        equipTextObject.SetText($"{_string1} {newLines} {_string2}");
+        string fullString = $"{equipmentName} {newLines} {instructionText}";
+
+        return fullString;
     }
-
-    /// <summary>
-    /// Method that sets the transform properties of the Text object to place in the right position
-    /// </summary>
-    private void SetTransformProperties(RectTransform _target, Vector3 _targetPosition, float _targetWidth, float _targetHeight)
-    {
-        // Set the width and height of the RectTransform on both axis
-        _target.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, _targetWidth);
-        _target.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, _targetHeight);
-
-        // Set the position to the desired target position (position based on anchors)
-        _target.anchoredPosition = _targetPosition;
-    }
-
-    /// <summary>
-    /// Returns true if the mouse is over the param collider
-    /// </summary>
-    /// <param name="_colliderToCheck"></param>
-    /// <returns></returns>
-    private bool IsMouseOverCollider(Collider _colliderToCheck)
-    {
-        // Shoot a ray from the camera through the mouse 
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-
-        // If the ray hits something, and the collider of the hit is same as our param
-        if (Physics.Raycast(ray, out hit) && hit.collider == _colliderToCheck)
-        {
-            // The mouse is over the collider 
-            return true;
-        }
-
-        // Ray did not hit our collider
-        return false;
-    }
-
 
     /// <summary>
     /// Returns a string holding interact instructions to the hands of the player <br/>
@@ -494,4 +469,27 @@ public class EquipmentUI : MonoBehaviour
             return swapActionWord;
         }
     }
+
+    /// <summary>
+    /// Returns true if the mouse is over the param collider
+    /// </summary>
+    /// <param name="_colliderToCheck"></param>
+    /// <returns></returns>
+    private bool IsMouseOverCollider(Collider _colliderToCheck)
+    {
+        // Shoot a ray from the camera through the mouse 
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        // If the ray hits something, and the collider of the hit is same as our param
+        if (Physics.Raycast(ray, out hit) && hit.collider == _colliderToCheck)
+        {
+            // The mouse is over the collider 
+            return true;
+        }
+
+        // Ray did not hit our collider
+        return false;
+    }
+
 }
