@@ -53,7 +53,7 @@ public class EquipmentBehaviour : MonoBehaviour
     private EquipmentPhysicsManager equipmentPhysicsManager; // Reference to this object's physics manager
     private ActivationLogicHandler activationHandler; // Reference to component in child. Note: no property because component will be destroyed after init
     private Collider parentCollider; // Store collider of the parent object
-    public Collider mouseDetectCollider;
+    [SerializeField]private Collider mouseDetectCollider;
     private Transform player; // Reference to the player for distance and orientation
     private Hand currentHand;
     public IEquipmentActivation activationLogic;
