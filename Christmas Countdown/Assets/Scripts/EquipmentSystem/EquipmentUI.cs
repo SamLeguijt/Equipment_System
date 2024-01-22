@@ -13,7 +13,7 @@ public class EquipmentUI : MonoBehaviour
     [Space]
 
     [Tooltip("TMP object attached to Canvas")]
-    [SerializeField] private TextMeshProUGUI equipmentTextObject;
+    [SerializeField] private TextMeshProUGUI equipTextObject;
 
     [Tooltip("TMP object attached to Canvas")]
     [SerializeField] private TextMeshProUGUI leftHandAmmoTextObject;
@@ -26,7 +26,7 @@ public class EquipmentUI : MonoBehaviour
     [SerializeField] private EquipmentSystemController equipSystemController;
 
     [Space]
-    [Header("TMP object position properties")]
+    [Header("TMP equip object position properties")]
     [Space]
 
     [Tooltip("Desired width of the RectTransform of the TMP object")]
@@ -36,7 +36,8 @@ public class EquipmentUI : MonoBehaviour
     [SerializeField] private float equipTextObjectHeight;
 
     [Tooltip("Desired position of the RectTransform of the TMP object")]
-    [SerializeField] private Vector3 rectTargetPosition;
+    [SerializeField] private Vector3 equipTextObjectPosition;
+
 
     [Space]
     [Header("Displayed text properties")]
@@ -51,6 +52,22 @@ public class EquipmentUI : MonoBehaviour
     [Tooltip("Amount of empty lines between the weapon name and instructions string")]
     [SerializeField] private int newLinesAmount = 1; // Default to 1
 
+    [Space]
+    [Header("TMP ammo object position properties")]
+    [Space]
+
+    [Tooltip("Desired width of the RectTransform of the ammo TMP object")]
+    [SerializeField] private float ammoTextObjectWidth;
+
+    [Tooltip("Desired height of the RectTransform of the ammo TMP object")]
+    [SerializeField] private float ammoTextObjectHeight;
+
+    [Tooltip("Desired position of the RectTransform of the leftAmmo TMP object")]
+    [SerializeField] private Vector3 leftAmmoTextObjectPosition;
+
+    [Tooltip("Desired position of the RectTransform of the rightAmmo TMP object")]
+    [SerializeField] private Vector3 rightAmmoTextObjectPosition;
+
     // The current equipment being targeted by the UI (mouse, name, collider)
     private EquipmentBehaviour currentEquipmentTarget;
 
@@ -59,17 +76,14 @@ public class EquipmentUI : MonoBehaviour
     private RectTransform leftTextTransform;
     private RectTransform rightTextTransform;
 
-    public float ammoTextWidth;
-    public float ammoTextHeight;
-
-    public Vector3 leftAmmoTextPos;
-    public Vector3 rightAmmoTextPos;
-
     // String that holds a reference to the name of the current equipment, ui displays the name
     private string currentEquipmentNameToDisplay;
 
     // string that holds the instructions for player interaction, displayed below the name of equipment
     private string interactInstructionsString;
+
+    // Keep track of the current ammo text color
+    private Color currentAmmoTextColor;
 
     // Private bool to use for optimizing 
     private bool isTextEnabled;
@@ -82,7 +96,7 @@ public class EquipmentUI : MonoBehaviour
     /// </summary>
     public TextMeshProUGUI TextObject
     {
-        get { return equipmentTextObject; }
+        get { return equipTextObject; }
     }
 
     /// <summary>
@@ -106,7 +120,7 @@ public class EquipmentUI : MonoBehaviour
     /// </summary>
     public Vector3 RectTargetPosition
     {
-        get { return rectTargetPosition; }
+        get { return equipTextObjectPosition; }
     }
 
     /// <summary>
@@ -162,12 +176,12 @@ public class EquipmentUI : MonoBehaviour
     private void Start()
     {
         // Get RectTransform from TMP object
-        equipTextTransform = equipmentTextObject.GetComponent<RectTransform>();
+        equipTextTransform = equipTextObject.GetComponent<RectTransform>();
         leftTextTransform = leftHandAmmoTextObject.GetComponent<RectTransform>();
         rightTextTransform = rightHandAmmoTextObject.GetComponent<RectTransform>();
 
 
-        if (equipmentTextObject != null && equipTextTransform != null && leftTextTransform != null && rightTextTransform != null && equipSystemController != null)
+        if (equipTextObject != null && equipTextTransform != null && leftTextTransform != null && rightTextTransform != null && equipSystemController != null)
         {
             // Call method to initialize if all references are found 
             InitializeEquipmentUI();
@@ -185,30 +199,10 @@ public class EquipmentUI : MonoBehaviour
     public void InitializeEquipmentUI()
     {
         // Set the RectTransform properties to set UI text at correct position in game view
-        SetTransformProperties(equipTextTransform, rectTargetPosition, equipTextObjectWidth, equipTextObjectHeight);
+        SetTransformProperties(equipTextTransform, equipTextObjectPosition, equipTextObjectWidth, equipTextObjectHeight);
 
-        SetTransformProperties(leftTextTransform, leftAmmoTextPos, ammoTextWidth, ammoTextHeight);
-        SetTransformProperties(rightTextTransform, rightAmmoTextPos, ammoTextWidth, ammoTextHeight);
-    }
-
-    private Color GetAmmoColorFromBullet(WeaponActivation _bulletOwner)
-    {
-        // Get the renderer of the bullet prefab that is assigned to the base ammo clip of the weapon 
-        Renderer bulletRenderer = _bulletOwner.WeaponData.BaseAmmoClip.BulletPrefab.GetComponent<Renderer>();
-
-        // Get its material from the prefab
-        Material bulletMaterial = bulletRenderer.sharedMaterial;
-
-        if (bulletRenderer != null && bulletMaterial != null)
-        {
-            // Return the color of the prefab' s material if found
-            return bulletMaterial.color;
-        }
-        else
-        {
-            // Return white if not found 
-            return Color.white;
-        }
+        SetTransformProperties(leftTextTransform, leftAmmoTextObjectPosition, ammoTextObjectWidth, ammoTextObjectHeight);
+        SetTransformProperties(rightTextTransform, rightAmmoTextObjectPosition, ammoTextObjectWidth, ammoTextObjectHeight);
     }
 
     /// <summary>
@@ -221,55 +215,94 @@ public class EquipmentUI : MonoBehaviour
         HandleEquipText();
     }
 
+    /// <summary>
+    /// Method to display the ammo text of a hand if holding a weapon
+    /// </summary>
+    /// <param name="_handToCheck"></param>
+    /// <param name="_tmpObjectForHand"></param>
     private void DisplayAmmoText(Hand _handToCheck, TextMeshProUGUI _tmpObjectForHand)
     {
-        if (equipSystemController.IsEquipmentTypeInHandOf(EquipmentType.Weapon, _handToCheck))
+        // Return if the hand to check is not holding an equipment of type weapon
+        if (!equipSystemController.IsEquipmentTypeInHandOf(EquipmentType.Weapon, _handToCheck))
         {
+            // Set the ammo text object inactive if its active
+            if (_tmpObjectForHand.gameObject.activeSelf) _tmpObjectForHand.gameObject.SetActive(false);
+
+            // Early return
+            return;
+        }
+        else // Weapon is in hand
+        {
+            // Get the weaponactivation script for its current info
             WeaponActivation weaponInfo = _handToCheck.CurrentEquipment.GetComponentInChildren<WeaponActivation>();
 
+            // Prevent error if  activation script is not found
             if (weaponInfo != null)
             {
-                // Not activated yet, so update the color to new equipment color
-                if (_tmpObjectForHand.gameObject.activeSelf == false)
+                // Set the object active if not active
+                if (_tmpObjectForHand.gameObject.activeSelf == false) _tmpObjectForHand.gameObject.SetActive(true);
+                else // Set object's text to the current ammo of the weapon being held every frame
                 {
-                    UpdateTextColor(_tmpObjectForHand, GetAmmoColorFromBullet(weaponInfo));
+                    // Get the text to display
+                    string textToDisplay = GetAmmoTextString(weaponInfo);
 
-                    _tmpObjectForHand.gameObject.SetActive(true);
-
-                }
-                else // Already activated, so update text only
-                {
-                    string textToDisplay = GetFullAmmoTextString(weaponInfo);
-                    UpdateText(_tmpObjectForHand, textToDisplay);
+                    // Call method to display the text for the correct object, with the color of the current bullet
+                    UpdateText(_tmpObjectForHand, textToDisplay, weaponInfo.CurrentBulletColor);
                 }
             }
         }
-        else
-        {
-            _tmpObjectForHand.gameObject.SetActive(false);
-        }
     }
 
-    private void UpdateTextColor(TextMeshProUGUI _targetTextObject, Color _targetColor)
+    /// <summary>
+    /// Method that updates the text color of param _TMP object to param _targetColor
+    /// </summary>
+    /// <param name="_targetObject"></param>
+    /// <param name="_targetColor"></param>
+    private void UpdateTextColor(TextMeshProUGUI _targetObject, Color _targetColor)
     {
-        TMP_Text text = _targetTextObject.GetComponent<TMP_Text>();
+        TMP_Text text = _targetObject.GetComponent<TMP_Text>();
 
         text.color = _targetColor;
+
+        // Keep track of the current color of the text
+        currentAmmoTextColor = text.color;  
     }
 
-    private void UpdateText(TextMeshProUGUI _targetTextObject, string _targetText)
+    /// <summary>
+    /// Method that updates the text of param _targetObject to param _targetText, updating color to _targetColor if not current color
+    /// </summary>
+    /// <param name="_targetTextObject"></param>
+    /// <param name="_targetText"></param>
+    /// <param name="_targetColor"></param>
+    private void UpdateText(TextMeshProUGUI _targetTextObject, string _targetText, Color _targetColor)
     {
+        // Update the text color if its a different color from the current one
+        if (_targetColor != currentAmmoTextColor)
+        {
+            UpdateTextColor(_targetTextObject, _targetColor);
+        }
+
+        // Set the text for the object to the target text
         _targetTextObject.SetText(_targetText);
     }
 
-    private string GetFullAmmoTextString(WeaponActivation _weaponInfo)
+    /// <summary>
+    /// Returns a string containing the current ammo and max ammo of the param _weapon
+    /// </summary>
+    /// <param name="_weaponInfo"></param>
+    /// <returns></returns>
+    private string GetAmmoTextString(WeaponActivation _weaponInfo)
     {
+        // Get current ammo as string
         string currentAmmoString = _weaponInfo.CurrentAmmoCapacity.ToString();
 
+        // Get max ammo capacity of the weapon as string
         string maxAmmoString = _weaponInfo.WeaponData.MaxAmmoCapacity.ToString();
 
+        // Make full string combining the two strings, with a ' /'  in between for clarity
         string fullString = $"{currentAmmoString} / {maxAmmoString}";
 
+        // Return the full string
         return fullString;
     }
 
@@ -382,7 +415,7 @@ public class EquipmentUI : MonoBehaviour
         }
 
         // Set the text to the two strings, with the amount of new lines between them
-        equipmentTextObject.SetText($"{_string1} {newLines} {_string2}");
+        equipTextObject.SetText($"{_string1} {newLines} {_string2}");
     }
 
     /// <summary>

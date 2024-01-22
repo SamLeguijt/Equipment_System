@@ -38,6 +38,10 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
     // Reference to the current fire mode as an index
     private int currentFireModeIndex;
 
+    // Reference tot he current bullet's color
+    private Color currentBulletColor;
+
+
     /* ------------------------------------------  PROPERTIES ------------------------------------------- */
 
 
@@ -52,6 +56,10 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
     public EquipmentBehaviour EquipmentBehaviour { get { return equipmentBehaviour; } }
 
     /// <summary>
+    /// Reference to the current bullet being fired by this weapon, read only
+    /// </summary>
+    public GameObject CurrentBullet { get { return currentBullet; } }
+    /// <summary>
     ///  Reference to this weapon's current ammo, read-only
     /// </summary>
     public int CurrentAmmoCapacity { get { return currentAmmoCapacity; } }
@@ -61,6 +69,10 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
     /// </summary>
     public WeaponFireMode CurrentFireMode { get { return currentFireMode; } }
 
+    /// <summary>
+    /// Reference to the color of the current bullet being used for firing, read- only
+    /// </summary>
+    public Color CurrentBulletColor { get { return currentBulletColor; } }
 
 
     /* ------------------------------------------  METHODS ------------------------------------------- */
@@ -236,6 +248,9 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
 
         // Set speed of the bullet
         currentBulletSpeed = ammoClip.BulletData.BulletFireSpeed;
+
+        // Update the current color
+        currentBulletColor = GetBulletColor(currentBullet);
 
         // Call method to refill ammo
         RefillAmmo(ammoClip.BulletAmount);
@@ -445,6 +460,30 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
         {
             // If the ray doesn't hit anything, return a point at the maximum shooting range
             return ray.GetPoint(WeaponData.MaxHitDistance);
+        }
+    }
+
+    /// <summary>
+    /// Returns the color of the param _bullet object's material
+    /// </summary>
+    /// <param name="_bullet"></param>
+    /// <returns></returns>
+    private Color GetBulletColor(GameObject _bullet)
+    {
+        Renderer bulletRenderer = _bullet.GetComponent<Renderer>();
+
+        // Get its material from the prefab
+        Material bulletMaterial = bulletRenderer.sharedMaterial;
+
+        if (bulletRenderer != null && bulletMaterial != null)
+        {
+            // Return the color of the prefab' s material if found
+            return bulletMaterial.color;
+        }
+        else
+        {
+            // Return white if not found 
+            return Color.white;
         }
     }
 }

@@ -3578,7 +3578,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Je moeder
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4111,20 +4111,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c99436e065092c458b1652d4a53c132, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equipmentTextObject: {fileID: 1810350939}
+  equipTextObject: {fileID: 1810350939}
   leftHandAmmoTextObject: {fileID: 1125136165}
   rightHandAmmoTextObject: {fileID: 1667586527}
   equipSystemController: {fileID: 1064106617}
   equipTextObjectWidth: 300
   equipTextObjectHeight: 300
-  rectTargetPosition: {x: 0, y: -200, z: 0}
+  equipTextObjectPosition: {x: 0, y: -200, z: 0}
   equipActionWord: Equip
   swapActionWord: Swap
   newLinesAmount: 1
-  ammoTextWidth: 200
-  ammoTextHeight: 200
-  leftAmmoTextPos: {x: -200, y: -350, z: 0}
-  rightAmmoTextPos: {x: 200, y: -350, z: 0}
+  ammoTextObjectWidth: 200
+  ammoTextObjectHeight: 200
+  leftAmmoTextObjectPosition: {x: -200, y: -350, z: 0}
+  rightAmmoTextObjectPosition: {x: 200, y: -350, z: 0}
 --- !u!4 &1481329329
 Transform:
   m_ObjectHideFlags: 0
@@ -4471,7 +4471,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Wat NOU?!
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5060,7 +5060,7 @@ GameObject:
   - component: {fileID: 1810350940}
   - component: {fileID: 1810350939}
   m_Layer: 5
-  m_Name: EquipmentText
+  m_Name: EquipText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
