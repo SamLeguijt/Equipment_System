@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EquipmentUI : MonoBehaviour
@@ -12,23 +14,31 @@ public class EquipmentUI : MonoBehaviour
     [Space]
 
     [Tooltip("TMP object attached to Canvas")]
-    [SerializeField] private TextMeshProUGUI equipmentTextObject;
+    [SerializeField] private TextMeshProUGUI equipTextObject;
+
+    [Tooltip("TMP object attached to Canvas")]
+    [SerializeField] private TextMeshProUGUI leftHandAmmoTextObject;
+
+    [Tooltip("TMP object attached to Canvas")]
+    [SerializeField] private TextMeshProUGUI rightHandAmmoTextObject;
+    [Space]
 
     [Tooltip("EquipmentSystemController object in scene")]
     [SerializeField] private EquipmentSystemController equipSystemController;
 
     [Space]
-    [Header("TMP object position properties")]
+    [Header("TMP equip object position properties")]
     [Space]
 
     [Tooltip("Desired width of the RectTransform of the TMP object")]
-    [SerializeField] private float rectTransformWidth;
+    [SerializeField] private float equipTextObjectWidth;
 
     [Tooltip("Desired height of the RectTransform of the TMP object")]
-    [SerializeField] private float rectTransformHeight;
+    [SerializeField] private float equipTextObjectHeight;
 
     [Tooltip("Desired position of the RectTransform of the TMP object")]
-    [SerializeField] private Vector3 rectTargetPosition;
+    [SerializeField] private Vector3 equipTextObjectPosition;
+
 
     [Space]
     [Header("Displayed text properties")]
@@ -43,17 +53,38 @@ public class EquipmentUI : MonoBehaviour
     [Tooltip("Amount of empty lines between the weapon name and instructions string")]
     [SerializeField] private int newLinesAmount = 1; // Default to 1
 
+    [Space]
+    [Header("TMP ammo object position properties")]
+    [Space]
+
+    [Tooltip("Desired width of the RectTransform of the ammo TMP object")]
+    [SerializeField] private float ammoTextObjectWidth;
+
+    [Tooltip("Desired height of the RectTransform of the ammo TMP object")]
+    [SerializeField] private float ammoTextObjectHeight;
+
+    [Tooltip("Desired position of the RectTransform of the leftAmmo TMP object")]
+    [SerializeField] private Vector3 leftAmmoTextObjectPosition;
+
+    [Tooltip("Desired position of the RectTransform of the rightAmmo TMP object")]
+    [SerializeField] private Vector3 rightAmmoTextObjectPosition;
+
     // The current equipment being targeted by the UI (mouse, name, collider)
     private EquipmentBehaviour currentEquipmentTarget;
 
     // Reference to the RectTransform component of the TMP object
-    private RectTransform rectTransform;
+    private RectTransform equipTextTransform;
+    private RectTransform leftTextTransform;
+    private RectTransform rightTextTransform;
 
     // String that holds a reference to the name of the current equipment, ui displays the name
     private string currentEquipmentNameToDisplay;
 
     // string that holds the instructions for player interaction, displayed below the name of equipment
     private string interactInstructionsString;
+
+    // Keep track of the current ammo text color
+    private Color currentAmmoTextColor;
 
     // Private bool to use for optimizing 
     private bool isTextEnabled;
@@ -66,7 +97,7 @@ public class EquipmentUI : MonoBehaviour
     /// </summary>
     public TextMeshProUGUI TextObject
     {
-        get { return equipmentTextObject; }
+        get { return equipTextObject; }
     }
 
     /// <summary>
@@ -74,7 +105,7 @@ public class EquipmentUI : MonoBehaviour
     /// </summary>
     public float RectTransformWidth
     {
-        get { return rectTransformWidth; }
+        get { return equipTextObjectWidth; }
     }
 
     /// <summary>
@@ -82,7 +113,7 @@ public class EquipmentUI : MonoBehaviour
     /// </summary>
     public float RectTransformHeight
     {
-        get { return rectTransformHeight; }
+        get { return equipTextObjectHeight; }
     }
 
     /// <summary>
@@ -90,7 +121,7 @@ public class EquipmentUI : MonoBehaviour
     /// </summary>
     public Vector3 RectTargetPosition
     {
-        get { return rectTargetPosition; }
+        get { return equipTextObjectPosition; }
     }
 
     /// <summary>
@@ -146,9 +177,12 @@ public class EquipmentUI : MonoBehaviour
     private void Start()
     {
         // Get RectTransform from TMP object
-        rectTransform = equipmentTextObject.GetComponent<RectTransform>();
+        equipTextTransform = equipTextObject.GetComponent<RectTransform>();
+        leftTextTransform = leftHandAmmoTextObject.GetComponent<RectTransform>();
+        rightTextTransform = rightHandAmmoTextObject.GetComponent<RectTransform>();
 
-        if (equipmentTextObject != null && rectTransform != null && equipSystemController != null)
+
+        if (equipTextObject != null && equipTextTransform != null && leftTextTransform != null && rightTextTransform != null && equipSystemController != null)
         {
             // Call method to initialize if all references are found 
             InitializeEquipmentUI();
@@ -166,73 +200,35 @@ public class EquipmentUI : MonoBehaviour
     public void InitializeEquipmentUI()
     {
         // Set the RectTransform properties to set UI text at correct position in game view
-        SetTransformProperties();
+        SetTransformProperties(equipTextTransform, equipTextObjectPosition, equipTextObjectWidth, equipTextObjectHeight);
+
+        SetTransformProperties(leftTextTransform, leftAmmoTextObjectPosition, ammoTextObjectWidth, ammoTextObjectHeight);
+        SetTransformProperties(rightTextTransform, rightAmmoTextObjectPosition, ammoTextObjectWidth, ammoTextObjectHeight);
+
+        DisableEquipText();
     }
 
+    /// <summary>
+    /// Method that sets the transform properties of the Text object to place in the right position
+    /// </summary>
+    private void SetTransformProperties(RectTransform _target, Vector3 _targetPosition, float _targetWidth, float _targetHeight)
+    {
+        // Set the width and height of the RectTransform on both axis
+        _target.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, _targetWidth);
+        _target.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, _targetHeight);
+
+        // Set the position to the desired target position (position based on anchors)
+        _target.anchoredPosition = _targetPosition;
+    }
 
     /// <summary>
-    /// Handles the text being displayed 
+    /// Handles the different Texts being displayed 
     /// </summary>
     private void Update()
     {
-        // Return immediatily if there is no equipment target
-        if (currentEquipmentTarget == null) return;
-        else // There is a target
-        {
-            // Check if the mouse is over the MouseDetectCollider of the equipment, and if the equipment is grounded (prevent ui display when object is in air)
-            if (IsMouseOverCollider(currentEquipmentTarget.MouseDetectCollider) && (currentEquipmentTarget.IsOnGround))
-            {
-                // Enable the UI text by calling method, passing the current equipment name and the interact string as text
-                EnableEquipmentUI(currentEquipmentNameToDisplay, interactInstructionsString);
-
-            }
-            else // Mouse is not over collider, or equipment is not grounded so dont displlay text 
-            {
-                // Remove the target (enables early return)
-                currentEquipmentTarget = null;
-
-                // Call method to disable the UI text
-                DisableEquipmentUI();
-            }
-        }
-    }
-
-    /// <summary>
-    ///  Public method to enable the equipment UI text <br/>
-    ///  Receives two parameters as display text
-    /// </summary>
-    /// <param name="_equipmentName"> Name of the equipment to display </param>
-    /// <param name="_interactInstructions"> String holding instructions for interacting </param>
-    private void EnableEquipmentUI(string _equipmentName, string _interactInstructions)
-    {
-        // Prevent unnecessary calls if already enabled 
-        if (isTextEnabled) return;
-        else // Text is not yet enabled
-        {
-            // Call method to display the new text, passing in both strings
-            UpdateTextBox(_equipmentName, _interactInstructions, newLinesAmount); // True to add a new line between strings
-
-            // Set bool for early returns if more calls to this method
-            isTextEnabled = true;
-        }
-    }
-
-
-    /// <summary>
-    /// Method that disables the equipment UI text by updating the text with empty strings
-    /// </summary>
-    private void DisableEquipmentUI()
-    {
-        // Prevent unnecessary calls if already disabled 
-        if (!isTextEnabled) return;
-        else // Not disabled yet
-        {
-            // Call method to update the text box with empty strings (works better than disabling the object, that causes lag on re-enabling)
-            UpdateTextBox(string.Empty, string.Empty, 0);
-
-            // Set bool for early returns when calling method again without changes
-            isTextEnabled = false;
-        }
+        DisplayAmmoText(equipSystemController.LeftHand, leftHandAmmoTextObject);
+        DisplayAmmoText(equipSystemController.RightHand, rightHandAmmoTextObject);
+        HandleEquipText();
     }
 
     /// <summary>
@@ -250,9 +246,6 @@ public class EquipmentUI : MonoBehaviour
 
             // Store the name of the new equipment by looking at its scriptable object
             currentEquipmentNameToDisplay = _newEquipment.EquipmentData.EquipmentName;
-
-            // Update the InteractInstruction string to display based on hand status'
-            interactInstructionsString = GetInteractionInstructionString();
         }
         else // _newEquipment is already the current target, so no need to update everything
         {
@@ -260,16 +253,167 @@ public class EquipmentUI : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Method to display the ammo text of a hand if holding a weapon
+    /// </summary>
+    /// <param name="_handToCheck"></param>
+    /// <param name="_tmpObjectForHand"></param>
+    private void DisplayAmmoText(Hand _handToCheck, TextMeshProUGUI _tmpObjectForHand)
+    {
+        // Return if the hand to check is not holding an equipment of type weapon
+        if (!equipSystemController.IsEquipmentTypeInHandOf(EquipmentType.Weapon, _handToCheck))
+        {
+            // Set the ammo text object inactive if its active
+            if (_tmpObjectForHand.gameObject.activeSelf) _tmpObjectForHand.gameObject.SetActive(false);
+
+            // Early return
+            return;
+        }
+        else // Weapon is in hand
+        {
+            // Get the weaponactivation script for its current info
+            WeaponActivation weaponInfo = _handToCheck.CurrentEquipment.GetComponentInChildren<WeaponActivation>();
+
+            // Prevent error if  activation script is not found
+            if (weaponInfo != null)
+            {
+                // Set the object active if not active
+                if (_tmpObjectForHand.gameObject.activeSelf == false) _tmpObjectForHand.gameObject.SetActive(true);
+                else // Set object's text to the current ammo of the weapon being held every frame
+                {
+                    // Get the text to display
+                    string textToDisplay = GetAmmoTextString(weaponInfo);
+
+                    // Call method to display the text for the correct object, with the color of the current bullet
+                    UpdateText(_tmpObjectForHand, textToDisplay, weaponInfo.CurrentBulletColor);
+                }
+            }
+        }
+    }
 
     /// <summary>
-    /// Method that sets the text of the TMP object to the two input strings params <br/>
-    /// Adds empty lines according to param
+    /// Handles displaying the  equip UI text based on conditions
     /// </summary>
-    /// <param name="_string1"> First string to display </param>
-    /// <param name="_string2"> Second string to display</param>
-    /// <param name="_newLinesAmount"> How many empty lines should be added between the two strings </param>
-    private void UpdateTextBox(string _string1, string _string2, int _newLinesAmount)
+    private void HandleEquipText()
     {
+        // Return immediatily if there is no equipment target
+        if (currentEquipmentTarget == null)
+        {
+            return;
+            //DisableEquipText();
+        }
+        else // There is a target
+        {
+            // Check if the mouse is over the MouseDetectCollider of the equipment, and if the equipment is grounded (prevent ui display when object is in air)
+            if (IsMouseOverCollider(currentEquipmentTarget.MouseDetectCollider) && (currentEquipmentTarget.IsOnGround))
+            {
+                // Enable the UI text by calling method, passing the current equipment name and the interact string as text
+                EnableEquipText();
+            }
+            else // Mouse is not over collider, or equipment is not grounded so dont display text 
+            {
+                currentEquipmentTarget = null;
+                DisableEquipText();
+            }
+        }
+    }
+
+    /// <summary>
+    ///  Public method to enable the equipment UI text <br/>
+    ///  Receives two parameters as display text
+    /// </summary>
+    /// <param name="_equipmentName"> Name of the equipment to display </param>
+    /// <param name="_interactInstructions"> String holding instructions for interacting </param>
+    private void EnableEquipText()
+    {
+        // Prevent unnecessary calls if already enabled 
+        if (equipTextObject.gameObject.activeSelf) return;
+        else // Text is not yet enabled
+        {
+            // Get the full string to display
+            string fullEquipString = GetFullEquipTextString(newLinesAmount);
+
+            // Call method to update the text with the new string
+            UpdateText(equipTextObject, fullEquipString, equipTextObject.color);
+
+            // Set object active to display
+            equipTextObject.gameObject.SetActive(true);
+        }
+    }
+
+    /// <summary>
+    /// Method that disables the equipment UI text by updating the text with empty strings
+    /// </summary>
+    private void DisableEquipText()
+    {
+        // Prevent unnecessary calls if already disabled 
+        if (!equipTextObject.gameObject.activeSelf) return;
+        else // Not disabled yet
+        {
+            equipTextObject.gameObject.SetActive(false);
+        }
+    }
+
+
+    /// <summary>
+    /// Method that updates the text of param _targetObject to param _targetText, updating color to _targetColor if not current color
+    /// </summary>
+    /// <param name="_targetTextObject"></param>
+    /// <param name="_targetText"></param>
+    /// <param name="_targetColor"></param>
+    private void UpdateText(TextMeshProUGUI _targetTextObject, string _targetText, Color _targetColor)
+    {
+        if (_targetTextObject.GetComponent<TMP_Text>().color != _targetColor)
+        {
+            UpdateTextColor(_targetTextObject, _targetColor);
+        }
+
+        // Set the text for the object to the target text
+        _targetTextObject.SetText(_targetText);
+    }
+
+    /// <summary>
+    /// Method that updates the text color of param _TMP object to param _targetColor
+    /// </summary>
+    /// <param name="_targetObject"></param>
+    /// <param name="_targetColor"></param>
+    private void UpdateTextColor(TextMeshProUGUI _targetObject, Color _targetColor)
+    {
+        TMP_Text text = _targetObject.GetComponent<TMP_Text>();
+
+        text.color = _targetColor;
+    }
+    /// <summary>
+    /// Returns a string containing the current ammo and max ammo of the param _weapon
+    /// </summary>
+    /// <param name="_weaponInfo"></param>
+    /// <returns></returns>
+    private string GetAmmoTextString(WeaponActivation _weaponInfo)
+    {
+        // Get current ammo as string
+        string currentAmmoString = _weaponInfo.CurrentAmmoCapacity.ToString();
+
+        // Get max ammo capacity of the weapon as string
+        string maxAmmoString = _weaponInfo.WeaponData.MaxAmmoCapacity.ToString();
+
+        // Make full string combining the two strings, with a ' /'  in between for clarity
+        string fullString = $"{currentAmmoString} / {maxAmmoString}";
+
+        // Return the full string
+        return fullString;
+    }
+
+    /// <summary>
+    /// Returns the full string being displayed when mouse is over equipment <br/>
+    /// Combines the equipment name with x new lines and an instruction string
+    /// </summary>
+    /// <param name="_newLinesAmount"></param>
+    /// <returns></returns>
+    private string GetFullEquipTextString(int _newLinesAmount)
+    {
+        string equipmentName = currentEquipmentNameToDisplay;
+        string instructionText = GetInteractionInstructionString();
+
         // Create new empty string
         string newLines = "";
 
@@ -280,45 +424,10 @@ public class EquipmentUI : MonoBehaviour
             newLines += "\n";
         }
 
-        // Set the text to the two strings, with the amount of new lines between them
-        equipmentTextObject.SetText($"{_string1} {newLines} {_string2}");
+        string fullString = $"{equipmentName} {newLines} {instructionText}";
+
+        return fullString;
     }
-
-    /// <summary>
-    /// Method that sets the transform properties of the Text object to place in the right position
-    /// </summary>
-    private void SetTransformProperties()
-    {
-        // Set the width and height of the RectTransform on both axis
-        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, rectTransformWidth);
-        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, rectTransformHeight);
-
-        // Set the position to the desired target position (position based on anchors)
-        rectTransform.anchoredPosition = rectTargetPosition;
-    }
-
-    /// <summary>
-    /// Returns true if the mouse is over the param collider
-    /// </summary>
-    /// <param name="_colliderToCheck"></param>
-    /// <returns></returns>
-    private bool IsMouseOverCollider(Collider _colliderToCheck)
-    {
-        // Shoot a ray from the camera through the mouse 
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-
-        // If the ray hits something, and the collider of the hit is same as our param
-        if (Physics.Raycast(ray, out hit) && hit.collider == _colliderToCheck)
-        {
-            // The mouse is over the collider 
-            return true;
-        }
-
-        // Ray did not hit our collider
-        return false;
-    }
-
 
     /// <summary>
     /// Returns a string holding interact instructions to the hands of the player <br/>
@@ -360,4 +469,27 @@ public class EquipmentUI : MonoBehaviour
             return swapActionWord;
         }
     }
+
+    /// <summary>
+    /// Returns true if the mouse is over the param collider
+    /// </summary>
+    /// <param name="_colliderToCheck"></param>
+    /// <returns></returns>
+    private bool IsMouseOverCollider(Collider _colliderToCheck)
+    {
+        // Shoot a ray from the camera through the mouse 
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        // If the ray hits something, and the collider of the hit is same as our param
+        if (Physics.Raycast(ray, out hit) && hit.collider == _colliderToCheck)
+        {
+            // The mouse is over the collider 
+            return true;
+        }
+
+        // Ray did not hit our collider
+        return false;
+    }
+
 }
