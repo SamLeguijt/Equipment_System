@@ -4121,11 +4121,10 @@ MonoBehaviour:
   equipActionWord: Equip
   swapActionWord: Swap
   newLinesAmount: 1
-  ammoWidth: 200
-  ammoHeight: 200
-  ammoXpos: 0
-  ammoYpos: 0
-  ammoPos: {x: 150, y: -350, z: 0}
+  ammoTextWidth: 200
+  ammoTextHeight: 200
+  leftAmmoTextPos: {x: -200, y: -350, z: 0}
+  rightAmmoTextPos: {x: 200, y: -350, z: 0}
 --- !u!4 &1481329329
 Transform:
   m_ObjectHideFlags: 0

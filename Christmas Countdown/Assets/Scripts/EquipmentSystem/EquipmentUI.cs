@@ -59,11 +59,11 @@ public class EquipmentUI : MonoBehaviour
     private RectTransform leftTextTransform;
     private RectTransform rightTextTransform;
 
-    public float ammoWidth;
-    public float ammoHeight;
-    public float ammoXpos;
-    public float ammoYpos;
-    public Vector3 ammoPos;
+    public float ammoTextWidth;
+    public float ammoTextHeight;
+
+    public Vector3 leftAmmoTextPos;
+    public Vector3 rightAmmoTextPos;
 
     // String that holds a reference to the name of the current equipment, ui displays the name
     private string currentEquipmentNameToDisplay;
@@ -187,10 +187,8 @@ public class EquipmentUI : MonoBehaviour
         // Set the RectTransform properties to set UI text at correct position in game view
         SetTransformProperties(equipTextTransform, rectTargetPosition, equipTextObjectWidth, equipTextObjectHeight);
 
-        Vector3 leftPos = new Vector3(-ammoPos.x, ammoPos.y, ammoPos.z);
-
-        SetTransformProperties(leftTextTransform, leftPos, ammoWidth, ammoHeight);
-        SetTransformProperties(rightTextTransform, ammoPos, ammoWidth, ammoHeight);
+        SetTransformProperties(leftTextTransform, leftAmmoTextPos, ammoTextWidth, ammoTextHeight);
+        SetTransformProperties(rightTextTransform, rightAmmoTextPos, ammoTextWidth, ammoTextHeight);
     }
 
     private Color GetAmmoColorFromBullet(WeaponActivation _bulletOwner)
@@ -213,6 +211,16 @@ public class EquipmentUI : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Handles the different Texts being displayed 
+    /// </summary>
+    private void Update()
+    {
+        DisplayAmmoText(equipSystemController.LeftHand, leftHandAmmoTextObject);
+        DisplayAmmoText(equipSystemController.RightHand, rightHandAmmoTextObject);
+        HandleEquipText();
+    }
+
     private void DisplayAmmoText(Hand _handToCheck, TextMeshProUGUI _tmpObjectForHand)
     {
         if (equipSystemController.IsEquipmentTypeInHandOf(EquipmentType.Weapon, _handToCheck))
@@ -231,7 +239,7 @@ public class EquipmentUI : MonoBehaviour
                 }
                 else // Already activated, so update text only
                 {
-                    string textToDisplay = weaponInfo.CurrentAmmoCapacity.ToString();
+                    string textToDisplay = GetFullAmmoTextString(weaponInfo);
                     UpdateText(_tmpObjectForHand, textToDisplay);
                 }
             }
@@ -254,18 +262,17 @@ public class EquipmentUI : MonoBehaviour
         _targetTextObject.SetText(_targetText);
     }
 
-
-
-    /// <summary>
-    /// Handles the text being displayed 
-    /// </summary>
-    private void Update()
+    private string GetFullAmmoTextString(WeaponActivation _weaponInfo)
     {
+        string currentAmmoString = _weaponInfo.CurrentAmmoCapacity.ToString();
 
-        DisplayAmmoText(equipSystemController.LeftHand, leftHandAmmoTextObject);
-        DisplayAmmoText(equipSystemController.RightHand, rightHandAmmoTextObject);
-        HandleEquipText();
+        string maxAmmoString = _weaponInfo.WeaponData.MaxAmmoCapacity.ToString();
+
+        string fullString = $"{currentAmmoString} / {maxAmmoString}";
+
+        return fullString;
     }
+
 
     private void HandleEquipText()
     {
