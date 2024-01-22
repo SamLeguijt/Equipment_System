@@ -120,13 +120,13 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
         else  // Object is in one of the hands...
         {
             // Check if we want to swap fire modes
-            CheckForFireModeSwap();
+            CheckForFireModeSwap(equipmentBehaviour.CurrentHand);
 
             // Check if the full auto fire routine has started (fullauto fire is active)
             if (currentFireMode == WeaponFireMode.FullAutomatic && isFullAutoCoroutineStarted)
             {
                 // Check if the activation key for the current hand is no longer being held down, or if the equipment is dropped
-                if (Input.GetKeyUp(equipmentBehaviour.CurrentHand.ActivationKey) || equipmentBehaviour.CurrentHand == null)
+                if (Input.GetKeyUp(equipmentBehaviour.CurrentHand.KeyBindings.ActivationKey) || equipmentBehaviour.CurrentHand == null)
                 {
                     // Stop the firing coroutine
                     StopCoroutine(AutomaticFireCoroutine());
@@ -162,7 +162,7 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
             case WeaponFireMode.FullAutomatic:
 
                 // Check if the activation key for the current hand is being held down
-                if (Input.GetKey(equipmentBehaviour.CurrentHand.ActivationKey))
+                if (Input.GetKey(equipmentBehaviour.CurrentHand.KeyBindings.ActivationKey))
                 {
                     // Check if the corotoutine has started already 
                     if (!isFullAutoCoroutineStarted)
@@ -275,10 +275,10 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
     /// <summary>
     /// Method that checks for swap input to switch to next fire mode 
     /// </summary>
-    private void CheckForFireModeSwap()
+    private void CheckForFireModeSwap(Hand _handToCheck)
     {
         // Check if the swap key is being pressed
-        if (Input.GetKeyDown(WeaponData.FireModeSwapKey))
+        if (Input.GetKeyDown(_handToCheck.KeyBindings.FireModeSwapKey))
         {
             // If the index is larger than array length, it reached its max
             if (currentFireModeIndex >= WeaponData.FireModes.Length)
