@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 
@@ -11,6 +12,7 @@ public class SettingsManager : MonoBehaviour
     // Static instance for global access
     public static SettingsManager instance;
 
+    public List<EquipmentBehaviour> equipmentsInScene;
 
     // Private bools used as settings 
 
@@ -34,6 +36,8 @@ public class SettingsManager : MonoBehaviour
     public Hand leftHand;
 
     public TMP_InputField activationLeft;
+
+    public bool unlimitedAmmo;
     /// <summary>
     /// Do equipment relevant scripts automatically reference their components on start( ... GetComponent<> etc.), read-only
     /// </summary>
@@ -82,18 +86,25 @@ public class SettingsManager : MonoBehaviour
         canvas.transform.LookAt(canvas.transform.position + camera.transform.rotation * Vector3.back, camera.transform.rotation * Vector3.up);
     }
 
-    public void ApplyChanges()
+    public void OnUnlimitedAmmoToggle()
+    {
+        unlimitedAmmo = !unlimitedAmmo;
+    }
+
+    private void ReloadScene()
+    {
+        // Get the current active scene name
+        string currentSceneName = SceneManager.GetActiveScene().name;
+
+        // Load the current scene again
+        SceneManager.LoadScene(currentSceneName);
+    }
+
+    public void OnRestartSceneButtonClick()
     {
         Debug.Log("Call apply");
 
-        string inputChar = activationLeft.text.ToUpper();
-
-        KeyCode newActivationKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), inputChar);
-
-        Debug.Log(newActivationKey);
-
-        leftHand.KeyBindings.ActivationKey = newActivationKey;
-
+        ReloadScene();
     }
 
     private void ToggleSettingsPanel(bool _active)
