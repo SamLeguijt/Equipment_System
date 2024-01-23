@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.Progress;
 using UnityEngine.XR;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine.UI;
@@ -49,13 +48,16 @@ public class EquipmentBehaviour : MonoBehaviour
     [Tooltip("Scriptable Object with this object's data")]
     [SerializeField] private BaseEquipmentObject equipmentData;
 
-    /* --- PRIVATE HIDDEN VARIABLES ---*/
-    private EquipmentPhysicsManager equipmentPhysicsManager; // Reference to this object's physics manager
-    private ActivationLogicHandler activationHandler; // Reference to component in child. Note: no property because component will be destroyed after init
-    private Collider parentCollider; // Store collider of the parent object
-    [SerializeField]private Collider mouseDetectCollider;
-    private Transform player; // Reference to the player for distance and orientation
+    /* --- PRIVATE VARIABLES ---*/
+    [SerializeField] private EquipmentPhysicsManager equipmentPhysicsManager; // Reference to this object's physics manager
+    [SerializeField] private ActivationLogicHandler activationHandler; // Reference to component in child. Note: no property because component will be destroyed after init
+    [SerializeField] private Collider parentCollider; // Store collider of the parent object
+    [SerializeField] private Collider mouseDetectCollider;
+    [SerializeField] private Transform player; // Reference to the player for distance and orientation
+    
     private Hand currentHand;
+
+    // Reference to the activation logic for this equipment
     public IEquipmentActivation activationLogic;
 
     // Bools for checking status of this object, used for properties
@@ -195,28 +197,34 @@ public class EquipmentBehaviour : MonoBehaviour
 
     private void Start()
     {
-        // Find player (no dragging in player for each object)
-        if (player == null)
-            player = GameObject.FindGameObjectWithTag("Player")?.transform;
+        if (DeveloperSettings.instance.AutoReferenceEquipmentComponents_OnStart) // Auto assign references 
+        {
+            // Find player (no dragging in player for each object)
+            if (player == null)
+                player = GameObject.FindGameObjectWithTag("Player")?.transform;
 
-        // Find EquipmentSystemController instead of dragging, yay (probably temp only) 
-        if (equipmentSystemController == null)
-            equipmentSystemController = FindObjectOfType<EquipmentSystemController>();
+            // Find EquipmentSystemController instead of dragging, yay (probably temp only) 
+            if (equipmentSystemController == null)
+                equipmentSystemController = FindObjectOfType<EquipmentSystemController>();
 
-        if (equipmentUI == null)
-            equipmentUI = FindObjectOfType<EquipmentUI>();
+            if (equipmentUI == null)
+                equipmentUI = FindObjectOfType<EquipmentUI>();
 
-        // Get the activation handler in the child object
-        activationHandler = GetComponentInChildren<ActivationLogicHandler>();
+            // Get the activation handler in the child object
+            activationHandler = GetComponentInChildren<ActivationLogicHandler>();
 
-        // First set parent object to the main object slot
-        mainEquipmentObject = transform.parent.gameObject;
+            // First set parent object to the main object slot
+            mainEquipmentObject = transform.parent.gameObject;
 
-        // Add and assign the PhysicsManager to the parent object
-        equipmentPhysicsManager = mainEquipmentObject.AddComponent<EquipmentPhysicsManager>();
+            // Get the parent's collider to detect mouse
+            parentCollider = mainEquipmentObject.GetComponent<Collider>();
+        } 
 
-        // Get the parent's collider to detect mouse
-        parentCollider = mainEquipmentObject.GetComponent<Collider>();
+        if (DeveloperSettings.instance.AutoAddEquipmentComponents_OnStart) // Auto add physics manager if dev settings allows
+        {
+            // Add and assign the PhysicsManager to the parent object
+            equipmentPhysicsManager = mainEquipmentObject.AddComponent<EquipmentPhysicsManager>();
+        }
 
         // Check if any components and references are missing
         if (equipmentSystemController == null || equipmentUI == null || mainEquipmentObject == null || EquipmentData == null || equipmentPhysicsManager == null || player == null || parentCollider == null || mouseDetectCollider == null || activationHandler == null)

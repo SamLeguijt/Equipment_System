@@ -10,7 +10,7 @@ public class ActivationLogicHandler : MonoBehaviour
     [SerializeField] private Transform equipmentSpecificTransform;
 
     [Tooltip("Seconds before destroying this object after being initialized")]
-    [SerializeField] private float destroyThisAfterSeconds;
+    [SerializeField] private float destroyThisAfterSeconds = 3f;
 
     // Reference to the equipment behaviour attached on the EquipmentObject
     private EquipmentBehaviour equipmentBehaviour;
@@ -24,9 +24,16 @@ public class ActivationLogicHandler : MonoBehaviour
         // Set reference to the param
         equipmentBehaviour = _equipment;
 
-        // Call method to add the correct activation logic
-        AddActivationLogic(equipmentBehaviour);
+        if (DeveloperSettings.instance.AutoAddEquipmentComponents_OnStart)
+        {
+            // Call method to add the correct activation logic
+            AddActivationLogic(equipmentBehaviour);
 
+        }
+        else
+        {
+            Debug.LogWarning("Warning: ActivationLogicHandler does not auto add Activation scripts to objects, add mannually!");
+        }
         //Destroy this object after adding the activation logic since we have no use of it no more
         Destroy(gameObject, destroyThisAfterSeconds);
     }
