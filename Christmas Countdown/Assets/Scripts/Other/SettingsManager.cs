@@ -125,4 +125,9 @@ public class SettingsManager : MonoBehaviour
             UnityEngine.Cursor.visible = false;
         }
     }
+
+    public bool IsOpenSettingsMenu()
+    {
+        return panelSettingsUI.activeSelf;
+    }
 }

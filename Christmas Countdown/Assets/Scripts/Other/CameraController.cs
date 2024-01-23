@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CameraController : MonoBehaviour
 {
@@ -22,9 +23,16 @@ public class CameraController : MonoBehaviour
     [Tooltip("Position offsets for  hand")]
     [SerializeField] private Vector3 leftHandPosOffset;
 
-    [Header("Sensitivity of the mouse in both directions")]
-    [SerializeField] private float mouseSensitivityX;
-    [SerializeField] private float mouseSensitivityY;
+    [Header("Sensitivity settings")]
+
+    [Tooltip("UI slider component for the mouse X sensitivity setting")]
+    [SerializeField] private Slider sensitivityXslider;
+
+    [Tooltip("UI slider component for the mouse Y sensitivity setting")]
+    [SerializeField] private Slider sensitivityYslider;
+
+    [SerializeField] private float defaultMouseSensitivityX;
+    [SerializeField] private float defaultMouseSensitivityY;
 
     [Space]
     [Tooltip("Max angle the camera is allowed to move up and down")]
@@ -55,6 +63,7 @@ public class CameraController : MonoBehaviour
     {
         get { return centerTarget; }
     }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -63,12 +72,17 @@ public class CameraController : MonoBehaviour
 
         // Disable the hardware pointer being visible
         Cursor.visible = false;
+
+        // Set values of sliders to the default values
+        sensitivityXslider.value = defaultMouseSensitivityX;
+        sensitivityYslider.value = defaultMouseSensitivityY;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (SettingsManager.instance.panelSettingsUI.activeSelf) return; 
+        // Return if the settings menu is open to stop rotating
+        if (SettingsManager.instance.IsOpenSettingsMenu()) return;
 
         Rotate();
         MaintainPositions();
@@ -84,9 +98,9 @@ public class CameraController : MonoBehaviour
         float mouseX = Input.GetAxisRaw("Mouse X");
         float mouseY = Input.GetAxisRaw("Mouse Y");
 
-        // Get our targets by multiplying with delta time and sensitivity
-        float targetX = mouseX * Time.deltaTime * mouseSensitivityX;
-        float targetY = mouseY * Time.deltaTime * mouseSensitivityY;
+        // Get our targets by multiplying with delta time and sensitivity of sliders
+        float targetX = mouseX * Time.deltaTime * sensitivityXslider.value;
+        float targetY = mouseY * Time.deltaTime * sensitivityYslider.value;
 
         // Add target values to our player rotation variables
         rotationY += targetX;
