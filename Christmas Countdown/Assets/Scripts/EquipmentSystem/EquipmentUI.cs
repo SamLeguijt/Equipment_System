@@ -21,6 +21,8 @@ public class EquipmentUI : MonoBehaviour
 
     [Tooltip("TMP object attached to Canvas")]
     [SerializeField] private TextMeshProUGUI rightHandAmmoTextObject;
+    [SerializeField] private TextMeshProUGUI leftFireModeTextObject;
+    [SerializeField] private TextMeshProUGUI rightFireModeTextObject;
     [Space]
 
     [Tooltip("EquipmentSystemController object in scene")]
@@ -54,7 +56,7 @@ public class EquipmentUI : MonoBehaviour
     [SerializeField] private int newLinesAmount = 1; // Default to 1
 
     [Space]
-    [Header("TMP ammo object position properties")]
+    [Header("TMP ammo object transform properties")]
     [Space]
 
     [Tooltip("Desired width of the RectTransform of the ammo TMP object")]
@@ -69,6 +71,22 @@ public class EquipmentUI : MonoBehaviour
     [Tooltip("Desired position of the RectTransform of the rightAmmo TMP object")]
     [SerializeField] private Vector3 rightAmmoTextObjectPosition;
 
+    [Space]
+    [Header("TMP FireMode object transform properties")]
+    [Space]
+
+    [Tooltip("Desired width of the RectTransform of the fire mode TMP object")]
+    [SerializeField] private float fireModeTextWidth;
+
+    [Tooltip("Desired height of the RectTransform of the fire mode TMP object")]
+    [SerializeField] private float fireModeTextHeight;
+
+    [Tooltip("Desired position of the RectTransform of the left fire mode TMP object")]
+    [SerializeField] private Vector3 leftFireModeTextPosition;
+
+    [Tooltip("Desired position of the RectTransform of the right fire mode TMP object")]
+    [SerializeField] private Vector3 rightFireModeTextPosition;
+
     // The current equipment being targeted by the UI (mouse, name, collider)
     private EquipmentBehaviour currentEquipmentTarget;
 
@@ -76,18 +94,11 @@ public class EquipmentUI : MonoBehaviour
     private RectTransform equipTextTransform;
     private RectTransform leftTextTransform;
     private RectTransform rightTextTransform;
+    private RectTransform leftFireModeTextTransform;
+    private RectTransform rightFireModeTextTransform;
 
     // String that holds a reference to the name of the current equipment, ui displays the name
     private string currentEquipmentNameToDisplay;
-
-    // string that holds the instructions for player interaction, displayed below the name of equipment
-    private string interactInstructionsString;
-
-    // Keep track of the current ammo text color
-    private Color currentAmmoTextColor;
-
-    // Private bool to use for optimizing 
-    private bool isTextEnabled;
 
 
     /* ------------------------------------------  PROPERTIES ------------------------------------------- */
@@ -141,14 +152,6 @@ public class EquipmentUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Read only property to get the string holding the interact instructions
-    /// </summary>
-    public string InteractInstructionsString
-    {
-        get { return interactInstructionsString; }
-    }
-
-    /// <summary>
     /// Public property to get or set the word being displayed to equip/pick up equipment in either hand
     /// </summary>
     public string EquipActionWord
@@ -176,10 +179,12 @@ public class EquipmentUI : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        // Get RectTransform from TMP object
+        // Get RectTransform from TMP objects
         equipTextTransform = equipTextObject.GetComponent<RectTransform>();
         leftTextTransform = leftHandAmmoTextObject.GetComponent<RectTransform>();
         rightTextTransform = rightHandAmmoTextObject.GetComponent<RectTransform>();
+        leftFireModeTextTransform = leftFireModeTextObject.GetComponent <RectTransform>();
+        rightFireModeTextTransform = rightFireModeTextObject.GetComponent<RectTransform>();
 
 
         if (equipTextObject != null && equipTextTransform != null && leftTextTransform != null && rightTextTransform != null && equipSystemController != null)
@@ -205,6 +210,9 @@ public class EquipmentUI : MonoBehaviour
         SetTransformProperties(leftTextTransform, leftAmmoTextObjectPosition, ammoTextObjectWidth, ammoTextObjectHeight);
         SetTransformProperties(rightTextTransform, rightAmmoTextObjectPosition, ammoTextObjectWidth, ammoTextObjectHeight);
 
+        SetTransformProperties(leftFireModeTextTransform, leftFireModeTextPosition, fireModeTextWidth, fireModeTextHeight);
+        SetTransformProperties(rightFireModeTextTransform, rightFireModeTextPosition, fireModeTextWidth, fireModeTextHeight);
+
         DisableEquipText();
     }
 
@@ -226,9 +234,16 @@ public class EquipmentUI : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        DisplayAmmoText(equipSystemController.LeftHand, leftHandAmmoTextObject);
-        DisplayAmmoText(equipSystemController.RightHand, rightHandAmmoTextObject);
+        // Call method to handle the text for equipping/swapping items
         HandleEquipText();
+
+        // Call method to handle the display of current and max ammo of weapons
+        HandleAmmoText(equipSystemController.LeftHand, leftHandAmmoTextObject);
+        HandleAmmoText(equipSystemController.RightHand, rightHandAmmoTextObject);
+       
+        // Call method to handle the display of weapon fire types
+        HandleFireModeText(equipSystemController.LeftHand, leftFireModeTextObject);
+        HandleFireModeText(equipSystemController.RightHand, rightFireModeTextObject);
     }
 
     /// <summary>
@@ -257,14 +272,14 @@ public class EquipmentUI : MonoBehaviour
     /// Method to display the ammo text of a hand if holding a weapon
     /// </summary>
     /// <param name="_handToCheck"></param>
-    /// <param name="_tmpObjectForHand"></param>
-    private void DisplayAmmoText(Hand _handToCheck, TextMeshProUGUI _tmpObjectForHand)
+    /// <param name="_handAmmoTMP"></param>
+    private void HandleAmmoText(Hand _handToCheck, TextMeshProUGUI _handAmmoTMP)
     {
         // Return if the hand to check is not holding an equipment of type weapon
         if (!equipSystemController.IsEquipmentTypeInHandOf(EquipmentType.Weapon, _handToCheck))
         {
             // Set the ammo text object inactive if its active
-            if (_tmpObjectForHand.gameObject.activeSelf) _tmpObjectForHand.gameObject.SetActive(false);
+            if (_handAmmoTMP.gameObject.activeSelf) _handAmmoTMP.gameObject.SetActive(false);
 
             // Early return
             return;
@@ -278,18 +293,54 @@ public class EquipmentUI : MonoBehaviour
             if (weaponInfo != null)
             {
                 // Set the object active if not active
-                if (_tmpObjectForHand.gameObject.activeSelf == false) _tmpObjectForHand.gameObject.SetActive(true);
+                if (_handAmmoTMP.gameObject.activeSelf == false) _handAmmoTMP.gameObject.SetActive(true);
                 else // Set object's text to the current ammo of the weapon being held every frame
                 {
                     // Get the text to display
                     string textToDisplay = GetAmmoTextString(weaponInfo);
 
                     // Call method to display the text for the correct object, with the color of the current bullet
-                    UpdateText(_tmpObjectForHand, textToDisplay, weaponInfo.CurrentBulletColor);
+                    UpdateText(_handAmmoTMP, textToDisplay, weaponInfo.CurrentBulletColor);
                 }
             }
         }
     }
+
+
+    /// <summary>
+    /// Method that handles displaying the fire mode text
+    /// </summary>
+    /// <param name="_hand"></param>
+    /// <param name="_fireModeTMP"></param>
+    private void HandleFireModeText(Hand _hand, TextMeshProUGUI _fireModeTMP)
+    {
+        // Check if hand is holding a weapon object
+        if (equipSystemController.IsEquipmentTypeInHandOf(EquipmentType.Weapon, _hand))
+        {
+            // Get the activation script for weapon infp
+            WeaponActivation weaponInfo = _hand.CurrentEquipment.GetComponentInChildren<WeaponActivation>();
+
+            // Prevent error if not found
+            if (weaponInfo != null)
+            {
+                // Update text of the tmp object tot the current fire mode as string
+                string fireModeString = GetFireModeTextString(weaponInfo.CurrentFireMode);
+
+                UpdateText(_fireModeTMP, fireModeString, weaponInfo.CurrentBulletColor);
+
+                // Set TMP object active if not yet
+                if (!_fireModeTMP.gameObject.activeSelf)
+                {
+                    _fireModeTMP.gameObject.SetActive(true);
+                }
+            }
+        }
+        else // Not holding a weapon object, so disable the UI object
+        {
+            _fireModeTMP.gameObject.SetActive(false);
+        }
+    }
+
 
     /// <summary>
     /// Handles displaying the  equip UI text based on conditions
@@ -426,6 +477,38 @@ public class EquipmentUI : MonoBehaviour
 
         string fullString = $"{equipmentName} {newLines} {instructionText}";
 
+        return fullString;
+    }
+
+    /// <summary>
+    /// Returns the fire mode as string, adjusted for readability
+    /// </summary>
+    /// <param name="_fireMode"></param>
+    /// <returns></returns>
+    private string GetFireModeTextString(WeaponFireMode _fireMode)
+    {
+        string fullString = "";
+
+        // Switch between the types of firemodes
+        // Return the fire mode, but hardcoded rename that fits better (can't use '-' in enum)
+        switch (_fireMode)
+        {
+            case WeaponFireMode.SemiAutomatic:
+
+                fullString = "Semi-Auto";
+                break;
+            case WeaponFireMode.FullAutomatic:
+                fullString = "Full-Auto";
+                break;
+            case WeaponFireMode.BurstFire:
+                fullString = "Burst-Fire";
+                break;
+            default:
+                fullString = _fireMode.ToString();
+                break;
+        }
+
+        // Return the string
         return fullString;
     }
 
