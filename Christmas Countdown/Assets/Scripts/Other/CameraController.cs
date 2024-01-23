@@ -68,6 +68,8 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (SettingsManager.instance.panelSettingsUI.activeSelf) return; 
+
         Rotate();
         MaintainPositions();
     }

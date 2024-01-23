@@ -216,7 +216,7 @@ public class EquipmentUI : MonoBehaviour
         DisableEquipText();
 
         // Disable the UI components and this if dev settings wants
-        if (DeveloperSettings.instance.DisableEquipmentUI_OnStart)
+        if (SettingsManager.instance.DisableEquipmentUI_OnStart)
         {
             equipTextObject.gameObject.SetActive(false);
             leftHandAmmoTextObject.gameObject.SetActive(false);

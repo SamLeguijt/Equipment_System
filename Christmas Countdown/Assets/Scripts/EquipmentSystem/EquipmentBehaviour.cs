@@ -197,7 +197,7 @@ public class EquipmentBehaviour : MonoBehaviour
 
     private void Start()
     {
-        if (DeveloperSettings.instance.AutoReferenceEquipmentComponents_OnStart) // Auto assign references 
+        if (SettingsManager.instance.AutoReferenceEquipmentComponents_OnStart) // Auto assign references 
         {
             // Find player (no dragging in player for each object)
             if (player == null)
@@ -220,7 +220,7 @@ public class EquipmentBehaviour : MonoBehaviour
             parentCollider = mainEquipmentObject.GetComponent<Collider>();
         } 
 
-        if (DeveloperSettings.instance.AutoAddEquipmentComponents_OnStart) // Auto add physics manager if dev settings allows
+        if (SettingsManager.instance.AutoAddEquipmentComponents_OnStart) // Auto add physics manager if dev settings allows
         {
             // Add and assign the PhysicsManager to the parent object
             equipmentPhysicsManager = mainEquipmentObject.AddComponent<EquipmentPhysicsManager>();
