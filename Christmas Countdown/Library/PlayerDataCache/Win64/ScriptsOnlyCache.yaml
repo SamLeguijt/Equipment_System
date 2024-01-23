@@ -2,7 +2,10 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - ActivationLogicHandler
-    - Bullet
+    - AmmoClipObject
+    - AmmoCrateObject
+    - BulletBehaviour
+    - BulletObject
     - CameraController
     - EquipmentBehaviour
     - EquipmentSystemController
@@ -11,7 +14,7 @@ ScriptsOnlyBuild:
     - Hand
     - HatEquipmentObject
     - PlayerMovement
-    - WeaponActivation
+    - ThrowablesEquipmentObject
     - WeaponEquipmentObject
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
@@ -96,49 +99,55 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1630}
+      Script: {instanceID: 1598}
     - Class: 114
-      Script: {instanceID: 2296}
+      Script: {instanceID: 1850}
     - Class: 114
-      Script: {instanceID: 2442}
+      Script: {instanceID: 2264}
     - Class: 114
-      Script: {instanceID: 2744}
+      Script: {instanceID: 2410}
     - Class: 114
-      Script: {instanceID: 2978}
+      Script: {instanceID: 2712}
     - Class: 114
-      Script: {instanceID: 3438}
+      Script: {instanceID: 2946}
     - Class: 114
-      Script: {instanceID: 3946}
+      Script: {instanceID: 3406}
     - Class: 114
-      Script: {instanceID: 4420}
+      Script: {instanceID: 3914}
     - Class: 114
-      Script: {instanceID: 4708}
+      Script: {instanceID: 4102}
     - Class: 114
-      Script: {instanceID: 5424}
+      Script: {instanceID: 4392}
     - Class: 114
-      Script: {instanceID: 5428}
+      Script: {instanceID: 4590}
     - Class: 114
-      Script: {instanceID: 5508}
+      Script: {instanceID: 4682}
     - Class: 114
-      Script: {instanceID: 5532}
+      Script: {instanceID: 5402}
     - Class: 114
-      Script: {instanceID: 5912}
+      Script: {instanceID: 5482}
     - Class: 114
-      Script: {instanceID: 6174}
+      Script: {instanceID: 5506}
     - Class: 114
-      Script: {instanceID: 6258}
+      Script: {instanceID: 5630}
     - Class: 114
-      Script: {instanceID: 6350}
+      Script: {instanceID: 5888}
     - Class: 114
-      Script: {instanceID: 6656}
+      Script: {instanceID: 6150}
     - Class: 114
-      Script: {instanceID: 6706}
+      Script: {instanceID: 6234}
     - Class: 114
-      Script: {instanceID: 6756}
+      Script: {instanceID: 6326}
     - Class: 114
-      Script: {instanceID: 7022}
+      Script: {instanceID: 6632}
     - Class: 114
-      Script: {instanceID: 7354}
+      Script: {instanceID: 6682}
+    - Class: 114
+      Script: {instanceID: 6732}
+    - Class: 114
+      Script: {instanceID: 6998}
+    - Class: 114
+      Script: {instanceID: 7330}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -228,7 +237,7 @@ ScriptsOnlyBuild:
     className: UnityOnCollisionStayMessageListener
   - hash:
       serializedVersion: 2
-      Hash: a8ad93e07d0dc4b51d69f140aa252355
+      Hash: 0dd9eaefbc447fd51a3e64b145c9c2c6
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ThrowablesEquipmentObject
@@ -312,7 +321,7 @@ ScriptsOnlyBuild:
     className: ActivationLogicHandler
   - hash:
       serializedVersion: 2
-      Hash: a8ad93e07d0dc4b51d69f140aa252355
+      Hash: 198471fed5df6b328d30bb9d23df1f4a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: AmmunitionEquipmentObject
@@ -510,7 +519,7 @@ ScriptsOnlyBuild:
     className: UnityOnScrollMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 41b7cf45b6cc9cb5f4781d50b629ec77
+      Hash: db19fea38ff2c2a23253811f2e050144
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EquipmentUI
@@ -594,7 +603,7 @@ ScriptsOnlyBuild:
     className: UnityOnCollisionExit2DMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 32d28678c5d95003bd13918d4c1aea49
+      Hash: 56a6e30aada1389fb52b981f3dadbb9b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EquipmentSystemController
@@ -622,6 +631,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnPointerExitMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: d9b236a71bbfae1eead3118f82a11709
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: AmmoClipObject
   - hash:
       serializedVersion: 2
       Hash: aba7b2852ef61d175dd9602e7723d5e5
@@ -730,6 +745,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_SubMeshUI
+  - hash:
+      serializedVersion: 2
+      Hash: 198471fed5df6b328d30bb9d23df1f4a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: AmmoCrateObject
   - hash:
       serializedVersion: 2
       Hash: fd68d84f33fad85aac38f2739c0ee270
@@ -900,6 +921,12 @@ ScriptsOnlyBuild:
     className: TMP_FontAsset
   - hash:
       serializedVersion: 2
+      Hash: 52858f8fa8992d9dc9c0908136b246f5
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BulletObject
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
@@ -936,10 +963,10 @@ ScriptsOnlyBuild:
     className: Text
   - hash:
       serializedVersion: 2
-      Hash: 54ba5484e28efa0d55cea086d17101b9
+      Hash: 1c753b2a4b52b1d5cbd6b5a0426c18ae
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: Bullet
+    className: BulletBehaviour
   - hash:
       serializedVersion: 2
       Hash: 2574ac7d50617d23cdefe4ad22f5e1ad
@@ -990,7 +1017,7 @@ ScriptsOnlyBuild:
     className: CinemachineConfiner2D
   - hash:
       serializedVersion: 2
-      Hash: 664dd25e886e12e6caf3bee41d0e9eac
+      Hash: 83391c98456a19664145185ba4b175c7
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: WeaponEquipmentObject
@@ -1375,4 +1402,5 @@ ScriptsOnlyBuild:
   platform: 19
   scenePathNames:
   - Assets/Scenes/MainScene.unity
-  playerPath: C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/1/Christmas Countdown.exe
+  playerPath: C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas
+    Countdown.exe

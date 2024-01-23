@@ -214,6 +214,17 @@ public class EquipmentUI : MonoBehaviour
         SetTransformProperties(rightFireModeTextTransform, rightFireModeTextPosition, fireModeTextWidth, fireModeTextHeight);
 
         DisableEquipText();
+
+        // Disable the UI components and this if dev settings wants
+        if (DeveloperSettings.instance.DisableEquipmentUI_OnStart)
+        {
+            equipTextObject.gameObject.SetActive(false);
+            leftHandAmmoTextObject.gameObject.SetActive(false);
+            rightHandAmmoTextObject.gameObject.SetActive(false);
+            leftFireModeTextObject.gameObject.SetActive(false);
+            rightFireModeTextObject.gameObject.SetActive(false);
+            this.enabled = false;
+        }
     }
 
     /// <summary>
