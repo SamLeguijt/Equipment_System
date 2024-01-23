@@ -29,19 +29,30 @@ public class SettingsManager : MonoBehaviour
 
     public KeyCode toggleSettingsKey;
 
-    public GameObject canvas;
-
-    public Transform player;
-
     public Hand leftHand;
 
-    public TMP_InputField activationLeft;
 
     public bool unlimitedAmmo;
+
+    public TMP_InputField equipLeft;
+    public TMP_InputField swapModeKey;
+
+
+    public TMP_Dropdown keyDropdown;
+    public TMP_InputField activationInputField;
+
+    private KeyCode stagedActivationKey;
+    private KeyCode stagedEquipKey;
+    private KeyCode stagedSwapModeKey;
+
+
+    public const string MOUSE_LEFT_STRING = "Mouse0";
+    public const string MOUSE_RIGHT_STRING = "Mouse1";
+    public const string MANUAL_INPUT_STRING = "Manual";
     /// <summary>
     /// Do equipment relevant scripts automatically reference their components on start( ... GetComponent<> etc.), read-only
     /// </summary>
-    public bool AutoReferenceEquipmentComponents_OnStart { get { return autoReferenceEquipmentComponents_OnStart;} }
+    public bool AutoReferenceEquipmentComponents_OnStart { get { return autoReferenceEquipmentComponents_OnStart; } }
 
     /// <summary>
     /// Do equipment relevant scripts automatically add certain components on start (AddComponent<> etc.), read- only
@@ -51,7 +62,7 @@ public class SettingsManager : MonoBehaviour
     /// <summary>
     /// Are the UI elements of equipment disabled on start? read-only
     /// </summary>
-    public bool DisableEquipmentUI_OnStart { get { return disableEquipmentUI_OnStart;} }
+    public bool DisableEquipmentUI_OnStart { get { return disableEquipmentUI_OnStart; } }
 
     private void Awake()
     {
@@ -63,48 +74,52 @@ public class SettingsManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        //canvas.transform.LookAt(player);
-
     }
 
     private void Start()
     {
         ToggleSettingsPanel(false);
+
+
+/*        keyDropdown.options.Add(new TMP_Dropdown.OptionData(MOUSE_LEFT_STRING));
+        keyDropdown.options.Add(new TMP_Dropdown.OptionData(MOUSE_RIGHT_STRING));
+        keyDropdown.options.Add(new TMP_Dropdown.OptionData(MANUAL_INPUT_STRING));
+
+
+        // Subscribe to the dropdown's value changed event
+        keyDropdown.onValueChanged.AddListener(OnDropdownValueChanged);
+
+        // Initially hide the manual input field
+        activationInputField.gameObject.SetActive(false);*/
     }
+
+
     private void Update()
     {
+        // Check for input to toggle the settings panel
         if (Input.GetKeyDown(toggleSettingsKey))
         {
             ToggleSettingsPanel(!panelSettingsUI.activeSelf);
-        }   
-        
+        }
+
+        // Handle the mouse state based on the settings panel activeSelf
         HandleMouseState();
-
-        Camera camera = Camera.main;
-
-        canvas.transform.LookAt(canvas.transform.position + camera.transform.rotation * Vector3.back, camera.transform.rotation * Vector3.up);
     }
+
+
 
     public void OnUnlimitedAmmoToggle()
     {
         unlimitedAmmo = !unlimitedAmmo;
     }
 
-    private void ReloadScene()
+    public void OnRestartSceneButtonClick()
     {
         // Get the current active scene name
         string currentSceneName = SceneManager.GetActiveScene().name;
 
         // Load the current scene again
         SceneManager.LoadScene(currentSceneName);
-    }
-
-    public void OnRestartSceneButtonClick()
-    {
-        Debug.Log("Call apply");
-
-        ReloadScene();
     }
 
     private void ToggleSettingsPanel(bool _active)

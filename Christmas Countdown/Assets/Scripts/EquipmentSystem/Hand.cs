@@ -28,6 +28,8 @@ public class Hand : MonoBehaviour
 
 
 
+
+
     /* ------------------------------------------  PROPERTIES ------------------------------------------- */
 
 
@@ -138,6 +140,11 @@ public class Hand : MonoBehaviour
             _equipment.transform.localPosition = handPosOffset;
             _equipment.transform.SetParent(transform);
         }
+    }
+
+    public void UpdateKeyBindings(HandKeyBindings _newKeyBindings)
+    {
+        KeyBindings.UpdateKeyBindings(_newKeyBindings);
     }
 }
 

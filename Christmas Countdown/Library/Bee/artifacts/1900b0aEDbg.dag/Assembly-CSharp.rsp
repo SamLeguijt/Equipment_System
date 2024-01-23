@@ -373,6 +373,7 @@
 "Assets/Scripts/EquipmentSystem/HandKeyBindings.cs"
 "Assets/Scripts/Other/BulletBehaviour.cs"
 "Assets/Scripts/Other/CameraController.cs"
+"Assets/Scripts/Other/KeyBindingsUI.cs"
 "Assets/Scripts/Other/PlayerMovement.cs"
 "Assets/Scripts/Other/SettingsManager.cs"
 "Assets/Scripts/ScriptableObjects/AmmoClipObject.cs"
