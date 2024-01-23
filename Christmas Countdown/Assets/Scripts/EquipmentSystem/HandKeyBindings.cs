@@ -33,11 +33,11 @@ public class HandKeyBindings
             this.ActivationKey = _newKeyBindings.ActivationKey;
         }
 
-/*        if (_newKeyBindings.DropEquipKey != KeyCode.None)
+        if (_newKeyBindings.DropEquipKey != KeyCode.None)
         {
-
-        }*/
-       // this.DropEquipKey = _newKeyBindings.DropEquipKey;
+            this.DropEquipKey = _newKeyBindings.DropEquipKey;
+        }
+        // this.DropEquipKey = _newKeyBindings.DropEquipKey;
         //this.FireModeSwapKey = _newKeyBindings.FireModeSwapKey;
     }
 }
