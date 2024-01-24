@@ -26,18 +26,22 @@ public class HandKeyBindings
         this.fireModeSwapKey = _fireModeSwapKey;
     }
 
+
     public void UpdateKeyBindings(HandKeyBindings _newKeyBindings)
     {
-        if (_newKeyBindings.ActivationKey != KeyCode.None)
+        if (_newKeyBindings.ActivationKey != KeyCode.None && _newKeyBindings.ActivationKey != DropEquipKey)
         {
             this.ActivationKey = _newKeyBindings.ActivationKey;
         }
 
-        if (_newKeyBindings.DropEquipKey != KeyCode.None)
+        if (_newKeyBindings.DropEquipKey != KeyCode.None && _newKeyBindings.DropEquipKey != ActivationKey)
         {
             this.DropEquipKey = _newKeyBindings.DropEquipKey;
         }
-        // this.DropEquipKey = _newKeyBindings.DropEquipKey;
-        //this.FireModeSwapKey = _newKeyBindings.FireModeSwapKey;
+
+        if (_newKeyBindings.FireModeSwapKey != KeyCode.None)
+        {
+            this.FireModeSwapKey = _newKeyBindings.FireModeSwapKey;
+        }
     }
 }

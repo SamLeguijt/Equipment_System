@@ -41,10 +41,8 @@ public class SettingsManager : MonoBehaviour
     public TMP_Dropdown keyDropdown;
     public TMP_InputField activationInputField;
 
-    private KeyCode stagedActivationKey;
-    private KeyCode stagedEquipKey;
-    private KeyCode stagedSwapModeKey;
-
+    public KeyCode currentLeftHandEquipKey; 
+    public KeyCode currentRightHandEquipKey;
 
     public const string MOUSE_LEFT_STRING = "Mouse0";
     public const string MOUSE_RIGHT_STRING = "Mouse1";
@@ -79,18 +77,6 @@ public class SettingsManager : MonoBehaviour
     private void Start()
     {
         ToggleSettingsPanel(false);
-
-
-/*        keyDropdown.options.Add(new TMP_Dropdown.OptionData(MOUSE_LEFT_STRING));
-        keyDropdown.options.Add(new TMP_Dropdown.OptionData(MOUSE_RIGHT_STRING));
-        keyDropdown.options.Add(new TMP_Dropdown.OptionData(MANUAL_INPUT_STRING));
-
-
-        // Subscribe to the dropdown's value changed event
-        keyDropdown.onValueChanged.AddListener(OnDropdownValueChanged);
-
-        // Initially hide the manual input field
-        activationInputField.gameObject.SetActive(false);*/
     }
 
 

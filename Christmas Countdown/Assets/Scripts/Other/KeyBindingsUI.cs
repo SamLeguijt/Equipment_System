@@ -13,6 +13,8 @@ public class KeyBindingsUI : MonoBehaviour
 
     public TMP_Dropdown dropdownElement;
     public TMP_InputField inputFieldElement;
+    public EquipmentUI equipmentUI;
+
 
     private KeyCode stagedActivationKey;
     private KeyCode stagedEquipKey;
@@ -37,6 +39,8 @@ public class KeyBindingsUI : MonoBehaviour
         // Subscribe to the dropdown's value changed event
         dropdownElement.onValueChanged.AddListener(OnDropdownValueChanged);
 
+        // Add a listener to the dropdown's OnValueChanged event
+
         // Initially hide the manual input field
         inputFieldElement.gameObject.SetActive(false);
     }
@@ -50,11 +54,11 @@ public class KeyBindingsUI : MonoBehaviour
         {
             case SettingsManager.MOUSE_LEFT_STRING:
                 inputFieldElement.gameObject.SetActive(false);
-                stagedActivationKey = KeyCode.Mouse0;
+                keyToStage = KeyCode.Mouse0;
                 break;
             case SettingsManager.MOUSE_RIGHT_STRING:
                 inputFieldElement.gameObject.SetActive(false);
-                stagedActivationKey = KeyCode.Mouse1;
+                keyToStage = KeyCode.Mouse1;
                 break;
             case SettingsManager.MANUAL_INPUT_STRING:
                 // Show the manual input field
@@ -65,49 +69,6 @@ public class KeyBindingsUI : MonoBehaviour
                 break;
         }
     }
-
-    public void OnInputFireModeKey(TMP_InputField _inputField)
-    {
-        // Set to Upper to convert to KeyCodes (lower case != keycode)
-        string keyString = _inputField.text.ToUpper();
-
-        // Convert the text to a KeyCode
-        if (System.Enum.TryParse(keyString, out KeyCode newKey))
-        {
-            if (IsAlphabeticKey(newKey))
-            {
-                Debug.Log("New staged key");
-                // You can use the 'newKey' variable in your logic here
-                stagedActivationKey = newKey;
-            }
-        }
-        else
-        {
-            stagedActivationKey = KeyCode.None;
-        }
-    }
-
-    public void OnInputEquipKey(TMP_InputField _inputField)
-    {
-        // Set to Upper to convert to KeyCodes (lower case != keycode)
-        string keyString = _inputField.text.ToUpper();
-
-        // Convert the text to a KeyCode
-        if (System.Enum.TryParse(keyString, out KeyCode newKey))
-        {
-            if (IsAlphabeticKey(newKey))
-            {
-                Debug.Log("New staged key");
-                // You can use the 'newKey' variable in your logic here
-                stagedEquipKey = newKey;
-            }
-        }
-        else
-        {
-            stagedActivationKey = KeyCode.None;
-        }
-    }
-
     public void OnInputFieldUpdate(TMP_InputField _inputField)
     {
         // Set to Upper to convert to KeyCodes (lower case != keycode)
@@ -118,7 +79,6 @@ public class KeyBindingsUI : MonoBehaviour
         {
             if (IsAlphabeticKey(newKey))
             {
-                Debug.Log("New staged key");
                 // You can use the 'newKey' variable in your logic here
                 keyToStage = newKey;
             }
@@ -128,67 +88,33 @@ public class KeyBindingsUI : MonoBehaviour
             keyToStage = KeyCode.None;
         }
     }
-/*
-    public void OnInputActivtionKey(TMP_InputField _inputField)
-    {
-        // Set to Upper to convert to KeyCodes (lower case != keycode)
-        string keyString = _inputField.text.ToUpper();
-
-        // Convert the text to a KeyCode
-        if (System.Enum.TryParse(keyString, out KeyCode newKey))
-        {
-            if (IsAlphabeticKey(newKey))
-            {
-                Debug.Log("New staged key");
-                // You can use the 'newKey' variable in your logic here
-                stagedFireModeSwapKey = newKey;
-            }
-        }
-        else
-        {
-            stagedActivationKey = KeyCode.None;
-        }
-    }*/
 
     private bool IsAlphabeticKey(KeyCode keyCode)
     {
         return (keyCode >= KeyCode.A && keyCode <= KeyCode.Z);
     }
-    public void ApplyKeyBindings()
+    public void ApplyKeyBindings(Hand _hand)
     {
-        if (targetType == KeyType.ActivationKey)
+        HandKeyBindings KeyBindings = new HandKeyBindings(KeyCode.None, KeyCode.None, KeyCode.None);
+
+        switch (targetType)
         {
+            case KeyType.ActivationKey:
 
-            HandKeyBindings KeyBindings = new HandKeyBindings(keyToStage, KeyCode.None, KeyCode.None);
+                KeyBindings.ActivationKey = keyToStage;
 
-            targetHand.UpdateKeyBindings(KeyBindings);
 
+                break;
+            case KeyType.EquipKey:
+                KeyBindings.DropEquipKey = keyToStage;
+                break;
+            case KeyType.FireModeSwapKey:
+                KeyBindings.FireModeSwapKey = keyToStage;
+                break;
+            default:
+                break;
         }
-        else if (targetType == KeyType.EquipKey)
-        {
-            HandKeyBindings KeyBindings = new HandKeyBindings(KeyCode.None, keyToStage, KeyCode.None);
 
-            targetHand.UpdateKeyBindings(KeyBindings);
-
-        }
-
-        /* Update the key of type KeyType from targetHand.KeyBindings to the keyToStage
-         * 
-         */
-
-
-        //   HandKeyBindings newKeyBindings = new HandKeyBindings(stagedActivationKey, stagedEquipKey, stagedFireModeSwapKey);
-    }
-
-
-    public void OnEquipInputChange()
-    {
-        Debug.Log("equip key chage");
-
-    }
-    public void OnSwapModeInputChange()
-    {
-        Debug.Log("Swap mode chage");
-
+        _hand.UpdateKeyBindings(KeyBindings);
     }
 }
