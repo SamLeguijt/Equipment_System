@@ -70,7 +70,7 @@ public class EquipmentPhysicsManager : MonoBehaviour
 
     private void Start()
     {
-        if (DeveloperSettings.instance.AutoReferenceEquipmentComponents_OnStart)
+        if (SettingsManager.instance.AutoReferenceEquipmentComponents_OnStart)
         {
             // Get the equipmentbehaviour by looking in our children (this gets added by the script to parent, so must be in children)
             equipmentBehaviour = GetComponentInChildren<EquipmentBehaviour>();
@@ -82,7 +82,7 @@ public class EquipmentPhysicsManager : MonoBehaviour
 
         }
 
-        if (DeveloperSettings.instance.AutoAddEquipmentComponents_OnStart)
+        if (SettingsManager.instance.AutoAddEquipmentComponents_OnStart)
         {
             // Add and assign rigidbody through here 
             rb = gameObject.AddComponent<Rigidbody>();

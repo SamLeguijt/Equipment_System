@@ -178,8 +178,8 @@ public class EquipmentSystemController : MonoBehaviour
 
     private void SetKeyBindings()
     {
-        HandKeyBindings leftHandKeyBindings = new HandKeyBindings(leftHand, leftHandActivationKey, LeftHandEquipDropKey, leftHandFireModeSwapKey);
-        HandKeyBindings rightHandKeyBindings = new HandKeyBindings(rightHand, rightHandActivationKey, RightHandEquipDropKey, rightHandFireModeSwapKey);
+        HandKeyBindings leftHandKeyBindings = new HandKeyBindings(leftHandActivationKey, LeftHandEquipDropKey, leftHandFireModeSwapKey);
+        HandKeyBindings rightHandKeyBindings = new HandKeyBindings(rightHandActivationKey, RightHandEquipDropKey, rightHandFireModeSwapKey);
 
         fullHandKeyBindings.Add(leftHand, leftHandKeyBindings);
         fullHandKeyBindings.Add(rightHand, rightHandKeyBindings);
@@ -191,6 +191,8 @@ public class EquipmentSystemController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (SettingsManager.instance.IsOpenSettingsMenu()) return;
+
         // Handle the current equipment for both hands in update
         HandleCurrentEquipment(leftHand);
         HandleCurrentEquipment(rightHand);
@@ -222,6 +224,8 @@ public class EquipmentSystemController : MonoBehaviour
     /// <param name="_equipment"></param>
     public void TryEquip(EquipmentBehaviour _equipment)
     {
+        if (SettingsManager.instance.IsOpenSettingsMenu()) return;
+
         // Call method to check for input for both hands
         CheckForEquipInput(leftHand, _equipment);
         CheckForEquipInput(rightHand, _equipment);

@@ -24,7 +24,7 @@ public class ActivationLogicHandler : MonoBehaviour
         // Set reference to the param
         equipmentBehaviour = _equipment;
 
-        if (DeveloperSettings.instance.AutoAddEquipmentComponents_OnStart)
+        if (SettingsManager.instance.AutoAddEquipmentComponents_OnStart)
         {
             // Call method to add the correct activation logic
             AddActivationLogic(equipmentBehaviour);

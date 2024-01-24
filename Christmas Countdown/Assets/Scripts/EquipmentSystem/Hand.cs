@@ -139,6 +139,15 @@ public class Hand : MonoBehaviour
             _equipment.transform.SetParent(transform);
         }
     }
+
+    /// <summary>
+    /// Updates this hands key bindings by calling method to update the keys from the KeyBindings component
+    /// </summary>
+    /// <param name="_newKeyBindings"></param>
+    public void UpdateKeyBindings(HandKeyBindings _newKeyBindings)
+    {
+        KeyBindings.UpdateKeyBindings(_newKeyBindings);
+    }
 }
 
 /// <summary>
