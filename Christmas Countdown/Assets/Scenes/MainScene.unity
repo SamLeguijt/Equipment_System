@@ -3689,10 +3689,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35522b7593e651c43844161c27d2207d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetHand: {fileID: 1083083460}
   dropdownElement: {fileID: 2121540047}
   inputFieldElement: {fileID: 1219611490}
-  equipmentUI: {fileID: 0}
   targetType: 1
 --- !u!114 &577429469
 MonoBehaviour:
@@ -6534,10 +6532,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35522b7593e651c43844161c27d2207d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetHand: {fileID: 1083083460}
   dropdownElement: {fileID: 1713113637}
   inputFieldElement: {fileID: 1032728015}
-  equipmentUI: {fileID: 0}
   targetType: 2
 --- !u!114 &994407760
 MonoBehaviour:
@@ -7445,10 +7441,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35522b7593e651c43844161c27d2207d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetHand: {fileID: 0}
   dropdownElement: {fileID: 0}
   inputFieldElement: {fileID: 0}
-  equipmentUI: {fileID: 0}
   targetType: 0
 --- !u!1 &1108359355
 GameObject:
@@ -10367,10 +10361,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35522b7593e651c43844161c27d2207d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetHand: {fileID: 1083083460}
   dropdownElement: {fileID: 175272981}
   inputFieldElement: {fileID: 1730730053}
-  equipmentUI: {fileID: 0}
   targetType: 0
 --- !u!1 &1557227121
 GameObject:
@@ -10627,20 +10619,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 862935afd7c79d645b161d2e105cb145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equipmentsInScene: []
+  panelSettingsUI: {fileID: 421182433}
+  toggleSettingsPanelKey: 27
   autoReferenceEquipmentComponents_OnStart: 1
   autoAddEquipmentComponents_OnStart: 1
   disableEquipmentUI_OnStart: 0
-  panelSettingsUI: {fileID: 421182433}
-  toggleSettingsKey: 27
-  leftHand: {fileID: 1083083460}
-  unlimitedAmmo: 0
-  equipLeft: {fileID: 0}
-  swapModeKey: {fileID: 0}
-  keyDropdown: {fileID: 175272981}
-  activationInputField: {fileID: 1730730053}
-  currentLeftHandEquipKey: 0
-  currentRightHandEquipKey: 0
 --- !u!4 &1571904909
 Transform:
   m_ObjectHideFlags: 0

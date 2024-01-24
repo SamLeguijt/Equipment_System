@@ -12,9 +12,13 @@ public class SettingsManager : MonoBehaviour
     // Static instance for global access
     public static SettingsManager instance;
 
-    public List<EquipmentBehaviour> equipmentsInScene;
+    [Tooltip("Reference to the UI Panel GameObject from canvas")]
+    [SerializeField] private GameObject panelSettingsUI;
 
-    // Private bools used as settings 
+    [Tooltip("Key to toggle the UI panel with")]
+    [SerializeField] private KeyCode toggleSettingsPanelKey;
+
+    [Header("Developer settings")]
 
     [Tooltip("Do equipment relevant scripts automatically reference their components on start( ... GetComponent<> etc.)")]
     [SerializeField] private bool autoReferenceEquipmentComponents_OnStart;
@@ -25,28 +29,10 @@ public class SettingsManager : MonoBehaviour
     [Tooltip("Are the UI elements of equipment disabled on start?")]
     [SerializeField] private bool disableEquipmentUI_OnStart;
 
-    public GameObject panelSettingsUI;
 
-    public KeyCode toggleSettingsKey;
+    // Keep track of unlimited ammo value
+    private bool isUnlimitedAmmo;
 
-    public Hand leftHand;
-
-
-    public bool unlimitedAmmo;
-
-    public TMP_InputField equipLeft;
-    public TMP_InputField swapModeKey;
-
-
-    public TMP_Dropdown keyDropdown;
-    public TMP_InputField activationInputField;
-
-    public KeyCode currentLeftHandEquipKey; 
-    public KeyCode currentRightHandEquipKey;
-
-    public const string MOUSE_LEFT_STRING = "Mouse0";
-    public const string MOUSE_RIGHT_STRING = "Mouse1";
-    public const string MANUAL_INPUT_STRING = "Manual";
     /// <summary>
     /// Do equipment relevant scripts automatically reference their components on start( ... GetComponent<> etc.), read-only
     /// </summary>
@@ -62,6 +48,11 @@ public class SettingsManager : MonoBehaviour
     /// </summary>
     public bool DisableEquipmentUI_OnStart { get { return disableEquipmentUI_OnStart; } }
 
+    /// <summary>
+    /// Setting for allowing unlimited ammo
+    /// </summary>
+    public bool IsUnlimitedAmmo { get {  return isUnlimitedAmmo; } }
+
     private void Awake()
     {
         if (instance == null)
@@ -76,6 +67,7 @@ public class SettingsManager : MonoBehaviour
 
     private void Start()
     {
+        // Disable the settings panel on start
         ToggleSettingsPanel(false);
     }
 
@@ -83,7 +75,7 @@ public class SettingsManager : MonoBehaviour
     private void Update()
     {
         // Check for input to toggle the settings panel
-        if (Input.GetKeyDown(toggleSettingsKey))
+        if (Input.GetKeyDown(toggleSettingsPanelKey))
         {
             ToggleSettingsPanel(!panelSettingsUI.activeSelf);
         }
@@ -92,13 +84,18 @@ public class SettingsManager : MonoBehaviour
         HandleMouseState();
     }
 
-
-
+    
+    /// <summary>
+    /// Toggles the bool for unlimited ammo, called via UI Toggle element click
+    /// </summary>
     public void OnUnlimitedAmmoToggle()
     {
-        unlimitedAmmo = !unlimitedAmmo;
+        isUnlimitedAmmo = !isUnlimitedAmmo;
     }
 
+    /// <summary>
+    /// Restarts the current scene upon UI Restart button click
+    /// </summary>
     public void OnRestartSceneButtonClick()
     {
         // Get the current active scene name
@@ -108,25 +105,37 @@ public class SettingsManager : MonoBehaviour
         SceneManager.LoadScene(currentSceneName);
     }
 
-    private void ToggleSettingsPanel(bool _active)
+    /// <summary>
+    /// Toggles the panel by setting object active based on param _value
+    /// </summary>
+    /// <param name="_active"></param>
+    private void ToggleSettingsPanel(bool _value)
     {
-        panelSettingsUI.SetActive(!panelSettingsUI.activeSelf);
+        panelSettingsUI.SetActive(_value);
     }
 
+    /// <summary>
+    /// Handles the lock and visible state of the cursor, based on active setting panel yes/no
+    /// </summary>
     private void HandleMouseState()
     {
+        // Panel settings is open, so enable mouse and make visible
         if (panelSettingsUI.activeSelf)
         {
             UnityEngine.Cursor.lockState = CursorLockMode.Confined;
             UnityEngine.Cursor.visible = true;
         }
-        else
+        else // Panel settings is closed, so lock cursor and dont show
         {
             UnityEngine.Cursor.lockState = CursorLockMode.Locked;
             UnityEngine.Cursor.visible = false;
         }
     }
 
+    /// <summary>
+    /// Returns true if the settings panel is active
+    /// </summary>
+    /// <returns></returns>
     public bool IsOpenSettingsMenu()
     {
         return panelSettingsUI.activeSelf;

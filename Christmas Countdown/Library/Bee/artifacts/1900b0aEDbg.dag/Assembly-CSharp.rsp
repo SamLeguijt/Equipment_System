@@ -355,7 +355,6 @@
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/UnityEngine.UI.ref.dll"
 "Assets/Imports/Zololgo/OrbitZoomPanCamera/Scripts/OrbitZoomPanCamera.cs"
-"Assets/KeyCodeConverter.cs"
 "Assets/Scripts/EquipmentSystem/ActivationLogic/ActivationLogicHandler.cs"
 "Assets/Scripts/EquipmentSystem/ActivationLogic/Ammunition/AmmunitionActivation.cs"
 "Assets/Scripts/EquipmentSystem/ActivationLogic/Apparel/ApparelActivation.cs"

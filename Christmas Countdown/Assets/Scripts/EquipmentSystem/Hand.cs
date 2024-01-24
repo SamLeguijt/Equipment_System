@@ -28,8 +28,6 @@ public class Hand : MonoBehaviour
 
 
 
-
-
     /* ------------------------------------------  PROPERTIES ------------------------------------------- */
 
 
@@ -142,6 +140,10 @@ public class Hand : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Updates this hands key bindings by calling method to update the keys from the KeyBindings component
+    /// </summary>
+    /// <param name="_newKeyBindings"></param>
     public void UpdateKeyBindings(HandKeyBindings _newKeyBindings)
     {
         KeyBindings.UpdateKeyBindings(_newKeyBindings);

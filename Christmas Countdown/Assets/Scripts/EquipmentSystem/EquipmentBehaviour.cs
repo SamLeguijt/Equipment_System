@@ -65,8 +65,6 @@ public class EquipmentBehaviour : MonoBehaviour
     private bool canDrop; // Flag used for checking if object can be dropped
     private bool isOnGround; // Flag to determine if the equipment is grounded
 
-    [HideInInspector]
-    public Vector3 startPosition;
 
     /* ------------------------------------------  PROPERTIES ------------------------------------------- */
 
@@ -261,9 +259,6 @@ public class EquipmentBehaviour : MonoBehaviour
 
         // Set position of this object to the main object position as reset
         SetObjectPosition(gameObject.transform, mainEquipmentObject.transform.position);
-
-        startPosition = transform.position;
-        SettingsManager.instance.equipmentsInScene.Add(this);
     }
 
     /// <summary>

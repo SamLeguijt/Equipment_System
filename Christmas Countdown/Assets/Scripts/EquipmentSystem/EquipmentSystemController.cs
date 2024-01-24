@@ -191,7 +191,7 @@ public class EquipmentSystemController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (SettingsManager.instance.panelSettingsUI.activeSelf) return;
+        if (SettingsManager.instance.IsOpenSettingsMenu()) return;
 
         // Handle the current equipment for both hands in update
         HandleCurrentEquipment(leftHand);
@@ -224,7 +224,7 @@ public class EquipmentSystemController : MonoBehaviour
     /// <param name="_equipment"></param>
     public void TryEquip(EquipmentBehaviour _equipment)
     {
-        if (SettingsManager.instance.panelSettingsUI.activeSelf) return;
+        if (SettingsManager.instance.IsOpenSettingsMenu()) return;
 
         // Call method to check for input for both hands
         CheckForEquipInput(leftHand, _equipment);

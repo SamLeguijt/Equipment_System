@@ -190,7 +190,7 @@ public class WeaponActivation : MonoBehaviour, IEquipmentActivation
     private void PerformShot(int _minimumAmmoToShoot = 1)
     {
         // Only fire if we have > threshold ammo
-        if (currentAmmoCapacity >= _minimumAmmoToShoot || SettingsManager.instance.unlimitedAmmo)
+        if (currentAmmoCapacity >= _minimumAmmoToShoot || SettingsManager.instance.IsUnlimitedAmmo)
         {
             // Fire a bullet for every bullet a single shot should fire (according to weaponData) 
             for (int i = 0; i < weaponData.BaseAmmoClip.BulletsPerShot; i++)
