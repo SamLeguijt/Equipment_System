@@ -15,6 +15,10 @@ public class SettingsManager : MonoBehaviour
     [Tooltip("Reference to the UI Panel GameObject from canvas")]
     [SerializeField] private GameObject panelSettingsUI;
 
+
+    [Tooltip("Key to toggle the UI panel with")]
+    [SerializeField] private KeyCode interactKey;
+
     [Tooltip("Key to toggle the UI panel with")]
     [SerializeField] private KeyCode toggleSettingsPanelKey;
 
@@ -52,6 +56,8 @@ public class SettingsManager : MonoBehaviour
     /// Setting for allowing unlimited ammo
     /// </summary>
     public bool IsUnlimitedAmmo { get {  return isUnlimitedAmmo; } }
+
+    public KeyCode InteractKey { get { return interactKey; } }
 
     private void Awake()
     {
