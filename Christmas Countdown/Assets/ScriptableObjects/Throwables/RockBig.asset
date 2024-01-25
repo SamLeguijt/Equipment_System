@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 553f213a1d50ef04b9cba4dd72b7e057, type: 3}
+  m_Name: RockBig
+  m_EditorClassIdentifier: 
+  equipmentName: RockBig
+  equipmentDescription: 
+  leftHandPositionOffset: {x: 0, y: 0, z: 0}
+  rightHandPositionOffset: {x: 0, y: 0, z: 0}
+  equippedRotation: {x: 0, y: 0, z: 0}
+  unequippedRotation: {x: -90, y: 0, z: 0}
+  maxRotateTorqueSpeed: {x: 10, y: 2, z: 5}
+  rotateToMouseSpeed: 10
+  equippedLocalScale: {x: 30, y: 30, z: 30}
+  unequippedLocalScale: {x: 40, y: 40, z: 40}
+  equipmentDropForce: {x: 1, y: -2}
+  equipDistance: 3
+  throwDelaySeconds: 0.6
+  throwForceValue: 5
+  maxThrowDistance: 8
+  distanceDivider: 5

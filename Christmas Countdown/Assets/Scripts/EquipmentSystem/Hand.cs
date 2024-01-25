@@ -8,20 +8,17 @@ using UnityEngine;
 /// </summary>
 public class Hand : MonoBehaviour
 {
-    /// <summary>
-    /// Enum for setting the type of hand
-    /// </summary>
-    public enum TypeOfHand
-    {
-        Left,
-        Right
-    }
-
 
     /* ------------------------------------------  VARIABLES ------------------------------------------- */
 
     [Tooltip("What type does this hand object have?")]
     [SerializeField] private TypeOfHand handType;
+
+    // Key bindings for this hand
+    private HandKeyBindings keyBindings;
+
+    // Reference to the current equipped item for this hand
+    private EquipmentBehaviour currentEquipment;
 
     // Reference to the camera controller script, used for orientation and rotation
     private CameraController camController;
@@ -29,8 +26,11 @@ public class Hand : MonoBehaviour
     // Center target attached to the camera
     private Transform camCenter;
 
-    // Reference to the current equipped item for this hand
-    private EquipmentBehaviour currentEquipment;
+
+
+    /* ------------------------------------------  PROPERTIES ------------------------------------------- */
+
+
 
     /// <summary>
     /// Read-only property to get the hand type of this object
@@ -41,6 +41,15 @@ public class Hand : MonoBehaviour
     }
 
     /// <summary>
+    /// Reference to the KeyBindings for this hand
+    /// </summary>
+    public HandKeyBindings KeyBindings
+    {
+        get { return keyBindings; }
+        set { keyBindings = value; }
+    }
+
+    /// <summary>
     /// Public property to get and set the Current Equipment of this hand
     /// </summary>
     public EquipmentBehaviour CurrentEquipment
@@ -48,6 +57,10 @@ public class Hand : MonoBehaviour
         get { return currentEquipment; }
         set { currentEquipment = value; }
     }
+
+
+    /* ------------------------------------------  METHODS ------------------------------------------- */
+
 
     private void Start()
     {
@@ -107,7 +120,7 @@ public class Hand : MonoBehaviour
             case TypeOfHand.Right:
                 handPosOffset = _equipment.EquipmentData.RightHandPositionOffset;
                 break;
-            default: 
+            default:
                 // Other hand type case:
                 Debug.LogError($"No HandType assigned to {gameObject.name}, can not get in hand position from data! ");
                 break;
@@ -126,4 +139,22 @@ public class Hand : MonoBehaviour
             _equipment.transform.SetParent(transform);
         }
     }
+
+    /// <summary>
+    /// Updates this hands key bindings by calling method to update the keys from the KeyBindings component
+    /// </summary>
+    /// <param name="_newKeyBindings"></param>
+    public void UpdateKeyBindings(HandKeyBindings _newKeyBindings)
+    {
+        KeyBindings.UpdateKeyBindings(_newKeyBindings);
+    }
+}
+
+/// <summary>
+/// Enum for setting the type of hand
+/// </summary>
+public enum TypeOfHand
+{
+    Left,
+    Right
 }

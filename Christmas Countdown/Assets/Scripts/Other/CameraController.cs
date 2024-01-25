@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CameraController : MonoBehaviour
 {
@@ -11,10 +12,10 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Transform playerForwardOrientation;
 
     [Tooltip("Right hand transform of object attached to player")]
-    [SerializeField] private Transform playerRightHand;
+    [SerializeField] private Hand playerRightHand;
 
     [Tooltip("Left hand transform of object attached to player")]
-    [SerializeField] private Transform playerLeftHand;
+    [SerializeField] private Hand playerLeftHand;
 
     [Tooltip("Position offsets for right hand")]
     [SerializeField] private Vector3 rightHandPosOffset;
@@ -22,9 +23,16 @@ public class CameraController : MonoBehaviour
     [Tooltip("Position offsets for  hand")]
     [SerializeField] private Vector3 leftHandPosOffset;
 
-    [Header("Sensitivity of the mouse in both directions")]
-    [SerializeField] private float mouseSensitivityX;
-    [SerializeField] private float mouseSensitivityY;
+    [Header("Sensitivity settings")]
+
+    [Tooltip("UI slider component for the mouse X sensitivity setting")]
+    [SerializeField] private Slider sensitivityXslider;
+
+    [Tooltip("UI slider component for the mouse Y sensitivity setting")]
+    [SerializeField] private Slider sensitivityYslider;
+
+    [SerializeField] private float defaultMouseSensitivityX;
+    [SerializeField] private float defaultMouseSensitivityY;
 
     [Space]
     [Tooltip("Max angle the camera is allowed to move up and down")]
@@ -33,6 +41,9 @@ public class CameraController : MonoBehaviour
     // Private variables used for setting the rotations
     private float rotationX;
     private float rotationY;
+
+    public LayerMask equippedcullingMask;
+    public Camera myCam;
 
     public float CameraRotationX
     {
@@ -55,6 +66,7 @@ public class CameraController : MonoBehaviour
     {
         get { return centerTarget; }
     }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -63,11 +75,19 @@ public class CameraController : MonoBehaviour
 
         // Disable the hardware pointer being visible
         Cursor.visible = false;
+
+        // Set values of sliders to the default values
+        sensitivityXslider.value = defaultMouseSensitivityX;
+        sensitivityYslider.value = defaultMouseSensitivityY;
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Return if the settings menu is open to stop rotating
+        if (SettingsManager.instance.IsOpenSettingsMenu()) return;
+
+
         Rotate();
         MaintainPositions();
     }
@@ -82,9 +102,9 @@ public class CameraController : MonoBehaviour
         float mouseX = Input.GetAxisRaw("Mouse X");
         float mouseY = Input.GetAxisRaw("Mouse Y");
 
-        // Get our targets by multiplying with delta time and sensitivity
-        float targetX = mouseX * Time.deltaTime * mouseSensitivityX;
-        float targetY = mouseY * Time.deltaTime * mouseSensitivityY;
+        // Get our targets by multiplying with delta time and sensitivity of sliders
+        float targetX = mouseX * Time.deltaTime * sensitivityXslider.value;
+        float targetY = mouseY * Time.deltaTime * sensitivityYslider.value;
 
         // Add target values to our player rotation variables
         rotationY += targetX;
@@ -108,8 +128,7 @@ public class CameraController : MonoBehaviour
     private void MaintainPositions()
     {
         // Set position of this transform to orientation object
-        transform.position = playerForwardOrientation.position;
-
+        transform.position = playerForwardOrientation.transform.position;
         // Get the worldposition of the camera view for both hands (offsets)
         Vector3 worldPositionLeftHand = Camera.main.ViewportToWorldPoint(leftHandPosOffset);
         Vector3 worldPositionRightHand = Camera.main.ViewportToWorldPoint(rightHandPosOffset);
@@ -118,8 +137,9 @@ public class CameraController : MonoBehaviour
         Vector3 centerPosition = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 5f));
 
         // Set position of the hands to the viewport positions
-        playerLeftHand.position = worldPositionLeftHand;
-        playerRightHand.position = worldPositionRightHand;
-        centerTarget.position = centerPosition;
+        playerLeftHand.transform.position = worldPositionLeftHand;
+        playerRightHand.transform.position = worldPositionRightHand;
+        centerTarget.transform.position = centerPosition;
+
     }
 }

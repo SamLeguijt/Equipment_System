@@ -15,11 +15,11 @@ TagManager:
   - Water
   - UI
   - Environment
-  - Equipment
+  - SceneEquipment
   - Player
-  - MainEquipment
+  - HandEquipment
   - MouseDetection
-  - 
+  - Bullet
   - 
   - 
   - 

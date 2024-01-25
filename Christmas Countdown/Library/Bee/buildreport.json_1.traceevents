@@ -1,0 +1,541 @@
+{ "pid": 0, "tid": -1, "ph": "M", "name": "process_name", "args": { "name": "BeeDriver" } },
+{ "pid": 0, "tid": -1, "ph": "M", "name": "process_sort_index", "args": { "sort_index": "-2" } },
+{ "pid": 0, "tid": 1, "ph": "M", "name": "thread_name", "args": { "name": "" } },
+{ "pid": 0, "tid": 1, "ts": 1705972352152001, "dur": 643696, "ph": "X", "name": "Build Player", "args": {} },
+{ "pid": 0, "tid": 1, "ts": 1705972352152031, "dur": 4851, "ph": "X", "name": "WriteBuildProgramData", "args": {} },
+{ "pid": 0, "tid": 1, "ts": 1705972352156886, "dur": 31249, "ph": "X", "name": "Run Backend", "args": {} },
+{ "pid": 0, "tid": 1, "ts": 1705972352188138, "dur": 203217, "ph": "X", "name": "BuildProgram", "args": {} },
+{ "pid": 0, "tid": 1, "ts": 1705972352391358, "dur": 392698, "ph": "X", "name": "Run Backend", "args": {} },
+{ "pid": 0, "tid": 1, "ts": 1705972352784060, "dur": 11636, "ph": "X", "name": "Finish", "args": {} },
+{ "pid": 0, "tid": 1, "ts": 1705972352796629, "dur": 49, "ph": "X", "name": "", "args": {} },
+{ "pid": 35942, "tid": -1, "ph": "M", "name": "process_name", "args": { "name": "netcorerun.dll" } },
+{ "pid": 35942, "tid": -1, "ph": "M", "name": "process_sort_index", "args": { "sort_index": "-1" } },
+{ "pid": 35942, "tid": 1, "ph": "M", "name": "thread_name", "args": { "name": "" } },
+{ "pid": 35942, "tid": 1, "ts": 1705972352276008, "dur": 102801, "ph": "X", "name": "BuildProgram", "args": {} },
+{ "pid": 35942, "tid": 1, "ts": 1705972352276927, "dur": 39525, "ph": "X", "name": "BuildProgramContextConstructor", "args": {} },
+{ "pid": 35942, "tid": 1, "ts": 1705972352362999, "dur": 4434, "ph": "X", "name": "OutputData.Write", "args": {} },
+{ "pid": 35942, "tid": 1, "ts": 1705972352367453, "dur": 11346, "ph": "X", "name": "Backend.Write", "args": {} },
+{ "pid": 35942, "tid": 1, "ts": 1705972352368152, "dur": 9702, "ph": "X", "name": "JsonToString", "args": {} },
+{ "pid": 35942, "tid": 1, "ts": 1705972352382977, "dur": 1181, "ph": "X", "name": "", "args": {} },
+{ "pid": 35942, "tid": 1, "ts": 1705972352382270, "dur": 1910, "ph": "X", "name": "Write chrome-trace events", "args": {} },
+{ "pid": 0, "tid": 1, "ts": 1705972352796807, "dur": 510, "ph": "X", "name": "buildprogram0.traceevents", "args": {} },
+{ "cat":"", "pid":12345, "tid":0, "ts":0, "ph":"M", "name":"process_name", "args": { "name":"bee_backend" } }
+,{ "pid":12345, "tid":0, "ts":1705972352429636, "dur":1400, "ph":"X", "name": "DriverInitData",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1705972352431043, "dur":54, "ph":"X", "name": "Tundra",  "args": { "detail":"RemoveStaleOutputs" }}
+,{ "pid":12345, "tid":0, "ts":1705972352431107, "dur":16, "ph":"X", "name": "Tundra",  "args": { "detail":"PrepareNodes" }}
+,{ "pid":12345, "tid":0, "ts":1705972352431124, "dur":407, "ph":"X", "name": "Tundra",  "args": { "detail":"BuildQueueInit" }}
+,{ "pid":12345, "tid":0, "ts":1705972352431553, "dur":714, "ph":"X", "name": "EnqueueRequestedNodes",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1705972352432267, "dur":1, "ph":"X", "name": "SortWorkingStack",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1705972352765269, "dur":202, "ph":"X", "name": "JoinBuildThread",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1705972352765471, "dur":28, "ph":"X", "name": "ThreadStateDestroy",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1705972352765499, "dur":4, "ph":"X", "name": "JoinBuildThread",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1705972352765503, "dur":20, "ph":"X", "name": "ThreadStateDestroy",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1705972352765523, "dur":2, "ph":"X", "name": "JoinBuildThread",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1705972352765525, "dur":7, "ph":"X", "name": "ThreadStateDestroy",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1705972352765532, "dur":1, "ph":"X", "name": "JoinBuildThread",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1705972352765533, "dur":7, "ph":"X", "name": "ThreadStateDestroy",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1705972352765540, "dur":2, "ph":"X", "name": "JoinBuildThread",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1705972352765542, "dur":6, "ph":"X", "name": "ThreadStateDestroy",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1705972352765548, "dur":2, "ph":"X", "name": "JoinBuildThread",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1705972352765550, "dur":6, "ph":"X", "name": "ThreadStateDestroy",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1705972352765556, "dur":1, "ph":"X", "name": "JoinBuildThread",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1705972352765557, "dur":7, "ph":"X", "name": "ThreadStateDestroy",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1705972352765564, "dur":2, "ph":"X", "name": "JoinBuildThread",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1705972352765566, "dur":5, "ph":"X", "name": "ThreadStateDestroy",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1705972352765571, "dur":2, "ph":"X", "name": "JoinBuildThread",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1705972352765573, "dur":9, "ph":"X", "name": "ThreadStateDestroy",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1705972352765582, "dur":2, "ph":"X", "name": "JoinBuildThread",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1705972352765584, "dur":7, "ph":"X", "name": "ThreadStateDestroy",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1705972352765591, "dur":1, "ph":"X", "name": "JoinBuildThread",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1705972352765592, "dur":6, "ph":"X", "name": "ThreadStateDestroy",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1705972352765598, "dur":2, "ph":"X", "name": "JoinBuildThread",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1705972352765600, "dur":7, "ph":"X", "name": "ThreadStateDestroy",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1705972352765607, "dur":0, "ph":"X", "name": "SharedResourceDestroy",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1705972352765618, "dur":3, "ph":"X", "name": "BuildQueueDestroyTail",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1705972352765633, "dur":1909, "ph":"X", "name": "Tundra",  "args": { "detail":"Write AllBuiltNodes" }}
+,{ "pid":12345, "tid":1, "ts":1705972352431741, "dur":531, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1705972352432272, "dur":4519, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1705972352436795, "dur":163, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/MonoBleedingEdge/etc/mono/4.5/Browsers/Compat.browser" }}
+,{ "pid":12345, "tid":1, "ts":1705972352436961, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1705972352439099, "dur":1390, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/MonoBleedingEdge/etc/mono/4.5/Browsers/Compat.browser" }}
+,{ "pid":12345, "tid":1, "ts":1705972352440546, "dur":109, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/MonoBleedingEdge/etc/mono/2.0/web.config" }}
+,{ "pid":12345, "tid":1, "ts":1705972352440657, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1705972352440935, "dur":1533, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/MonoBleedingEdge/etc/mono/2.0/web.config" }}
+,{ "pid":12345, "tid":1, "ts":1705972352442520, "dur":95, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/MonoBleedingEdge/etc/mono/config" }}
+,{ "pid":12345, "tid":1, "ts":1705972352442618, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1705972352442625, "dur":904, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/MonoBleedingEdge/etc/mono/config" }}
+,{ "pid":12345, "tid":1, "ts":1705972352443594, "dur":107, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/MonoBleedingEdge/EmbedRuntime/mono-2.0-bdwgc.dll" }}
+,{ "pid":12345, "tid":1, "ts":1705972352443704, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1705972352443776, "dur":8408, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/MonoBleedingEdge/EmbedRuntime/mono-2.0-bdwgc.dll" }}
+,{ "pid":12345, "tid":1, "ts":1705972352452275, "dur":76, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.VRModule.dll" }}
+,{ "pid":12345, "tid":1, "ts":1705972352452355, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1705972352452365, "dur":2633, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.VRModule.dll" }}
+,{ "pid":12345, "tid":1, "ts":1705972352455063, "dur":57, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.VehiclesModule.dll" }}
+,{ "pid":12345, "tid":1, "ts":1705972352455124, "dur":7, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1705972352455141, "dur":1167, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.VehiclesModule.dll" }}
+,{ "pid":12345, "tid":1, "ts":1705972352456362, "dur":66, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.UnityWebRequestAudioModule.dll" }}
+,{ "pid":12345, "tid":1, "ts":1705972352456431, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1705972352456438, "dur":1877, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.UnityWebRequestAudioModule.dll" }}
+,{ "pid":12345, "tid":1, "ts":1705972352458372, "dur":145, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.UNETModule.dll" }}
+,{ "pid":12345, "tid":1, "ts":1705972352458520, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1705972352458525, "dur":2058, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.UNETModule.dll" }}
+,{ "pid":12345, "tid":1, "ts":1705972352460640, "dur":54, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.UIElementsModule.dll" }}
+,{ "pid":12345, "tid":1, "ts":1705972352460697, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1705972352460706, "dur":2450, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.UIElementsModule.dll" }}
+,{ "pid":12345, "tid":1, "ts":1705972352463211, "dur":54, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.TextCoreFontEngineModule.dll" }}
+,{ "pid":12345, "tid":1, "ts":1705972352463267, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1705972352463273, "dur":1402, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.TextCoreFontEngineModule.dll" }}
+,{ "pid":12345, "tid":1, "ts":1705972352464749, "dur":48, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.StreamingModule.dll" }}
+,{ "pid":12345, "tid":1, "ts":1705972352464800, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1705972352464806, "dur":1018, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.StreamingModule.dll" }}
+,{ "pid":12345, "tid":1, "ts":1705972352465872, "dur":91, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll" }}
+,{ "pid":12345, "tid":1, "ts":1705972352465966, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1705972352465987, "dur":1471, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll" }}
+,{ "pid":12345, "tid":1, "ts":1705972352467510, "dur":60, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.ParticleSystemModule.dll" }}
+,{ "pid":12345, "tid":1, "ts":1705972352467592, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1705972352467599, "dur":921, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.ParticleSystemModule.dll" }}
+,{ "pid":12345, "tid":1, "ts":1705972352468561, "dur":39, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.InputLegacyModule.dll" }}
+,{ "pid":12345, "tid":1, "ts":1705972352468603, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1705972352468609, "dur":1695, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.InputLegacyModule.dll" }}
+,{ "pid":12345, "tid":1, "ts":1705972352470356, "dur":50, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.GIModule.dll" }}
+,{ "pid":12345, "tid":1, "ts":1705972352470409, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1705972352470415, "dur":1019, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.GIModule.dll" }}
+,{ "pid":12345, "tid":1, "ts":1705972352471482, "dur":47, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.CrashReportingModule.dll" }}
+,{ "pid":12345, "tid":1, "ts":1705972352471532, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1705972352471538, "dur":1251, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.CrashReportingModule.dll" }}
+,{ "pid":12345, "tid":1, "ts":1705972352472839, "dur":49, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.AudioModule.dll" }}
+,{ "pid":12345, "tid":1, "ts":1705972352472892, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1705972352472898, "dur":1300, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.AudioModule.dll" }}
+,{ "pid":12345, "tid":1, "ts":1705972352474252, "dur":55, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.AIModule.dll" }}
+,{ "pid":12345, "tid":1, "ts":1705972352474310, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1705972352474315, "dur":1405, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.AIModule.dll" }}
+,{ "pid":12345, "tid":1, "ts":1705972352475763, "dur":44, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/Unity.VisualScripting.Antlr3.Runtime.dll" }}
+,{ "pid":12345, "tid":1, "ts":1705972352475810, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1705972352475817, "dur":925, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/Unity.VisualScripting.Antlr3.Runtime.dll" }}
+,{ "pid":12345, "tid":1, "ts":1705972352476791, "dur":259292, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/Unity.TextMeshPro.dll" }}
+,{ "pid":12345, "tid":1, "ts":1705972352736089, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1705972352736100, "dur":1463, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/Unity.TextMeshPro.dll" }}
+,{ "pid":12345, "tid":1, "ts":1705972352737615, "dur":27664, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1705972352431747, "dur":529, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1705972352432276, "dur":4516, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1705972352436795, "dur":188, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/MonoBleedingEdge/etc/mono/4.5/web.config" }}
+,{ "pid":12345, "tid":2, "ts":1705972352436985, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1705972352483256, "dur":3532, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/MonoBleedingEdge/etc/mono/4.5/web.config" }}
+,{ "pid":12345, "tid":2, "ts":1705972352486847, "dur":64099, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/Unity.Services.Core.Scheduler.dll" }}
+,{ "pid":12345, "tid":2, "ts":1705972352550950, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1705972352550959, "dur":5612, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/Unity.Services.Core.Scheduler.dll" }}
+,{ "pid":12345, "tid":2, "ts":1705972352556627, "dur":878, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/Unity.Services.Core.Analytics.dll" }}
+,{ "pid":12345, "tid":2, "ts":1705972352557509, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1705972352557516, "dur":1031, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/Unity.Services.Core.Analytics.dll" }}
+,{ "pid":12345, "tid":2, "ts":1705972352558593, "dur":46, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/System.Xml.dll" }}
+,{ "pid":12345, "tid":2, "ts":1705972352558642, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1705972352558650, "dur":3919, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/System.Xml.dll" }}
+,{ "pid":12345, "tid":2, "ts":1705972352562676, "dur":54, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/System.Security.dll" }}
+,{ "pid":12345, "tid":2, "ts":1705972352562733, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1705972352562740, "dur":10059, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/System.Security.dll" }}
+,{ "pid":12345, "tid":2, "ts":1705972352572854, "dur":71, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/System.Data.dll" }}
+,{ "pid":12345, "tid":2, "ts":1705972352572928, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1705972352572936, "dur":2940, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/System.Data.dll" }}
+,{ "pid":12345, "tid":2, "ts":1705972352575930, "dur":56, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/System.Data.DataSetExtensions.dll" }}
+,{ "pid":12345, "tid":2, "ts":1705972352575990, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1705972352576000, "dur":1139, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/System.Data.DataSetExtensions.dll" }}
+,{ "pid":12345, "tid":2, "ts":1705972352577193, "dur":54, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/System.Configuration.dll" }}
+,{ "pid":12345, "tid":2, "ts":1705972352577251, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1705972352577259, "dur":1393, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/System.Configuration.dll" }}
+,{ "pid":12345, "tid":2, "ts":1705972352578834, "dur":214, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/System.ComponentModel.Composition.dll" }}
+,{ "pid":12345, "tid":2, "ts":1705972352579052, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1705972352579060, "dur":2611, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/System.ComponentModel.Composition.dll" }}
+,{ "pid":12345, "tid":2, "ts":1705972352581727, "dur":55, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/Newtonsoft.Json.dll" }}
+,{ "pid":12345, "tid":2, "ts":1705972352581785, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1705972352581795, "dur":1644, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/Newtonsoft.Json.dll" }}
+,{ "pid":12345, "tid":2, "ts":1705972352583509, "dur":54, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/netstandard.dll" }}
+,{ "pid":12345, "tid":2, "ts":1705972352583567, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1705972352583574, "dur":1244, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/netstandard.dll" }}
+,{ "pid":12345, "tid":2, "ts":1705972352584954, "dur":178617, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/Cinemachine.dll" }}
+,{ "pid":12345, "tid":2, "ts":1705972352763578, "dur":2, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1705972352763590, "dur":1588, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/Cinemachine.dll" }}
+,{ "pid":12345, "tid":2, "ts":1705972352765238, "dur":2, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"Player" }}
+,{ "pid":12345, "tid":2, "ts":1705972352765241, "dur":0, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1705972352431825, "dur":456, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1705972352432281, "dur":4509, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1705972352436795, "dur":186, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/MonoBleedingEdge/etc/mono/mconfig/config.xml" }}
+,{ "pid":12345, "tid":3, "ts":1705972352436985, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1705972352483787, "dur":907, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/MonoBleedingEdge/etc/mono/mconfig/config.xml" }}
+,{ "pid":12345, "tid":3, "ts":1705972352484755, "dur":995, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/Unity.Services.Core.Threading.dll" }}
+,{ "pid":12345, "tid":3, "ts":1705972352485755, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1705972352485765, "dur":992, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/Unity.Services.Core.Threading.dll" }}
+,{ "pid":12345, "tid":3, "ts":1705972352486808, "dur":124777, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/Unity.Services.Core.Telemetry.dll" }}
+,{ "pid":12345, "tid":3, "ts":1705972352611590, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1705972352611603, "dur":4558, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/Unity.Services.Core.Telemetry.dll" }}
+,{ "pid":12345, "tid":3, "ts":1705972352616221, "dur":149054, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":4, "ts":1705972352431842, "dur":442, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":4, "ts":1705972352432284, "dur":4535, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":4, "ts":1705972352436821, "dur":168, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/MonoBleedingEdge/etc/mono/4.0/Browsers/Compat.browser" }}
+,{ "pid":12345, "tid":4, "ts":1705972352436992, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":4, "ts":1705972352489188, "dur":5642, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/MonoBleedingEdge/etc/mono/4.0/Browsers/Compat.browser" }}
+,{ "pid":12345, "tid":4, "ts":1705972352494904, "dur":116747, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/Unity.Services.Core.Registration.dll" }}
+,{ "pid":12345, "tid":4, "ts":1705972352611656, "dur":2, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":4, "ts":1705972352611667, "dur":3575, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/Unity.Services.Core.Registration.dll" }}
+,{ "pid":12345, "tid":4, "ts":1705972352615302, "dur":149966, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":5, "ts":1705972352431991, "dur":295, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":5, "ts":1705972352432286, "dur":4535, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":5, "ts":1705972352436821, "dur":202, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/MonoBleedingEdge/etc/mono/4.0/web.config" }}
+,{ "pid":12345, "tid":5, "ts":1705972352437026, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":5, "ts":1705972352496037, "dur":2169, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/MonoBleedingEdge/etc/mono/4.0/web.config" }}
+,{ "pid":12345, "tid":5, "ts":1705972352498262, "dur":117347, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/Unity.Services.Core.Internal.dll" }}
+,{ "pid":12345, "tid":5, "ts":1705972352615614, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":5, "ts":1705972352615638, "dur":1089, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/Unity.Services.Core.Internal.dll" }}
+,{ "pid":12345, "tid":5, "ts":1705972352616776, "dur":148496, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1705972352432003, "dur":288, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1705972352432291, "dur":4538, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1705972352436830, "dur":148, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/MonoBleedingEdge/etc/mono/4.0/DefaultWsdlHelpGenerator.aspx" }}
+,{ "pid":12345, "tid":6, "ts":1705972352436982, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1705972352450631, "dur":1596, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/MonoBleedingEdge/etc/mono/4.0/DefaultWsdlHelpGenerator.aspx" }}
+,{ "pid":12345, "tid":6, "ts":1705972352452314, "dur":89, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.VirtualTexturingModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1705972352452407, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1705972352452448, "dur":2632, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.VirtualTexturingModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1705972352455153, "dur":81, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.UnityWebRequestWWWModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1705972352455277, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1705972352455287, "dur":2090, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.UnityWebRequestWWWModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1705972352457438, "dur":59, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.UnityTestProtocolModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1705972352457500, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1705972352457509, "dur":1763, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.UnityTestProtocolModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1705972352459337, "dur":55, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.UmbraModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1705972352459395, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1705972352459404, "dur":1877, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.UmbraModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1705972352461342, "dur":58, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.TLSModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1705972352461403, "dur":2, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1705972352461411, "dur":1560, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.TLSModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1705972352463036, "dur":57, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.TextCoreTextEngineModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1705972352463116, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1705972352463123, "dur":1327, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.TextCoreTextEngineModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1705972352464500, "dur":53, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.SubstanceModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1705972352464556, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1705972352464563, "dur":904, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.SubstanceModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1705972352465511, "dur":47, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.ScreenCaptureModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1705972352465562, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1705972352465571, "dur":1211, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.ScreenCaptureModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1705972352466833, "dur":50, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.PerformanceReportingModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1705972352466886, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1705972352466892, "dur":1077, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.PerformanceReportingModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1705972352468014, "dur":43, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.InputModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1705972352468060, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1705972352468065, "dur":1672, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.InputModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1705972352469898, "dur":45, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.GridModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1705972352469947, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1705972352469953, "dur":1323, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.GridModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1705972352471327, "dur":56, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.DirectorModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1705972352471386, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1705972352471392, "dur":1132, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.DirectorModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1705972352472572, "dur":51, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.ClothModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1705972352472627, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1705972352472633, "dur":1227, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.ClothModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1705972352473909, "dur":46, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.AnimationModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1705972352473958, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1705972352473969, "dur":1501, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.AnimationModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1705972352475527, "dur":151825, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/Unity.VisualScripting.Core.dll" }}
+,{ "pid":12345, "tid":6, "ts":1705972352627359, "dur":2, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1705972352627375, "dur":1428, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/Unity.VisualScripting.Core.dll" }}
+,{ "pid":12345, "tid":6, "ts":1705972352628862, "dur":136408, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1705972352432102, "dur":193, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1705972352432295, "dur":4523, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1705972352436819, "dur":132, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/MonoBleedingEdge/etc/mono/4.5/DefaultWsdlHelpGenerator.aspx" }}
+,{ "pid":12345, "tid":7, "ts":1705972352436954, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1705972352438836, "dur":1733, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/MonoBleedingEdge/etc/mono/4.5/DefaultWsdlHelpGenerator.aspx" }}
+,{ "pid":12345, "tid":7, "ts":1705972352440618, "dur":95, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/MonoBleedingEdge/etc/mono/2.0/machine.config" }}
+,{ "pid":12345, "tid":7, "ts":1705972352440716, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1705972352440941, "dur":1550, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/MonoBleedingEdge/etc/mono/2.0/machine.config" }}
+,{ "pid":12345, "tid":7, "ts":1705972352442552, "dur":93, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/MonoBleedingEdge/etc/mono/browscap.ini" }}
+,{ "pid":12345, "tid":7, "ts":1705972352442648, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1705972352442655, "dur":1123, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/MonoBleedingEdge/etc/mono/browscap.ini" }}
+,{ "pid":12345, "tid":7, "ts":1705972352443827, "dur":60, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/UnityCrashHandler64.exe" }}
+,{ "pid":12345, "tid":7, "ts":1705972352443889, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1705972352443893, "dur":1999, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/UnityCrashHandler64.exe" }}
+,{ "pid":12345, "tid":7, "ts":1705972352445955, "dur":190, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Resources/unity default resources" }}
+,{ "pid":12345, "tid":7, "ts":1705972352446149, "dur":2, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1705972352446541, "dur":9959, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Resources/unity default resources" }}
+,{ "pid":12345, "tid":7, "ts":1705972352456559, "dur":56, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.UnityWebRequestAssetBundleModule.dll" }}
+,{ "pid":12345, "tid":7, "ts":1705972352456618, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1705972352456624, "dur":1598, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.UnityWebRequestAssetBundleModule.dll" }}
+,{ "pid":12345, "tid":7, "ts":1705972352458284, "dur":54, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.UnityAnalyticsModule.dll" }}
+,{ "pid":12345, "tid":7, "ts":1705972352458342, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1705972352458352, "dur":2343, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.UnityAnalyticsModule.dll" }}
+,{ "pid":12345, "tid":7, "ts":1705972352460744, "dur":178143, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.UI.dll" }}
+,{ "pid":12345, "tid":7, "ts":1705972352638893, "dur":3, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1705972352638905, "dur":1272, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.UI.dll" }}
+,{ "pid":12345, "tid":7, "ts":1705972352640227, "dur":125044, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1705972352432121, "dur":180, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1705972352432301, "dur":4493, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1705972352436795, "dur":183, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/MonoBleedingEdge/etc/mono/4.5/machine.config" }}
+,{ "pid":12345, "tid":8, "ts":1705972352436981, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1705972352449456, "dur":1812, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/MonoBleedingEdge/etc/mono/4.5/machine.config" }}
+,{ "pid":12345, "tid":8, "ts":1705972352451354, "dur":64, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.WindModule.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352451422, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1705972352451512, "dur":1095, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.WindModule.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352452674, "dur":55, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.VideoModule.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352452732, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1705972352452740, "dur":3561, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.VideoModule.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352456360, "dur":54, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.UnityWebRequestModule.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352456418, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1705972352456425, "dur":1731, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.UnityWebRequestModule.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352458217, "dur":63, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.UnityConnectModule.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352458283, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1705972352458291, "dur":1683, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.UnityConnectModule.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352460023, "dur":60, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.UIModule.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352460086, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1705972352460095, "dur":1398, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.UIModule.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352461539, "dur":43, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.TilemapModule.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352461585, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1705972352461593, "dur":2015, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.TilemapModule.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352463654, "dur":43, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.TerrainModule.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352463700, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1705972352463706, "dur":1258, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.TerrainModule.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352465014, "dur":60, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.SpriteShapeModule.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352465077, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1705972352465084, "dur":1242, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.SpriteShapeModule.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352466371, "dur":48, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.PhysicsModule.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352466421, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1705972352466427, "dur":1420, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.PhysicsModule.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352467898, "dur":52, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.LocalizationModule.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352467953, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1705972352467961, "dur":1559, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.LocalizationModule.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352469568, "dur":106, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.HotReloadModule.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352469677, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1705972352469683, "dur":1410, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.HotReloadModule.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352471141, "dur":51, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352471195, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1705972352471200, "dur":1251, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352472497, "dur":47, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.ClusterInputModule.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352472547, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1705972352472553, "dur":1113, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.ClusterInputModule.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352473714, "dur":51, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.ARModule.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352473767, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1705972352473773, "dur":1216, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.ARModule.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352475041, "dur":75154, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/Unity.VisualScripting.State.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352550200, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1705972352550209, "dur":6698, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/Unity.VisualScripting.State.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352556959, "dur":50, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/System.Xml.Linq.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352557012, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1705972352557022, "dur":3961, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/System.Xml.Linq.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352561040, "dur":52, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/System.Transactions.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352561095, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1705972352561105, "dur":1012, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/System.Transactions.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352562166, "dur":48, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/System.ServiceModel.Internals.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352562218, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1705972352562226, "dur":1047, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/System.ServiceModel.Internals.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352563321, "dur":45, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/System.Runtime.Serialization.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352563370, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1705972352563377, "dur":1694, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/System.Runtime.Serialization.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352565120, "dur":49, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/System.Numerics.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352565172, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1705972352565181, "dur":1116, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/System.Numerics.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352566347, "dur":45, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/System.Net.Http.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352566395, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1705972352566426, "dur":1008, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/System.Net.Http.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352567482, "dur":53, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/System.IO.Compression.FileSystem.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352567538, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1705972352567547, "dur":940, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/System.IO.Compression.FileSystem.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352568557, "dur":50, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/System.IO.Compression.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352568611, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1705972352568620, "dur":1018, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/System.IO.Compression.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352569687, "dur":49, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/System.EnterpriseServices.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352569739, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1705972352569748, "dur":1075, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/System.EnterpriseServices.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352570876, "dur":59, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/System.Drawing.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352570939, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1705972352570948, "dur":1594, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/System.Drawing.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352572601, "dur":123, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/System.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352572728, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1705972352572738, "dur":3172, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/System.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352575961, "dur":49, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/System.Core.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352576013, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1705972352576020, "dur":7729, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/System.Core.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352583801, "dur":52, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/mscorlib.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352583856, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1705972352583863, "dur":3801, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/mscorlib.dll" }}
+,{ "pid":12345, "tid":8, "ts":1705972352587723, "dur":58, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Resources/unity_builtin_extra" }}
+,{ "pid":12345, "tid":8, "ts":1705972352587784, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1705972352587849, "dur":1240, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Resources/unity_builtin_extra" }}
+,{ "pid":12345, "tid":8, "ts":1705972352589144, "dur":52, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/sharedassets0.assets" }}
+,{ "pid":12345, "tid":8, "ts":1705972352589199, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1705972352589207, "dur":11417, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/sharedassets0.assets" }}
+,{ "pid":12345, "tid":8, "ts":1705972352600704, "dur":158, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/ScriptingAssemblies.json" }}
+,{ "pid":12345, "tid":8, "ts":1705972352600866, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1705972352600874, "dur":5791, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/ScriptingAssemblies.json" }}
+,{ "pid":12345, "tid":8, "ts":1705972352606729, "dur":72, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/resources.assets" }}
+,{ "pid":12345, "tid":8, "ts":1705972352606805, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1705972352606816, "dur":1185, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/resources.assets" }}
+,{ "pid":12345, "tid":8, "ts":1705972352608062, "dur":53, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/level0" }}
+,{ "pid":12345, "tid":8, "ts":1705972352608119, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1705972352608127, "dur":997, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/level0" }}
+,{ "pid":12345, "tid":8, "ts":1705972352609180, "dur":66, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/globalgamemanagers" }}
+,{ "pid":12345, "tid":8, "ts":1705972352609329, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1705972352609339, "dur":1092, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/globalgamemanagers" }}
+,{ "pid":12345, "tid":8, "ts":1705972352610512, "dur":154755, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":9, "ts":1705972352432265, "dur":4, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":9, "ts":1705972352432269, "dur":4517, "ph":"X", "name": "CheckDagSignatures",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":9, "ts":1705972352436795, "dur":1, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"WriteText Library/Bee/artifacts/WinPlayerBuildProgram/Data/app.info" }}
+,{ "pid":12345, "tid":9, "ts":1705972352436816, "dur":97, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":9, "ts":1705972352436917, "dur":2, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/app.info" }}
+,{ "pid":12345, "tid":9, "ts":1705972352436922, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":9, "ts":1705972352438057, "dur":2471, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/app.info" }}
+,{ "pid":12345, "tid":9, "ts":1705972352440530, "dur":115, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/MonoBleedingEdge/etc/mono/2.0/Browsers/Compat.browser" }}
+,{ "pid":12345, "tid":9, "ts":1705972352440648, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":9, "ts":1705972352441086, "dur":1221, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/MonoBleedingEdge/etc/mono/2.0/Browsers/Compat.browser" }}
+,{ "pid":12345, "tid":9, "ts":1705972352442365, "dur":100, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/MonoBleedingEdge/etc/mono/2.0/DefaultWsdlHelpGenerator.aspx" }}
+,{ "pid":12345, "tid":9, "ts":1705972352442486, "dur":2, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":9, "ts":1705972352442555, "dur":1000, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/MonoBleedingEdge/etc/mono/2.0/DefaultWsdlHelpGenerator.aspx" }}
+,{ "pid":12345, "tid":9, "ts":1705972352443622, "dur":93, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/UnityPlayer.dll" }}
+,{ "pid":12345, "tid":9, "ts":1705972352443718, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":9, "ts":1705972352443723, "dur":19545, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/UnityPlayer.dll" }}
+,{ "pid":12345, "tid":9, "ts":1705972352463336, "dur":153, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.TerrainPhysicsModule.dll" }}
+,{ "pid":12345, "tid":9, "ts":1705972352463492, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":9, "ts":1705972352463499, "dur":1511, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.TerrainPhysicsModule.dll" }}
+,{ "pid":12345, "tid":9, "ts":1705972352465064, "dur":44, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.SpriteMaskModule.dll" }}
+,{ "pid":12345, "tid":9, "ts":1705972352465111, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":9, "ts":1705972352465117, "dur":1078, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.SpriteMaskModule.dll" }}
+,{ "pid":12345, "tid":9, "ts":1705972352466245, "dur":52, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.ProfilerModule.dll" }}
+,{ "pid":12345, "tid":9, "ts":1705972352466300, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":9, "ts":1705972352466307, "dur":1340, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.ProfilerModule.dll" }}
+,{ "pid":12345, "tid":9, "ts":1705972352467698, "dur":50, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.NVIDIAModule.dll" }}
+,{ "pid":12345, "tid":9, "ts":1705972352467751, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":9, "ts":1705972352467758, "dur":1472, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.NVIDIAModule.dll" }}
+,{ "pid":12345, "tid":9, "ts":1705972352469292, "dur":52, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.IMGUIModule.dll" }}
+,{ "pid":12345, "tid":9, "ts":1705972352469347, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":9, "ts":1705972352469353, "dur":1508, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.IMGUIModule.dll" }}
+,{ "pid":12345, "tid":9, "ts":1705972352470925, "dur":50, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.GameCenterModule.dll" }}
+,{ "pid":12345, "tid":9, "ts":1705972352470978, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":9, "ts":1705972352470985, "dur":1143, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.GameCenterModule.dll" }}
+,{ "pid":12345, "tid":9, "ts":1705972352472177, "dur":51, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.CoreModule.dll" }}
+,{ "pid":12345, "tid":9, "ts":1705972352472231, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":9, "ts":1705972352472237, "dur":1656, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.CoreModule.dll" }}
+,{ "pid":12345, "tid":9, "ts":1705972352473941, "dur":43, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.AndroidJNIModule.dll" }}
+,{ "pid":12345, "tid":9, "ts":1705972352473987, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":9, "ts":1705972352473993, "dur":1320, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.AndroidJNIModule.dll" }}
+,{ "pid":12345, "tid":9, "ts":1705972352475368, "dur":123267, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/Unity.VisualScripting.Flow.dll" }}
+,{ "pid":12345, "tid":9, "ts":1705972352598644, "dur":3, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":9, "ts":1705972352598659, "dur":8041, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/Unity.VisualScripting.Flow.dll" }}
+,{ "pid":12345, "tid":9, "ts":1705972352606758, "dur":57, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/level0.resS" }}
+,{ "pid":12345, "tid":9, "ts":1705972352606819, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":9, "ts":1705972352606826, "dur":1314, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/level0.resS" }}
+,{ "pid":12345, "tid":9, "ts":1705972352608195, "dur":53, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/globalgamemanagers.assets" }}
+,{ "pid":12345, "tid":9, "ts":1705972352608251, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":9, "ts":1705972352608259, "dur":1675, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/globalgamemanagers.assets" }}
+,{ "pid":12345, "tid":9, "ts":1705972352609992, "dur":157, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/boot.config" }}
+,{ "pid":12345, "tid":9, "ts":1705972352610152, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":9, "ts":1705972352610161, "dur":1193, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/boot.config" }}
+,{ "pid":12345, "tid":9, "ts":1705972352611412, "dur":153852, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":10, "ts":1705972352432292, "dur":0, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":10, "ts":1705972352432293, "dur":4529, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":10, "ts":1705972352436822, "dur":144, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/MonoBleedingEdge/etc/mono/4.0/settings.map" }}
+,{ "pid":12345, "tid":10, "ts":1705972352436969, "dur":2, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":10, "ts":1705972352439018, "dur":1516, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/MonoBleedingEdge/etc/mono/4.0/settings.map" }}
+,{ "pid":12345, "tid":10, "ts":1705972352440593, "dur":69, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/MonoBleedingEdge/etc/mono/2.0/settings.map" }}
+,{ "pid":12345, "tid":10, "ts":1705972352440665, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":10, "ts":1705972352440925, "dur":1623, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/MonoBleedingEdge/etc/mono/2.0/settings.map" }}
+,{ "pid":12345, "tid":10, "ts":1705972352442606, "dur":76, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/MonoBleedingEdge/EmbedRuntime/MonoPosixHelper.dll" }}
+,{ "pid":12345, "tid":10, "ts":1705972352442684, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":10, "ts":1705972352442853, "dur":1192, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/MonoBleedingEdge/EmbedRuntime/MonoPosixHelper.dll" }}
+,{ "pid":12345, "tid":10, "ts":1705972352444144, "dur":102067, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown.exe" }}
+,{ "pid":12345, "tid":10, "ts":1705972352546216, "dur":3, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":10, "ts":1705972352546226, "dur":1424, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown.exe" }}
+,{ "pid":12345, "tid":10, "ts":1705972352547708, "dur":949, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/Unity.Services.Core.Device.dll" }}
+,{ "pid":12345, "tid":10, "ts":1705972352548662, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":10, "ts":1705972352548672, "dur":1091, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/Unity.Services.Core.Device.dll" }}
+,{ "pid":12345, "tid":10, "ts":1705972352549816, "dur":35625, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/Unity.Services.Core.Configuration.dll" }}
+,{ "pid":12345, "tid":10, "ts":1705972352585740, "dur":2, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":10, "ts":1705972352585751, "dur":1259, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/Unity.Services.Core.Configuration.dll" }}
+,{ "pid":12345, "tid":10, "ts":1705972352587066, "dur":158, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/StreamingAssets/UnityServicesProjectConfiguration.json" }}
+,{ "pid":12345, "tid":10, "ts":1705972352587298, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":10, "ts":1705972352587704, "dur":1042, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/StreamingAssets/UnityServicesProjectConfiguration.json" }}
+,{ "pid":12345, "tid":10, "ts":1705972352588804, "dur":51, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/sharedassets0.assets.resS" }}
+,{ "pid":12345, "tid":10, "ts":1705972352588858, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":10, "ts":1705972352588866, "dur":26450, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/sharedassets0.assets.resS" }}
+,{ "pid":12345, "tid":10, "ts":1705972352615375, "dur":149899, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":11, "ts":1705972352432317, "dur":0, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":11, "ts":1705972352432317, "dur":4505, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":11, "ts":1705972352436822, "dur":189, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/MonoBleedingEdge/etc/mono/4.0/machine.config" }}
+,{ "pid":12345, "tid":11, "ts":1705972352437014, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":11, "ts":1705972352494002, "dur":3660, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/MonoBleedingEdge/etc/mono/4.0/machine.config" }}
+,{ "pid":12345, "tid":11, "ts":1705972352497738, "dur":21856, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/Unity.Services.Core.Networking.dll" }}
+,{ "pid":12345, "tid":11, "ts":1705972352519600, "dur":2, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":11, "ts":1705972352519611, "dur":1151, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/Unity.Services.Core.Networking.dll" }}
+,{ "pid":12345, "tid":11, "ts":1705972352520813, "dur":1417, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/Unity.Services.Core.Environments.Internal.dll" }}
+,{ "pid":12345, "tid":11, "ts":1705972352522234, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":11, "ts":1705972352522244, "dur":930, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/Unity.Services.Core.Environments.Internal.dll" }}
+,{ "pid":12345, "tid":11, "ts":1705972352523220, "dur":686, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/Unity.Services.Core.Environments.dll" }}
+,{ "pid":12345, "tid":11, "ts":1705972352523910, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":11, "ts":1705972352523918, "dur":974, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/Unity.Services.Core.Environments.dll" }}
+,{ "pid":12345, "tid":11, "ts":1705972352524947, "dur":58252, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/Unity.Services.Core.dll" }}
+,{ "pid":12345, "tid":11, "ts":1705972352583227, "dur":3, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":11, "ts":1705972352583240, "dur":1171, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/Unity.Services.Core.dll" }}
+,{ "pid":12345, "tid":11, "ts":1705972352584465, "dur":48, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/Mono.Security.dll" }}
+,{ "pid":12345, "tid":11, "ts":1705972352584520, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":11, "ts":1705972352584528, "dur":1272, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/Mono.Security.dll" }}
+,{ "pid":12345, "tid":11, "ts":1705972352585854, "dur":105160, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/Assembly-CSharp.dll" }}
+,{ "pid":12345, "tid":11, "ts":1705972352691020, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":11, "ts":1705972352691028, "dur":848, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/Assembly-CSharp.dll" }}
+,{ "pid":12345, "tid":11, "ts":1705972352691911, "dur":73368, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":12, "ts":1705972352432340, "dur":1, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":12, "ts":1705972352432341, "dur":4452, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":12, "ts":1705972352436817, "dur":153, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/MonoBleedingEdge/etc/mono/4.5/settings.map" }}
+,{ "pid":12345, "tid":12, "ts":1705972352436974, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":12, "ts":1705972352447601, "dur":1312, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/MonoBleedingEdge/etc/mono/4.5/settings.map" }}
+,{ "pid":12345, "tid":12, "ts":1705972352449382, "dur":905, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.XRModule.dll" }}
+,{ "pid":12345, "tid":12, "ts":1705972352450292, "dur":2, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":12, "ts":1705972352450754, "dur":2021, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.XRModule.dll" }}
+,{ "pid":12345, "tid":12, "ts":1705972352452843, "dur":71, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.VFXModule.dll" }}
+,{ "pid":12345, "tid":12, "ts":1705972352452918, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":12, "ts":1705972352452929, "dur":3037, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.VFXModule.dll" }}
+,{ "pid":12345, "tid":12, "ts":1705972352456021, "dur":54, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.UnityWebRequestTextureModule.dll" }}
+,{ "pid":12345, "tid":12, "ts":1705972352456079, "dur":2, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":12, "ts":1705972352456089, "dur":1770, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.UnityWebRequestTextureModule.dll" }}
+,{ "pid":12345, "tid":12, "ts":1705972352457918, "dur":57, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.UnityCurlModule.dll" }}
+,{ "pid":12345, "tid":12, "ts":1705972352457979, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":12, "ts":1705972352457987, "dur":2204, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.UnityCurlModule.dll" }}
+,{ "pid":12345, "tid":12, "ts":1705972352460245, "dur":71, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.UIElementsNativeModule.dll" }}
+,{ "pid":12345, "tid":12, "ts":1705972352460319, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":12, "ts":1705972352460347, "dur":1592, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.UIElementsNativeModule.dll" }}
+,{ "pid":12345, "tid":12, "ts":1705972352461987, "dur":54, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.TextRenderingModule.dll" }}
+,{ "pid":12345, "tid":12, "ts":1705972352462044, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":12, "ts":1705972352462051, "dur":1686, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.TextRenderingModule.dll" }}
+,{ "pid":12345, "tid":12, "ts":1705972352463805, "dur":100, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.SubsystemsModule.dll" }}
+,{ "pid":12345, "tid":12, "ts":1705972352463908, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":12, "ts":1705972352463914, "dur":1256, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.SubsystemsModule.dll" }}
+,{ "pid":12345, "tid":12, "ts":1705972352465218, "dur":55, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.SharedInternalsModule.dll" }}
+,{ "pid":12345, "tid":12, "ts":1705972352465276, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":12, "ts":1705972352465286, "dur":1170, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.SharedInternalsModule.dll" }}
+,{ "pid":12345, "tid":12, "ts":1705972352466504, "dur":57, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.Physics2DModule.dll" }}
+,{ "pid":12345, "tid":12, "ts":1705972352466564, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":12, "ts":1705972352466570, "dur":1284, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.Physics2DModule.dll" }}
+,{ "pid":12345, "tid":12, "ts":1705972352467906, "dur":57, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.JSONSerializeModule.dll" }}
+,{ "pid":12345, "tid":12, "ts":1705972352467966, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":12, "ts":1705972352467972, "dur":1393, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.JSONSerializeModule.dll" }}
+,{ "pid":12345, "tid":12, "ts":1705972352469413, "dur":44, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.ImageConversionModule.dll" }}
+,{ "pid":12345, "tid":12, "ts":1705972352469460, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":12, "ts":1705972352469466, "dur":1403, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.ImageConversionModule.dll" }}
+,{ "pid":12345, "tid":12, "ts":1705972352470926, "dur":58, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.DSPGraphModule.dll" }}
+,{ "pid":12345, "tid":12, "ts":1705972352470987, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":12, "ts":1705972352470993, "dur":1178, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.DSPGraphModule.dll" }}
+,{ "pid":12345, "tid":12, "ts":1705972352472224, "dur":47, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.ClusterRendererModule.dll" }}
+,{ "pid":12345, "tid":12, "ts":1705972352472275, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":12, "ts":1705972352472281, "dur":1119, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.ClusterRendererModule.dll" }}
+,{ "pid":12345, "tid":12, "ts":1705972352473453, "dur":65, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.AssetBundleModule.dll" }}
+,{ "pid":12345, "tid":12, "ts":1705972352473521, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":12, "ts":1705972352473528, "dur":1095, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.AssetBundleModule.dll" }}
+,{ "pid":12345, "tid":12, "ts":1705972352474673, "dur":54, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.AccessibilityModule.dll" }}
+,{ "pid":12345, "tid":12, "ts":1705972352474730, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":12, "ts":1705972352474736, "dur":1154, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/UnityEngine.AccessibilityModule.dll" }}
+,{ "pid":12345, "tid":12, "ts":1705972352475943, "dur":126189, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/Unity.Timeline.dll" }}
+,{ "pid":12345, "tid":12, "ts":1705972352602137, "dur":2, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":12, "ts":1705972352602146, "dur":1032, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/Managed/Unity.Timeline.dll" }}
+,{ "pid":12345, "tid":12, "ts":1705972352603236, "dur":1015, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/RuntimeInitializeOnLoads.json" }}
+,{ "pid":12345, "tid":12, "ts":1705972352604257, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":12, "ts":1705972352604267, "dur":1369, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/RuntimeInitializeOnLoads.json" }}
+,{ "pid":12345, "tid":12, "ts":1705972352605686, "dur":47, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/resources.assets.resS" }}
+,{ "pid":12345, "tid":12, "ts":1705972352605737, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":12, "ts":1705972352605745, "dur":10271, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/samle/OneDrive/Bureaublad/KHS_Builds/New folder/Christmas Countdown_Data/resources.assets.resS" }}
+,{ "pid":12345, "tid":12, "ts":1705972352616070, "dur":149199, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1705972352769239, "dur":2797, "ph":"X", "name": "ProfilerWriteOutput" }
+,{ "pid": 0, "tid": 1, "ts": 1705972352797409, "dur": 1176, "ph": "X", "name": "backend_profiler1.traceevents", "args": {} },
+{ "pid": 0, "tid": 1, "ts": 1705972352796599, "dur": 2014, "ph": "X", "name": "Write chrome-trace events", "args": {} },

@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.Progress;
 using UnityEngine.XR;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine.UI;
@@ -34,7 +33,10 @@ public class EquipmentBehaviour : MonoBehaviour
     [SerializeField] private string environmentLayerName;
 
     [Tooltip("Name of the layer for equipment objects")]
-    [SerializeField] private string mainEquipmentLayerName;
+    [SerializeField] private string handEquipmentLayerName;
+
+    [Tooltip("Name of the layer for equipment objects")]
+    [SerializeField] private string sceneEquipmentLayerName;
 
     [Tooltip("Name of the layer for mouse detection")]
     [SerializeField] private string mouseDetectionLayerName;
@@ -49,13 +51,17 @@ public class EquipmentBehaviour : MonoBehaviour
     [Tooltip("Scriptable Object with this object's data")]
     [SerializeField] private BaseEquipmentObject equipmentData;
 
-    /* --- PRIVATE HIDDEN VARIABLES ---*/
-    private EquipmentPhysicsManager equipmentPhysicsManager; // Reference to this object's physics manager
-    private ActivationLogicHandler activationHandler; // Reference to component in child. Note: no property because component will be destroyed after init
-    private Collider parentCollider; // Store collider of the parent object
-    public Collider mouseDetectCollider;
-    private Transform player; // Reference to the player for distance and orientation
+    /* --- PRIVATE VARIABLES ---*/
+    [SerializeField] private EquipmentPhysicsManager equipmentPhysicsManager; // Reference to this object's physics manager
+    [SerializeField] private ActivationLogicHandler activationHandler; // Reference to component in child. Note: no property because component will be destroyed after init
+    [SerializeField] private Collider parentCollider; // Store collider of the parent object
+    [SerializeField] private Collider mouseDetectCollider;
+    [SerializeField] private Transform player; // Reference to the player for distance and orientation
+
+    // Reference to the current hand this equipment is in
     private Hand currentHand;
+
+    // Reference to the activation logic for this equipment
     public IEquipmentActivation activationLogic;
 
     // Bools for checking status of this object, used for properties
@@ -90,11 +96,19 @@ public class EquipmentBehaviour : MonoBehaviour
     }
 
     /// <summary>
-    /// Read only property representing the name of the layer for Main Equipment
+    /// Read only property representing the name of the layer for Equipment in hand
     /// </summary>
-    public string MainEquipmentLayerName
+    public string HandEquipmentLayerName
     {
-        get { return mainEquipmentLayerName; }
+        get { return handEquipmentLayerName; }
+    }
+
+    /// <summary>
+    /// Read only property representing the name of the lauer for equipments in scene
+    /// </summary>
+    public string SceneEquipmentLayerName
+    {
+        get { return sceneEquipmentLayerName; }
     }
 
     /// <summary>
@@ -152,10 +166,13 @@ public class EquipmentBehaviour : MonoBehaviour
         get { return player; }
     }
 
+    /// <summary>
+    /// The hand this object is currently in
+    /// </summary>
     public Hand CurrentHand
     {
         get { return currentHand; }
-        private set {  currentHand = value; }   
+        private set { currentHand = value; }
     }
 
     /// <summary>
@@ -192,28 +209,34 @@ public class EquipmentBehaviour : MonoBehaviour
 
     private void Start()
     {
-        // Find player (no dragging in player for each object)
-        if (player == null)
-            player = GameObject.FindGameObjectWithTag("Player")?.transform;
+        if (SettingsManager.instance.AutoReferenceEquipmentComponents_OnStart) // Auto assign references 
+        {
+            // Find player (no dragging in player for each object)
+            if (player == null)
+                player = GameObject.FindGameObjectWithTag("Player")?.transform;
 
-        // Find EquipmentSystemController instead of dragging, yay (probably temp only) 
-        if (equipmentSystemController == null)
-            equipmentSystemController = FindObjectOfType<EquipmentSystemController>();
+            // Find EquipmentSystemController instead of dragging, yay (probably temp only) 
+            if (equipmentSystemController == null)
+                equipmentSystemController = FindObjectOfType<EquipmentSystemController>();
 
-        if (equipmentUI == null)
-            equipmentUI = FindObjectOfType<EquipmentUI>();
+            if (equipmentUI == null)
+                equipmentUI = FindObjectOfType<EquipmentUI>();
 
-        // Get the activation handler in the child object
-        activationHandler = GetComponentInChildren<ActivationLogicHandler>();
+            // Get the activation handler in the child object
+            activationHandler = GetComponentInChildren<ActivationLogicHandler>();
 
-        // First set parent object to the main object slot
-        mainEquipmentObject = transform.parent.gameObject;
+            // First set parent object to the main object slot
+            mainEquipmentObject = transform.parent.gameObject;
 
-        // Add and assign the PhysicsManager to the parent object
-        equipmentPhysicsManager = mainEquipmentObject.AddComponent<EquipmentPhysicsManager>();
+            // Get the parent's collider to detect mouse
+            parentCollider = mainEquipmentObject.GetComponent<Collider>();
+        }
 
-        // Get the parent's collider to detect mouse
-        parentCollider = mainEquipmentObject.GetComponent<Collider>();
+        if (SettingsManager.instance.AutoAddEquipmentComponents_OnStart) // Auto add physics manager if dev settings allows
+        {
+            // Add and assign the PhysicsManager to the parent object
+            equipmentPhysicsManager = mainEquipmentObject.AddComponent<EquipmentPhysicsManager>();
+        }
 
         // Check if any components and references are missing
         if (equipmentSystemController == null || equipmentUI == null || mainEquipmentObject == null || EquipmentData == null || equipmentPhysicsManager == null || player == null || parentCollider == null || mouseDetectCollider == null || activationHandler == null)
@@ -227,7 +250,6 @@ public class EquipmentBehaviour : MonoBehaviour
         }
     }
 
-
     /// <summary>
     /// Method for initializing the components needed for the equipment items <br/>
     /// Adds PhysicsManager to parent as well, stores the collider of the parent and sets rotation of parent object.
@@ -237,11 +259,8 @@ public class EquipmentBehaviour : MonoBehaviour
         // Initialize the activation logic at this point
         activationHandler.Initialize(this);
 
-        // Set our parent to the equipment layer to be able to pick up when needed
-        mainEquipmentObject.gameObject.layer = LayerMask.NameToLayer(MainEquipmentLayerName);
-
-        // Set this object's layer to the mouse detect layer for mouse detection
-        gameObject.layer = LayerMask.NameToLayer(MouseDetectionLayerName);
+        SetObjectLayer(mainEquipmentObject, sceneEquipmentLayerName);
+        SetObjectLayer(gameObject, MouseDetectionLayerName);
 
         // Set rotation and scale of parent object to it's data values
         SetObjectRotation(MainEquipmentObject.transform, EquipmentData.UnequippedRotation);
@@ -320,7 +339,13 @@ public class EquipmentBehaviour : MonoBehaviour
         SetObjectScale(MainEquipmentObject.transform, EquipmentData.EquippedLocalScale); // First set scale before parenting
         SetObjectRotation(MainEquipmentObject.transform, EquipmentData.EquippedRotation); // Lastly, set the local rotation when in hand
 
+        // Set current hand value to the targethand
         CurrentHand = _targetHand;
+
+        // Set layer of parent object to the hand layer
+        SetObjectLayer(mainEquipmentObject, HandEquipmentLayerName, true); // True to also set children 
+        SetObjectLayer(gameObject, MouseDetectionLayerName); // Set this object's layer to the mouse detect layer after setting parent layer and children 
+
         // Set value of bools true
         IsEquipped = true;
         IsOnGround = false;
@@ -344,10 +369,15 @@ public class EquipmentBehaviour : MonoBehaviour
         IsEquipped = false;
         CanDrop = false; // Set false to prevent calling again
         equipmentPhysicsManager.Rb.isKinematic = false; // Set false to apply gravity and other forces to parent object
+        CurrentHand = null;
 
         // Enable colliders to enable collision events
         parentCollider.enabled = true;
         mouseDetectCollider.enabled = true;
+
+        // Set layer of parent back to scene equipment layer, true for its children too
+        SetObjectLayer(mainEquipmentObject, SceneEquipmentLayerName, true);
+        SetObjectLayer(gameObject, MouseDetectionLayerName); // Set this objects layer back to MouseDetection layer after setting parent children layer
 
         // Set transform properties
         mainEquipmentObject.transform.parent = null; // First drop the parent
@@ -356,6 +386,41 @@ public class EquipmentBehaviour : MonoBehaviour
 
         // Call method to throw equipment
         if (_applyForces) equipmentPhysicsManager.ThrowEquipment(); // Note: Notice isKinematic = false before calling method
+    }
+
+    /// <summary>
+    /// Sets the layer of the main equipment object to the target layer param, bool to affect children as well
+    /// </summary>
+    /// <param name="_targetLayerName"></param>
+    private void SetObjectLayer(GameObject _object, string _targetLayerName, bool _setChildren = false)
+    {
+        // St to target layer
+        _object.layer = LayerMask.NameToLayer(_targetLayerName);
+
+        // Set the children as well if bool param is true
+        if (_setChildren)
+        {
+            // Set the layer of all children recursively
+            foreach (Transform child in _object.transform)
+            {
+                SetObjectLayer(child.gameObject, _targetLayerName);
+            }
+        }
+    }
+
+
+    /// <summary>
+    /// IEnumerator that sets the value of CanDrop to true after end of frame <br/>
+    /// Prevents dropping equipment same frame as equipping it
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator EnableDropAfterFrame()
+    {
+        // Wait for end of frame
+        yield return new WaitForEndOfFrame();
+
+        // Set value to true to enable dropping this object
+        CanDrop = true;
     }
 
     /// <summary>
@@ -377,20 +442,6 @@ public class EquipmentBehaviour : MonoBehaviour
 
         // Mouse is not over the specified collider
         return false;
-    }
-
-    /// <summary>
-    /// IEnumerator that sets the value of CanDrop to true after end of frame <br/>
-    /// Prevents dropping equipment same frame as equipping it
-    /// </summary>
-    /// <returns></returns>
-    private IEnumerator EnableDropAfterFrame()
-    {
-        // Wait for end of frame
-        yield return new WaitForEndOfFrame();
-
-        // Set value to true to enable dropping this object
-        CanDrop = true;
     }
 
     /// <summary>

@@ -49,12 +49,16 @@ MonoBehaviour:
   equipmentSystemController: {fileID: 0}
   equipmentUI: {fileID: 0}
   environmentLayerName: Environment
-  mainEquipmentLayerName: MainEquipment
+  handEquipmentLayerName: HandEquipment
+  sceneEquipmentLayerName: SceneEquipment
   mouseDetectionLayerName: MouseDetection
   mainEquipmentObject: {fileID: 0}
   equipmentData: {fileID: 11400000, guid: dee75ac26b3b4f94abbef7b96b4710a9, type: 2}
+  equipmentPhysicsManager: {fileID: 0}
+  activationHandler: {fileID: 0}
+  parentCollider: {fileID: 0}
   mouseDetectCollider: {fileID: 4201167509315550619}
-  activation: {fileID: 0}
+  player: {fileID: 0}
 --- !u!135 &4201167509315550619
 SphereCollider:
   m_ObjectHideFlags: 0

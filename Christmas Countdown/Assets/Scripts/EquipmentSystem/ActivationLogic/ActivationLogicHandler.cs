@@ -10,7 +10,7 @@ public class ActivationLogicHandler : MonoBehaviour
     [SerializeField] private Transform equipmentSpecificTransform;
 
     [Tooltip("Seconds before destroying this object after being initialized")]
-    [SerializeField] private float destroyThisAfterSeconds;
+    [SerializeField] private float destroyThisAfterSeconds = 3f;
 
     // Reference to the equipment behaviour attached on the EquipmentObject
     private EquipmentBehaviour equipmentBehaviour;
@@ -24,9 +24,15 @@ public class ActivationLogicHandler : MonoBehaviour
         // Set reference to the param
         equipmentBehaviour = _equipment;
 
-        // Call method to add the correct activation logic
-        AddActivationLogic(equipmentBehaviour);
-
+        if (SettingsManager.instance.AutoAddEquipmentComponents_OnStart)
+        {
+            // Call method to add the correct activation logic
+            AddActivationLogic(equipmentBehaviour);
+        }
+        else
+        {
+            Debug.LogWarning("Warning: ActivationLogicHandler does not auto add Activation scripts to objects, add mannually!");
+        }
         //Destroy this object after adding the activation logic since we have no use of it no more
         Destroy(gameObject, destroyThisAfterSeconds);
     }
@@ -86,11 +92,8 @@ public class ActivationLogicHandler : MonoBehaviour
         // Add the specif script to the behaviour's gameobject
         AmmunitionActivation activation = equipmentBehaviour.AddComponent<AmmunitionActivation>();
 
-        // Set the equipmentBehaviour's reference to activation interface to the specific activation script
-        equipmentBehaviour.activationLogic = activation;
-
         // Call initialize method from specific script
-        activation.InitializeActivation();
+        activation.Initialize(equipmentBehaviour);
     }
 
     /// <summary>
@@ -101,11 +104,8 @@ public class ActivationLogicHandler : MonoBehaviour
         // Add the specif script to the behaviour's gameobject
         ThrowableActivation activation = equipmentBehaviour.AddComponent<ThrowableActivation>();
 
-        // Set the equipmentBehaviour's reference to activation interface to the specific activation script
-        equipmentBehaviour.activationLogic = activation;
-
         // Call initialize method from specific script
-        activation.InitializeActivation();
+        activation.Initialize(equipmentBehaviour);
     }
 
     /// <summary>

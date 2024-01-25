@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ab1352438d433741b8360ab2e4499c6, type: 3}
+  m_Name: RPG
+  m_EditorClassIdentifier: 
+  equipmentName: RPG
+  equipmentDescription: 
+  leftHandPositionOffset: {x: 0, y: 0, z: 0}
+  rightHandPositionOffset: {x: 0, y: 0, z: 0}
+  equippedRotation: {x: 0, y: 180, z: 0}
+  unequippedRotation: {x: 0, y: 0, z: 90}
+  maxRotateTorqueSpeed: {x: 0, y: 3, z: 3}
+  rotateToMouseSpeed: 16.1
+  equippedLocalScale: {x: 3, y: 3, z: 3}
+  unequippedLocalScale: {x: 1, y: 1, z: 1}
+  equipmentDropForce: {x: 2, y: -1}
+  equipDistance: 3
+  weaponType: 4
+  baseAmmoClip: {fileID: 11400000, guid: c3dcff8267b03994da5ac8fa525ddd4c, type: 2}
+  maxClipCapacity: 5
+  maxHitDistance: 25
+  fireModes: 00000000
+  fullAutoShootDelay: 0
+  burstShootCount: 0
+  burstShootDelay: 0

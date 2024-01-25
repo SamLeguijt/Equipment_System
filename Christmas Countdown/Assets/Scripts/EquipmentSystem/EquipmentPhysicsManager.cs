@@ -11,15 +11,15 @@ public class EquipmentPhysicsManager : MonoBehaviour
 
     /* ------------------------------------------  VARIABLES ------------------------------------------- */
 
-    private CameraController cameraController; // CameraController used for orientation
+    [SerializeField] private CameraController cameraController; // CameraController used for orientation
 
     /* Variables used for properties */
-    private EquipmentBehaviour equipmentBehaviour;
-    private Collider objectCollider;
-    private Rigidbody rb;
+    [SerializeField] private EquipmentBehaviour equipmentBehaviour;
+    [SerializeField] private Collider objectCollider;
+    [SerializeField] private Rigidbody rb;
 
     private int layerToCheckEnvironmentCollisions;
-    private float secondsGroundedAfterCollision = 0.5f;
+    private float secondsGroundedAfterCollision = 0.5f; // Time before setting isgrounded bool true after colliding
 
 
     /* ------------------------------------------  PROPERTIES ------------------------------------------- */
@@ -70,17 +70,23 @@ public class EquipmentPhysicsManager : MonoBehaviour
 
     private void Start()
     {
-        // Get the equipmentbehaviour by looking in our children (this gets added by the script to parent, so must be in children)
-        equipmentBehaviour = GetComponentInChildren<EquipmentBehaviour>();
+        if (SettingsManager.instance.AutoReferenceEquipmentComponents_OnStart)
+        {
+            // Get the equipmentbehaviour by looking in our children (this gets added by the script to parent, so must be in children)
+            equipmentBehaviour = GetComponentInChildren<EquipmentBehaviour>();
 
-        // Get the collider manually attached to this object
-        objectCollider = GetComponent<Collider>();
+            // Get the collider attached to this object
+            objectCollider = GetComponent<Collider>();
 
-        // Add and assign rigidbody through here 
-        rb = gameObject.AddComponent<Rigidbody>();
+            cameraController = Camera.main.GetComponent<CameraController>();
 
-        cameraController = Camera.main.GetComponent<CameraController>();
+        }
 
+        if (SettingsManager.instance.AutoAddEquipmentComponents_OnStart)
+        {
+            // Add and assign rigidbody through here 
+            rb = gameObject.AddComponent<Rigidbody>();
+        }
 
         // Check if we found it to prevent manually putting this script on objects, or EquipBehaviour not as a child object
         if (equipmentBehaviour == null || objectCollider == null || rb == null || cameraController == null)

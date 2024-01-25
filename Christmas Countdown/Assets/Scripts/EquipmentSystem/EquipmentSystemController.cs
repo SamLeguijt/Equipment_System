@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR;
 
@@ -9,31 +10,6 @@ using UnityEngine.XR;
 /// </summary>
 public class EquipmentSystemController : MonoBehaviour
 {
-    /// <summary>
-    /// Nested class for key bindings for each hand
-    /// Nested because we don't need access outside this class to the class
-    /// </summary>
-    public class HandKeyBindings
-    {
-        // Reference to the hand
-        public Hand hand;
-
-        // Define private keycodes for activation and drop/equip keys
-        private KeyCode activationKey;
-        private KeyCode dropEquipKey;
-
-        // Public read-only references to both keys (don't want to set them outside constructor)
-        public KeyCode ActivationKey { get { return activationKey; } }
-        public KeyCode DropEquipKey { get { return dropEquipKey; } }
-
-        // Constructor sets hand with activation and equip key to param values
-        public HandKeyBindings(Hand _hand, KeyCode _activationKey, KeyCode _dropEquipKey)
-        {
-            this.hand = _hand;
-            this.activationKey = _activationKey;
-            this.dropEquipKey = _dropEquipKey;
-        }
-    }
 
 
     /* ------------------------------------------  VARIABLES ------------------------------------------- */
@@ -57,14 +33,22 @@ public class EquipmentSystemController : MonoBehaviour
     [Tooltip("Input key to equip/drop equipment to/from the left hand")]
     [SerializeField] private KeyCode leftHandEquipDropKey;
 
-    [Tooltip("Input key to equip/drop equipment to/from the left hand")]
-    [SerializeField] private KeyCode rightHandEquipDropKey;
-
     [Tooltip("Input key to activate equipment in left hand")]
     [SerializeField] private KeyCode leftHandActivationKey;
 
+    [Tooltip("Input key to swap fire modes for weapon equipment in left hand")]
+    [SerializeField] private KeyCode leftHandFireModeSwapKey;
+
+    [Space]
+
+    [Tooltip("Input key to equip/drop equipment to/from the left hand")]
+    [SerializeField] private KeyCode rightHandEquipDropKey;
+
     [Tooltip("Input key to activate equipment in right hand")]
     [SerializeField] private KeyCode rightHandActivationKey;
+
+    [Tooltip("Input key to swap fire modes for weapon equipment in right hand")]
+    [SerializeField] private KeyCode rightHandFireModeSwapKey;
 
     [Space]
     [Space]
@@ -136,6 +120,23 @@ public class EquipmentSystemController : MonoBehaviour
     }
 
     /// <summary>
+    /// Reference to the key to swap fire modes in left hand 
+    /// </summary>
+    public KeyCode LeftHandFireModeSwapKey
+    {
+        get { return leftHandFireModeSwapKey; }
+        private set { leftHandFireModeSwapKey = value; }
+    }
+
+    /// <summary>
+    /// Reference to the key to swap fire modes in right hand 
+    /// </summary>
+    public KeyCode RightHandFireModeSwapKey
+    {
+        get { return rightHandFireModeSwapKey; }
+        private set { rightHandFireModeSwapKey = value; }
+    }
+    /// <summary>
     /// Read only property to get the key bindings for all hands
     /// </summary>
     public Dictionary<Hand, HandKeyBindings> FullHandKeyBindings
@@ -170,17 +171,29 @@ public class EquipmentSystemController : MonoBehaviour
     /// </summary>
     private void InitializeEquipmentSystemController()
     {
-        fullHandKeyBindings.Add(leftHand, new HandKeyBindings(leftHand, leftHandActivationKey, LeftHandEquipDropKey));
-        fullHandKeyBindings.Add(rightHand, new HandKeyBindings(rightHand, rightHandActivationKey, RightHandEquipDropKey));
+        SetKeyBindings();
+    }
+
+    private void SetKeyBindings()
+    {
+        HandKeyBindings leftHandKeyBindings = new HandKeyBindings(leftHandActivationKey, LeftHandEquipDropKey, leftHandFireModeSwapKey);
+        HandKeyBindings rightHandKeyBindings = new HandKeyBindings(rightHandActivationKey, RightHandEquipDropKey, rightHandFireModeSwapKey);
+
+        fullHandKeyBindings.Add(leftHand, leftHandKeyBindings);
+        fullHandKeyBindings.Add(rightHand, rightHandKeyBindings);
+
+        leftHand.KeyBindings = leftHandKeyBindings;
+        rightHand.KeyBindings = rightHandKeyBindings;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (SettingsManager.instance.IsOpenSettingsMenu()) return;
+
         // Handle the current equipment for both hands in update
         HandleCurrentEquipment(leftHand);
         HandleCurrentEquipment(rightHand);
-
     }
 
     /// <summary>
@@ -192,7 +205,7 @@ public class EquipmentSystemController : MonoBehaviour
     {
         // First check if the hand currently has an equipment equipped
         if (_hand.CurrentEquipment == null) return;
-        else 
+        else
         {
             // Call method to drop the equipment when input is given
             CheckForDropInput(_hand, _hand.CurrentEquipment);
@@ -209,6 +222,8 @@ public class EquipmentSystemController : MonoBehaviour
     /// <param name="_equipment"></param>
     public void TryEquip(EquipmentBehaviour _equipment)
     {
+        if (SettingsManager.instance.IsOpenSettingsMenu()) return;
+
         // Call method to check for input for both hands
         CheckForEquipInput(leftHand, _equipment);
         CheckForEquipInput(rightHand, _equipment);
@@ -353,6 +368,23 @@ public class EquipmentSystemController : MonoBehaviour
             }
         }
         return false;
+    }
+
+    /// <summary>
+    /// Returns if the _handToCheck param is holding an equipment of equipmentType param _typeToCheck
+    /// </summary>
+    /// <param name="_typeToCheck"></param>
+    /// <param name="_handToCheck"></param>
+    /// <returns></returns>
+    public bool IsEquipmentTypeInHandOf(EquipmentType _typeToCheck, Hand _handToCheck)
+    {
+        // Return false if the hand does not have a current equipment
+        if (_handToCheck.CurrentEquipment == null) return false;
+        else // Hand has a current equipment
+        {
+            // Return if the type in the hand matches th param type
+            return (_handToCheck.CurrentEquipment.EquipmentData.EquipmentType == _typeToCheck);
+        }
     }
 }
 
