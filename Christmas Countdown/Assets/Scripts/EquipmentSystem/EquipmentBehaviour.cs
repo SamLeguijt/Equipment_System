@@ -33,7 +33,10 @@ public class EquipmentBehaviour : MonoBehaviour
     [SerializeField] private string environmentLayerName;
 
     [Tooltip("Name of the layer for equipment objects")]
-    [SerializeField] private string mainEquipmentLayerName;
+    [SerializeField] private string handEquipmentLayerName;
+
+    [Tooltip("Name of the layer for equipment objects")]
+    [SerializeField] private string sceneEquipmentLayerName;
 
     [Tooltip("Name of the layer for mouse detection")]
     [SerializeField] private string mouseDetectionLayerName;
@@ -54,7 +57,7 @@ public class EquipmentBehaviour : MonoBehaviour
     [SerializeField] private Collider parentCollider; // Store collider of the parent object
     [SerializeField] private Collider mouseDetectCollider;
     [SerializeField] private Transform player; // Reference to the player for distance and orientation
-    
+
     private Hand currentHand;
 
     // Reference to the activation logic for this equipment
@@ -92,11 +95,19 @@ public class EquipmentBehaviour : MonoBehaviour
     }
 
     /// <summary>
-    /// Read only property representing the name of the layer for Main Equipment
+    /// Read only property representing the name of the layer for Equipment in hand
     /// </summary>
-    public string MainEquipmentLayerName
+    public string HandEquipmentLayerName
     {
-        get { return mainEquipmentLayerName; }
+        get { return handEquipmentLayerName; }
+    }
+
+    /// <summary>
+    /// Read only property representing the name of the lauer for equipments in scene
+    /// </summary>
+    public string SceneEquipmentLayerName
+    {
+        get { return sceneEquipmentLayerName; }
     }
 
     /// <summary>
@@ -160,7 +171,7 @@ public class EquipmentBehaviour : MonoBehaviour
     public Hand CurrentHand
     {
         get { return currentHand; }
-        private set {  currentHand = value; }   
+        private set { currentHand = value; }
     }
 
     /// <summary>
@@ -218,7 +229,7 @@ public class EquipmentBehaviour : MonoBehaviour
 
             // Get the parent's collider to detect mouse
             parentCollider = mainEquipmentObject.GetComponent<Collider>();
-        } 
+        }
 
         if (SettingsManager.instance.AutoAddEquipmentComponents_OnStart) // Auto add physics manager if dev settings allows
         {
@@ -247,11 +258,8 @@ public class EquipmentBehaviour : MonoBehaviour
         // Initialize the activation logic at this point
         activationHandler.Initialize(this);
 
-        // Set our parent to the equipment layer to be able to pick up when needed
-        mainEquipmentObject.gameObject.layer = LayerMask.NameToLayer(MainEquipmentLayerName);
-
-        // Set this object's layer to the mouse detect layer for mouse detection
-        gameObject.layer = LayerMask.NameToLayer(MouseDetectionLayerName);
+        SetObjectLayer(mainEquipmentObject, sceneEquipmentLayerName);
+        SetObjectLayer(gameObject, MouseDetectionLayerName);
 
         // Set rotation and scale of parent object to it's data values
         SetObjectRotation(MainEquipmentObject.transform, EquipmentData.UnequippedRotation);
@@ -331,6 +339,10 @@ public class EquipmentBehaviour : MonoBehaviour
         SetObjectRotation(MainEquipmentObject.transform, EquipmentData.EquippedRotation); // Lastly, set the local rotation when in hand
 
         CurrentHand = _targetHand;
+
+        SetObjectLayer(mainEquipmentObject, HandEquipmentLayerName, true);
+        SetObjectLayer(gameObject, MouseDetectionLayerName);
+
         // Set value of bools true
         IsEquipped = true;
         IsOnGround = false;
@@ -359,6 +371,9 @@ public class EquipmentBehaviour : MonoBehaviour
         // Enable colliders to enable collision events
         parentCollider.enabled = true;
         mouseDetectCollider.enabled = true;
+
+        SetObjectLayer(mainEquipmentObject, SceneEquipmentLayerName, true);
+        SetObjectLayer(gameObject, MouseDetectionLayerName);    
 
         // Set transform properties
         mainEquipmentObject.transform.parent = null; // First drop the parent
@@ -435,6 +450,23 @@ public class EquipmentBehaviour : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Sets the layer of the main equipment object to the target layer param
+    /// </summary>
+    /// <param name="_targetLayerName"></param>
+    private void SetObjectLayer(GameObject _object, string _targetLayerName, bool _setChildren =false)
+    {
+        _object.layer = LayerMask.NameToLayer(_targetLayerName);
+
+        if (_setChildren)
+        {
+            // Set the layer of all children recursively
+            foreach (Transform child in _object.transform)
+            {
+                SetObjectLayer(child.gameObject, _targetLayerName);
+            }
+        }
+    }
     /// <summary>
     /// Private flaot method that returns the distance between the player and this object
     /// </summary>
