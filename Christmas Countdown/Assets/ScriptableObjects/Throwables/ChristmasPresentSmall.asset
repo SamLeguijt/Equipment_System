@@ -22,7 +22,7 @@ MonoBehaviour:
   rotateToMouseSpeed: 8.1
   equippedLocalScale: {x: 1, y: 1, z: 1}
   unequippedLocalScale: {x: 0.4, y: 0.4, z: 0.4}
-  equipmentDropForce: {x: 3, y: 3}
+  equipmentDropForce: {x: 4, y: 3}
   equipDistance: 3
   throwDelaySeconds: 0.1
   throwForceValue: 10
