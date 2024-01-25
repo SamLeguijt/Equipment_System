@@ -90,7 +90,6 @@ public class ButtonController : MonoBehaviour
             else // Player is not within interact range or mouse is not over button, set color to start color
             {
                 buttonObject.GetComponent<Renderer>().material.color = baseButtonColor;
-
             }
         }
         else
