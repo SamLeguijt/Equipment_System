@@ -93,6 +93,10 @@ public class ButtonController : MonoBehaviour
 
             }
         }
+        else
+        {
+            buttonObject.SetActive(false);  
+        }
     }
 
     /// <summary>
