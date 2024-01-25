@@ -157,7 +157,7 @@ public class SettingsManager : MonoBehaviour
         // Panel settings is open, so enable mouse and make visible
         if (panelSettingsUI.activeSelf)
         {
-            UnityEngine.Cursor.lockState = CursorLockMode.Confined;
+            UnityEngine.Cursor.lockState = CursorLockMode.None;
             UnityEngine.Cursor.visible = true;
         }
         else // Panel settings is closed, so lock cursor and dont show

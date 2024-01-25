@@ -750,8 +750,8 @@ MonoBehaviour:
   playerOrientation: {fileID: 954617189}
   speedSliderUI: {fileID: 337629092}
   dragSliderUI: {fileID: 1449903365}
-  defaultSpeed: 30
-  defaultDrag: 10
+  defaultSpeed: 35
+  defaultDrag: 5
 --- !u!136 &49137012
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -18548,7 +18548,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1571904910}
         m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
         m_MethodName: OnUnlimitedAmmoToggle
         m_Mode: 1
@@ -24913,8 +24913,8 @@ MonoBehaviour:
   leftHandPosOffset: {x: 0.1, y: 0, z: 0.5}
   sensitivityXslider: {fileID: 1467925506}
   sensitivityYslider: {fileID: 1366639023}
-  defaultMouseSensitivityX: 400
-  defaultMouseSensitivityY: 400
+  defaultMouseSensitivityX: 175
+  defaultMouseSensitivityY: 175
   maxVerticalAngle: 90
   equippedcullingMask:
     serializedVersion: 2
