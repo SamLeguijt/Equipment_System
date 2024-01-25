@@ -50,8 +50,6 @@ public class EquipmentSystemController : MonoBehaviour
     [Tooltip("Input key to swap fire modes for weapon equipment in right hand")]
     [SerializeField] private KeyCode rightHandFireModeSwapKey;
 
-
-
     [Space]
     [Space]
     [Header("Other variables")]

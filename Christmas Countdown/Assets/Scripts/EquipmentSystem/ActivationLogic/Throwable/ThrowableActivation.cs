@@ -15,7 +15,9 @@ public class ThrowableActivation : MonoBehaviour, IEquipmentActivation
     // Reference to the equipment controller for input and key bindings
     private EquipmentSystemController equipmentController;
 
+    // Keeps track if the throw activation action is done
     private bool isThrowActivated;
+
     /// <summary>
     /// Initializes this activation by getting neccesary components
     /// </summary>

@@ -58,6 +58,7 @@ public class EquipmentBehaviour : MonoBehaviour
     [SerializeField] private Collider mouseDetectCollider;
     [SerializeField] private Transform player; // Reference to the player for distance and orientation
 
+    // Reference to the current hand this equipment is in
     private Hand currentHand;
 
     // Reference to the activation logic for this equipment
@@ -338,10 +339,12 @@ public class EquipmentBehaviour : MonoBehaviour
         SetObjectScale(MainEquipmentObject.transform, EquipmentData.EquippedLocalScale); // First set scale before parenting
         SetObjectRotation(MainEquipmentObject.transform, EquipmentData.EquippedRotation); // Lastly, set the local rotation when in hand
 
+        // Set current hand value to the targethand
         CurrentHand = _targetHand;
 
-        SetObjectLayer(mainEquipmentObject, HandEquipmentLayerName, true);
-        SetObjectLayer(gameObject, MouseDetectionLayerName);
+        // Set layer of parent object to the hand layer
+        SetObjectLayer(mainEquipmentObject, HandEquipmentLayerName, true); // True to also set children 
+        SetObjectLayer(gameObject, MouseDetectionLayerName); // Set this object's layer to the mouse detect layer after setting parent layer and children 
 
         // Set value of bools true
         IsEquipped = true;
@@ -372,8 +375,9 @@ public class EquipmentBehaviour : MonoBehaviour
         parentCollider.enabled = true;
         mouseDetectCollider.enabled = true;
 
+        // Set layer of parent back to scene equipment layer, true for its children too
         SetObjectLayer(mainEquipmentObject, SceneEquipmentLayerName, true);
-        SetObjectLayer(gameObject, MouseDetectionLayerName);    
+        SetObjectLayer(gameObject, MouseDetectionLayerName); // Set this objects layer back to MouseDetection layer after setting parent children layer
 
         // Set transform properties
         mainEquipmentObject.transform.parent = null; // First drop the parent
@@ -382,6 +386,41 @@ public class EquipmentBehaviour : MonoBehaviour
 
         // Call method to throw equipment
         if (_applyForces) equipmentPhysicsManager.ThrowEquipment(); // Note: Notice isKinematic = false before calling method
+    }
+
+    /// <summary>
+    /// Sets the layer of the main equipment object to the target layer param, bool to affect children as well
+    /// </summary>
+    /// <param name="_targetLayerName"></param>
+    private void SetObjectLayer(GameObject _object, string _targetLayerName, bool _setChildren = false)
+    {
+        // St to target layer
+        _object.layer = LayerMask.NameToLayer(_targetLayerName);
+
+        // Set the children as well if bool param is true
+        if (_setChildren)
+        {
+            // Set the layer of all children recursively
+            foreach (Transform child in _object.transform)
+            {
+                SetObjectLayer(child.gameObject, _targetLayerName);
+            }
+        }
+    }
+
+
+    /// <summary>
+    /// IEnumerator that sets the value of CanDrop to true after end of frame <br/>
+    /// Prevents dropping equipment same frame as equipping it
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator EnableDropAfterFrame()
+    {
+        // Wait for end of frame
+        yield return new WaitForEndOfFrame();
+
+        // Set value to true to enable dropping this object
+        CanDrop = true;
     }
 
     /// <summary>
@@ -403,20 +442,6 @@ public class EquipmentBehaviour : MonoBehaviour
 
         // Mouse is not over the specified collider
         return false;
-    }
-
-    /// <summary>
-    /// IEnumerator that sets the value of CanDrop to true after end of frame <br/>
-    /// Prevents dropping equipment same frame as equipping it
-    /// </summary>
-    /// <returns></returns>
-    private IEnumerator EnableDropAfterFrame()
-    {
-        // Wait for end of frame
-        yield return new WaitForEndOfFrame();
-
-        // Set value to true to enable dropping this object
-        CanDrop = true;
     }
 
     /// <summary>
@@ -450,23 +475,6 @@ public class EquipmentBehaviour : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Sets the layer of the main equipment object to the target layer param
-    /// </summary>
-    /// <param name="_targetLayerName"></param>
-    private void SetObjectLayer(GameObject _object, string _targetLayerName, bool _setChildren =false)
-    {
-        _object.layer = LayerMask.NameToLayer(_targetLayerName);
-
-        if (_setChildren)
-        {
-            // Set the layer of all children recursively
-            foreach (Transform child in _object.transform)
-            {
-                SetObjectLayer(child.gameObject, _targetLayerName);
-            }
-        }
-    }
     /// <summary>
     /// Private flaot method that returns the distance between the player and this object
     /// </summary>

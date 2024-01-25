@@ -59,6 +59,9 @@ public class SettingsManager : MonoBehaviour
     /// </summary>
     public bool IsUnlimitedAmmo { get { return isUnlimitedAmmo; } }
 
+    /// <summary>
+    ///  Reference to the key to interact with environment with
+    /// </summary>
     public KeyCode InteractKey { get { return interactKey; } }
 
     private void Awake()
@@ -77,6 +80,8 @@ public class SettingsManager : MonoBehaviour
     {
         // Disable the settings panel on start
         ToggleSettingsPanel(false);
+
+        // Set text of input field to the current key
         interactKeyInputField.text = interactKey.ToString();
     }
 

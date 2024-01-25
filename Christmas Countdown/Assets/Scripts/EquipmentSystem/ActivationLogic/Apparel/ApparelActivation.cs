@@ -38,8 +38,9 @@ public class ApparelActivation : MonoBehaviour, IEquipmentActivation
         }
     }
 
-    public virtual void Activate()
-    {
-    }
+    /// <summary>
+    /// Implement method from interface
+    /// </summary>
+    public virtual void Activate() { }
 }
 
