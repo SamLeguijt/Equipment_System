@@ -35,4 +35,4 @@ MonoBehaviour:
   lightCullingmask:
     serializedVersion: 2
     m_Bits: 2147483647
-  lightRotation: {x: 0, y: 180, z: 0}
+  lightRotation: {x: 0, y: -10, z: 0}

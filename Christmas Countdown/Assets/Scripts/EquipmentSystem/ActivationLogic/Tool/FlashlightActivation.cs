@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class FlashlightActivation : ToolActivation
 {
@@ -13,6 +14,8 @@ public class FlashlightActivation : ToolActivation
 
     // Reference to the light component for this object
     private Light myLight;
+
+    public Light MyLight {  get { return myLight; } }   
 
     /// <summary>
     /// Overridden method to initialize this script, sets activation logic of behaviour to this and sets the light settings according to the data
@@ -96,8 +99,6 @@ public class FlashlightActivation : ToolActivation
             _light.cullingMask = flashlightData.LightCullingMask;
 
             _light.color = flashlightData.LightColor;
-
-            _light.transform.rotation = Quaternion.Euler(flashlightData.LightRotation);
         }
 
         // Return the light with new settings
