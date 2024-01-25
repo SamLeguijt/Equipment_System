@@ -15,6 +15,12 @@ public class SettingsManager : MonoBehaviour
     [Tooltip("Reference to the UI Panel GameObject from canvas")]
     [SerializeField] private GameObject panelSettingsUI;
 
+    [Tooltip("The input field of the interact key UI")]
+    [SerializeField] private TMP_InputField interactKeyInputField;
+
+    [Tooltip("Key to toggle the UI panel with")]
+    [SerializeField] private KeyCode interactKey;
+
     [Tooltip("Key to toggle the UI panel with")]
     [SerializeField] private KeyCode toggleSettingsPanelKey;
 
@@ -51,7 +57,12 @@ public class SettingsManager : MonoBehaviour
     /// <summary>
     /// Setting for allowing unlimited ammo
     /// </summary>
-    public bool IsUnlimitedAmmo { get {  return isUnlimitedAmmo; } }
+    public bool IsUnlimitedAmmo { get { return isUnlimitedAmmo; } }
+
+    /// <summary>
+    ///  Reference to the key to interact with environment with
+    /// </summary>
+    public KeyCode InteractKey { get { return interactKey; } }
 
     private void Awake()
     {
@@ -69,6 +80,9 @@ public class SettingsManager : MonoBehaviour
     {
         // Disable the settings panel on start
         ToggleSettingsPanel(false);
+
+        // Set text of input field to the current key
+        interactKeyInputField.text = interactKey.ToString();
     }
 
 
@@ -84,7 +98,7 @@ public class SettingsManager : MonoBehaviour
         HandleMouseState();
     }
 
-    
+
     /// <summary>
     /// Toggles the bool for unlimited ammo, called via UI Toggle element click
     /// </summary>
@@ -115,6 +129,27 @@ public class SettingsManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Gets called upon changing the value of the interact key setting, sets new keybinding for that key
+    /// </summary>
+    public void OnInteractSettingChange()
+    {
+        // Set to Upper to convert to KeyCodes (lower case != keycode)
+        string keyString = interactKeyInputField.text.ToUpper();
+
+        // Convert the text to a KeyCode (try)
+        if (System.Enum.TryParse(keyString, out KeyCode newKey))
+        {
+            // Check if the newkey is alphabetic (no special characters or 0-9)
+            if (IsAlphabeticKey(newKey))
+            {
+                // The newkey can be used, so stage it 
+                interactKey = newKey;
+                interactKeyInputField.text = interactKey.ToString();
+            }
+        }
+    }
+
+    /// <summary>
     /// Handles the lock and visible state of the cursor, based on active setting panel yes/no
     /// </summary>
     private void HandleMouseState()
@@ -139,5 +174,15 @@ public class SettingsManager : MonoBehaviour
     public bool IsOpenSettingsMenu()
     {
         return panelSettingsUI.activeSelf;
+    }
+
+    /// <summary>
+    /// Returns true if the param _keyCode is within the alphabet
+    /// </summary>
+    /// <param name="keyCode"></param>
+    /// <returns></returns>
+    private bool IsAlphabeticKey(KeyCode _keyCode)
+    {
+        return (_keyCode >= KeyCode.A && _keyCode <= KeyCode.Z);
     }
 }

@@ -19,7 +19,7 @@ public class EquipmentPhysicsManager : MonoBehaviour
     [SerializeField] private Rigidbody rb;
 
     private int layerToCheckEnvironmentCollisions;
-    private float secondsGroundedAfterCollision = 0.5f;
+    private float secondsGroundedAfterCollision = 0.5f; // Time before setting isgrounded bool true after colliding
 
 
     /* ------------------------------------------  PROPERTIES ------------------------------------------- */

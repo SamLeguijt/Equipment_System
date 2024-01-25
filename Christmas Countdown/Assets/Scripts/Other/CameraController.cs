@@ -12,10 +12,10 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Transform playerForwardOrientation;
 
     [Tooltip("Right hand transform of object attached to player")]
-    [SerializeField] private Transform playerRightHand;
+    [SerializeField] private Hand playerRightHand;
 
     [Tooltip("Left hand transform of object attached to player")]
-    [SerializeField] private Transform playerLeftHand;
+    [SerializeField] private Hand playerLeftHand;
 
     [Tooltip("Position offsets for right hand")]
     [SerializeField] private Vector3 rightHandPosOffset;
@@ -41,6 +41,9 @@ public class CameraController : MonoBehaviour
     // Private variables used for setting the rotations
     private float rotationX;
     private float rotationY;
+
+    public LayerMask equippedcullingMask;
+    public Camera myCam;
 
     public float CameraRotationX
     {
@@ -84,6 +87,7 @@ public class CameraController : MonoBehaviour
         // Return if the settings menu is open to stop rotating
         if (SettingsManager.instance.IsOpenSettingsMenu()) return;
 
+
         Rotate();
         MaintainPositions();
     }
@@ -124,8 +128,7 @@ public class CameraController : MonoBehaviour
     private void MaintainPositions()
     {
         // Set position of this transform to orientation object
-        transform.position = playerForwardOrientation.position;
-
+        transform.position = playerForwardOrientation.transform.position;
         // Get the worldposition of the camera view for both hands (offsets)
         Vector3 worldPositionLeftHand = Camera.main.ViewportToWorldPoint(leftHandPosOffset);
         Vector3 worldPositionRightHand = Camera.main.ViewportToWorldPoint(rightHandPosOffset);
@@ -134,8 +137,9 @@ public class CameraController : MonoBehaviour
         Vector3 centerPosition = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 5f));
 
         // Set position of the hands to the viewport positions
-        playerLeftHand.position = worldPositionLeftHand;
-        playerRightHand.position = worldPositionRightHand;
-        centerTarget.position = centerPosition;
+        playerLeftHand.transform.position = worldPositionLeftHand;
+        playerRightHand.transform.position = worldPositionRightHand;
+        centerTarget.transform.position = centerPosition;
+
     }
 }

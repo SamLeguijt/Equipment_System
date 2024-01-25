@@ -28,7 +28,6 @@ public class ActivationLogicHandler : MonoBehaviour
         {
             // Call method to add the correct activation logic
             AddActivationLogic(equipmentBehaviour);
-
         }
         else
         {

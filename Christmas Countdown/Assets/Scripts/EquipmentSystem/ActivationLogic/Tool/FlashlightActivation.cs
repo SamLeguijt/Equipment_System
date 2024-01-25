@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class FlashlightActivation : ToolActivation
 {
@@ -12,7 +13,12 @@ public class FlashlightActivation : ToolActivation
     private EquipmentBehaviour equipmentBehaviour;
 
     // Reference to the light component for this object
-    private Light myLight;
+    private Light lightComponent;
+
+    /// <summary>
+    /// Reference to the light component
+    /// </summary>
+    public Light LightComponent {  get { return lightComponent; } }   
 
     /// <summary>
     /// Overridden method to initialize this script, sets activation logic of behaviour to this and sets the light settings according to the data
@@ -35,7 +41,7 @@ public class FlashlightActivation : ToolActivation
         Light light = lightPrefab.GetComponent<Light>();
 
         // Change the values accordign to data
-        myLight = GetLightValues(light);
+        lightComponent = GetLightValues(light);
     }
 
     /// <summary>
@@ -57,9 +63,9 @@ public class FlashlightActivation : ToolActivation
         else // No longer equipped, so disable the light
         {
             // Disable light if enabled
-            if (myLight.enabled)
+            if (lightComponent.enabled)
             {
-                myLight.enabled = false;
+                lightComponent.enabled = false;
             }
         }
     }
@@ -69,7 +75,7 @@ public class FlashlightActivation : ToolActivation
     /// </summary>
     private void ToggleFlashlight()
     {
-        myLight.enabled = !myLight.enabled;
+        lightComponent.enabled = !lightComponent.enabled;
     }
 
     /// <summary>
@@ -96,8 +102,6 @@ public class FlashlightActivation : ToolActivation
             _light.cullingMask = flashlightData.LightCullingMask;
 
             _light.color = flashlightData.LightColor;
-
-            _light.transform.rotation = Quaternion.Euler(flashlightData.LightRotation);
         }
 
         // Return the light with new settings

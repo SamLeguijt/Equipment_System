@@ -17,11 +17,11 @@ MonoBehaviour:
   leftHandPositionOffset: {x: 0, y: 0, z: 0}
   rightHandPositionOffset: {x: 0, y: 0, z: 0}
   equippedRotation: {x: 0, y: 0, z: 0}
-  unequippedRotation: {x: 0, y: 0, z: 0}
+  unequippedRotation: {x: -90, y: 0, z: 0}
   maxRotateTorqueSpeed: {x: 10, y: 2, z: 5}
   rotateToMouseSpeed: 10
   equippedLocalScale: {x: 30, y: 30, z: 30}
-  unequippedLocalScale: {x: 10, y: 10, z: 10}
+  unequippedLocalScale: {x: 40, y: 40, z: 40}
   equipmentDropForce: {x: 1, y: -2}
   equipDistance: 3
   throwDelaySeconds: 0.6
