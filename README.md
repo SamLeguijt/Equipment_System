@@ -6,26 +6,36 @@ The project features a Unity project with a small demo scene that showcases my i
 In this README, I will dive a little deeper into the contents of this project. Explaining what's waiting for you, how to use it and how to implement and expand on it. 
 First, a general overview: 
 
-This project serves as a take on a broad equipment system. Although not completely perfected and refined, my goals have been met with creating a system that allows developers to create equipment objects with relative ease. 
-Further down below, I will explain how to to do this and how you can change it, but first I need to tell you about the present equipment objects and their usage. 
+
+
+
+/* ---------- General Overview ----------*/
+
+This project serves as a take on a broad equipment system. Although not completely perfected and refined, my goals have been met with creating a system that allows developers to create equipment objects with relative ease.
+My main goal, was to create a system that minimizes the need for developers to manually add and assign component and references. I aimed to create a system that does not require you to create specific prefabs of equipment. I aimed to achieve a 'Pick a model, add object / script x and play'. I feel like these goals have been achieved. The system works as intended, although it definitely can be perfected and optimized. 
+Down below, I will explain how to to create equipment objects in this manner, and how to implement and expand on it. First, I need to tell you about the present equipment objects and their usage. 
+
 Generally speaking, there are 5 types of equipments. These equipments can all be activated to do something. The player is able to equip an equipment in his left or right hand (non visible hand as of now). 
 Pressing a certain button or key activates the equipment for that hand, therefore, there are two activation keys. Other actions revolving around a specific hand also have a specific key for their hand. 
 
 Currently, the project features 5 different types of equipment, with each a different activation use.
 
-The equipment types that can be made are, and their activation are:
 - Weapons (ranged). Upon activation, shoots bullets towards the mouse. Can have different fire modes that get switched by FireModeSwap input (see down-down below)
-- Ammunition. Upon activation, reloads the weapon in the other hand (if ammo type matches the weapon type)
-- Throwables. Upon activation, throws the equipment from hand towards the mouse direction. Forces are set per object and can be tweaked. 
+- Ammunition. Upon activation, reloads the weapon in the other hand
+- Throwables. Upon activation, throws the equipment from hand towards the mouse direction. Forces are calculated depending on mouse target, values can be set per object and can be tweaked. 
 - Tools (I.e Flashlight). The Flashlight is currently the only tool, upon activation it toggles the light. 
-- Apparel (I.e Hat). The hat is the currently the only apprel, upon activation, the hand gets put on the player's head. Activating again for an empty hand places the hat back in the hand. 
+- Apparel (I.e Hat). The hat is currently the only apparel. Upon activation, the hat gets put on the player's head. Activating again for an empty hand places the hat back in the hand. 
 
-These equipments are all seperatly made as objects. A quick description of how the system works for developers: 
+A quick description of how the system works for developers: 
 A Scriptable Object of each equipment type can be made to serve as the data of the equipment. A prefab object with a MonoBehaviour script handles the behaviour of the equipments. It has a reference to the scriptable object for specific values. 
 Another object controlls the system of equipping and dropping. It has references to the Hand scripts and controls the input for activating the equipments. 
 The activation logic is stored in a seperate script. The behaviour script has a reference to this to call the logic. A seperate script automatically adds the correct activation logic script to the equipment based on it's type, and initialzes it (ActivationLogicHandler.cs). 
 
-This system allows developers to create new equipment objects without having to assign multiple component, references and other values. With this in mind, my general goal has been achieved. 
+This system allows developers to create new equipment objects without having to assign multiple component, references and other values. 
+More on how to do this in below section.
+
+
+
 
 
 /* ---------- Making new equipments ---------- */
@@ -46,6 +56,9 @@ To make an equipment, follow these general steps:
 12) Position this object at the firepoint you need for your equipment (I.e barrel of the gun, target position of hat, etc.) 
 
 
+
+
+
 /* ---------- Expanding on equipments: Sub-types ---------- */
 
 Now, for the developers who would like to expand on the system and create sub-types of existing equipment (I.e flashlight, bullet, ammo clip), I would recommend following the below general steps:
@@ -60,6 +73,9 @@ Now, for the developers who would like to expand on the system and create sub-ty
 8) Implement your logic for activating your equipment, make sure to add it in the Activation method.
 9) Finally, follow the general steps for creating a new equipment. Don't forget to select your new ScriptableObject as Equipment Data in the EquipmentBehaviour inspector.
 10) Your newly created equipment should now be calling the Activation method from it's own new class upon receiving general activation input! If not, make sure to override the Activate method from the parent class and test again. 
+
+
+
 
 
 /* ---------- Expanding on equipments: New main=types ---------- */
@@ -78,9 +94,12 @@ For those who would like to create completely new types of equipment, not based 
 Now that I've covered the main dish of the project and how to implement/use/expand on it, a few other things might be handy to know beforehand: 
 
 
-/* ---------- Controls ---------- */
 
-The standard controlls are as follows: 
+
+
+/* ---------- Controls and Settings ---------- */
+
+The standard controls are as follows: 
 
 - Movement: WASD/Arrow keys
 - Aiming: Mouse
@@ -95,11 +114,24 @@ To change values for movement, head into the PlayerMovement script. For mouse se
 Quick side note: It is possible to have the same key for multiple actions. I heavily suggest not to do this, since it conflicts the actions and can result in errors. 
 
 For those who are against automatically assigning and getting references for certain scripts, there are a few developer settings to use for you. In the SettingsManager script, set the values of the bools to your need. 
-Note that this mainly affects the Equipment and relevant classes. It also means you will have to assign every reference in the inspector mannually for each equipment, and add needed components manually as well. 
-The needed components on relevant objects are: 
+Note that this mainly affects the Equipment and relevant classes. It also means you will have to assign every reference in the inspector manually for each equipment, and add needed components manually as well. 
 
+The needed components on equipment relevant objects are: 
 - Main equipment object (your model): A collidder, a rigidbody, 'EquipmentPhysicsMAnager.cs'.
-- As child of above object: the EquipmentObject prefab.
-- 
+- As child of above object: the EquipmentObject prefab
+- On the EquipmentObject prefab: Add the desired ActivationLogic script
+
+The needed references are visible in the inspector. Be aware that some scripts might disable or destroy their object if references are missing. Assign all references to prevent this.
+
+
+
+
+/* ---------- Final Notes ---------- */
+
+Good luck and have fun with this project! I hope you can either enjoy the small demo, or better yet, use my work for your own! 
+
+Cheers!
+
+
 
 
